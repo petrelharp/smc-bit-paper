@@ -1,0 +1,12 @@
+__pycache__
+.DS_Store
+notebooks/.ipynb_checkpoints
+illustrations/*.pdf
+figures/*
+references
+*.aux
+*.log
+*.blg
+*.bbl
+*.synctex.gz
+paper.pdf
