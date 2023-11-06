@@ -135,7 +135,8 @@ affect $I_{i}$.\\
 % note on the disjoint set of intervals for each lineage under the SMC
 As noted by \cite{mcvean_approximating_2005}, the backwards-in-time description of the 
 SMC is slightly different from the left-to-right approach in that recombination 
-in non-ancestral material is possible. Although this does not affect the distribution 
+in non-ancestral material is possible (see fig.\ref{fig:smc-unary}). 
+Although this does not affect the distribution 
 of marginal genealogies, it does mean that not all lineages in $L$ can be represented 
 by a single interval. More precisely, all lineages will be associated with 
 a single interval up to the point where one section of the 
@@ -156,12 +157,13 @@ define this data structure.\\
 
 Recording the full process as described above will result in unary nodes.
 These are nodes that will have only one child in one or more local trees 
-(see fig. \ref{fig:smc-unary} and \citet{Wong-2023}). This is not only true 
+(see fig.\ref{fig:smc-unary} and \citet{Wong-2023}). This is not only true 
 for the nodes registered for those lineages hit by a recombination event. 
 In case of a coalescence event, a node is registered along the full 
 extent of the original lineage $X_c$. 
 Coalescence between two lineages without perfectly 
 overlapping intervals will therefore result in locally unary nodes.\\
+
 
 The resulting data structure can be simplified to various degrees \citep{Wong-2023}. 
 This equates to removing certain types of unary nodes, 
@@ -173,33 +175,48 @@ the local trees only store information on local coalescence events.
 
 Here we will compute the likelihood for an ARG
 under the SMC for which we have no information on the time to any 
-of the recombination events. We will assume however, that the identity 
+of the recombination events. 
+We will assume however, that the identity 
 of the lineage involved in each recombination event can be correctly 
-inferred by relying on the unary nodes (see section X.X on locally unary nodes). 
-This enables us to extend likelihood computations to the 
-a more general class of ARGs.
+inferred by relying on the unary nodes (see section X.X on locally unary nodes).
+As highlighted in fig.\ref{fig:smc-unary}, unary nodes can be inferred from the 
+available haplotype information. 
+Currently, the following methods return this information by default 
+as part of their ARG reconstruction algorithm: 
+\argweaver \citep{rasmussen_genome_wide_2014} 
+\tsinfer \citep{kelleher_inferring_2019}, 
+\kwarg \citep{ignatieva_kwarg_2021}.
+The presence of these unary nodes enables us to extend likelihood computations 
+to the a more general class of ARGs.
 
-\begin{figure}[h!] \label{fig:smc-unary}
+
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=\textwidth]{smc-custom-haplotypes-mini.png}
-\caption{SMC with unary nodes}
+\includegraphics[width=\textwidth]{figures/smc-custom-haplotypes-mini.png}
+\caption{SMC with unary nodes: Tree sequence encoding of an ARG (top left) 
+generated under the SMC. The haplotypes that make up the lineages coalescing 
+at the root of each marginal tree are highlighted at the top. This ancestral 
+material is coloured based on the samples that inherit from it.
+These reveal the details on the presence of the unary nodes. 
+Note how the presence of the unary nodes 
+modifies the left-to-right logic of the prune regrafts 
+under the SMC (blue dotted arrows).
+The unary nodes allow us to keep track of the full extent of all lineages 
+through time (under the SMC) and thus infer the lineage along which a 
+recombination event happened.}
+\label{fig:smc-unary}
 \end{figure}
 
 \subsection{Unary nodes} \label{par:unary}
 
-The SMC with unary nodes
-Unary nodes connect marginal trees to the ARG.
-These are inferred by \tsinfer, \kwarg, \argweaver. %add citation
+Recording/inferring unary nodes allow us to completely reconstruct 
+$X(t)$ through time under the SMC up to the exact 
+time of the recombination events. \\
 
-% what happens in the partial or complete absence of unary nodes
-% even in the absence of unary nodes we can compute a likelihood, however, this has an impact.
+The SMC and unary nodes. \\
 
-% The SMC and unary nodes
-% ADD: figure here that tries to deal with all possible causes of confusion
-% unary nodes mainly
+inferring recombination = change of parent. \\
 
-% highlight the amount of information that needs to be tracked to compute a likelihood
-% for the exact Hudson CwR
 
 \subsection{Calculating likelihoods} \label{par:liks}
 
@@ -275,13 +292,13 @@ in the same observed local sequence of tree changes.
 
 \begin{figure}[h!] \label{fig:algo}
 \centering
-\includegraphics[width=0.9\textwidth]{smc_algo.png}
+\includegraphics[width=0.9\textwidth]{figures/smc_algo.png}
 \caption{Description of algorithm}
 \end{figure}
 
 \begin{figure}[h!] \label{fig:algo-flat}
 \centering
-\includegraphics[width=\textwidth]{smc_algo_flat.png}
+\includegraphics[width=\textwidth]{figures/smc_algo_flat.png}
 \caption{Description of algorithm}
 \end{figure}
 
@@ -290,7 +307,7 @@ in the same observed local sequence of tree changes.
 
 Although the argument outlined in the previous paragraph is valid for any ARG, here we 
 will describe how to (efficiently) extract the information required to associate a
-tree sequence encoding of an ARG with a likelihood under the SMC.\\
+tree sequence encoding of an ARG with a likelihood under the SMC (see fig. \ref{fig:smc-unary}).\\
 
 Formally, we represent a tree sequence using a set of tables \citep{kelleher_efficient_2018}. 
 This simple tabular representation of any ARG $\mathcal{G} = (N, E)$, can be 
@@ -303,22 +320,27 @@ Note that we defined the extent of any edge $\epsilon \in \mathcal{G}$ as the un
 disjoint intervals. In the tree sequence encoding however, $\epsilon$ will be represented 
 by a single entry for each contiguous interval. As remarked before, under the SMC, this 
 distinction only matters beyond the root of the genealogy. The distinction between both 
-types of edges will therefore not be made in the remainder of the paper.\\
+types of edges will therefore not be made in the remainder of the paper.
+% Although it does requires us to keep track of some additional information to avoid
+% wrongfully assuming a recombination event happened.
+% Similarly, the distinction between the lineage associated with an edge, and the edge 
+% itself can render things very verbose.
+\\
 
 The likelihood computation as described above can be done with a single pass 
 of the edge table.
 The central problem however is to efficiently maintain the state $I_e(t)$, which counts 
 the number of lineages (the lineage associated with) the focal edge $\epsilon$ can coalesce 
 with at time $t$. 
-
-
 The definition of $I_{kl}$ (\ref{def:coal}) is based on the assumption 
-that we can impose a strict total order on all edges based on their starting point.
+that we can impose a strict total order on all (overlapping) lineages based on their 
+starting point.
 
-Because of the SMC:
+%%%% improve this %%%%%%5
+The lineages associated with a particular edge can only coalesce with other lineages 
 an edge starting at $x$ can only coalesce 
 with a subset of the other edges that make up the local tree at position $x$.
-
+%%%% 
 Because local tree changes only occur whenever edges are removed and/or inserted,
 we will rely on the ordering of these insertions and removals as implemented in
 \texttt{tskit}, to ensure this state can be correctly and efficiently maintained.\\
@@ -358,13 +380,20 @@ lineage hit by that recombination.
 \subsection{Flexibility}
 
 By explicitly associating a single likelihood with each edge, we can compute a likelihood 
-under the SMC for any valid tree sequence.
-Strength of ARGs is the ability to gain temporal resolution. This approach allows us to fully 
-benefit from this. %elaborate
-We can readily incorporate changes in $N_e$ and $r$, in both dimensions (time and along the genome).
+under the SMC for any valid tree sequence. 
+
+The \texttt{tskit} library provides a whole range  
+of subsetting operations on tree sequences allowing us to slice the ARG in time and/or space, 
+and simplification.
 Similarly, any subset of the tree sequence that is itself a valid tree sequence can again 
 be used to compute a likelihood. Such operations include: slicing genome both in time, and space.
 
+Strength of ARGs is the ability to gain temporal resolution. This approach allows us to fully 
+benefit from this.
+
+We can readily incorporate changes in $N_e$ and $r$, in both dimensions (time and along the genome).
+
+% HOW DO WE HIGHLIGHT THESE FEATURES: SUPPLEMENTS?
 \subsubsection{Slicing the ARG in time}
 % TO DO: give example why this might be useful.
 
@@ -375,21 +404,35 @@ be used to compute a likelihood. Such operations include: slicing genome both in
 
 \subsubsection{Variable r}
 
+
 %\subsubsection{Node labellings}
 % implement idea from Guo et al. 2022.
 
 \section{Discussion}
 % summary: what did we do here
+Here, we have introduced a scalable algorithm to compute likelihoods 
+under the SMC for a general class of ARGs. 
+Important step moving forwards towards bridging the gap between the tremendous 
+recent advances in ARG inference and current state of the art statistical inference of 
+past demography and selection (but see). % some/many of these approaches 
+% ignore recombination
 
 
 % future directions: 
 incorporating node labels (see \citep{guo_recombination-aware_2022}).
 
-First step towards a genealogy sampler (for any ARG, and at scale): quantifying uncertainty 
-(with inferred ARG as starting point)
 
-resolve polytomies in a model-based way
+First step towards a genealogy sampler (for any ARG, and at scale): 
+quantifying uncertainty 
+(with inferred ARG as starting point). Compared to existing MCMC approaches, 
+we further restrict the size of ARG space by 
+integrating out the exact time to the recombination event.
 
+% discuss accurracy:
+% there will be scenarios where the assumptions made here are not met: e.g. polytomies
+% yet we can still always compute a likelihood.
+% we can alwyas associate a value, what remains to be verified what the information is in that
+% case.
 
 % explore the information in unary nodes
 
