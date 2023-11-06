@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[round]{natbib}
-\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsmath,amssymb,amsfonts, bbm}%
 \usepackage{geometry}%
 \usepackage{color}
 \usepackage{graphicx}
@@ -9,22 +9,32 @@
 \usepackage[right]{lineno}
 \usepackage{subcaption}
 \usepackage{tikz}
+\usetikzlibrary{math,calc,positioning}
 \usetikzlibrary{calc,positioning}
+\usepackage{subcaption}
 
-\title{bit-smc-paper}
+\newcommand{\noderef}[1]{\textsf{#1}}
+\newcommand{\tsinfer}[0]{\texttt{tsinfer}}
+\newcommand{\kwarg}[0]{\texttt{KwARG}}
+\newcommand{\argweaver}[0]{\texttt{ARGweaver}}
+\newcommand{\argweaverD}[0]{\texttt{ARGweaver-D}}
+\newcommand{\relate}[0]{\texttt{Relate}}
+\newcommand{\espalier}[0]{\texttt{Espalier}}
+\newcommand{\arbores}[0]{\texttt{Arbores}}
 
 \begin{document}
 
 \linenumbers
-\title{backwards-in-time SMC}
+\title{Computing likelihoods under the SMC for a general class of ARGs.}
 
 % First authors
 \author[1, $\dagger$]{Gertjan Bisschop}
 
 % Middle Authors
 \author[2]{Alison Etheridge}
-
 \author[3]{Peter Ralph}
+
+% last author
 \author[1]{Jerome Kelleher}
 \affil[$\dagger$]{Denotes corresponding author}
 
@@ -35,29 +45,357 @@
 \affil[3]{University of Oregon, USA}
 
 \section{Abstract}
-
+%% WHAT IS THE MAIN FOCUS OF THE PAPER?
 
 \section{Introduction}
+% What are ARGs, their relevance and importance
+
+% associating likelihoods with ARGs
+
+% previous likelihood calculations on ARGsL Kuhner and Felsenstein (2000), ARGweaver
+
+% history of approximating the coalescent: 
+SMC (McVean and Cardin, 2005) SMC' (Marjoram and Wall, 2006).
+Also heuristic approximations: Li and Stephens (2003) extending Stephens and Donnelly 
+(2000)
+These have enabled (scalable) ARG inference methods: ARGweaver (relying on SMC, limited 
+to smaller samples, but ability to sample from posterior, and full ARG), and Relate, 
+tsinfer/tsdate (copying algorithm), ArgNeedle (using SMC) 
+Clear distinction into two groups: ARGWeaver infers actual ARG.
+Whereas the other approaches are heuristic in nature. For example, where ARGweaver has 
+the built in assumption of neighbouring trees being separated by single Subtree Prune 
+Regraft (SPR) (Song citation?), this is not the case for any of the heuristic data 
+structures. (other peculiarities: ...).
+
+% SMC and relatives are useful: lot of focus however on integrating over the distribution of trees to get Ne(t). \cite{PSMC, ...}
+% Here the idea is to use the SMC in a different way that resonates more with the true direction of flow
+% of genetic/haplotype information.
+
+
+% results in a concrete way to compute likelihoods for *any* inferred ARG (integrating out the recombination time)
+% meaning: e.g. no requirements on adjacent trees only differing by a single SPR, (other?)
+
+% In this paper, we attempt to address these problems by
+% providing a precise definition of an ARG that is general enough to encompass
+% the output of popular simulation and inference methods.
+
+% ADD: remark on fact that we are only dealing with topology and branch length information
+% adding likelihood of observing particular mutation configuration given an ARG is straightforward. 
 
 
 \section{Methods and Results}
-\subsection{SMC backwards in time: description}
-% important question: does this make incorporating demography into the smc easier?
-\subsection{Properties of the process} 
+\subsection{SMC backwards-in-time}\label{par:description}
 
-\subsection{calculating likelihoods}
-%mathematical description
+Formulated backwards-in-time the SMC \citep{mcvean_approximating_2005} only requires a simple modification to the 
+coalescent with recombination. By only considering those pairs of 
+lineages that share 
+genomic intervals with ancestral material, as eligible for coalescence, we obtain the 
+sequential Markovian structure along the chromosome the SMC is best known for.\\
 
-%how does this relate to the tskit format
+More formally, and following the notation of \cite{mcvean_approximating_2005}, at any 
+point in time, the process can be described by $L(t)$, the set of labeled lineages 
+extant at time $t$ each represented by a union of ordered non-overlapping half open 
+intervals detailing the ancestral material 
+carried by that lineage $X_i = \{[x_{i0}, y_{i0}), \dotsc, [x_{im}, y_{im})\}$.
+$L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$, each represented by 
+single interval spanning the entire genome.
+Backwards in time the process evolves by a succession of coalescence and recombination 
+events until all segments of ancestral material are each present in only one lineage. 
+The waiting time to next event is determined by these two competing processes with exponentially 
+distributed waiting times as described below.\\
 
-%show plot with likelihood surface
-\subsection{applying this to inferred trees}
-%tsinfer vs  relate vs argneedle
+Recombination is described by a Poisson process of rate $r$ per unit of length and time. 
+A recombination to the 
+left of $x$ with $x>x_{i0}$ and $x<y_{im}$ splits a lineage $i$ into two new, uniquely 
+labelled lineages.\\
 
-\subsection{unary nodes}
-% discuss what they add in this description:
+Any two \emph{overlapping} lineages coalesce at rate $\lambda = 1/(2N_e)$ in the case
+of a diploid population of constant size. The newly formed lineage acquires the 
+union of both ordered intervals.
+Although coalescence is reciprocal, here we'll define a strict total order 
+(see \ref{par:liks}) on 
+all lineages in $X(t)$ based on their leftmost starting points. 
+For any such strict total order on $X_l(t)$ and at any point in the process 
+the instantaneous rate of coalescence then equals $\lambda \sum_{i \neq j} I_{ij}$.
 
+\begin{equation} \label{def:coal}
+I_{ij} = \begin{cases}
+1 & X_i > X_j \wedge X_i \cap X_j \neq \emptyset \\
+0 & \text{otherwise}
+\end{cases}
+\end{equation}
+
+We can now define $C_i(t) = \{X_j \in L(t) | I_{ij}(t) = 1\}$ such that $|C_i(t)| = 
+I_{i}(t) = \sum_{j} I_{ij}(t)$.
+Because $I_{ij}$ is not reciprocal, each extant lineage has their own unique set of 
+lineages $C_i(t)$ it can coalesce with. This will simplify the likelihood computations 
+(see next paragraph). Note that although recombination affects $C_i(t)$ it does not 
+affect $I_{i}$.\\ 
+
+% note on the disjoint set of intervals for each lineage under the SMC
+As noted by \cite{mcvean_approximating_2005}, the backwards-in-time description of the 
+SMC is slightly different from the left-to-right approach in that recombination 
+in non-ancestral material is possible. Although this does not affect the distribution 
+of marginal genealogies, it does mean that not all lineages in $L$ can be represented 
+by a single interval. More precisely, all lineages will be associated with 
+a single interval up to the point where one section of the 
+genome has reached its most recent common ancestor but the neighbouring parts have not.
+
+\subsection{Recording an ARG} \label{par:recording}
+
+The process described in the previous paragraph details the transitions of the 
+set of labeled lineages $L$ through time. An Ancestral Recombination Graph 
+$\mathcal{G} = (N, E)$ is obtained by registering a tuple $(c, p, X_{cp})$ whenever a 
+lineage $c$, associated with a disjoint set of genomic intervals $X_c$, is 
+replaced by one (coalescence) or two lineage(s) (recombination), $p$ (and $p^{\prime}$).
+The last element of the tuple is the extent of the edge. It is itself a  
+disjoint set of intervals such that $X_{cp} \cup X_{cp^{\prime}} = X_c$. 
+The set of edges $E$, containing all such tuples $(c, p, X_{cp})$, 
+and $N$, the set of nodes representing all genomes in the ARG, together
+define this data structure.\\
+
+Recording the full process as described above will result in unary nodes.
+These are nodes that will have only one child in one or more local trees 
+(see fig. \ref{fig:smc-unary} and \citet{Wong-2023}). This is not only true 
+for the nodes registered for those lineages hit by a recombination event. 
+In case of a coalescence event, a node is registered along the full 
+extent of the original lineage $X_c$. 
+Coalescence between two lineages without perfectly 
+overlapping intervals will therefore result in locally unary nodes.\\
+
+The resulting data structure can be simplified to various degrees \citep{Wong-2023}. 
+This equates to removing certain types of unary nodes, 
+depending on the degree of information 
+we want to retain (or can reconstruct) from the original process. 
+Unary nodes therefore are a vital link between 
+ARGs and local trees. In a fully simplified ARG, without unary nodes, 
+the local trees only store information on local coalescence events. 
+
+Here we will compute the likelihood for an ARG
+under the SMC for which we have no information on the time to any 
+of the recombination events. We will assume however, that the identity 
+of the lineage involved in each recombination event can be correctly 
+inferred by relying on the unary nodes (see section X.X on locally unary nodes). 
+This enables us to extend likelihood computations to the 
+a more general class of ARGs.
+
+\begin{figure}[h!] \label{fig:smc-unary}
+\centering
+\includegraphics[width=\textwidth]{smc-custom-haplotypes-mini.png}
+\caption{SMC with unary nodes}
+\end{figure}
+
+\subsection{Unary nodes} \label{par:unary}
+
+The SMC with unary nodes
+Unary nodes connect marginal trees to the ARG.
+These are inferred by \tsinfer, \kwarg, \argweaver. %add citation
+
+% what happens in the partial or complete absence of unary nodes
+% even in the absence of unary nodes we can compute a likelihood, however, this has an impact.
+
+% The SMC and unary nodes
+% ADD: figure here that tries to deal with all possible causes of confusion
+% unary nodes mainly
+
+% highlight the amount of information that needs to be tracked to compute a likelihood
+% for the exact Hudson CwR
+
+\subsection{Calculating likelihoods} \label{par:liks}
+
+Retracing the ARG backwards in time, each coalescence event is associated with two child 
+lineages, $c$ and $d$, and a single parent, $p$. By defining $C_i(t)$ asymmetrically, 
+the history of each these two child lineages can be considered independently without 
+risking to double count any of the coalescence events. The likelihood of 
+observing the edge $(c, p, X_{cp})$ can thus be considered independently from 
+the likelihood of all other edges, and in particular from the likelihood 
+of $(d, p, X_{dp})$.\\
+
+% extends from here means min(X_{cp})=x, max(X_{cp})=y
+% improve this description here
+Assuming $(c, p, X_{cp})$ extends from $x$ to $y$ along the genome and $t_i$ 
+indicates the age of 
+node $i$ in the ARG, then the probability of not observing a recombination across the 
+entire area (span x depth) of this edge is 
+
+% full extent of segment
+\begin{equation}\label{eq:span}
+A_{(c, p)}(\theta) = e^{-r (y-x)(t_p - t_{c})}
+\end{equation}
+% also x and y not necessarily equal to x_{c_{1}0} and y_{c_{1}m}.
+
+What's left to compute the likelihood, is to take into account all events 
+associated with $x$, 
+the leftmost coordinate of $(c, p, X_{cp})$. This is either only the 
+coalescence event involving 
+$c$ and $d$. In this case $x=x_{c0}$. Or, $x$ can a new recombination break point that 
+occurred on the lineage represented by $c$ at some time $s$ between $t_{c}$ 
+and $\min(t_p, t_{p^{\prime}})$, where $p^{\prime}$ is the parent of the 
+edge $(c, p^{\prime}, X_{cp^{\prime}})$ ending at $x$.
+In the latter case the new lineage starting at $x$ can be given a temporary label 
+$c^{\prime}$ such that with the same logic from the previous paragraph we 
+can define $F(c^{\prime}, s, t) = \int_{s}^{t} I_{c^{\prime}}(u)du$. 
+
+\begin{equation}\label{eq:depth}
+B_{(c, p)}(\theta) = \begin{cases}
+e^{-\lambda F(c, t_c, t_p)} \lambda^{I_{cd}(t_p)} & x=x_{c0} \\
+\int_{t_c}^{t_{p} \wedge t_{p^{\prime}}} r e^{-rs} e^{-\lambda F(c^{\prime}, s, t_{p})} ds \lambda^{I_{c^{\prime}d}(t_p)} & x=x_{c^{\prime}0}>x_{c0} \\
+\end{cases}
+\end{equation}
+
+Here, the (second) exponential term gives the probability of not observing a 
+coalescence event before $t_p$. In case of a recombination, $re^{-rs}$ further 
+gives the probability of observing a recombination 
+at time $s$ given a Poisson process along position $x$ with rate $r$. The 
+time of the recombination is integrated out.
+The last term gives the point probability density of the coalescence event 
+that terminates the edge. The indicator function is used to resolve 
+the non-reciprocal nature of coalescence events as defined here.\\
+
+The likelihood of ARG $\mathcal{G}$ defined by the set of edges $E$ and
+given parameters $\theta$ then is
+
+\begin{equation}\label{eq:full-lik}
+\mathcal{L}(\mathcal{G}|\theta) = \prod_{(c, p) \in E} A_{(c, p)}(\theta) * B_{(c, p)}(\theta)
+\end{equation}
+
+% Does this hold for the case beyond the root of the genealogy?
+
+Because the likelihood is computed based on edges,
+and edges are no longer recorded once the local most recent common ancestor 
+has been reached, we will underestimate the number of positions where 
+a recombination could have occurred in case a recombination hits a 
+lineage with trapped non-ancestral material (see end \ref{par:description}). 
+If we assume that only a single recombination 
+occurred, then it suffices however to provide a correction factor $g$ in equation
+\ref{eq:depth}. Here $g$ represents the 
+length of non-ancestral material along which a recombination would have resulted  
+in the same observed local sequence of tree changes.
+
+
+\begin{figure}[h!] \label{fig:algo}
+\centering
+\includegraphics[width=0.9\textwidth]{smc_algo.png}
+\caption{Description of algorithm}
+\end{figure}
+
+\begin{figure}[h!] \label{fig:algo-flat}
+\centering
+\includegraphics[width=\textwidth]{smc_algo_flat.png}
+\caption{Description of algorithm}
+\end{figure}
+
+
+\subsection{Tree sequence format} \label{par:algo}
+
+Although the argument outlined in the previous paragraph is valid for any ARG, here we 
+will describe how to (efficiently) extract the information required to associate a
+tree sequence encoding of an ARG with a likelihood under the SMC.\\
+
+Formally, we represent a tree sequence using a set of tables \citep{kelleher_efficient_2018}. 
+This simple tabular representation of any ARG $\mathcal{G} = (N, E)$, can be 
+augmented with additional tables with information on sequence variation
+using a site and mutation table. The node table stores information on all 
+haplotypes $N$ in the tree sequence. Information about how nodes relate to 
+each other along the genome is defined in a tabular encoding of $E$.
+Each row in this edge table constitutes a tuple \texttt{(left, right, parent, child)}.
+Note that we defined the extent of any edge $\epsilon \in \mathcal{G}$ as the union of 
+disjoint intervals. In the tree sequence encoding however, $\epsilon$ will be represented 
+by a single entry for each contiguous interval. As remarked before, under the SMC, this 
+distinction only matters beyond the root of the genealogy. The distinction between both 
+types of edges will therefore not be made in the remainder of the paper.\\
+
+The likelihood computation as described above can be done with a single pass 
+of the edge table.
+The central problem however is to efficiently maintain the state $I_e(t)$, which counts 
+the number of lineages (the lineage associated with) the focal edge $\epsilon$ can coalesce 
+with at time $t$. 
+
+
+The definition of $I_{kl}$ (\ref{def:coal}) is based on the assumption 
+that we can impose a strict total order on all edges based on their starting point.
+
+Because of the SMC:
+an edge starting at $x$ can only coalesce 
+with a subset of the other edges that make up the local tree at position $x$.
+
+Because local tree changes only occur whenever edges are removed and/or inserted,
+we will rely on the ordering of these insertions and removals as implemented in
+\texttt{tskit}, to ensure this state can be correctly and efficiently maintained.\\
+
+
+% edge diff algorithm
+The order in which edges are inserted and removed is determined by the index 
+vectors $\textbf{i}$ and $\textbf{o}$ \citep{kelleher_efficient_2016}. The edge insertion vector 
+$\textbf{i}$ gives the ordering of edges sorted by left endpoint, and among edges 
+with the same left endpoint, sorted so that edges closer to the root appear later. 
+The edge removal vector $\textbf{o}$ is similar, except gives the ordering of edges 
+by right endpoint and with edges closer to the root appearing sooner. This order imposes the 
+strong ordering on all edges as required by the definition of $I_{kl}$. The variables $\texttt{i}$ and 
+$\texttt{o}$ variables are used to keep track of our position in the edge insertion and edge removal 
+indexes.\\
+
+% the counting algorithm
+To transition from one tree to the next, we first iterate across the indices of all edges 
+in $\textbf{o}$ from its current index up to $\texttt{o}$. For each edge in we decrement $I$ 
+from index \texttt{edge.child} to \texttt{edge.parent}. We subsequently iterate across the 
+edges in $\textbf{i}$ up to index $\texttt{i}$. For each new edge, we first compute the likelihood 
+associated with that edge and then 
+increment $I$ from \texttt{edge.child} to \texttt{edge.parent}.\\
+
+% improve this section, then transition to limitations of unary nodes
+We further rely on the assumption that the (inferrable, see next paragraph) unary nodes 
+provide us with the required information on both the extent of all extant lineages through 
+time as well as on the time boundaries for any recombination event and the identity of the 
+lineage hit by that recombination.
+
+% section on how deviations from the ideal assumptions affect the algorithm
+% extent of lineages
+% version of the algorithm with polytomies
+
+% version of the algorithm in the absence of unary nodes
+
+\subsection{Flexibility}
+
+By explicitly associating a single likelihood with each edge, we can compute a likelihood 
+under the SMC for any valid tree sequence.
+Strength of ARGs is the ability to gain temporal resolution. This approach allows us to fully 
+benefit from this. %elaborate
+We can readily incorporate changes in $N_e$ and $r$, in both dimensions (time and along the genome).
+Similarly, any subset of the tree sequence that is itself a valid tree sequence can again 
+be used to compute a likelihood. Such operations include: slicing genome both in time, and space.
+
+\subsubsection{Slicing the ARG in time}
+% TO DO: give example why this might be useful.
+
+\subsubsection{Slicing the ARG in (genome) space}
+%TO DO: give example why this might be useful.
+
+\subsubsection{Variable Ne}
+
+\subsubsection{Variable r}
+
+%\subsubsection{Node labellings}
+% implement idea from Guo et al. 2022.
 
 \section{Discussion}
+% summary: what did we do here
+
+
+% future directions: 
+incorporating node labels (see \citep{guo_recombination-aware_2022}).
+
+First step towards a genealogy sampler (for any ARG, and at scale): quantifying uncertainty 
+(with inferred ARG as starting point)
+
+resolve polytomies in a model-based way
+
+
+% explore the information in unary nodes
+
+\bibliographystyle{plainnat}
+\bibliography{paper, temp}
+
+\section{Supplementary material}
 
 \end{document}
