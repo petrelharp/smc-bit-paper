@@ -1,0 +1,22 @@
+// SLiM background selection
+
+initialize() {
+    defineConstant("N", 10000); // pop size
+    defineConstant("L", 1e6); // total chromosome length
+    defineConstant("L1", 1e3); // gene length
+    initializeTreeSeq(retainCoalescentOnly=F);
+    initializeMutationRate(2.5e-6);
+    initializeRecombinationRate(1.25e-8, L-1);
+    initializeMutationType("m2", 0.5, "f", -0.0025);
+    initializeGenomicElementType("g2", m2, 1.0);
+    initializeGenomicElement(g2, asInteger(L-2*L1), asInteger(L-1));
+}
+
+1 early() {
+sim.addSubpop("p1", N);
+community.rescheduleScriptBlock(s1, 10*N, 10*N);
+}
+
+s1 10 late() {
+sim.treeSeqOutput("/scratch/gbisshop/bs/bs.co.false.trees");
+}

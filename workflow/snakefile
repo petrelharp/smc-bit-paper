@@ -1,0 +1,74 @@
+import os
+
+SEQLEN=1000000
+SAMPLES=100
+
+OUTPUT_DIR = '/scratch/gbisshop/output/n_100/seq_1g'
+TMP_DIR = OUTPUT_DIR + '/temp'
+VCF_DIR = OUTPUT_DIR + '/vcf'
+RELATE_TS_DIR = OUTPUT_DIR + '/relate_ts'
+INFO_DIR = OUTPUT_DIR + '/info'
+TRUE_TS_DIR = '/ceph/users/gbisshop/true-trees/n_100/seq_1g'
+RELATE_DIR = '/ceph/users/gbisshop/software/relate'
+RELATE_LIB_DIR = '/ceph/users/gbisshop/software/relate_lib'
+
+# parameters
+NE="20000" #haploid
+MU="1.25e-8"
+IDS = [file.rstrip('.vcf') for file in os.listdir(VCF_DIR) if file.endswith('.vcf')]
+
+rule all:
+    input:
+        expand(RELATE_TS_DIR + "/{id}.trees", id=IDS)
+
+# Define a rule to convert to tree sequence
+rule convert_to_tree_sequence:
+    input:
+        anc_gz=TMP_DIR + "/{id}.anc",
+        mut_gz=TMP_DIR + "/{id}.mut"
+    params:
+        tree_seq=RELATE_TS_DIR + "/{id}",
+        relate=RELATE_LIB_DIR + "/bin/Convert"
+    output:
+        tree_seq=RELATE_TS_DIR + "/{id}.trees"
+    shell:
+        "{params.relate} --mode ConvertToTreeSequence \
+          --anc {input.anc_gz} --mut {input.mut_gz} --iterations 1000 --compress -o {params.tree_seq}\
+        "
+
+# Define a rule to infer trees
+rule infer_trees:
+    input:
+        haps=TMP_DIR + "/{id}.haps",
+        sample=TMP_DIR + "/{id}.sample"
+    output:
+        anc_gz=TMP_DIR + "/{id}.anc",
+        mut_gz=TMP_DIR + "/{id}.mut"
+    params:
+        outputfile = "{id}",
+        mu=MU,
+        ne=NE,
+        relate=RELATE_DIR + "/bin/Relate",
+        info=INFO_DIR + "/chr1.hapmap"
+    shell:
+        "{params.relate} --mode All -m {params.mu} -N {params.ne} \
+          --haps {input.haps} --sample {input.sample} \
+          --map {params.info} -o {params.outputfile}"
+
+
+# Define a rule to convert VCF to haplotypes
+# non-biallelic sites already removed from vcf
+rule convert_to_haplotypes:
+    input:
+        VCF_DIR + "/{id}.vcf"
+    output:
+        haps= TMP_DIR + "/{id}.haps",
+        samples = TMP_DIR + "/{id}.sample"
+    params:
+        vcf=VCF_DIR + "/{id}",
+        relate=RELATE_DIR + "/bin/RelateFileFormats"
+    shell:
+        "{params.relate} \
+          --mode ConvertFromVcf --haps {output.haps} \
+          --sample {output.samples} -i {params.vcf}"
+
