@@ -9,9 +9,8 @@
 \usepackage[right]{lineno}
 \usepackage{subcaption}
 \usepackage{tikz}
-\usetikzlibrary{math,calc,positioning}
-\usetikzlibrary{calc,positioning}
-\usepackage{subcaption}
+
+%\usepackage{subcaption}
 
 \newcommand{\noderef}[1]{\textsf{#1}}
 \newcommand{\tsinfer}[0]{\texttt{tsinfer}}
@@ -92,7 +91,7 @@ lineages that share
 genomic intervals with ancestral material, as eligible for coalescence, we obtain the 
 sequential Markovian structure along the chromosome the SMC is best known for.\\
 
-More formally, and following the notation of \cite{mcvean_approximating_2005}, at any 
+More formally, and following the notation of \citet{mcvean_approximating_2005}, at any 
 point in time, the process can be described by $L(t)$, the set of labeled lineages 
 extant at time $t$ each represented by a union of ordered non-overlapping half open 
 intervals detailing the ancestral material 
@@ -148,7 +147,8 @@ The process described in the previous paragraph details the transitions of the
 set of labeled lineages $L$ through time. An Ancestral Recombination Graph 
 $\mathcal{G} = (N, E)$ is obtained by registering a tuple $(c, p, X_{cp})$ whenever a 
 lineage $c$, associated with a disjoint set of genomic intervals $X_c$, is 
-replaced by one (coalescence) or two lineage(s) (recombination), $p$ (and $p^{\prime}$).
+replaced by one or two lineage(s), $p$ (and $p^{\prime}$), 
+in case of a coalescence or recombination respectively.
 The last element of the tuple is the extent of the edge. It is itself a  
 disjoint set of intervals such that $X_{cp} \cup X_{cp^{\prime}} = X_c$. 
 The set of edges $E$, containing all such tuples $(c, p, X_{cp})$, 
@@ -156,66 +156,77 @@ and $N$, the set of nodes representing all genomes in the ARG, together
 define this data structure.\\
 
 Recording the full process as described above will result in unary nodes.
-These are nodes that will have only one child in one or more local trees 
+These are nodes that have only one child in one or more local trees 
 (see fig.\ref{fig:smc-unary} and \citet{Wong-2023}). This is not only true 
 for the nodes registered for those lineages hit by a recombination event. 
-In case of a coalescence event, a node is registered along the full 
-extent of the original lineage $X_c$. 
+In case of a coalescence event, an edge is registered along the full 
+extent of both involved lineages. 
 Coalescence between two lineages without perfectly 
 overlapping intervals will therefore result in locally unary nodes.\\
 
+These unary nodes ensure the one to one correspondence between an ARG and its 
+representation as a sequence of local trees (see fig.\ref{fig:smc-unary}). 
+Indeed, the presence of these unary nodes allow us to completely reconstruct 
+the state of all extant lineages through time from the local trees. 
+
+%under the SMC up to the exact time of the recombination events.
 
 The resulting data structure can be simplified to various degrees \citep{Wong-2023}. 
 This equates to removing certain types of unary nodes, 
 depending on the degree of information 
 we want to retain (or can reconstruct) from the original process. 
-Unary nodes therefore are a vital link between 
-ARGs and local trees. In a fully simplified ARG, without unary nodes, 
-the local trees only store information on local coalescence events. 
+In a fully simplified ARG, without unary nodes, 
+the local trees only store information on local coalescence events.
+Under the SMC, if we only omit recombination nodes, % is there a better word?
+we are left with the coalescent nodes, those nodes that are coalescent 
+along some fraction of the genome. We can however still identify \emph{all} 
+lineages that were hit by a recombination event and constrain the time to 
+this event to within a window defined by the age of the node $c$ associated with that 
+lineage and the minimum age of the parents of the edges connecting to $c$.
 
+As highlighted in fig.\ref{fig:smc-unary}, (coalescing) unary nodes can be inferred 
+from the available haplotype information. Currently, the following methods 
+return this information by default as part of their ARG reconstruction algorithm: 
+\argweaver \citep{rasmussen_genome-wide_2014} 
+\tsinfer \citep{kelleher_inferring_2019}, 
+\kwarg \citep{ignatieva_kwarg_2021}.
+
+The presence of these (coalescing) unary nodes enables us to extend likelihood 
+computations to a more general class of ARGs.
 Here we will compute the likelihood for an ARG
 under the SMC for which we have no information on the time to any 
 of the recombination events. 
 We will assume however, that the identity 
 of the lineage involved in each recombination event can be correctly 
-inferred by relying on the unary nodes (see section X.X on locally unary nodes).
-As highlighted in fig.\ref{fig:smc-unary}, unary nodes can be inferred from the 
-available haplotype information. 
-Currently, the following methods return this information by default 
-as part of their ARG reconstruction algorithm: 
-\argweaver \citep{rasmussen_genome_wide_2014} 
-\tsinfer \citep{kelleher_inferring_2019}, 
-\kwarg \citep{ignatieva_kwarg_2021}.
-The presence of these unary nodes enables us to extend likelihood computations 
-to the a more general class of ARGs.
+inferred by relying on the unary nodes.
 
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\textwidth]{figures/smc-custom-haplotypes-mini.png}
-\caption{SMC with unary nodes: Tree sequence encoding of an ARG (top left) 
-generated under the SMC. The haplotypes that make up the lineages coalescing 
-at the root of each marginal tree are highlighted at the top. This ancestral 
+\caption{ARG (top left) generated under the SMC and its representation as a 
+series of local trees. The presence of the unary nodes ensure these two 
+representations contain the same information.
+The haplotypes that make up the lineages coalescing 
+at the root of each marginal tree are highlighted at the top. Ancestral 
 material is coloured based on the samples that inherit from it.
-These reveal the details on the presence of the unary nodes. 
 Note how the presence of the unary nodes 
-modifies the left-to-right logic of the prune regrafts 
-under the SMC (blue dotted arrows).
-The unary nodes allow us to keep track of the full extent of all lineages 
-through time (under the SMC) and thus infer the lineage along which a 
-recombination event happened.}
+modifies the left-to-right logic of single-prune-regrafts induced by 
+recombination under the SMC (blue dotted arrows).
+Even in the absence of the blue recombination nodes, 
+the unary coalescing nodes allow us to reconstruct the state of all lineages 
+up to the exact time of the recombination event.
+}
 \label{fig:smc-unary}
 \end{figure}
 
 \subsection{Unary nodes} \label{par:unary}
+% Do we need a seperate section on the unary nodes?
+% is there more to be said about the SMC inm the presence of unary nodes?
+Recording unary nodes has interesting consequences on the left-to-right 
+description of the SMC. Looking at a single marginal tree, the presence of 
+unary nodes tells us that either \\
 
-Recording/inferring unary nodes allow us to completely reconstruct 
-$X(t)$ through time under the SMC up to the exact 
-time of the recombination events. \\
-
-The SMC and unary nodes. \\
-
-inferring recombination = change of parent. \\
 
 
 \subsection{Calculating likelihoods} \label{par:liks}
@@ -292,7 +303,7 @@ in the same observed local sequence of tree changes.
 
 \begin{figure}[h!] \label{fig:algo}
 \centering
-\includegraphics[width=0.9\textwidth]{figures/smc_algo.png}
+\includegraphics[width=0.8\textwidth]{figures/smc_algo.png}
 \caption{Description of algorithm}
 \end{figure}
 
@@ -336,15 +347,13 @@ The definition of $I_{kl}$ (\ref{def:coal}) is based on the assumption
 that we can impose a strict total order on all (overlapping) lineages based on their 
 starting point.
 
-%%%% improve this %%%%%%5
-The lineages associated with a particular edge can only coalesce with other lineages 
-an edge starting at $x$ can only coalesce 
-with a subset of the other edges that make up the local tree at position $x$.
-%%%% 
-Because local tree changes only occur whenever edges are removed and/or inserted,
-we will rely on the ordering of these insertions and removals as implemented in
+The tree sequence encoding provides us with a natural order on all lineages.  
+For each local tree with left coordinate $x$, lineages associated with an edge 
+starting at $x$ can only coalesce with the subset of lineages associated with an 
+edge that is represented in that same local tree. Because local tree changes 
+only occur whenever edges are removed and/or inserted,
+we can rely on the ordering of these insertions and removals as implemented in
 \texttt{tskit}, to ensure this state can be correctly and efficiently maintained.\\
-
 
 % edge diff algorithm
 The order in which edges are inserted and removed is determined by the index 
@@ -366,13 +375,20 @@ associated with that edge and then
 increment $I$ from \texttt{edge.child} to \texttt{edge.parent}.\\
 
 % improve this section, then transition to limitations of unary nodes
-We further rely on the assumption that the (inferrable, see next paragraph) unary nodes 
+We further rely on the assumption that the unary (coalescent) nodes 
 provide us with the required information on both the extent of all extant lineages through 
 time as well as on the time boundaries for any recombination event and the identity of the 
 lineage hit by that recombination.
 
 % section on how deviations from the ideal assumptions affect the algorithm
+However, 
+
+% keep track of last parent to identify recombination events
+% recombination events beyond root: we keep track of
+% parent of prior tree
+
 % extent of lineages
+
 % version of the algorithm with polytomies
 
 % version of the algorithm in the absence of unary nodes
@@ -437,7 +453,7 @@ integrating out the exact time to the recombination event.
 % explore the information in unary nodes
 
 \bibliographystyle{plainnat}
-\bibliography{paper, temp}
+\bibliography{paper.bib, temp.bib}
 
 \section{Supplementary material}
 
