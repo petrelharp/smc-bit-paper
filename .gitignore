@@ -1,8 +1,10 @@
 __pycache__
 .DS_Store
 notebooks/.ipynb_checkpoints
-illustrations/*.pdf
-figures/*
+.ipynb_checkpoints
+data/*
+tmp/*
+venv
 references
 *.aux
 *.log
@@ -10,3 +12,5 @@ references
 *.bbl
 *.synctex.gz
 paper.pdf
+*.trees
+*.ipynb
