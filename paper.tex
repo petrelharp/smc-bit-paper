@@ -61,10 +61,13 @@ These have enabled (scalable) ARG inference methods: ARGweaver (relying on SMC, 
 to smaller samples, but ability to sample from posterior, and full ARG), and Relate, 
 tsinfer/tsdate (copying algorithm), ArgNeedle (using SMC) 
 Clear distinction into two groups: ARGWeaver infers actual ARG.
+% what does kwarg do?
 Whereas the other approaches are heuristic in nature. For example, where ARGweaver has 
 the built in assumption of neighbouring trees being separated by single Subtree Prune 
 Regraft (SPR) (Song citation?), this is not the case for any of the heuristic data 
 structures. (other peculiarities: ...).
+
+% computing likelihoods on ARGs; from Kuhner and Felsenstein to ARGWeaver
 
 % SMC and relatives are useful: lot of focus however on integrating over the distribution of trees to get Ne(t). \cite{PSMC, ...}
 % Here the idea is to use the SMC in a different way that resonates more with the true direction of flow
@@ -304,7 +307,17 @@ in the same observed local sequence of tree changes.
 \begin{figure}[h!] \label{fig:algo}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/smc_algo.png}
-\caption{Description of algorithm}
+\caption{Description of algorithm: the algorithm progresses from left to right and 
+keeps track of the . Let's assume we have visited the first 5 edges present in the 
+first tree (tabel 1). Moving onto the next tree, need to remove single edge 
+$(2, 5, [0,42))$, update the counts $I$ by decrementing all intervals between 5 and 
+2. The state of the vector is now $I_6$, the number of extant lineages the lineage 
+associated with edge $(1, 6, [42, 100)$ can coalesce with. Now compute the likelihood 
+associated with this edge. Then insert this edge and increment the count vector between 
+1 and 6. Two intermediate steps to move to the second tree. Similarly again two steps 
+to move to the last tree and insert edge $(5, 7, [70,100))$
+}
+
 \end{figure}
 
 \begin{figure}[h!] \label{fig:algo-flat}
@@ -345,28 +358,35 @@ the number of lineages (the lineage associated with) the focal edge $\epsilon$ c
 with at time $t$. 
 The definition of $I_{kl}$ (\ref{def:coal}) is based on the assumption 
 that we can impose a strict total order on all (overlapping) lineages based on their 
-starting point.
-
-The tree sequence encoding provides us with a natural order on all lineages.  
+starting point. The tree sequence encoding provides us with a natural order on all lineages.  
 For each local tree with left coordinate $x$, lineages associated with an edge 
-starting at $x$ can only coalesce with the subset of lineages associated with an 
-edge that is represented in that same local tree. Because local tree changes 
-only occur whenever edges are removed and/or inserted,
-we can rely on the ordering of these insertions and removals as implemented in
-\texttt{tskit}, to ensure this state can be correctly and efficiently maintained.\\
+starting at $x$ can only coalesce with the subset of lineages associated with one of the
+edges that make up that local tree. Each of these edges will either already have 
+been present in the previous local tree, or will have the same starting point $x$.
+In \texttt{tskit}, the order in which edges are inserted and removed 
+while moving from one tree to the next, is determined by the index 
+vectors $\textbf{i}$ and $\textbf{o}$ \citep{kelleher_efficient_2016}.
+The edge insertion vector $\textbf{i}$ gives the ordering of edges sorted by left 
+endpoint, and among edges with the same left endpoint, sorted so that edges closer 
+to the root appear later. The edge removal vector $\textbf{o}$ is similar, 
+except gives the ordering of edges by right endpoint and with edges closer to the 
+root appearing sooner. The variables $\texttt{i}$ and 
+$\texttt{o}$ are used to keep track of our position in the edge insertion and edge removal 
+indexes as we move along the tree sequence. This order imposes the 
+strong ordering on all edges as required by the definition of $I_{kl}$.\\
 
 % edge diff algorithm
-The order in which edges are inserted and removed is determined by the index 
-vectors $\textbf{i}$ and $\textbf{o}$ \citep{kelleher_efficient_2016}. The edge insertion vector 
-$\textbf{i}$ gives the ordering of edges sorted by left endpoint, and among edges 
-with the same left endpoint, sorted so that edges closer to the root appear later. 
-The edge removal vector $\textbf{o}$ is similar, except gives the ordering of edges 
-by right endpoint and with edges closer to the root appearing sooner. This order imposes the 
-strong ordering on all edges as required by the definition of $I_{kl}$. The variables $\texttt{i}$ and 
-$\texttt{o}$ variables are used to keep track of our position in the edge insertion and edge removal 
-indexes.\\
+The size of the subset of lineages in each internode interval each lineage 
+can coalesce with can thus be maintained by keeping track of a single vector $I$ 
+that is decremented or incremented as defined by
+$\textbf{o}[\texttt{o}]$ and $\textbf{i}[\texttt{i}]$, 
+Further keep track of a last-parent array to detect recombination events.
+We can thus compute a likelihood for the tree sequence, while visiting each edge only once.
 
-% the counting algorithm
+More concretely, prior to inserting an edge, $I$ represents the number of lineages 
+the lineage associated with 
+that edge can coalesce with. Then insert the edge and update the counts.
+
 To transition from one tree to the next, we first iterate across the indices of all edges 
 in $\textbf{o}$ from its current index up to $\texttt{o}$. For each edge in we decrement $I$ 
 from index \texttt{edge.child} to \texttt{edge.parent}. We subsequently iterate across the 
@@ -374,14 +394,14 @@ edges in $\textbf{i}$ up to index $\texttt{i}$. For each new edge, we first comp
 associated with that edge and then 
 increment $I$ from \texttt{edge.child} to \texttt{edge.parent}.\\
 
-% improve this section, then transition to limitations of unary nodes
+% improve this section, transition to modifications in the algorithm in case of 
+% incomplete unary nodes, polytomies, ...
 We further rely on the assumption that the unary (coalescent) nodes 
 provide us with the required information on both the extent of all extant lineages through 
 time as well as on the time boundaries for any recombination event and the identity of the 
 lineage hit by that recombination.
 
 % section on how deviations from the ideal assumptions affect the algorithm
-However, 
 
 % keep track of last parent to identify recombination events
 % recombination events beyond root: we keep track of
@@ -393,20 +413,24 @@ However,
 
 % version of the algorithm in the absence of unary nodes
 
-\subsection{Flexibility}
+\subsection{Flexibility / general class of ARGs}
 
+% highlight in what ways we can now compute likelihoods for a GENERAL class of ARGs
+
+
+% slicing of the ARG
 By explicitly associating a single likelihood with each edge, we can compute a likelihood 
-under the SMC for any valid tree sequence. 
-
-The \texttt{tskit} library provides a whole range  
+under the SMC for any valid tree sequence. The \texttt{tskit} library provides a whole range  
 of subsetting operations on tree sequences allowing us to slice the ARG in time and/or space, 
-and simplification.
-Similarly, any subset of the tree sequence that is itself a valid tree sequence can again 
-be used to compute a likelihood. Such operations include: slicing genome both in time, and space.
+as well as reduce the number of tracked samples. 
+Any such subset of the tree sequence is itself a valid tree sequence 
+that can again be used to compute a likelihood with.
 
-Strength of ARGs is the ability to gain temporal resolution. This approach allows us to fully 
-benefit from this.
+Our approach therefore strenghtens the inherent ability of ARGs to provide us with temporal 
+resolution on the inferred genealogical history of a sample.
 
+
+% something on the process backwards in time
 We can readily incorporate changes in $N_e$ and $r$, in both dimensions (time and along the genome).
 
 % HOW DO WE HIGHLIGHT THESE FEATURES: SUPPLEMENTS?
@@ -421,16 +445,14 @@ We can readily incorporate changes in $N_e$ and $r$, in both dimensions (time an
 \subsubsection{Variable r}
 
 
-%\subsubsection{Node labellings}
-% implement idea from Guo et al. 2022.
-
 \section{Discussion}
 % summary: what did we do here
 Here, we have introduced a scalable algorithm to compute likelihoods 
 under the SMC for a general class of ARGs. 
 Important step moving forwards towards bridging the gap between the tremendous 
 recent advances in ARG inference and current state of the art statistical inference of 
-past demography and selection (but see). % some/many of these approaches 
+past demography and selection (but see ). % some/many of these approaches 
+
 % ignore recombination
 
 
