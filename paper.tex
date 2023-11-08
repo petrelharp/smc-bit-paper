@@ -236,7 +236,7 @@ inferred by relying on the unary nodes.
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=\textwidth]{figures/smc-custom-haplotypes-mini.png}
+\includegraphics[width=\textwidth]{figures/smc_custom_2rows.png}
 \caption{ARG (top left) generated under the SMC and its representation as a 
 series of local trees. The presence of the unary nodes ensure these two 
 representations contain the same information.
@@ -335,23 +335,7 @@ length of non-ancestral material along which a recombination would have resulted
 in the same observed local sequence of tree changes.
 
 
-\begin{figure}[h!] \label{fig:algo}
-\centering
-\includegraphics[width=0.8\textwidth]{figures/smc_algo.png}
-\caption{Description of algorithm: the algorithm progresses from left to right and 
-keeps track of the . Let's assume we have visited the first 5 edges present in the 
-first tree (tabel 1). Moving onto the next tree, need to remove single edge 
-$(2, 5, [0,42))$, update the counts $I$ by decrementing all intervals between 5 and 
-2. The state of the vector is now $I_6$, the number of extant lineages the lineage 
-associated with edge $(1, 6, [42, 100)$ can coalesce with. Now compute the likelihood 
-associated with this edge. Then insert this edge and increment the count vector between 
-1 and 6. Two intermediate steps to move to the second tree. Similarly again two steps 
-to move to the last tree and insert edge $(5, 7, [70,100))$
-}
-
-\end{figure}
-
-\begin{figure}[h!] \label{fig:algo-flat}
+\begin{figure}[!ht] \label{fig:algo}
 \centering
 \includegraphics[width=\textwidth]{figures/ts_algo_2rows.png}
 \caption{Description of algorithm: Moving along the genome we transition from the first 
@@ -518,20 +502,20 @@ quantify uncertainty
 \supplementarysection
 \section*{Supplementary Information}
 
-\end{figure}
 
-\begin{figure}[h!] \label{sup:fig:vs-argweaver}
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=\textwidth]{example-image-a}
+\includegraphics[width=0.5\textwidth]{example-image-a}
 \caption{Compare likelihoods inferred ARGs ARGweaver}
+ \label{sup:fig:vs-argweaver}
 \end{figure}
 
-\end{figure}
 
-\begin{figure}[h!] \label{sup:fig:vs-hudson}
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=\textwidth]{example-image-a}
+\includegraphics[width=0.5\textwidth]{example-image-a}
 \caption{Compare likelihoods Hudson and SMC}
+\label{sup:fig:vs-hudson}
 \end{figure}
 
 \end{document}
