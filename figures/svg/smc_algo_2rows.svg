@@ -1,0 +1,2641 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg2440"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="smc_algo_2rows.svg">
+  <defs
+     id="defs2434">
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path7387"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#007cff;stroke-opacity:1;fill:#007cff;fill-opacity:1"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Send"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Send"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path7375"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#007cff;stroke-width:1pt;stroke-opacity:1;fill:#007cff;fill-opacity:1"
+         transform="scale(0.2) rotate(180) translate(6,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="marker7692"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path7690"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#007cff;stroke-width:1pt;stroke-opacity:1;fill:#007cff;fill-opacity:1"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path7369"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#007cff;stroke-width:1pt;stroke-opacity:1;fill:#007cff;fill-opacity:1"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mstart-1"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1684-0"
+         style="fill:#007cff;fill-opacity:1;fill-rule:evenodd;stroke:#007cff;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mstart-1-4"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1684-0-1"
+         style="fill:#007cff;fill-opacity:1;fill-rule:evenodd;stroke:#007cff;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mstart-1-42"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1684-0-5"
+         style="fill:#007cff;fill-opacity:1;fill-rule:evenodd;stroke:#007cff;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(0.6)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="301.84491"
+     inkscape:cy="653.19667"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="false"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="2500"
+     inkscape:window-height="1376"
+     inkscape:window-x="60"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3835" />
+    <sodipodi:guide
+       position="7.4822173,209.12667"
+       orientation="1,0"
+       id="guide4131"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="7.0555375,120.19492"
+       orientation="0,1"
+       id="guide4133"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="31.749999,89.01642"
+       orientation="0,1"
+       id="guide4143"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="42.333332,73.42717"
+       orientation="0,1"
+       id="guide4145"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="7.0555375,57.837919"
+       orientation="0,1"
+       id="guide4147"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="33.954852,287.07292"
+       orientation="1,0"
+       id="guide4746"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="33.930029,269.4116"
+       orientation="0,1"
+       id="guide4759"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="70.250366,215.58331"
+       orientation="0,1"
+       id="guide5071"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="103.98125,167.87813"
+       orientation="1,0"
+       id="guide5075"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="63.940979,224.47252"
+       orientation="0,1"
+       id="guide5752"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="112.97708,302.15417"
+       orientation="1,0"
+       id="guide6183"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="72.531937,231.06621"
+       orientation="0,1"
+       id="guide6204"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="41.522841,239.82159"
+       orientation="0,1"
+       id="guide6206"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="16.849673,259.60892"
+       orientation="0,1"
+       id="guide6208"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="29.200975,269.38081"
+       orientation="0,1"
+       id="guide6210"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="118.22834,214.99997"
+       orientation="1,0"
+       id="guide6314"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="5.2461914,277.72155"
+       orientation="0,1"
+       id="guide6363"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="110.36432,197.7099"
+       orientation="0,1"
+       id="guide6617"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="70.205021,263.09345"
+       orientation="0,1"
+       id="guide6730"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="175.41901,271.67613"
+       orientation="1,0"
+       id="guide6732"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="174.33561,249.0308"
+       orientation="1,0"
+       id="guide6770"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="175.41901,183.29011"
+       orientation="0,1"
+       id="guide6772"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="68.872015,248.14974"
+       orientation="1,0"
+       id="guide6794"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="157.61956,151.12346"
+       orientation="1,0"
+       id="guide6831"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="129.35316,179.62843"
+       orientation="1,0"
+       id="guide6833"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="143.40416,157.09636"
+       orientation="1,0"
+       id="guide6837"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="188.97864,207.10261"
+       orientation="0,1"
+       id="guide8191"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata2437">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     style="display:inline">
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.4;stroke-dashoffset:0"
+       id="line18-0-6-5-4-5"
+       y2="27.633003"
+       y1="27.633003"
+       x2="72.728653"
+       x1="7.4797955"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.4;stroke-dashoffset:0"
+       id="line18-0-6-5-4-9"
+       y2="37.401409"
+       y1="37.401409"
+       x2="72.728653"
+       x1="7.4797955"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.4;stroke-dashoffset:0"
+       id="line18-0-6-5-4-0"
+       y2="57.17841"
+       y1="57.17841"
+       x2="72.731056"
+       x1="7.4822173"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.4;stroke-dashoffset:0"
+       id="line18-0-6-5-4-4"
+       y2="65.934074"
+       y1="65.934074"
+       x2="72.728653"
+       x1="7.4797969"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.4;stroke-dashoffset:0"
+       id="line18-0-6-5-4-01"
+       y2="72.527481"
+       y1="72.527481"
+       x2="72.731079"
+       x1="7.4822173"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="display:inline;opacity:0.98999999;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.5361048;stroke-miterlimit:4;stroke-dasharray:0.53610485, 1.0722097;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8172-3"
+       width="210.31444"
+       height="160.1479"
+       x="-0.026759764"
+       y="7.9480162" />
+    <rect
+       style="display:inline;opacity:0.98999999;fill:#000000;fill-opacity:0.03921569;stroke:none;stroke-width:0.26619735;stroke-miterlimit:4;stroke-dasharray:0.26619737, 0.53239475;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8172"
+       width="106.29314"
+       height="78.125572"
+       x="103.99454"
+       y="89.970337" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <path
+       style="fill:none;stroke:#007cff;stroke-width:0.26432431;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.26432433, 0.52864867000000004;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow2Mend);opacity:0.96"
+       d="m 30.917139,62.53084 h 70.190141 v 54.86431 h 20.59521"
+       id="path7358"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.13229166;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;opacity:0.96"
+       id="line18-62"
+       y2="81.416687"
+       y1="81.416687"
+       x2="64.429527"
+       x1="12.754895"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <g
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96"
+       class="tick"
+       transform="matrix(0.24766774,0,0,0.26458333,12.754893,81.417486)"
+       id="g26-4"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png">
+      <line
+         x1="0"
+         x2="0"
+         y1="0"
+         y2="5"
+         id="line20-7"
+         style="fill:none;stroke:#000000" />
+      <g
+         transform="translate(0,6)"
+         id="g24-9"
+         style="">
+        <text
+           class="lab"
+           id="text22-3"
+           style="font-weight:bold;dominant-baseline:hanging">0</text>
+      </g>
+    </g>
+    <g
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96"
+       class="tick"
+       transform="matrix(0.24766774,0,0,0.26458333,64.293747,81.417486)"
+       id="g34-9"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png">
+      <line
+         x1="0"
+         x2="0"
+         y1="0"
+         y2="5"
+         id="line28-2"
+         style="fill:none;stroke:#000000" />
+      <g
+         transform="translate(0,6)"
+         id="g32-83"
+         style="">
+        <text
+           class="lab"
+           id="text30-0"
+           style="font-weight:bold;dominant-baseline:hanging">42</text>
+      </g>
+    </g>
+    <g
+       style="font-size:14px;text-anchor:middle;opacity:0.96"
+       id="g96-4-2"
+       transform="matrix(0.26458333,0,0,0.26458333,79.508008,-38.756686)"
+       class="a8 c2 node n5 p0"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <g
+       style="font-size:14px;text-anchor:middle;opacity:0.96"
+       id="g96-4-6-3"
+       transform="matrix(0.26458333,0,0,0.26458333,145.12489,-38.756686)"
+       class="a8 c2 node n5 p0"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:connector-curvature="0"
+       id="path58"
+       d="M 30.936786,72.513502 V 57.203658 h 10.622749"
+       class="edge"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="rect60"
+       y="71.733742"
+       x="30.162495"
+       width="1.5875"
+       height="1.5875"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       id="text62"
+       class="lab"
+       x="30.956245"
+       y="75.437904"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">1</text>
+    <path
+       class="edge"
+       d="m 45.044938,72.512354 v -6.639097 h 7.101244"
+       id="path66"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       class="sym"
+       height="1.5875"
+       width="1.5875"
+       x="44.273598"
+       y="71.733742"
+       id="rect68"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       id="text70"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       x="45.067348"
+       y="75.437904"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">2</text>
+    <path
+       class="edge"
+       d="M 59.201099,72.512289 V 65.938911 H 52.099428"
+       id="path74"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       class="sym"
+       height="1.5875"
+       width="1.5875"
+       x="58.384724"
+       y="71.733742"
+       id="rect76"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       id="text78"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       x="59.178474"
+       y="75.437904"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">3</text>
+    <path
+       style="font-size:14px;text-anchor:middle;opacity:0.96;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:connector-curvature="0"
+       id="path82"
+       d="M 52.13924,65.921563 V 57.178415 H 41.522842"
+       class="edge"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="circle84"
+       r="0.79374999"
+       cy="65.934082"
+       cx="52.12291"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;stroke-width:0.26458332;opacity:0.96;"
+       id="text86"
+       class="lab rgt"
+       x="52.91666"
+       y="64.082001"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">4</text>
+    <path
+       class="edge"
+       d="M 41.531085,57.255259 V 27.619195 H 29.200976"
+       id="path90"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       class="sym"
+       cx="41.539577"
+       cy="57.223999"
+       r="0.79374999"
+       id="circle92"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       y="54.842747"
+       x="42.333328"
+       class="lab rgt"
+       id="text94"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;stroke-width:0.26458332;opacity:0.96;"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">5</text>
+    <g
+       style="font-size:14px;text-anchor:middle;stroke-width:0.96136808;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       id="g104"
+       transform="matrix(0.26458333,0,0,0.25558664,16.845119,72.660955)"
+       class="a6 i0 leaf node n0 p0 sample"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.96136808;stroke-miterlimit:4;stroke-dasharray:none"
+         inkscape:connector-curvature="0"
+         id="path98"
+         d="m 0,0 v -176.76 0"
+         class="edge" />
+      <rect
+         style="fill:#000000;stroke:none;stroke-width:0.96136808;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect100"
+         y="-3"
+         x="-3"
+         width="6"
+         height="6"
+         class="sym" />
+      <text
+         style="dominant-baseline:central;stroke-width:0.96136808;stroke-miterlimit:4;stroke-dasharray:none"
+         id="text102"
+         transform="translate(0,11)"
+         class="lab">0</text>
+    </g>
+    <circle
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="circle108"
+       r="0.79374999"
+       cy="37.401417"
+       cx="16.845118"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;stroke-width:0.26458332;opacity:0.96;"
+       id="text110"
+       class="lab lft"
+       x="16.051369"
+       y="35.020168"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">6</text>
+    <path
+       class="edge"
+       d="m 16.878815,27.587916 v 4.89e-4 h 12.288712"
+       id="path114"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.24973032;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       class="sym"
+       cx="29.210257"
+       cy="27.64127"
+       r="0.79374999"
+       id="circle116"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab lft"
+       id="text118"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;stroke-width:0.26458332;opacity:0.96;"
+       x="28.416506"
+       y="25.789186"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">7</text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.621573,-158.45965)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169"
+         style=""><rect
+           id="rect4171"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4175">0</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.61744,-164.95842)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1"
+         style=""><rect
+           id="rect4171-3"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4204">1</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-2"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.627421,-173.66657)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-1"
+         style=""><rect
+           id="rect4171-3-7"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-5"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4275">2</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-5"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.629842,-193.48795)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-4"
+         style=""><rect
+           id="rect4171-3-2"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-2"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4277">3</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-7"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.609881,-203.25311)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-2"
+         style=""><rect
+           id="rect4171-3-4"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-1"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4279">4</flowSpan></flowPara></flowRoot>    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.03921569;stroke:none;stroke-width:0.0490155;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3654-45-7"
+       width="5.2916656"
+       height="8.7553797"
+       x="67.290085"
+       y="57.17841"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.19607843;stroke:none;stroke-width:0.1027746;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3656-7-4-7-3"
+       width="5.2916651"
+       height="6.593689"
+       x="67.290085"
+       y="65.9338"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.19607843;stroke:none;stroke-width:0.17803901;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3656-7-4-7-3-1"
+       width="5.2916651"
+       height="19.787327"
+       x="67.290085"
+       y="37.391079"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-5-3"
+       y2="107.63048"
+       y1="107.63048"
+       x2="72.728645"
+       x1="7.4797988"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-9-4"
+       y2="117.39893"
+       y1="117.39893"
+       x2="72.728645"
+       x1="7.4797988"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-0-7"
+       y2="137.22141"
+       y1="137.22141"
+       x2="72.730095"
+       x1="7.4812636"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-4-2"
+       y2="145.93147"
+       y1="145.93147"
+       x2="72.728645"
+       x1="7.4797988"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-01-1"
+       y2="152.52489"
+       y1="152.52489"
+       x2="72.731071"
+       x1="7.4822173"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.13229166;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;opacity:0.96"
+       id="line18-62-7"
+       y2="161.41409"
+       y1="161.41409"
+       x2="64.42952"
+       x1="12.754901"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <g
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96"
+       class="tick"
+       transform="matrix(0.24766774,0,0,0.26458333,12.754892,161.41504)"
+       id="g26-4-9"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png">
+      <line
+         x1="0"
+         x2="0"
+         y1="0"
+         y2="5"
+         id="line20-7-5"
+         style="fill:none;stroke:#000000" />
+      <g
+         transform="translate(0,6)"
+         id="g24-9-6"
+         style="">
+        <text
+           class="lab"
+           id="text22-3-8"
+           style="font-weight:bold;dominant-baseline:hanging">0</text>
+      </g>
+    </g>
+    <g
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96"
+       class="tick"
+       transform="matrix(0.24766774,0,0,0.26458333,64.293752,161.41504)"
+       id="g34-9-9"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png">
+      <line
+         x1="0"
+         x2="0"
+         y1="0"
+         y2="5"
+         id="line28-2-5"
+         style="fill:none;stroke:#000000" />
+      <g
+         transform="translate(0,6)"
+         id="g32-83-5"
+         style="">
+        <text
+           class="lab"
+           id="text30-0-2"
+           style="font-weight:bold;dominant-baseline:hanging">42</text>
+      </g>
+    </g>
+    <rect
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="rect60-5"
+       y="151.73114"
+       x="30.162495"
+       width="1.5875"
+       height="1.5875"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       id="text62-99"
+       class="lab"
+       x="30.956249"
+       y="155.4353"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">1</text>
+    <path
+       class="edge"
+       d="m 45.044937,152.50991 v -6.63909 h 7.10125"
+       id="path66-1"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       class="sym"
+       height="1.5875"
+       width="1.5875"
+       x="44.273594"
+       y="151.73114"
+       id="rect68-6"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       id="text70-2"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       x="45.067356"
+       y="155.4353"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">2</text>
+    <path
+       class="edge"
+       d="m 59.201097,152.50985 v -6.57338 h -7.10167"
+       id="path74-1"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       class="sym"
+       height="1.5875"
+       width="1.5875"
+       x="58.384724"
+       y="151.73114"
+       id="rect76-0"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       id="text78-5"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       x="59.178467"
+       y="155.4353"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">3</text>
+    <path
+       style="font-size:14px;text-anchor:middle;opacity:0.96;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:connector-curvature="0"
+       id="path82-3"
+       d="m 52.139237,145.91912 v -8.74315 h -10.61639"
+       class="edge"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="circle84-21"
+       r="0.79374999"
+       cy="145.93149"
+       cx="52.122913"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;stroke-width:0.26458332;opacity:0.96;"
+       id="text86-9"
+       class="lab rgt"
+       x="52.91666"
+       y="144.07941"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">4</text>
+    <path
+       class="edge"
+       d="M 41.531087,137.25282 V 107.61674 H 29.200977"
+       id="path90-7"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       class="sym"
+       cx="41.539585"
+       cy="137.22141"
+       r="0.79374999"
+       id="circle92-6"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       y="134.84018"
+       x="42.333332"
+       class="lab rgt"
+       id="text94-8"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;stroke-width:0.26458332;opacity:0.96;"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">5</text>
+    <path
+       class="edge"
+       d="m 16.845117,152.65851 v -45.17749 0"
+       id="path98-0"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       class="sym"
+       height="1.5335199"
+       width="1.5875"
+       x="16.051367"
+       y="151.89175"
+       id="rect100-64"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       transform="scale(1.0174479,0.98285134)"
+       id="text102-3"
+       style="font-size:3.64064503px;dominant-baseline:central;text-anchor:middle;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96;"
+       x="16.556246"
+       y="158.18257"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">0</text>
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;stroke-width:0.26458332;opacity:0.96;"
+       id="text110-6"
+       class="lab lft"
+       x="16.051367"
+       y="115.01768"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">6</text>
+    <path
+       class="edge"
+       d="m 16.878817,107.58546 v 4.8e-4 h 12.28871"
+       id="path114-9"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.24973032;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       class="sym"
+       cx="29.210257"
+       cy="107.63879"
+       r="0.79374999"
+       id="circle116-0"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab lft"
+       id="text118-48"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;stroke-width:0.26458332;opacity:0.96;"
+       x="28.41651"
+       y="105.78671"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">7</text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-5"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.621569,-78.462132)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-12"
+         style=""><rect
+           id="rect4171-9"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-7"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4175-3">0</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-8"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.617439,-84.960902)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-0"
+         style=""><rect
+           id="rect4171-3-9"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-23"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4204-1">1</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-2-8"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.627419,-93.66905)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-1-7"
+         style=""><rect
+           id="rect4171-3-7-4"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-5-1"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4275-6">2</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-5-3"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.629849,-113.4904)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-4-8"
+         style=""><rect
+           id="rect4171-3-2-5"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-2-5"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4277-0">3</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-7-1"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,53.609879,-123.25556)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-2-2"
+         style=""><rect
+           id="rect4171-3-4-6"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-1-4"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4279-8">4</flowSpan></flowPara></flowRoot>    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-5-3-5"
+       y2="27.633072"
+       y1="27.633072"
+       x2="178.22342"
+       x1="112.97465"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-9-4-6"
+       y2="37.40152"
+       y1="37.40152"
+       x2="178.22342"
+       x1="112.97465"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-0-7-2"
+       y2="57.223999"
+       y1="57.223999"
+       x2="178.22487"
+       x1="112.9761"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-4-2-5"
+       y2="65.934052"
+       y1="65.934052"
+       x2="178.22342"
+       x1="112.97465"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-01-1-2"
+       y2="72.527481"
+       y1="72.527481"
+       x2="178.22585"
+       x1="112.97708"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.13229166;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;opacity:0.96"
+       id="line18-62-7-6"
+       y2="81.416687"
+       y1="81.416687"
+       x2="169.92438"
+       x1="118.24973"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <g
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96"
+       class="tick"
+       transform="matrix(0.24766774,0,0,0.26458333,118.24978,81.417623)"
+       id="g26-4-9-9"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png">
+      <line
+         x1="0"
+         x2="0"
+         y1="0"
+         y2="5"
+         id="line20-7-5-1"
+         style="fill:none;stroke:#000000" />
+      <g
+         transform="translate(0,6)"
+         id="g24-9-6-3"
+         style="">
+        <text
+           class="lab"
+           id="text22-3-8-3"
+           style="font-weight:bold;dominant-baseline:hanging">0</text>
+      </g>
+    </g>
+    <g
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96"
+       class="tick"
+       transform="matrix(0.24766774,0,0,0.26458333,169.78864,81.417623)"
+       id="g34-9-9-1"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png">
+      <line
+         x1="0"
+         x2="0"
+         y1="0"
+         y2="5"
+         id="line28-2-5-5"
+         style="fill:none;stroke:#000000" />
+      <g
+         transform="translate(0,6)"
+         id="g32-83-5-2"
+         style="">
+        <text
+           class="lab"
+           id="text30-0-2-6"
+           style="font-weight:bold;dominant-baseline:hanging">42</text>
+      </g>
+    </g>
+    <path
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:0.25, 0.25000000000000000;stroke-dashoffset:0;stroke-opacity:0.48584906;opacity:0.96"
+       inkscape:connector-curvature="0"
+       id="path58-1-9"
+       d="m 136.43169,72.513643 v -15.30983 h 10.62275"
+       class="edge"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="rect60-5-4"
+       y="71.733734"
+       x="135.65732"
+       width="1.5875"
+       height="1.5875"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       id="text62-99-4"
+       class="lab"
+       x="136.45107"
+       y="75.437897"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">1</text>
+    <path
+       class="edge"
+       d="m 150.53984,72.512503 v -6.6391 h 7.10125"
+       id="path66-1-6"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       class="sym"
+       height="1.5875"
+       width="1.5875"
+       x="149.76842"
+       y="71.733734"
+       id="rect68-6-0"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       id="text70-2-7"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       x="150.56218"
+       y="75.437897"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">2</text>
+    <path
+       class="edge"
+       d="m 164.696,72.512443 v -6.57338 h -7.10167"
+       id="path74-1-4"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       class="sym"
+       height="1.5875"
+       width="1.5875"
+       x="163.87955"
+       y="71.733734"
+       id="rect76-0-3"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       id="text78-5-7"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       x="164.67328"
+       y="75.437897"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">3</text>
+    <path
+       style="font-size:14px;text-anchor:middle;opacity:0.96;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:connector-curvature="0"
+       id="path82-3-9"
+       d="m 157.63414,65.921703 v -8.74314 h -10.61639"
+       class="edge"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="circle84-21-0"
+       r="0.79374999"
+       cy="65.934082"
+       cx="157.61774"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;stroke-width:0.26458332;opacity:0.96;"
+       id="text86-9-0"
+       class="lab rgt"
+       x="158.41148"
+       y="64.082001"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">4</text>
+    <path
+       class="edge"
+       d="M 147.02599,57.255403 V 27.619333 H 134.69588"
+       id="path90-7-2"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       class="sym"
+       cx="147.03441"
+       cy="57.223999"
+       r="0.79374999"
+       id="circle92-6-2"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       y="54.842773"
+       x="147.82816"
+       class="lab rgt"
+       id="text94-8-6"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;stroke-width:0.26458332;opacity:0.96;"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">5</text>
+    <g
+       style="font-size:14px;text-anchor:middle;stroke-width:0.96136808;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       id="g104-2-9"
+       transform="matrix(0.26458333,0,0,0.25558664,122.34002,72.661093)"
+       class="a6 i0 leaf node n0 p0 sample"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.96136808;stroke-miterlimit:4;stroke-dasharray:none"
+         inkscape:connector-curvature="0"
+         id="path98-0-0"
+         d="m 0,0 v -176.76 0"
+         class="edge" />
+      <rect
+         style="fill:#000000;stroke:none;stroke-width:0.96136808;stroke-miterlimit:4;stroke-dasharray:none"
+         id="rect100-64-3"
+         y="-3"
+         x="-3"
+         width="6"
+         height="6"
+         class="sym" />
+      <text
+         style="dominant-baseline:central;stroke-width:0.96136808;stroke-miterlimit:4;stroke-dasharray:none"
+         id="text102-3-5"
+         transform="translate(0,11)"
+         class="lab">0</text>
+    </g>
+    <circle
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="circle108-3-5"
+       r="0.79374999"
+       cy="37.40152"
+       cx="122.34002"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;stroke-width:0.26458332;opacity:0.96;"
+       id="text110-6-8"
+       class="lab lft"
+       x="121.54625"
+       y="35.020264"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">6</text>
+    <path
+       class="edge"
+       d="m 122.37372,27.588053 v 4.7e-4 h 12.28871"
+       id="path114-9-7"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.24973032;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       class="sym"
+       cx="134.70508"
+       cy="27.641373"
+       r="0.79374999"
+       id="circle116-0-1"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab lft"
+       id="text118-48-7"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;stroke-width:0.26458332;opacity:0.96;"
+       x="133.91133"
+       y="25.789307"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">7</text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-5-0"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.11649,-158.45955)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-12-6"
+         style=""><rect
+           id="rect4171-9-0"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-7-4"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4175-3-1">0</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-8-3"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.11236,-164.95832)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-0-0"
+         style=""><rect
+           id="rect4171-3-9-2"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-23-9"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4204-1-6">1</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-2-8-0"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.12234,-173.66647)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-1-7-9"
+         style=""><rect
+           id="rect4171-3-7-4-3"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-5-1-5"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4275-6-4">2</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-5-3-3"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.12477,-193.48781)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-4-8-6"
+         style=""><rect
+           id="rect4171-3-2-5-4"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-2-5-3"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4277-0-1">3</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-7-1-9"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.1048,-203.25298)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-2-2-1"
+         style=""><rect
+           id="rect4171-3-4-6-0"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-1-4-9"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4279-8-4">4</flowSpan></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="2.5372713"
+       y="19.277033"
+       id="text6187"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><tspan
+         sodipodi:role="line"
+         id="tspan6185"
+         x="2.5372713"
+         y="19.277033"
+         style="font-size:4.93888903px;stroke-width:0.26458332;">1</tspan></text>
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.03921569;stroke:none;stroke-width:0.05178276;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3654-45-7-6"
+       width="5.2916656"
+       height="9.7718887"
+       x="67.290085"
+       y="27.619194"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.03921569;stroke:none;stroke-width:0.0490155;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3654-45-7-2"
+       width="5.2916656"
+       height="8.7553797"
+       x="172.78128"
+       y="57.178413"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.19607843;stroke:none;stroke-width:0.1027746;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3656-7-4-7-3-5"
+       width="5.2916651"
+       height="6.593689"
+       x="172.78128"
+       y="65.933792"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.19607843;stroke:none;stroke-width:0.17803901;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3656-7-4-7-3-1-9"
+       width="5.2916651"
+       height="19.787329"
+       x="172.78128"
+       y="37.391083"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.03921569;stroke:none;stroke-width:0.05178276;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3654-45-7-6-1"
+       width="5.2916656"
+       height="9.7718887"
+       x="172.78128"
+       y="27.619192"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.03921569;stroke:none;stroke-width:0.0490155;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3654-45-7-7"
+       width="5.2916656"
+       height="8.7553797"
+       x="67.289536"
+       y="137.17581"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.19607843;stroke:none;stroke-width:0.1027746;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3656-7-4-7-3-7"
+       width="5.2916651"
+       height="6.593689"
+       x="67.289536"
+       y="145.9312"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.19607843;stroke:none;stroke-width:0.17803901;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3656-7-4-7-3-1-4"
+       width="5.2916651"
+       height="19.787329"
+       x="67.289536"
+       y="117.38848"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.03921569;stroke:none;stroke-width:0.05178276;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3654-45-7-6-11"
+       width="5.2916656"
+       height="9.7718887"
+       x="67.289536"
+       y="107.61659"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.13229166;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;opacity:0.96"
+       id="line18-62-7-9"
+       y2="161.42076"
+       y1="161.42076"
+       x2="169.90227"
+       x1="118.22825"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <g
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96"
+       class="tick"
+       transform="matrix(0.24766774,0,0,0.26458333,118.22834,161.42171)"
+       id="g26-4-9-1"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png">
+      <line
+         x1="0"
+         x2="0"
+         y1="0"
+         y2="5"
+         id="line20-7-5-3"
+         style="fill:none;stroke:#000000" />
+    </g>
+    <g
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96"
+       class="tick"
+       transform="matrix(0.24766774,0,0,0.26458333,169.7675,161.42171)"
+       id="g34-9-9-4"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png">
+      <line
+         x1="0"
+         x2="0"
+         y1="0"
+         y2="5"
+         id="line28-2-5-9"
+         style="fill:none;stroke:#000000" />
+      <g
+         transform="translate(0,6)"
+         id="g32-83-5-3"
+         style="">
+        <text
+           class="lab"
+           id="text30-0-2-1"
+           style="font-weight:bold;dominant-baseline:hanging">100</text>
+      </g>
+    </g>
+    <g
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96"
+       class="tick"
+       transform="matrix(0.24766774,0,0,0.26458333,118.22834,161.42171)"
+       id="g34-9-9-4-3"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png">
+      <line
+         x1="0"
+         x2="0"
+         y1="0"
+         y2="5"
+         id="line28-2-5-9-8"
+         style="fill:none;stroke:#000000" />
+      <g
+         transform="translate(0,6)"
+         id="g32-83-5-3-7"
+         style="">
+        <text
+           class="lab"
+           id="text30-0-2-1-9"
+           style="font-weight:bold;dominant-baseline:hanging">42</text>
+      </g>
+    </g>
+    <path
+       style="opacity:0.96;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.18584487;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path6340"
+       sodipodi:type="arc"
+       sodipodi:cx="4.132412"
+       sodipodi:cy="17.710772"
+       sodipodi:rx="3.3498051"
+       sodipodi:ry="3.3498051"
+       sodipodi:start="0"
+       sodipodi:end="6.2831437"
+       sodipodi:open="true"
+       d="M 7.4822171,17.710772 A 3.3498051,3.3498051 0 0 1 4.1324468,21.060577 3.3498051,3.3498051 0 0 1 0.78260684,17.710841 3.3498051,3.3498051 0 0 1 4.1323074,14.360966 3.3498051,3.3498051 0 0 1 7.4822171,17.710632"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="108.03214"
+       y="19.282087"
+       id="text6187-0"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><tspan
+         sodipodi:role="line"
+         id="tspan6185-0"
+         x="108.03214"
+         y="19.282087"
+         style="font-size:4.93888903px;stroke-width:0.26458332;">2</tspan></text>
+    <path
+       style="opacity:0.96;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.18584487;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path6340-8"
+       sodipodi:type="arc"
+       sodipodi:cx="109.62727"
+       sodipodi:cy="17.715826"
+       sodipodi:rx="3.3498051"
+       sodipodi:ry="3.3498051"
+       sodipodi:start="0"
+       sodipodi:end="6.2831437"
+       sodipodi:open="true"
+       d="m 112.97708,17.715826 a 3.3498051,3.3498051 0 0 1 -3.34977,3.349805 3.3498051,3.3498051 0 0 1 -3.34984,-3.349735 3.3498051,3.3498051 0 0 1 3.3497,-3.349875 3.3498051,3.3498051 0 0 1 3.34991,3.349666"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="2.5372705"
+       y="99.246078"
+       id="text6187-6"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><tspan
+         sodipodi:role="line"
+         id="tspan6185-8"
+         x="2.5372705"
+         y="99.246078"
+         style="font-size:4.93888903px;stroke-width:0.26458332;">3</tspan></text>
+    <path
+       style="opacity:0.96;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.18584487;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path6340-2"
+       sodipodi:type="arc"
+       sodipodi:cx="4.132412"
+       sodipodi:cy="97.679817"
+       sodipodi:rx="3.3498051"
+       sodipodi:ry="3.3498051"
+       sodipodi:start="0"
+       sodipodi:end="6.2831437"
+       sodipodi:open="true"
+       d="M 7.4822171,97.679817 A 3.3498051,3.3498051 0 0 1 4.1324468,101.02962 3.3498051,3.3498051 0 0 1 0.78260684,97.679887 3.3498051,3.3498051 0 0 1 4.1323074,94.330012 3.3498051,3.3498051 0 0 1 7.4822171,97.679678"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-5-3-5-9"
+       y2="107.63622"
+       y1="107.63622"
+       x2="178.20189"
+       x1="112.9531"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-9-4-6-2"
+       y2="117.40466"
+       y1="117.40466"
+       x2="178.20189"
+       x1="112.9531"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <path
+       class="edge"
+       d="m 136.40872,152.38406 v -35.01248 h -7.05556"
+       id="path172-3-9"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#ff0000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:0.96"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-0-7-2-6"
+       y2="137.22716"
+       y1="137.22716"
+       x2="178.20334"
+       x1="112.95455"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-4-2-5-8"
+       y2="145.93721"
+       y1="145.93721"
+       x2="178.20189"
+       x1="112.9531"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <line
+       style="font-size:14px;text-anchor:middle;display:inline;fill:none;stroke:#000000;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:0.1, 0.40000000000000002;stroke-dashoffset:0;opacity:0.96"
+       id="line18-0-6-5-4-01-1-2-5"
+       y2="152.53064"
+       y1="152.53064"
+       x2="178.20432"
+       x1="112.95556"
+       class="ax-line"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="rect60-5-4-2"
+       y="151.73689"
+       x="135.63579"
+       width="1.5875"
+       height="1.5875"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       id="text62-99-4-9"
+       class="lab"
+       x="136.42953"
+       y="155.44106"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">1</text>
+    <path
+       class="edge"
+       d="m 150.51831,152.51564 v -6.6391 h 7.10125"
+       id="path66-1-6-7"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       class="sym"
+       height="1.5875"
+       width="1.5875"
+       x="149.74689"
+       y="151.73689"
+       id="rect68-6-0-0"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       id="text70-2-7-3"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       x="150.54065"
+       y="155.44106"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">2</text>
+    <path
+       class="edge"
+       d="M 164.67447,152.51558 V 145.9422 H 157.5728"
+       id="path74-1-4-7"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       class="sym"
+       height="1.5875"
+       width="1.5875"
+       x="163.85802"
+       y="151.73689"
+       id="rect76-0-3-2"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       id="text78-5-7-3"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;stroke-width:0.26458332;opacity:0.96;"
+       x="164.65175"
+       y="155.44106"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">3</text>
+    <circle
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="circle84-21-0-1"
+       r="0.79374999"
+       cy="145.93724"
+       cx="157.59621"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;stroke-width:0.26458332;opacity:0.96;"
+       id="text86-9-0-7"
+       class="lab rgt"
+       x="158.38995"
+       y="144.08516"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">4</text>
+    <circle
+       class="sym"
+       cx="157.62819"
+       cy="137.23885"
+       r="0.79374999"
+       id="circle92-6-2-9"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       y="134.84593"
+       x="157.86067"
+       class="lab rgt"
+       id="text94-8-6-4"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;stroke-width:0.26458332;opacity:0.96;"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">5</text>
+    <rect
+       class="sym"
+       height="1.5335199"
+       width="1.5875"
+       x="121.52474"
+       y="151.89748"
+       id="rect100-64-3-4"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab"
+       transform="scale(1.0174479,0.98285134)"
+       id="text102-3-5-3"
+       style="font-size:3.64064503px;dominant-baseline:central;text-anchor:middle;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96;"
+       x="120.22089"
+       y="158.1884"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">0</text>
+    <circle
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="circle108-3-5-5"
+       r="0.79374999"
+       cy="117.40466"
+       cx="129.36298"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;stroke-width:0.26458332;opacity:0.96;"
+       id="text110-6-8-4"
+       class="lab lft"
+       x="128.40388"
+       y="115.02342"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">6</text>
+    <circle
+       class="sym"
+       cx="143.40735"
+       cy="107.6796"
+       r="0.79374999"
+       id="circle116-0-1-7"
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       class="lab lft"
+       id="text118-48-7-3"
+       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;stroke-width:0.26458332;opacity:0.96;"
+       x="142.35635"
+       y="105.79244"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180">7</text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-5-0-3"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.09496,-78.456412)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-12-6-5"
+         style=""><rect
+           id="rect4171-9-0-0"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-7-4-1"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4175-3-1-4">0</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-8-3-5"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.09083,-84.955182)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-0-0-7"
+         style=""><rect
+           id="rect4171-3-9-2-0"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-23-9-7"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4204-1-6-8">1</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-2-8-0-9"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.10081,-93.663332)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-1-7-9-9"
+         style=""><rect
+           id="rect4171-3-7-4-3-3"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-5-1-5-9"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4275-6-4-4">2</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-5-3-3-6"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.10324,-113.48468)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-4-8-6-4"
+         style=""><rect
+           id="rect4171-3-2-5-4-5"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-2-5-3-5"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4277-0-1-5">3</flowSpan></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4167-1-7-1-9-6"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,159.08327,-123.24985)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion4169-1-2-2-1-0"
+         style=""><rect
+           id="rect4171-3-4-6-0-6"
+           width="74"
+           height="52"
+           x="-174.75"
+           y="832.76971"
+           style="" /></flowRegion><flowPara
+         id="flowPara4173-0-1-4-9-2"
+         style="font-size:13.33333397px;">t<flowSpan
+   style="font-size:64.99999762%;baseline-shift:sub;"
+   id="flowSpan4279-8-4-6">4</flowSpan></flowPara></flowRoot>    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.03921569;stroke:none;stroke-width:0.0490155;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3654-45-7-2-9"
+       width="5.2916656"
+       height="8.7553797"
+       x="172.75975"
+       y="137.18156"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.19607843;stroke:none;stroke-width:0.1027746;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3656-7-4-7-3-5-9"
+       width="5.2916651"
+       height="6.593689"
+       x="172.75975"
+       y="145.93694"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.19607843;stroke:none;stroke-width:0.17803901;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3656-7-4-7-3-1-9-2"
+       width="5.2916651"
+       height="19.787331"
+       x="172.75975"
+       y="117.39423"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <rect
+       style="display:inline;opacity:0.96;fill:#000000;fill-opacity:0.03921569;stroke:none;stroke-width:0.05178276;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3654-45-7-6-1-9"
+       width="5.2916656"
+       height="9.7718887"
+       x="172.75975"
+       y="107.62234"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="108.0106"
+       y="99.285225"
+       id="text6187-0-6"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><tspan
+         sodipodi:role="line"
+         id="tspan6185-0-5"
+         x="108.0106"
+         y="99.285225"
+         style="font-size:4.93888903px;stroke-width:0.26458332;">4</tspan></text>
+    <path
+       style="opacity:0.96;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.18584487;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path6340-8-53"
+       sodipodi:type="arc"
+       sodipodi:cx="109.60574"
+       sodipodi:cy="97.718971"
+       sodipodi:rx="3.3498051"
+       sodipodi:ry="3.3498051"
+       sodipodi:start="0"
+       sodipodi:end="6.2831437"
+       sodipodi:open="true"
+       d="m 112.95555,97.718971 a 3.3498051,3.3498051 0 0 1 -3.34977,3.349809 3.3498051,3.3498051 0 0 1 -3.34984,-3.349739 3.3498051,3.3498051 0 0 1 3.3497,-3.349875 3.3498051,3.3498051 0 0 1 3.34991,3.349666"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="68.584839"
+       y="48.299282"
+       id="text3675-5-6"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-7-7"
+         x="68.584839"
+         y="48.299282"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="68.849396"
+       y="62.851376"
+       id="text3675-8-1-3"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-0-99-6"
+         x="68.849396"
+         y="62.851376"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="68.584839"
+       y="70.5243"
+       id="text3675-2-8-0"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-9-2-2"
+         x="68.584839"
+         y="70.5243"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="68.603607"
+       y="33.916676"
+       id="text3675-0-2-0-6"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-4-0-1-9"
+         x="68.603607"
+         y="33.916676"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="174.02695"
+       y="48.278057"
+       id="text3675-5-6-3"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-7-7-0"
+         x="174.02695"
+         y="48.278057"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="174.2915"
+       y="62.830151"
+       id="text3675-8-1-3-8"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-0-99-6-7"
+         x="174.2915"
+         y="62.830151"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="174.02695"
+       y="70.503075"
+       id="text3675-2-8-0-6"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-9-2-2-5"
+         x="174.02695"
+         y="70.503075"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="174.04572"
+       y="33.895451"
+       id="text3675-0-2-0-6-2"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-4-0-1-9-4"
+         x="174.04572"
+         y="33.895451"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="174.0199"
+       y="128.09407"
+       id="text3675-5-6-3-0"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-7-7-0-0"
+         x="174.0199"
+         y="128.09407"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="174.28445"
+       y="142.64616"
+       id="text3675-8-1-3-8-6"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-0-99-6-7-8"
+         x="174.28445"
+         y="142.64616"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="174.0199"
+       y="150.31909"
+       id="text3675-2-8-0-6-5"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-9-2-2-5-4"
+         x="174.0199"
+         y="150.31909"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="174.03867"
+       y="113.71146"
+       id="text3675-0-2-0-6-2-9"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-4-0-1-9-4-4"
+         x="174.03867"
+         y="113.71146"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="68.544899"
+       y="128.09938"
+       id="text3675-5-6-3-6"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-7-7-0-8"
+         x="68.544899"
+         y="128.09938"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="68.809456"
+       y="142.65149"
+       id="text3675-8-1-3-8-3"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-0-99-6-7-2"
+         x="68.809456"
+         y="142.65149"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="68.544899"
+       y="150.32442"
+       id="text3675-2-8-0-6-3"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-9-2-2-5-6"
+         x="68.544899"
+         y="150.32442"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.96;"
+       x="68.563667"
+       y="113.71677"
+       id="text3675-0-2-0-6-2-2"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"><tspan
+         sodipodi:role="line"
+         id="tspan3673-4-0-1-9-4-2"
+         x="68.563667"
+         y="113.71677"
+         style="font-size:4.23333311px;stroke-width:0.26458332;">2</tspan></text>
+    <path
+       style="fill:none;stroke:#f70000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:0.96"
+       d="m 30.939787,152.49739 v -35.1164 H 16.849673 v 0.002 0"
+       id="path6796"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       style="font-size:14px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.26458332;opacity:0.96"
+       id="circle108-3"
+       r="0.79374999"
+       cy="117.39893"
+       cx="16.845121"
+       class="sym"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       class="edge"
+       d="m 122.29758,152.38406 v -35.01248 h 7.05556"
+       id="path164-6-7"
+       inkscape:connector-curvature="0"
+       style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;opacity:0.96"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:0.96"
+       d="M 157.61956,145.87654 V 107.62448"
+       id="path6839"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:0.96"
+       d="m 129.35314,117.37158 v -9.73056 h 28.26642"
+       id="path6841"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <circle
+       style="font-size:14px;text-anchor:middle;display:inline;opacity:0.96;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       id="circle170-3-7-6"
+       r="0.79374999"
+       cy="62.483849"
+       cx="30.934816"
+       class="sym"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8243"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px;opacity:0.96;"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion8245"
+         style=""><rect
+           id="rect8247"
+           width="7"
+           height="46.5"
+           x="892.5"
+           y="66.019684"
+           style="" /></flowRegion><flowPara
+         id="flowPara8249"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8251"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px;opacity:0.96;"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion8253"
+         style=""><rect
+           id="rect8255"
+           width="15"
+           height="50"
+           x="885"
+           y="66.019684"
+           style="" /></flowRegion><flowPara
+         id="flowPara8257"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot8259"
+       style="font-style:normal;font-weight:normal;font-size:14.66666698px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       transform="matrix(0.26458333,0,0,0.26458333,-94.022598,-25.144625)"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion8261"
+         style="font-size:14.66666698px;"><rect
+           id="rect8263"
+           width="270.5"
+           height="93.5"
+           x="935.5"
+           y="139.01968"
+           style="font-size:14.66666698px;" /></flowRegion><flowPara
+         id="flowPara8265">2a. remove edge</flowPara><flowPara
+         id="flowPara8320">2.b update last parent</flowPara><flowPara
+         id="flowPara8269">2c. decrement count</flowPara><flowPara
+         id="flowPara8267" /></flowRoot>    <flowRoot
+       transform="matrix(0.26458333,0,0,0.26458333,-199.65301,55.880528)"
+       xml:space="preserve"
+       id="flowRoot8259-4"
+       style="font-style:normal;font-weight:normal;font-size:14.66666698px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;opacity:0.96;"
+       inkscape:export-filename="/home/gertjan/ts_algo_2rows.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><flowRegion
+         id="flowRegion8261-8"
+         style="font-size:14.66666698px;"><rect
+           id="rect8263-5"
+           width="193.88046"
+           height="97.893394"
+           x="935.5"
+           y="139.01968"
+           style="font-size:14.66666698px;" /></flowRegion><flowPara
+         id="flowPara8265-8">3a. insert edge</flowPara><flowPara
+         id="flowPara8314">3b. compute likelihood</flowPara><flowPara
+         id="flowPara8267-0">3c. increment count</flowPara><flowPara
+         id="flowPara8312" /></flowRoot>  </g>
+</svg>

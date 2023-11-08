@@ -21,6 +21,19 @@
 \newcommand{\espalier}[0]{\texttt{Espalier}}
 \newcommand{\arbores}[0]{\texttt{Arbores}}
 
+% Bold the 'Figure #' in the caption and separate it from the title/caption with a period
+% Captions will be left justified
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+\renewcommand{\figurename}{Fig}
+
+% deal with supplementary items
+\newcommand{\supplementarysection}{%
+  \setcounter{figure}{0}% Reset figure counter
+  \let\oldthefigure\thefigure% Capture figure numbering scheme
+  \renewcommand{\thefigure}{S\oldthefigure}% Prefix figure number with S
+  \section{Supplementary section}% Set supplementary section
+}
+
 \begin{document}
 
 \linenumbers
@@ -47,25 +60,42 @@
 %% WHAT IS THE MAIN FOCUS OF THE PAPER?
 
 \section{Introduction}
+
+
+% Main motivation:
+Major progress in ARG inference. 
+
+Result is whole range of inference methods, all inferring an ARG with their own specific 
+characteristics.
+Many of these scalable heuristic methods do not explicitly infer recombination events.
+
+%ARGs that are inferred here lack information to enable us to compute 
+% a likelihood under the Hudson coalescent.
+% Missing: exact time to recombination + non-inferrable recombinations
+
+Currently no way to connect the output of the diverse range of ARG inference methods back 
+to a model that would allow us to perform a probabilistic exploration of the 
+ARG space around the point estimate, (or likelihood-based inference, ...)
+
+
 % What are ARGs, their relevance and importance
 
 % associating likelihoods with ARGs
 
-% previous likelihood calculations on ARGsL Kuhner and Felsenstein (2000), ARGweaver
+% previous likelihood calculations on ARGs Kuhner and Felsenstein (2000), ARGweaver
 
 % history of approximating the coalescent: 
-SMC (McVean and Cardin, 2005) SMC' (Marjoram and Wall, 2006).
-Also heuristic approximations: Li and Stephens (2003) extending Stephens and Donnelly 
-(2000)
-These have enabled (scalable) ARG inference methods: ARGweaver (relying on SMC, limited 
-to smaller samples, but ability to sample from posterior, and full ARG), and Relate, 
-tsinfer/tsdate (copying algorithm), ArgNeedle (using SMC) 
-Clear distinction into two groups: ARGWeaver infers actual ARG.
+%SMC (McVean and Cardin, 2005) SMC' (Marjoram and Wall, 2006).
+%Also heuristic approximations: Li and Stephens (2003) extending Stephens and Donnelly (2000)
+%These have enabled (scalable) ARG inference methods: ARGweaver (relying on SMC, limited 
+%to smaller samples, but ability to sample from posterior, and full ARG), and Relate, 
+%tsinfer/tsdate (copying algorithm), ArgNeedle (using SMC) 
+%Clear distinction into two groups: ARGWeaver infers actual ARG.
 % what does kwarg do?
-Whereas the other approaches are heuristic in nature. For example, where ARGweaver has 
-the built in assumption of neighbouring trees being separated by single Subtree Prune 
-Regraft (SPR) (Song citation?), this is not the case for any of the heuristic data 
-structures. (other peculiarities: ...).
+%Whereas the other approaches are heuristic in nature. For example, where ARGweaver has 
+%the built in assumption of neighbouring trees being separated by single Subtree Prune 
+%Regraft (SPR) (Song citation?), this is not the case for any of the heuristic data 
+%structures. (other peculiarities: ...).
 
 % computing likelihoods on ARGs; from Kuhner and Felsenstein to ARGWeaver
 
@@ -228,7 +258,8 @@ up to the exact time of the recombination event.
 % is there more to be said about the SMC inm the presence of unary nodes?
 Recording unary nodes has interesting consequences on the left-to-right 
 description of the SMC. Looking at a single marginal tree, the presence of 
-unary nodes tells us that either \\
+unary nodes are telltale signs of future or past coalescence events (in a 
+left-to-right sense).\\
 
 
 
@@ -322,8 +353,12 @@ to move to the last tree and insert edge $(5, 7, [70,100))$
 
 \begin{figure}[h!] \label{fig:algo-flat}
 \centering
-\includegraphics[width=\textwidth]{figures/smc_algo_flat.png}
-\caption{Description of algorithm}
+\includegraphics[width=\textwidth]{figures/ts_algo_2rows.png}
+\caption{Description of algorithm: Moving along the genome we transition from the first 
+local tree (1) to the next (4). For each edge that is removed from the first tree we 
+decrement the count in the corresponding internode intervals and update the identity of 
+the last parent. Subsequently, for each edge that will be inserted we compute the likelihood 
+associated with that edge prior to incrementing the counts.}
 \end{figure}
 
 
@@ -394,29 +429,18 @@ edges in $\textbf{i}$ up to index $\texttt{i}$. For each new edge, we first comp
 associated with that edge and then 
 increment $I$ from \texttt{edge.child} to \texttt{edge.parent}.\\
 
-% improve this section, transition to modifications in the algorithm in case of 
-% incomplete unary nodes, polytomies, ...
-We further rely on the assumption that the unary (coalescent) nodes 
-provide us with the required information on both the extent of all extant lineages through 
-time as well as on the time boundaries for any recombination event and the identity of the 
-lineage hit by that recombination.
+% ADD IN RESULTS
+Figure \ref{sup:fig:vs-hudson} shows the correlation between the likelihood under the hudson 
+for an ARG with detailed recombination information simulated and computed using 
+\texttt{msprime} \citep{baumdicker_efficient_2021}. Show impact of unary nodes on $r^2$.
+Simulated mutation data under the SMC and passed this to ARGweaver.
+Scatterplot of coalescent prior as returned by ARGweaver \citep{rasmussen_genome-wide_2014} 
+for a 100 samples from the posterior against the likelihood as described here fore these 
+sampled ARGs \ref{sup:fig:vs-argweaver}  
 
-% section on how deviations from the ideal assumptions affect the algorithm
-
-% keep track of last parent to identify recombination events
-% recombination events beyond root: we keep track of
-% parent of prior tree
-
-% extent of lineages
-
-% version of the algorithm with polytomies
-
-% version of the algorithm in the absence of unary nodes
+Implementation of the algorithm is available on https://github.com/GertjanBisschop/runsmc.
 
 \subsection{Flexibility / general class of ARGs}
-
-% highlight in what ways we can now compute likelihoods for a GENERAL class of ARGs
-
 
 % slicing of the ARG
 By explicitly associating a single likelihood with each edge, we can compute a likelihood 
@@ -427,56 +451,87 @@ Any such subset of the tree sequence is itself a valid tree sequence
 that can again be used to compute a likelihood with.
 
 Our approach therefore strenghtens the inherent ability of ARGs to provide us with temporal 
-resolution on the inferred genealogical history of a sample.
+resolution on the inferred genealogical history of a sample. 
+We can further readily incorporate changes in $N_e$ and $r$, 
+both in time as well as along the genome.
 
-
-% something on the process backwards in time
-We can readily incorporate changes in $N_e$ and $r$, in both dimensions (time and along the genome).
-
-% HOW DO WE HIGHLIGHT THESE FEATURES: SUPPLEMENTS?
-\subsubsection{Slicing the ARG in time}
-% TO DO: give example why this might be useful.
-
-\subsubsection{Slicing the ARG in (genome) space}
-%TO DO: give example why this might be useful.
-
-\subsubsection{Variable Ne}
-
-\subsubsection{Variable r}
+% Algorithm is suitable for a general class of ARGs each with their own specific features.
+% What happens in the case of ARGs that do not meet our assumptions: absent unary nodes, polytomies, ...
+The above algorithm treats each edge independently which implies we can deal with polytomies.
+Furthermore, although we rely heavily on unary nodes to provide us with the necessary 
+information on recombination events, our algorithm can also accomodate for 
+those inferred ARGs that lack unary nodes (e.g.\ \relate, and see figure in supplements).
+However, in case of (sub)tree height changes along the ARG, the algorithm would infer 
+two recombination events along the lineages associated 
+with both edges switching parent nodes. This can be mitigated by limiting the number of 
+'inferrable' recombination events per coalescence event to 1 (see supplementary figure). 
 
 
 \section{Discussion}
 % summary: what did we do here
 Here, we have introduced a scalable algorithm to compute likelihoods 
 under the SMC for a general class of ARGs. 
-Important step moving forwards towards bridging the gap between the tremendous 
-recent advances in ARG inference and current state of the art statistical inference of 
-past demography and selection (but see ). % some/many of these approaches 
-
-% ignore recombination
 
 
-% future directions: 
-incorporating node labels (see \citep{guo_recombination-aware_2022}).
+
+Impact both on ways of doing ARG inference itself and quantifying the uncertainty associated 
+with that as well as performing statistical inference of past demography.
+
+* statistical inference *
+This is an important step towards bridging the gap between the tremendous 
+recent advances in ARG inference and the current state of the art statistical inference of 
+past demography (but see ). 
+% some/many of these approaches only use the information present in marginal trees.
+The provided theory and associated algorithm will function as a building block of a 
+demography-aware genealogy sampler. Current approach couple of major advantages:
+* any type of inferred ARG as a starting point. Potentially implying a massive reduction in 
+MCMC runtime by reducing the necessary burnin period.
+* by integrating out the exact time to the recombination event we further restrict the size 
+of ARG space that needs to be explored.
+* exploit the efficiencies of the tree sequence data structure (see \citep{Mahmoudi_bayesian_2022})
+* we can readily incorporate $N_e$-changes as well as multiple populations and migration.
 
 
-First step towards a genealogy sampler (for any ARG, and at scale): 
-quantifying uncertainty 
-(with inferred ARG as starting point). Compared to existing MCMC approaches, 
-we further restrict the size of ARG space by 
-integrating out the exact time to the recombination event.
+* ARG inference *
+Combining ARG inference methods: tsinfer for first few generations (large sample sizes), where 
+the initial phase is biased relative to the Wright-Fisher model when the sample size is large 
+\citep{bhaskar_distortion_2014}, or when the considered events are very recent \citep{wakeley_gene_2012}
+% tsinfer not model-based, minimal assumptions, heuristic, scalable
 
-% discuss accurracy:
-% there will be scenarios where the assumptions made here are not met: e.g. polytomies
-% yet we can still always compute a likelihood.
-% we can alwyas associate a value, what remains to be verified what the information is in that
-% case.
 
-% explore the information in unary nodes
+
+quantify uncertainty
+* polytomies represent uncertainty:
+*  systematicallty break them by sampling from the coalescent rather then randomly
+* associate uncertainty as metadata to parent node representing uncertainty in the
+* interval spanned by the polytomy
+* can something similar be done for stacked recombinations?
+
+
+
 
 \bibliographystyle{plainnat}
 \bibliography{paper.bib, temp.bib}
 
-\section{Supplementary material}
+\pagebreak 
+
+\supplementarysection
+\section*{Supplementary Information}
+
+\end{figure}
+
+\begin{figure}[h!] \label{sup:fig:vs-argweaver}
+\centering
+\includegraphics[width=\textwidth]{example-image-a}
+\caption{Compare likelihoods inferred ARGs ARGweaver}
+\end{figure}
+
+\end{figure}
+
+\begin{figure}[h!] \label{sup:fig:vs-hudson}
+\centering
+\includegraphics[width=\textwidth]{example-image-a}
+\caption{Compare likelihoods Hudson and SMC}
+\end{figure}
 
 \end{document}
