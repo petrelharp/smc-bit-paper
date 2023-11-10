@@ -118,23 +118,24 @@ ARG space around the point estimate, (or likelihood-based inference, ...)
 \section{Methods and Results}
 \subsection{SMC backwards-in-time}\label{par:description}
 
-Formulated backwards-in-time the SMC \citep{mcvean_approximating_2005} only requires a simple modification to the 
+Formulated backwards-in-time, the SMC \citep{mcvean_approximating_2005} only requires a 
+simple modification to the 
 coalescent with recombination. By only considering those pairs of 
 lineages that share 
 genomic intervals with ancestral material, as eligible for coalescence, we obtain the 
-sequential Markovian structure along the chromosome the SMC is best known for.\\
+sequential Markovian structure along the chromosome.\\
 
 More formally, and following the notation of \citet{mcvean_approximating_2005}, at any 
 point in time, the process can be described by $L(t)$, the set of labeled lineages 
 extant at time $t$ each represented by a union of ordered non-overlapping half open 
 intervals detailing the ancestral material 
 carried by that lineage $X_i = \{[x_{i0}, y_{i0}), \dotsc, [x_{im}, y_{im})\}$.
-$L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$, each represented by 
+$L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$, each represented by a 
 single interval spanning the entire genome.
 Backwards in time the process evolves by a succession of coalescence and recombination 
 events until all segments of ancestral material are each present in only one lineage. 
 The waiting time to next event is determined by these two competing processes with exponentially 
-distributed waiting times as described below.\\
+distributed waiting times as outlined below.\\
 
 Recombination is described by a Poisson process of rate $r$ per unit of length and time. 
 A recombination to the 
@@ -147,7 +148,7 @@ union of both ordered intervals.
 Although coalescence is reciprocal, here we'll define a strict total order 
 (see \ref{par:liks}) on 
 all lineages in $X(t)$ based on their leftmost starting points. 
-For any such strict total order on $X_l(t)$ and at any point in the process 
+For any such strict total order on $X(t)$ and at any point in the process 
 the instantaneous rate of coalescence then equals $\lambda \sum_{i \neq j} I_{ij}$.
 
 \begin{equation} \label{def:coal}
@@ -161,7 +162,7 @@ We can now define $C_i(t) = \{X_j \in L(t) | I_{ij}(t) = 1\}$ such that $|C_i(t)
 I_{i}(t) = \sum_{j} I_{ij}(t)$.
 Because $I_{ij}$ is not reciprocal, each extant lineage has their own unique set of 
 lineages $C_i(t)$ it can coalesce with. This will simplify the likelihood computations 
-(see next paragraph). Note that although recombination affects $C_i(t)$ it does not 
+(see \ref{par:liks). Note that although recombination affects $C_i(t)$ it does not 
 affect $I_{i}$.\\ 
 
 % note on the disjoint set of intervals for each lineage under the SMC
@@ -178,7 +179,8 @@ genome has reached its most recent common ancestor but the neighbouring parts ha
 
 The process described in the previous paragraph details the transitions of the 
 set of labeled lineages $L$ through time. An Ancestral Recombination Graph 
-$\mathcal{G} = (N, E)$ is obtained by registering a tuple $(c, p, X_{cp})$ whenever a 
+$\mathcal{G} = (N, E)$ capturing the various inheritance paths along the genome 
+is obtained by registering a tuple $(c, p, X_{cp})$ whenever a 
 lineage $c$, associated with a disjoint set of genomic intervals $X_c$, is 
 replaced by one or two lineage(s), $p$ (and $p^{\prime}$), 
 in case of a coalescence or recombination respectively.
@@ -191,16 +193,14 @@ define this data structure.\\
 Recording the full process as described above will result in unary nodes.
 These are nodes that have only one child in one or more local trees 
 (see fig.\ref{fig:smc-unary} and \citet{Wong-2023}). This is not only true 
-for the nodes registered for those lineages hit by a recombination event. 
-In case of a coalescence event, an edge is registered along the full 
-extent of both involved lineages. 
+for the nodes registered for those lineages affected by a recombination event. 
 Coalescence between two lineages without perfectly 
-overlapping intervals will therefore result in locally unary nodes.\\
-
-These unary nodes ensure the one to one correspondence between an ARG and its 
-representation as a sequence of local trees (see fig.\ref{fig:smc-unary}). 
+overlapping intervals will similarly result in locally 
+unary nodes (see \ref{fig:smc-unary}).These unary nodes ensure the one 
+to one correspondence between an ARG and its 
+representation as a sequence of local trees. 
 Indeed, the presence of these unary nodes allow us to completely reconstruct 
-the state of all extant lineages through time from the local trees. 
+the state of all extant lineages through time from the local trees.\\
 
 %under the SMC up to the exact time of the recombination events.
 
@@ -219,7 +219,7 @@ lineage and the minimum age of the parents of the edges connecting to $c$.
 
 As highlighted in fig.\ref{fig:smc-unary}, (coalescing) unary nodes can be inferred 
 from the available haplotype information. Currently, the following methods 
-return this information by default as part of their ARG reconstruction algorithm: 
+return the full this information by default as part of their ARG reconstruction algorithm: 
 \argweaver \citep{rasmussen_genome-wide_2014} 
 \tsinfer \citep{kelleher_inferring_2019}, 
 \kwarg \citep{ignatieva_kwarg_2021}.
@@ -238,28 +238,26 @@ inferred by relying on the unary nodes.
 \centering
 \includegraphics[width=\textwidth]{figures/smc_custom_2rows.png}
 \caption{ARG (top left) generated under the SMC and its representation as a 
-series of local trees. The presence of the unary nodes ensure these two 
-representations contain the same information.
-The haplotypes that make up the lineages coalescing 
-at the root of each marginal tree are highlighted at the top. Ancestral 
-material is coloured based on the samples that inherit from it.
-Note how the presence of the unary nodes 
-modifies the left-to-right logic of single-prune-regrafts induced by 
-recombination under the SMC (blue dotted arrows).
-Even in the absence of the blue recombination nodes, 
-the unary coalescing nodes allow us to reconstruct the state of all lineages 
-up to the exact time of the recombination event.
+series of local trees. The presence of the unary nodes in the local trees 
+ensure these two representations contain the same information. 
+The ARG is augmented with haplotype information, coloured according to the 
+samples that inherit from it. 
+Note how the presence of a unary node on a local tree is 
+indicative of either a past (to the left of the local tree) 
+or future (to the right) coalescence event. It therefore modifies the 
+left-to-right logic of the SMC whereby the floating lineage coalesces randomly
+with a the remaining portion of the local tree. 
 }
 \label{fig:smc-unary}
 \end{figure}
 
-\subsection{Unary nodes} \label{par:unary}
+%\subsection{Unary nodes} \label{par:unary}
 % Do we need a seperate section on the unary nodes?
 % is there more to be said about the SMC inm the presence of unary nodes?
-Recording unary nodes has interesting consequences on the left-to-right 
-description of the SMC. Looking at a single marginal tree, the presence of 
-unary nodes are telltale signs of future or past coalescence events (in a 
-left-to-right sense).\\
+%Recording unary nodes has interesting consequences on the left-to-right 
+%description of the SMC. Looking at a single marginal tree, the presence of 
+%unary nodes are telltale signs of future or past coalescence events (in a 
+%left-to-right sense).\\
 
 
 
