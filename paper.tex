@@ -103,7 +103,7 @@ the built in assumption of neighbouring trees being separated by single Subtree 
 Regraft (SPR) [REF Song et al.], this is not the case for any of the heuristic data 
 structures.
 Lack recombination nodes in the ARG, crucial in ability to compute likelihoods 
-under Hudson. \citep{Wong_a-general_2023}
+under Hudson. \citep{wong_a-general_2023}
 
 Secondly, the lack of an underlying model also means that
 we have no way to deal with uncertainty, an issue that is 
@@ -350,7 +350,7 @@ and edges are no longer recorded once the local most recent common ancestor
 has been reached, we will underestimate the number of positions where 
 a recombination could have occurred in case a recombination hits a 
 lineage with trapped non-ancestral material (see end \ref{par:description}). 
-If we assume that only a single recombination 
+If we assume that only a single recombination could have  
 occurred, then it suffices however to provide a correction factor $g$ in equation
 \ref{eq:depth}. Here $g$ represents the 
 length of non-ancestral material along which a recombination would have resulted  
@@ -360,11 +360,14 @@ in the same observed local sequence of tree changes.
 \begin{figure}[!ht] \label{fig:algo}
 \centering
 \includegraphics[width=\textwidth]{figures/ts_algo_2rows.png}
-\caption{Description of algorithm: Moving along the genome we transition from the first 
-local tree (1) to the next (4). For each edge that is removed from the first tree we 
-decrement the count in the corresponding internode intervals and update the identity of 
-the last parent. Subsequently, for each edge that will be inserted we compute the likelihood 
-associated with that edge prior to incrementing the counts.}
+\caption{Description of algorithm: Moving along the genome we transition from  
+local tree $T_1$ (1) to the next, $T_2$ (4). Edges that do not persist in $T_2$ are 
+removed (2). Edges starting at the left coordinate of $T_2$ are inserted (3). 
+After deletion or insertion of an edge the count vector $I$ is updated along the 
+corresponding internode intervals. Prior to updating $I$ following an insertion, 
+the likelihood for that edge is computed as $I$ then represents the total number of 
+lineages the lineage associated with this new edge can 
+coalesce with. By moving along the genome in this way, each edge gets visited exactly once.}
 \end{figure}
 
 
@@ -436,15 +439,12 @@ associated with that edge and then
 increment $I$ from \texttt{edge.child} to \texttt{edge.parent}.\\
 
 % ADD IN RESULTS
-Figure \ref{sup:fig:vs-hudson} shows the correlation between the likelihood under the hudson 
-for an ARG with detailed recombination information simulated and computed using 
-\texttt{msprime} \citep{baumdicker_efficient_2021}. Show impact of unary nodes on $r^2$.
-Simulated mutation data under the SMC and passed this to ARGweaver.
-Scatterplot of coalescent prior as returned by ARGweaver \citep{rasmussen_genome-wide_2014} 
-for a 100 samples from the posterior against the likelihood as described here fore these 
-sampled ARGs \ref{sup:fig:vs-argweaver}  
-
-Implementation of the algorithm is available on https://github.com/GertjanBisschop/runsmc.
+Figure \ref{sup:fig:vs-argweaver} shows the expected near-perfect correlation 
+between the coalescent prior as returned by \argweaver and the likelihood as computed here. 
+We simulated 1Mb of data for 10 diploid individuals 
+under the SMC using human-like parameters. 100 samples were taking from the posterior every for 
+a total of 1000 MCMC iterations.
+ 
 
 \subsection{Flexibility / general class of ARGs}
 
@@ -454,53 +454,66 @@ under the SMC for any valid tree sequence. The \texttt{tskit} library provides a
 of subsetting operations on tree sequences allowing us to slice the ARG in time and/or space, 
 as well as reduce the number of tracked samples. 
 Any such subset of the tree sequence is itself a valid tree sequence 
-that can again be used to compute a likelihood with.
-
-Our approach therefore strenghtens the inherent ability of ARGs to provide us with temporal 
+that can again be used to compute a likelihood with. Our approach therefore strenghtens 
+the inherent ability of ARGs to provide us with temporal 
 resolution on the inferred genealogical history of a sample. 
 We can further readily incorporate changes in $N_e$ and $r$, 
-both in time as well as along the genome.
+both in time as well as along the genome by respectively adding intervals to $I$ 
+or by splitting edges when/wherever the parameter set changes.
+[NOTE: these options have already been implemented in the current implementation]
 
-% Algorithm is suitable for a general class of ARGs each with their own specific features.
-% What happens in the case of ARGs that do not meet our assumptions: absent unary nodes, polytomies, ...
-The above algorithm treats each edge independently which implies we can deal with polytomies.
-Furthermore, although we rely heavily on unary nodes to provide us with the necessary 
-information on recombination events, our algorithm can also accomodate for 
-those inferred ARGs that lack unary nodes (e.g.\ \relate, and see figure in supplements).
-However, in case of (sub)tree height changes along the ARG, the algorithm would infer 
-two recombination events along the lineages associated 
-with both edges switching parent nodes. This can be mitigated by limiting the number of 
-'inferrable' recombination events per coalescence event to 1 (see supplementary figure). 
+Although we rely heavily on unary nodes to provide us with the necessary 
+information on recombination events, our algorithm only implicitly assumes there presence.
+The algorithm can therefore also accomodate for 
+those inferred ARGs that lack unary nodes (e.g.\ \relate). 
+Note that without unary nodes, our algorithm will detect a recombination event along 
+both coalescing lineages in case of a (sub)tree height changes along the ARG as both 
+edges would switch parent nodes. This can be mitigated by limiting the number of 
+'inferrable' recombination events per coalescence event to 1.
+% simulated results
+We simulated 1000 ARGs under the Hudson coalescent retaining all recombination information 
+and computed the corresponding likelihood using \texttt{msprime} \citep{baumdicker_efficient_2021}. 
+After removing the recombination nodes the likelihoods as defined here were computed both with and 
+without the unary nodes. Figure \ref{sup:fig:vs-hudson} shows that the proportion of variation 
+explained is higher when the unary nodes are retained.
 
+% polytomies
+[TO DO: polytomies] The above algorithm treats each edge independently which implies 
+we can deal with polytomies.
 
+ 
 \section{Discussion}
-% summary: what did we do here
+
 Here, we have introduced a scalable algorithm to compute likelihoods 
 under the SMC for a general class of ARGs. This work will contribute significantly 
 to ARG-based analysis becoming a standard part of the population 
 and statistical genetics toolkit. 
 In particular, we see three main applications for the work presented here. 
 Firstly, the ability to associate inferred ARGs with a likelihood given a demographic 
-model and a set of parameters will help bridge the gap between the tremendous recent 
+model and an associated set of parameters will help bridge the gap between the tremendous recent 
 advances in ARG inference and the current state of the art statistical inference of 
-past demography. Secondly, hybrid ARG-inference methods combining the best of both 
-heuristic and model based inference approaches. Thirdly, quantify uncertainty.
+past demography. Secondly, hybrid ARG-inference methods that combine the best of both 
+heuristic and model-based inference approaches are now possible.
+Thirdly, using a model we can quantify the uncertainty inherently associated 
+with ARG-reconstruction.
 
-1/ statistical inference
-This is an important step towards bridging the gap between the tremendous 
-recent advances in ARG inference and the current state of the art statistical inference of 
-past demography (but see ): currently most/all methods perform ARG-based analysis 
-by extracting mariginal trees from the ARG \citep{hejase_2022} % likelihood-based demographic inference on local trees (ref?) 
-The provided theory and associated algorithm will function as a building block of a 
-demography-aware genealogy sampler. Current approach couple of major advantages:
-* any type of inferred ARG as a starting point. Potentially implying a massive reduction in 
-MCMC runtime by reducing the necessary burnin period.
-* by integrating out the exact time to the recombination event we further restrict the size 
-of ARG space that needs to be explored.
-* exploit the efficiencies of the tree sequence data structure (see \citep{Mahmoudi_bayesian_2022})
-* we can readily incorporate $N_e$-changes as well as multiple populations and migration.\\
+% 1/ statistical inference
+Currently most/all ARG-based inference methods base their analysis on marginal 
+trees \citep{hejase_2022} [TO DO: add more refs]. The theory and associated algorithm 
+provided here can function as a building block of a 
+demography-aware genealogy sampler that would allow us to incorporate the information 
+provided by recombination events.
+More concretely, given our algorithm, any inferred ARG can be used a good starting point 
+for a future MCMC-sampler. This potentially implies a massive runtime reduction by 
+reducing the necessary burn-in period. Evenmore, by integrating out the exact time 
+to the recombination event we further restrict the size of the ARG space that needs to 
+be explored. 
+This algorithm will also allow us to exploit the efficiencies of the tree sequence 
+data structure (see \citep{mahmoudi_bayesian_2022}) to evaluate any new proposal.
+We can readily incorporate $N_e$-changes as well as multiple populations and migration.\\
 
 
+% 2/ hybrid ARG-inference
 Biobank scale datasets, first few generations violate coalescent assumptions. Here we use heuristic 
 method. Once number of lineages has reduced sufficiently, model-based approach can be used. One 
 of the advantages of formulating this backwards in time. 
@@ -508,6 +521,7 @@ Combining ARG inference methods: tsinfer for first few generations (large sample
 the initial phase is biased relative to the Wright-Fisher model when the sample size is large 
 \citep{bhaskar_distortion_2014}, or when the considered events are very recent \citep{wakeley_gene_2012}\\
 
+% 3/ quantifying uncertainty
 Both of these future directions tie in with the ability to quantify uncertainty by sampling 
 from an underlying distribution. This will in particular enable us to deal with those 
 parts in both time and along the genome for which we have insufficient information to confidently 
@@ -527,8 +541,10 @@ particular deviations from these assumptions will affect the shape of the likeli
 a set of parameters.
 
 % final conclusion
+\section{Data availability}
 
-
+All scripts and data used for this manuscript are available on https://github.com/gertjanbisschop/smc-bit-paper
+An implementation of the algorithm is available on https://github.com/gertjanbisschop/runsmc.
 
 \bibliographystyle{plainnat}
 \bibliography{paper.bib, temp.bib}
@@ -541,16 +557,16 @@ a set of parameters.
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{example-image-a}
-\caption{Compare likelihoods inferred ARGs ARGweaver}
+\includegraphics[width=0.75\textwidth]{figures/supplementary-figs/argweaver_vs_runsmc.png}
+\caption{Compare likelihoods inferred ARGs ARGweaver: placeholder for final figure with similar content}
  \label{sup:fig:vs-argweaver}
 \end{figure}
 
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.5\textwidth]{example-image-a}
-\caption{Compare likelihoods Hudson and SMC}
+\includegraphics[width=0.75\textwidth]{figures/supplementary-figs/v_hudson_unary_simpl.png}
+\caption{Compare likelihoods Hudson and SMC with and without unary nodes: placeholder for final figure with similar content}
 \label{sup:fig:vs-hudson}
 \end{figure}
 
