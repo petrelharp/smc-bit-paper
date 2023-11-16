@@ -72,16 +72,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="543.43762"
-     inkscape:cy="698.55604"
+     inkscape:zoom="2.1034429"
+     inkscape:cx="402.61486"
+     inkscape:cy="936.34555"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
      showgrid="false"
      showguides="false"
      inkscape:guide-bbox="true"
-     inkscape:window-width="2500"
-     inkscape:window-height="1376"
+     inkscape:window-width="1860"
+     inkscape:window-height="1016"
      inkscape:window-x="60"
      inkscape:window-y="27"
      inkscape:window-maximized="1">
@@ -177,7 +177,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -195,6 +195,27 @@
        y="10.133293"
        style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.69817418"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows.png" />
+    <rect
+       style="opacity:0.95999995;fill:#007cff;fill-opacity:0.19607843;stroke:none;stroke-width:0.40681255;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1115"
+       width="37.531448"
+       height="19.555582"
+       x="82.341393"
+       y="55.490349" />
+    <rect
+       style="opacity:0.95999995;fill:#007cff;fill-opacity:0.19607843;stroke:none;stroke-width:0.35439289;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1115-1"
+       width="28.659492"
+       height="19.434752"
+       x="114.30545"
+       y="36.055599" />
+    <rect
+       style="opacity:0.95999995;fill:#007cff;fill-opacity:0.19607843;stroke:none;stroke-width:0.35087758;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1115-1-7"
+       width="27.920164"
+       height="19.555582"
+       x="139.88371"
+       y="55.490349" />
   </g>
   <g
      inkscape:label="Layer 1"
@@ -202,7 +223,7 @@
      id="layer1"
      style="display:inline">
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 139.87076,55.490351 v 6.730928 h 13.77581"
        id="path9242"
        inkscape:connector-curvature="0"
@@ -210,7 +231,7 @@
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 153.64657,62.221279 v 12.82465"
        id="path9244"
        inkscape:connector-curvature="0"
@@ -218,7 +239,7 @@
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 101.42709,71.192401 h 18.49824 V 55.492475"
        id="path9238"
        inkscape:connector-curvature="0"
@@ -1035,7 +1056,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows.png" />
     <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 129.8176,55.490361 v -4.73763 H 114.30545 V 36.072809"
        id="path4888"
        inkscape:connector-curvature="0"
@@ -1059,7 +1080,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows.png" />
     <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 142.97874,25.621288 V 16.587397 H 117.57273"
        id="path4894"
        inkscape:connector-curvature="0"
@@ -1075,7 +1096,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows.png" />
     <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 167.80387,59.279791 V 26.386209"
        id="path1594"
        inkscape:connector-curvature="0"
@@ -1083,7 +1104,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows.png" />
     <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 117.68126,26.386209 V 16.587417"
        id="path1596"
        inkscape:connector-curvature="0"
@@ -1557,7 +1578,7 @@
        style="font-size:14px;text-anchor:middle;display:inline;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.1984375"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows.png" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 48.008288,75.045929 v -9.76599 h 9.153983"
        id="path3957"
        inkscape:connector-curvature="0"
@@ -1565,7 +1586,7 @@
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 57.12499,65.28117 h 16.860069 v 9.763494"
        id="path3961"
        inkscape:connector-curvature="0"
@@ -1721,7 +1742,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows.png">9</text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 129.03753,16.583007 V 14.108444"
        id="path9232"
        inkscape:connector-curvature="0"

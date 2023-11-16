@@ -10,9 +10,6 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 
-%\usepackage{subcaption}
-
-\newcommand{\noderef}[1]{\textsf{#1}}
 \newcommand{\tsinfer}[0]{\texttt{tsinfer}}
 \newcommand{\kwarg}[0]{\texttt{KwARG}}
 \newcommand{\argweaver}[0]{\texttt{ARGweaver}}
@@ -20,6 +17,7 @@
 \newcommand{\relate}[0]{\texttt{Relate}}
 \newcommand{\espalier}[0]{\texttt{Espalier}}
 \newcommand{\arbores}[0]{\texttt{Arbores}}
+\newcommand{\tskit}[0]{\texttt{tskit}}
 
 % Bold the 'Figure #' in the caption and separate it from the title/caption with a period
 % Captions will be left justified
@@ -64,6 +62,18 @@ ARG space around the point estimate, or likelihood-based inference
 
 \section{Introduction}
 
+[great point from Wong et al] Note that it is important to distinguish 
+here between structures and models: whether an inference method is based on 
+heuristics or a rigorous mathematical model is orthogonal to the level 
+of detail provided in its estimate. One could heuristically estimate a 
+fully precise ARG, or statistically sample a partial, approximate ARG under 
+a model such as the coalescent.
+What we want to achieve with this paper is to bring the two concepts closer 
+to each other. Compute a likelihood for an approximate (define) ARG under a 
+approximate model of the coalescent. 
+Approximate in two senses: SMC + leave out precise recombination time info
+
+
 The underlying genealogical history that relates a sample of individuals back in time
 contains all possible information this sample can provide on the history of demography, 
 selection and recombination for the population of interest. 
@@ -72,6 +82,12 @@ As such, in the past the data structure capturing these inheritance paths
 or Ancestral Recombination Graph (ARG), has usually been considered a nuisance 
 variable to be integrated out during statistical inference 
 \citep{kuhner_2000, griffiths_ancestral_1996}.
+
+
+The breakthroughs in scale achieved by recent methods 
+are all based, in different ways, on inferring approximate 
+structures instead of a complete and fully detailed history
+% in particular with respect to recombination nodes
 
 % first major step forwards in ARG inference
 % explicitly outputs an ARG
@@ -105,6 +121,9 @@ Recombination in particular:
 In contrast to model-based inference methods like \argweaver, 
 these models only deal with recombination in an implicit sense.\\
 
+
+[TO DO:] what does *general* mean? and when in the paper do we discuss it?
+
 [TO DO: finish this section] For example, where ARGweaver has 
 the built in assumption of neighbouring trees being separated by single Subtree Prune 
 Regraft (SPR) [REF Song et al.], this is not the case for any of the heuristic data 
@@ -121,6 +140,7 @@ SMC and relatives are useful: lot of focus however on integrating over
 the distribution of trees to get $N_e(t)$ [ADD REF: PSMC, MSMC]
 Here, the idea is to use the SMC in a different way that resonates more 
 with the true direction of flow of genetic information.
+
 Results in a concrete way to compute likelihoods for *any* inferred ARG 
 by integrating out the time to recombination.
 and formulate an algorithm 
@@ -147,9 +167,9 @@ carried by that lineage $X_i = \{[x_{i0}, y_{i0}), \dotsc, [x_{im}, y_{im})\}$.
 $L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$, each represented by a 
 single interval spanning the entire genome.
 Backwards in time the process evolves by a succession of coalescence and recombination 
-events until all segments of ancestral material are each present in only one lineage. 
-The waiting time to next event is determined by these two competing processes with exponentially 
-distributed waiting times as outlined below.\\
+events until each segment of ancestral material is only present in one lineage. 
+The waiting time to next event is determined by these two competing processes 
+with exponentially distributed waiting times as outlined below.\\
 
 Recombination is described by a Poisson process of rate $r$ per unit of length and time. 
 A recombination to the 
@@ -194,8 +214,8 @@ genome has reached its most recent common ancestor but the neighbouring parts ha
 The process described in the previous paragraph details the transitions of the 
 set of labeled lineages $L$ through time. An Ancestral Recombination Graph 
 $\mathcal{G} = (N, E)$ capturing the various inheritance paths along the genome 
-is obtained by registering a tuple $(c, p, X_{cp})$ whenever a 
-lineage $c$, associated with a disjoint set of genomic intervals $X_c$, is 
+is obtained by registering an edge represented by a tuple $(c, p, X_{cp})$ 
+whenever a lineage $c$, associated with a disjoint set of genomic intervals $X_c$, is 
 replaced by one or two lineage(s), $p$ (and $p^{\prime}$), 
 in case of a coalescence or recombination respectively.
 The last element of the tuple is the extent of the edge. It is itself a  
@@ -204,33 +224,47 @@ The set of edges $E$, containing all such tuples $(c, p, X_{cp})$,
 and $N$, the set of nodes representing all genomes in the ARG, together
 define this data structure.\\
 
-Recording the full process as described above will result in unary nodes.
-These are nodes that have only one child in one or more local trees 
-(see fig.\ref{fig:smc-unary} and \citet{Wong-2023}). This is not only true 
-for the nodes registered for those lineages affected by a recombination event. 
-Coalescence between two lineages without perfectly 
-overlapping intervals will similarly result in locally 
-unary nodes (see \ref{fig:smc-unary}).These unary nodes ensure the one 
-to one correspondence between an ARG and its 
-representation as a sequence of local trees. 
-Indeed, the presence of these unary nodes allow us to completely reconstruct 
-the state of all extant lineages through time from the local trees.\\
+The ARG as described here records the impact of every possible event along each 
+inheritance path in full detail. We could however simplify this graph by 
+throwing away the precise time information of all recombination events. This 
+corresponds to removing the recombinant internal nodes within the ARG such that some of 
+the internal nodes representing coalescence events now have 2 outgoing (backwards in time) 
+edges. On the ARG in fig.\ref{fig:smc-unary}, the output of a simulation under the SMC, 
+this corresponds to removing the blue internal nodes. Crucially however, 
+we can still identify all lineages that were hit by a recombination event. Yet we 
+can only constrain the time to this event to within a window defined by the age of the 
+child node $c$ associated with that lineage and the minimum age of the parents of the 
+edges connecting to $c$.\\
 
-%under the SMC up to the exact time of the recombination events.
+ARG simplification therefore touches upon the question of what is knowable.  
+[TO DO: Add link with inference methods]\\
 
-The resulting data structure can be simplified to various degrees \citep{Wong-2023}. 
-This equates to removing certain types of unary nodes, 
-depending on the degree of information 
-we want to retain (or can reconstruct) from the original process. 
-In a fully simplified ARG, without unary nodes, 
-the local trees only store information on local coalescence events.
-Under the SMC, if we only omit recombination nodes, % is there a better word?
-we are left with the coalescent nodes, those nodes that are coalescent 
-along some fraction of the genome. We can however still identify \emph{all} 
-lineages that were hit by a recombination event and constrain the time to 
-this event to within a window defined by the age of the node $c$ associated with that 
-lineage and the minimum age of the parents of the edges connecting to $c$.
+Many ARG reconstruction methods return a data structure that 
+is in essence a series of local tries [REFs]. This does not need to be a contradiction. 
+All ARGs can be represented as a series of local trees \citep{wong-2023}.
+As long as we register each observed node when building the local tree that 
+records the path through the ARG, then we can guarantee a one-to-one correspondence 
+with the original ARG. Crucially, this will result in nodes that 
+are locally unary. These are nodes that only have a single child along some of the 
+intervals within the genome.\\
 
+Recombination nodes are one such type of unary nodes. Figure \ref{fig:smc-unary} (bottom)
+reveals however that all internal nodes but node 4 are unary along some part of 
+the genome. These nodes all represent coalescence events.
+
+Note that the presence of these unary nodes allows us to reconstruct the full extent 
+of each lineage going back through time. Similarly, all lineages involved in a recombination 
+event can be uniquely identified by a change in parent going from one tree to the next 
+for the child node associated with that lineage. Both the ARG and the sequence of 
+local trees contain the same information, as long as they are simplified to the 
+same degree.\\
+
+
+[TO DO: do I need to expand on this?] Simplification is thus tied in with the concept of locally unary nodes.\\
+
+Which ARG inference methods return locally unary nodes and how can they be inferred.
+[TO DO] give a good explanation (using the figure) why these methods can infer the extent 
+of coalescing lineages.
 As highlighted in fig.\ref{fig:smc-unary}, (coalescing) unary nodes can be inferred 
 from the available haplotype information. Currently, the following methods 
 return the full this information by default as part of their ARG reconstruction algorithm: 
@@ -238,14 +272,16 @@ return the full this information by default as part of their ARG reconstruction 
 \tsinfer \citep{kelleher_inferring_2019}, 
 \kwarg \citep{ignatieva_kwarg_2021}.
 
-The presence of these (coalescing) unary nodes enables us to extend likelihood 
-computations to a more general class of ARGs.
-Here we will compute the likelihood for an ARG
-under the SMC for which we have no information on the time to any 
-of the recombination events. 
-We will assume however, that the identity 
-of the lineage involved in each recombination event can be correctly 
-inferred by relying on the unary nodes.
+
+[TO DO]: impact of unary nodes on reasoning about the SMC in a left-to-right sense.
+
+In the next paragraph we will derive an expression to compute the 
+likelihood for an ARG under the SMC for which we have no information on the 
+time to any of the recombination events. We will then detail an algorithm 
+that allows us to compute this value given an ARG 
+represented as a series of local trees. To do this we will rely on the unary nodes 
+to identify each lineage involved in a recombination event 
+as described in this section.
 
 
 \begin{figure}[!ht]
@@ -264,14 +300,6 @@ with a the remaining portion of the local tree.
 }
 \label{fig:smc-unary}
 \end{figure}
-
-%\subsection{Unary nodes} \label{par:unary}
-% Do we need a seperate section on the unary nodes?
-% is there more to be said about the SMC inm the presence of unary nodes?
-%Recording unary nodes has interesting consequences on the left-to-right 
-%description of the SMC. Looking at a single marginal tree, the presence of 
-%unary nodes are telltale signs of future or past coalescence events (in a 
-%left-to-right sense).\\
 
 
 
@@ -335,6 +363,9 @@ given parameters $\theta$ then is
 
 % Does this hold for the case beyond the root of the genealogy?
 
+[TO DO: improve this remark: when recording an ARG we do record edges in this situation,
+however, msprime simulations will stop recording edges for local trees that have reached 
+their local mrca.] 
 Because the likelihood is computed based on edges,
 and edges are no longer recorded once the local most recent common ancestor 
 has been reached, we will underestimate the number of positions where 
@@ -344,7 +375,7 @@ If we assume that only a single recombination could have
 occurred, then it suffices however to provide a correction factor $g$ in equation
 \ref{eq:depth}. Here $g$ represents the 
 length of non-ancestral material along which a recombination would have resulted  
-in the same observed local sequence of tree changes.
+in the same observed local sequence of tree changes.\\
 
 
 \begin{figure}[!ht] \label{fig:algo}
@@ -474,14 +505,14 @@ explained is higher when the unary nodes are retained.
 % polytomies
 [TO DO: polytomies] The above algorithm treats each edge independently which implies 
 we can deal with polytomies.
-
+[TO DO: discuss, what if the identity of internal nodes is not preserved across trees]
  
 \section{Discussion}
 
 Here, we have introduced a scalable algorithm to compute likelihoods 
 under the SMC for a general class of ARGs. By formulating the SMC backwards in time 
 we were able to associate a single likelihood value with each edge in the ARG. 
-The compatibility of the algorithm with the \tskit library allows us to 
+The compatibility of the algorithm with the \texttt{tskit} library allows us to 
 exploit its associated efficiencies both for the current work and its future 
 applications. This work will contribute significantly 
 to ARG-based analysis becoming a standard part of the population 
