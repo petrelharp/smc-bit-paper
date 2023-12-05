@@ -302,7 +302,7 @@ limited to the windows (blue shaded array) delimited by by the age of
 the child node $c$ associated with that lineage and the minimum age of 
 the parents of the edges connecting to $c$. 
  [TO DO: wanted to use the 
-added in haplotype information to explain why we can actually \textit{infer} the 
+added in haplotype information to explain why we can actually infer the 
 extent of each lineage, and thus create unary nodes in the first place.]
 }
 \label{fig:smc-unary}
@@ -617,7 +617,7 @@ An implementation of the algorithm is available on https://github.com/gertjanbis
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.75\textwidth]{figures/supplementary-figs/argweaver_vs_runsmc.png}
-\caption{Compare likelihoods inferred ARGs ARGweaver: placeholder for final figure with similar content}
+\caption{Simulated 10kb sequence under human-like parameters, 10 diploid samples. Inferred ARG using ARGweaver. Scatterplot is comparison of prior (discretized SMC) as reported by ARGweaver (x-axis) and likelihood as defined here (y-axis).}
  \label{sup:fig:vs-argweaver}
 \end{figure}
 
@@ -625,8 +625,30 @@ An implementation of the algorithm is available on https://github.com/gertjanbis
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.75\textwidth]{figures/supplementary-figs/v_hudson_unary_simpl.png}
-\caption{Compare likelihoods Hudson and SMC with and without unary nodes: placeholder for final figure with similar content}
+\caption{Compare likelihoods Hudson (full ARG) and SMC with and without unary nodes (without recombination nodes): placeholder for final figure with similar content.}
 \label{sup:fig:vs-hudson}
+\end{figure}
+
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.75\textwidth]{figures/supplementary-figs/without_unary.png}
+\caption{Simulated 1Mb of sequence under human-like parameters. Computed likelihood as defined here with unary nodes (y-axis), and without, blue dots (x-axis). By limiting the number of recombinations (to 1 event) leading up to a single coalescent node we obtain the values in orange.}
+ \label{sup:fig:rec-correction}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.75\textwidth]{figures/supplementary-figs/hudson_liks_vs_tsinfer_smc.png}
+\caption{Simulated full ARG for 1Mb sequence under human-like parameters (100 diploid samples). Computed likelihood (x-axis) under Hudson. Then inferred ARG with \tsinfer following a random sprinkling of mutations and computed likelihood under SMC (y-axis)}
+ \label{sup:fig:hudson-smc}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.75\textwidth]{figures/supplementary-figs/single_rep_human_like_1gb.png}
+\caption{Single replicate from the dataset simulated above with a 100 random sprinklings of mutations. Likelihood under the SMC, mutation rate $\mu=1.25e-8$ (x-axis), and with mutation rate $4*\mu$ (y-axis). Likelihood for the full ARG under Hudson is indicated with the cross.}
+ \label{sup:fig:single-tsinfer}
 \end{figure}
 
 \end{document}
