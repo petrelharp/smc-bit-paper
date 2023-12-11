@@ -74,9 +74,9 @@ a model such as the coalescent.
 
 \subsection{ARGs are awesome, or general intro about approximations}
 % approximation: level of detail
-* [Importance of ARGs: ARGs as object of theoretical reasoning vs what can be known]\\
-* [difference between precision/detail and accuracy. High precision can 
-give a false sense of certainty in the provided estimate]. 
+%Importance of ARGs: ARGs as object of theoretical reasoning vs what can be known\\
+%difference between precision/detail and accuracy. High precision can 
+%give a false sense of certainty in the provided estimate]. 
 
 In population genetics, the questions we try to answer are generally 
 about the unobserved processes that gave rise to the genetic variation 
@@ -559,6 +559,13 @@ occurred at each breakpoint.
 [TO DO:] On a similar note and more general: we can compute the likelihood for any 
 valid tree sequence, however, future work to verify to what extent/in which scenarios 
 this is actually helpful.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\textwidth]{figures/3-slices.png}
+\caption{Simulated ARG under Hudson coalescent (left). $N_e$ varied was constant within each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 2500, (5000:\infty):10 000]$. Remaining parameters: L=10kb, 20 diploid samples, r=2.5e-8, 148 edges in ARG). A single $N_e$ value was estimated for each slice of the ARG as defined by the true population size change time points. The inferred posterior distribution (right) using the SMC-likelihood was obtained using a uniform prior.}
+ \label{fig:3-arg-slices}
+\end{figure}
  
 \section{Discussion}
 
