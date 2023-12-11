@@ -72,61 +72,89 @@ fully precise ARG, or statistically sample a partial, approximate ARG under
 a model such as the coalescent.
 
 
-1/ ARGs are awesome, or general intro about approximations
+\subsection{ARGs are awesome, or general intro about approximations}
+% approximation: level of detail 
 
-
-model is a mathematical simplification of reality that aims to capture essential aspects 
-about what we observe.
-For example, the coalescent, ...
-Formal way of recording what we observe, results in data structure 
-with a certain level of precision.
-For example, ARG, ...
-The structure capturing the details of these intricately 
-interwoven paths of inheritance is referred to as an ancestral recombination graph (ARG)
-
+In population genetics, the questions we try to answer are generally 
+about the unobserved processes that gave rise to the genetic variation 
+we can observe given a set of samples. 
+The coalescent with recombination 
+Kingman, 1982a,b; Tajima, 1983; Hudson, 1983) is generally used as 
+the generative model that allows us to understand the genealogy 
+underlying a particular sampleset. 
+Datastructure that captures it: ARG.
 For a very long time people have assumed that what is meant by an ARG is the 
 fully specified genealogical history  
 where all events are uniquely positioned both in time
-and along the genome. [However see Wong et al. 2023].
+and along the genome. [However see Wong et al. 2023]. 
+% say something about the difficulty of precise ARG inference (see more scalable ARG inference later on).
+
+Although ARG, ...,
+something about the level of detail.
+
+\subsection{approximations have driven the rate of progress in inference}
+
+Instead, approximations of the coalescence with recombination (CwR) have  
+driven our ability to perform statistical genomic inference. In particular, 
+the ability to formulate the inference problem as a hidden Markov model (HMM) 
+has proven to be instrumental [references]. 
+Two crucial approximations: 2 characteristics: left to right, and discetization 
+of state space by emumerating tree topologies and/or discretising time,
+then inference can be performed efficiently using well-known HMM algorithms.
+To improve the ability to simulate the CwR, McVean and Cardin 
+provided an approximation of the CwR that is both Markovian backwards in time 
+as well as left-to-right along the genome \citep{mcvean_2005_approximating}. 
+By sacrificing precision on the our ability to capture long range linkage 
+information, the sequentially Markovian coalescent (SMC) 
+became the engine of many powerful inference methods [references]. 
+Later improvements, SMC', closed the gap between the SMC and the CwR even 
+further.
+A second key approximation is not a generative model, instead the  
+copying model \citep{li_2003_modeling} was specifically designed to 
+generate CwR-like patterns. This heuristic approach has been successfully 
+applied for demographic inference [and other things: ADD] 
+\citep{sheehan_2013_estimating, steinrucken_2018}.
+
+Both approaches have further formed the basis of the recent breakthroughs in 
+scalable ARG inference methods [references]. 
+
+ARGweaver uses 
+sample an ARG from the posterior distribution given the observed variational 
+data. Although require limiting the set of possible node times to be compatible 
+with HMM, ARGs they produce are fully detailed in the sense that recombinations 
+are explitly inferred. 
+All other methods whether partially relying on
+using SMC [ARGneedle] or Li and Stephens [tsinfer, relate] or not [Espallier, ADD] 
+are heuristic in nature and % keep models/method separate from level of detail!!
 
 
-Reconstructing these genealogies with certainty about the assumed level of detail 
-is impossible.
-As such, in the past the data structure capturing these inheritance paths 
-or Ancestral Recombination Graph (ARG), has usually been considered a nuisance 
-variable to be integrated out during statistical inference 
-\citep{kuhner_2000, griffiths_ancestral_1996}.\\
- 
 
-% 2/ approximations have driven the rate of progress in inference
-Classical approach Hudson, Markovian backwards in time.
-McVean and Cardin, SMC, when described left-to-right also Markovian 
-in that sense. By sacrificing precision on the our ability to capture long 
-range linkage information gain tractability. 
-
-SMC functioned as the engine of many powerful inference methods 
-if the continuous state space for the Markov chain 
-(consisting of all possible genealogies) is approximated by a moderately 
-sized finite set—typically by enumerating tree topologies and/or discretizing 
-time—then inference can be performed efficiently using well-known algorithms 
-for hidden Markov models (HMMs).
-ARGweaver uses these same insights to develop the first real milestone in ARG inference.\\
-
-
-% 3/ Recent progress in ARGs through approximate structures
+\subsection{Recent progress in ARGs through approximate structures}
 
 % bring nuance in the distinction between detail and approximation
 
-% heuristic methods guided by coalescent principles
+% heuristic methods guided by coalescent principles (Li and Stephens)
 
-% what is an approximate structure: implicit recombination, polytomies or not, ...
 
 These methods
 have raised the realistic prospect of ARG-based analysis becoming a standard 
 part of the population and statistical genetics toolkit.
 
-% 4/ Big problem: how do you connect such approximate structures each 
-% with different levels of detail to models?
+Although all different, all these methods share the fact that the ARGs they infer 
+are approximate structures.
+% what is an approximate structure: implicit recombination, polytomies or not, ...
+They lack the full detail: implicit recombination, ...
+In particular, recombination is dealt with implicitly. Recombination events are 
+not directly inferred and thus not dated. Tree topology changes from one local 
+tree to the next without explicit inference of the one or more recombination 
+events required to explain the inferred tree transition.
+
+Note that approximate structure need not be an issue, the fully precise and detailed 
+ARG can never be known. Instead, the main question is how to connect these 
+approximate structures to the existing generative models.
+
+\subsection{The Big problem: how do you connect such approximate structures to a generative model} 
+
 These recent developments have also meant however that
 we are now using the term ARG for a varying range of approximate structures 
 as generated by these different inference methods \citep{wong_a-general_2023}. 
@@ -139,7 +167,7 @@ probabilistic exploration of the ARG space around the point estimate,
 or likelihood-based inference (that does not just consider individual marginal trees).
 
 
-% 5/ what we will do
+\subsection{what we will do}
 
 Here, the idea is to use the backwards-in-time formulation of the SMC to 
 compute likelihoods for for \textit{any} inferred ARG 
