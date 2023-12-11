@@ -73,7 +73,10 @@ a model such as the coalescent.
 
 
 \subsection{ARGs are awesome, or general intro about approximations}
-% approximation: level of detail 
+% approximation: level of detail
+* [Importance of ARGs: ARGs as object of theoretical reasoning vs what can be known]\\
+* [difference between precision/detail and accuracy. High precision can 
+give a false sense of certainty in the provided estimate]. 
 
 In population genetics, the questions we try to answer are generally 
 about the unobserved processes that gave rise to the genetic variation 
@@ -91,41 +94,47 @@ and along the genome. [However see Wong et al. 2023].
 
 Although ARG, ...,
 something about the level of detail.
+% easy by which the CwR can be used to simulate is not matched by the usability of the model for inference
 
 \subsection{approximations have driven the rate of progress in inference}
 
 Instead, approximations of the coalescence with recombination (CwR) have  
-driven our ability to perform statistical genomic inference. In particular, 
-the ability to formulate the inference problem as a hidden Markov model (HMM) 
-has proven to be instrumental [references]. 
-Two crucial approximations: 2 characteristics: left to right, and discetization 
-of state space by emumerating tree topologies and/or discretising time,
-then inference can be performed efficiently using well-known HMM algorithms.
+driven our ability to perform statistical genomic inference. Two approximations 
+in particular have proven to be instrumental [...]. Tightly linked to their 
+ability to reformulate these inference problems as hidden markov Models (HMM) 
+and use the well-known efficient HMM-algorithms. 
+Both: 1/ Left to right, and 2/ discetization 
+of state space by emumerating tree topologies and/or discretising time.\\
+
 To improve the ability to simulate the CwR, McVean and Cardin 
 provided an approximation of the CwR that is both Markovian backwards in time 
 as well as left-to-right along the genome \citep{mcvean_2005_approximating}. 
-By sacrificing precision on the our ability to capture long range linkage 
+By sacrificing precision on our ability to capture long range linkage 
 information, the sequentially Markovian coalescent (SMC) 
-became the engine of many powerful inference methods [references]. 
-Later improvements, SMC', closed the gap between the SMC and the CwR even 
-further.
-A second key approximation is not a generative model, instead the  
+became the engine of many powerful inference methods [PSMC]. 
+A later improvement, the SMC', closed the gap between the SMC and the 
+CwR even further.
+
+A second key approximation is not a generative model, instead the 
 copying model \citep{li_2003_modeling} was specifically designed to 
-generate CwR-like patterns. This heuristic approach has been successfully 
+generate CwR-like patterns. 
+Rather than providing a mathematical description of the genealogies 
+underlying the observed data it pragmatically describes the relationship 
+of a single genome to a larger set of samples as the result of an 
+incomplete copying process. This heuristic approach has been successfully 
 applied for demographic inference [and other things: ADD] 
 \citep{sheehan_2013_estimating, steinrucken_2018}.
 
-Both approaches have further formed the basis of the recent breakthroughs in 
+Both approaches have further formed the basis of the recent advancements in 
 scalable ARG inference methods [references]. 
-
-ARGweaver uses 
-sample an ARG from the posterior distribution given the observed variational 
-data. Although require limiting the set of possible node times to be compatible 
-with HMM, ARGs they produce are fully detailed in the sense that recombinations 
-are explitly inferred. 
-All other methods whether partially relying on
-using SMC [ARGneedle] or Li and Stephens [tsinfer, relate] or not [Espallier, ADD] 
-are heuristic in nature and % keep models/method separate from level of detail!!
+First real breakthrough, ARGweaver, samples an ARG from the posterior distribution 
+given the observed variational data. Although require limiting the set of 
+possible node times to be compatible with HMM algorithms, the ARGs returned 
+by ARGweaver are fully precise and detailed in the sense that all 
+recombination events are explictly inferred. 
+This is where the real big difference lies with all other scalable methods. 
+Although all different, all these methods share the fact that the ARGs they infer 
+are approximate structures. The ARGs they infer have varying degrees of detail
 
 
 
@@ -140,8 +149,6 @@ These methods
 have raised the realistic prospect of ARG-based analysis becoming a standard 
 part of the population and statistical genetics toolkit.
 
-Although all different, all these methods share the fact that the ARGs they infer 
-are approximate structures.
 % what is an approximate structure: implicit recombination, polytomies or not, ...
 They lack the full detail: implicit recombination, ...
 In particular, recombination is dealt with implicitly. Recombination events are 
@@ -155,6 +162,7 @@ approximate structures to the existing generative models.
 
 \subsection{The Big problem: how do you connect such approximate structures to a generative model} 
 
+% Existing formalisms assume that an ARG is known in full detail
 These recent developments have also meant however that
 we are now using the term ARG for a varying range of approximate structures 
 as generated by these different inference methods \citep{wong_a-general_2023}. 
