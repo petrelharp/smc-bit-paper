@@ -64,7 +64,7 @@ ARG space around the point estimate, or likelihood-based inference.
 
 \section{Introduction}
 
-[TL:DR] Structure the introduction around this great point from Wong et al.:
+[inspiration] great point from Wong et al.:
 Note that it is important to distinguish here between structures and models: 
 whether an inference method is based on 
 heuristics or a rigorous mathematical model is orthogonal to the level 
@@ -72,9 +72,19 @@ of detail provided in its estimate. One could heuristically estimate a
 fully precise ARG, or statistically sample a partial, approximate ARG under 
 a model such as the coalescent.
 
+[TL;DR]: way to think about genealogies is tied to the CwR. However,
+CwR does not enable us to simply compute a likelihood in the absence of a fully 
+detailed history. In the past, this has given rise to approximations to the 
+coalescent that had similar properties yet were significantly easier to use 
+as a basis for inference. 
+A similar process has taken place in ARG-based inference, 
+where scalable ARG inference has been made possible due to both these approximations 
+to the coalescent as well as the idea of ARGs without explicit, fully detailed 
+recombination histories. What is left however is to connect the two.]
 
-\subsection{ARGs are awesome, or general intro about approximations}
+%% ARGs are awesome, or general intro about approximations
 
+[FIX ME: start is a mess. Need to find the right way in.]
 Knowledge of the exact genealogy of a set of samples would make certain problems 
 in population genetics (e.g.\ inferring recombination rates) trivial. 
 Multitude of methods have started to 
@@ -82,19 +92,10 @@ demonstrate the value of attempts to capture the details of these intricately
 interwoven paths of inheritance referred to as an ancestral recombination graph (ARG).
 Recent advancements: the inference of ARGs at population scale.
 Yet even though potential of ARGs in population and statistical genetics has been 
-demonstrated it remains unclear how to connect these reconstructed ARGs to 
+demonstrated it remains unclear how to connect these reconstructed ARGs 
+(as being approximate structures) to 
 the stochastic/generative models that have lead us to study these datastructures 
 in the first place. 
-
-[Message needs to be here: way to think about genealogies is tied to the CwR. However,
-CwR does not enable us to simply compute a likelihood in the absence of a fully 
-detailed history. The way forward instead has always been driven by approximations.]
-
-% The coalescent with recombination 
-% Kingman, 1982a,b; Tajima, 1983; Hudson, 1983) is generally used as 
-% the generative model that allows us to understand the genealogy 
-% underlying a particular sampleset. 
-% Datastructure that captures it: ARG.
 
 For a very long time people have assumed that what is meant by an ARG is the 
 fully specified genealogical history where all events are uniquely positioned 
@@ -106,16 +107,7 @@ ARGs that could have generated the observed genomic dataset
 [potentially with very different likelihoods under the CwR]
 \citep{mcvean_2005_approximating}.
 
-% There is a discrepancy between ARGs as object of theoretical reasoning 
-% vs what can be known. Explain the difference between precision/detail and accuracy. 
-% High precision can give a false sense of certainty in the provided estimate. 
-
-% In population genetics, the questions we try to answer are generally 
-% about the unobserved processes that gave rise to the genetic variation 
-% we can observe given a set of samples. 
-
-\subsection{approximations have driven the rate of progress in inference}
-
+%% approximations have driven the rate of progress in inference
 Instead, approximations of the coalescence with recombination (CwR) have  
 driven our ability to perform statistical genomic inference. Two approximations 
 in particular have proven to be instrumental: the sequentially Markovian coalescent, 
@@ -123,8 +115,6 @@ and its extensions (SMC) on the one hand, and the Li and Stephens model on the o
 The impact of both models is tightly linked to the fact that they have enabled 
 the reformulation of inference problems as hidden Markov models (HMM) and thus 
 the use of the well-known efficient HMM-algorithms.
-%Both: 1/ Left to right, and 2/ discetization 
-%of state space by emumerating tree topologies and/or discretising time.\\
 
 To improve the ability to simulate the CwR, McVean and Cardin 
 provided an approximation of the CwR that is both Markovian backwards in time 
@@ -160,64 +150,35 @@ although these are not based on the SMC or the copying algorithm. In fact they r
 two extremes along the approximation continuum with \kwarg being entirely 
 parsimony-based while \arginfer is a CwR-based MCMC sampler.
 
+
+%% Recent progress in ARGs through approximate structures}
+
 The second group of methods (\tsinfer, \relate, \argneedle) has marked a significant  
 leap in scalability. These methods derive their scalability at least to a certain 
 degree from the fact that the ARGs they infer are approximate structures. In particular, 
-recombination is an emergent property of the inferred ARGs explaining tree topology 
+recombination is an emergent property of the inferred ARGs, explaining tree topology 
 changes going from one local tree to the next. The recombination events themselves 
 are not explicitly inferred and are thus not part of the resulting data structure.
 
-\subsection{Recent progress in ARGs through approximate structures}
-
 The computational gains from not having to pinpoint recombination events tie in 
 with the inevitable uncertainty associated with ARG reconstruction [Hayman, 2022, ADD REFS]. 
-
-Downsides:
-Point estimate:
 Some approaches have embraced the approximate nature of the resulting ARG by, for 
 example, highlighting the inability to resolve certain splits and instead representing 
-them as polytomies \citep{kelleher_2019_inferring}. 
-+
-This means that the degree of 
-completeness in which genetic inheritance from ancestors to descendants is documented 
+them as polytomies \citep{kelleher_2019_inferring}. Taken together this means that the 
+degree of completeness in which genetic inheritance from ancestors to descendants is documented 
 by each of these methods varies extensively.
+[TO ADD: these methods only provide point estimates]
 
-But: Advantage of being able to infer ARGs at scale.
-
-
-Connect this to likelihood approach.
-
-While this is not a problem when describing the results of simulations 
-(where all details are perfectly known), it is a major issue when we wish to formally 
-describe the output of inference methods, particularly as datasets approach the population 
-scale. 
-Only successful if we can connect these to statistical models.
-
-Progress driven by approximation: here similarly
-
-Note that approximate structure need not be an issue, the fully precise and detailed 
-ARG can never be known. Instead, the main question is how to connect these 
-approximate structures to existing models.
-
-
-
-
-\subsection{The Big problem: how do you connect such approximate structures to a generative model} 
-
+%% The Big problem: how do you connect such approximate structures to a generative model
 
 This has complicated the ability to connect the output of this diverse range of 
-ARG inference methods to a model-based deescription that would allow us to perform  
+ARG inference methods to a model-based description that would allow us to perform  
 probabilistic exploration of the ARG space around the point estimate, 
 or likelihood-based inference.
-The problem is that there is no direct way of calculating the coalescent 
-likelihood from a set of marginal genealogies (i.e. integrating over the 
-possible ARGs that could have given the set of marginal genealogies).
 
-
-\subsection{what we will do}
-
-Here, the idea is to use the backwards-in-time formulation of the SMC to 
-compute likelihoods for for \textit{any} inferred ARG 
+%% what we will do
+Here, the idea is to bridge this gap and use the backwards-in-time formulation of the SMC 
+to compute likelihoods for for \textit{any} inferred ARG 
 by integrating out the time to recombination.
 The application of the SMC in a way that resonates more 
 with the true direction of flow of genetic information 
@@ -345,7 +306,8 @@ return the full this information by default as part of their ARG reconstruction 
 \kwarg \citep{ignatieva_kwarg_2021}.\\
 
 
-[TO DO]: impact of unary nodes on reasoning about the SMC in a left-to-right sense.\\
+[TO DO]: impact of unary nodes on reasoning about the SMC in a left-to-right sense.
+Is there more to say them the simple remark I made in \ref{fig:smc-unary}?\\
 
 In the next paragraph we will derive an expression to compute the 
 likelihood for an ARG under the SMC for which we have no information on the 
@@ -567,7 +529,7 @@ as well as reduce the number of tracked samples.
 Any such subset of the tree sequence is itself a valid tree sequence 
 that can again be used to compute a likelihood with. Our approach therefore strenghtens 
 the inherent ability of ARGs to provide us with temporal 
-resolution on the inferred genealogical history of a sample. 
+resolution on the inferred genealogical history of a sample (see \ref{fig:3-arg-slices}). 
 We can further readily incorporate changes in $N_e$ and $r$, 
 both in time as well as along the genome by respectively adding intervals to $I$ 
 or by splitting edges when/wherever the parameter set changes.
@@ -582,7 +544,9 @@ both coalescing lineages in case of a (sub)tree height changes along the ARG as 
 edges would switch parent nodes. This can be mitigated by limiting the number of 
 'inferrable' recombination events per coalescence event to 1.
 
-[TO DO]: improve results sections with some good viz,
+[TO DO]: improve the (scatter) plots that are referred to in this section such that not 
+all questions will be about why likelihood values do not exactly correspond. How to 
+compare these likelihoods in a more meaningful way?
 We simulated 1000 ARGs under the Hudson coalescent retaining all recombination information 
 and computed the corresponding likelihood using \texttt{msprime} \citep{baumdicker_efficient_2021}. 
 After removing the recombination nodes the likelihoods as defined here were computed both with and 
@@ -675,7 +639,7 @@ And more specifically, we see it as future work to fully quantify to what extent
 absence of these locally unary nodes will affect the shape of the likelihood surface given 
 any set of parameters.\\
 
-[ TO DO final conclusion]
+[ TO DO final conclusion?]
 
 
 \section{Data availability}
