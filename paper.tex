@@ -13,7 +13,7 @@
 
 \newcommand{\tsinfer}[0]{\texttt{tsinfer}}
 \newcommand{\kwarg}[0]{\texttt{KwARG}}
-\newcommand{\argneelde}[0]{\texttt{ARG-Needle}}
+\newcommand{\argneedle}[0]{\texttt{ARG-Needle}}
 \newcommand{\argweaver}[0]{\texttt{ARGweaver}}
 \newcommand{\argweaverD}[0]{\texttt{ARGweaver-D}}
 \newcommand{\relate}[0]{\texttt{Relate}}
@@ -105,7 +105,7 @@ CwR, is not matched by the usability of the model for inference.
 In particular, given an ARG, there will always be an infinite amount of other 
 ARGs that could have generated the observed genomic dataset 
 [potentially with very different likelihoods under the CwR]
-\citep{mcvean_2005_approximating}.
+\citep{mcvean_approximating_2005}.
 
 %% approximations have driven the rate of progress in inference
 Instead, approximations of the coalescence with recombination (CwR) have  
@@ -118,7 +118,7 @@ the use of the well-known efficient HMM-algorithms.
 
 To improve the ability to simulate the CwR, McVean and Cardin 
 provided an approximation of the CwR that is both Markovian backwards in time 
-as well as left-to-right along the genome \citep{mcvean_2005_approximating}. 
+as well as left-to-right along the genome \citep{mcvean_approximating_2005}. 
 By sacrificing precision on our ability to capture long range linkage 
 information, the SMC became the engine of many powerful inference methods [PSMC]. 
 A later improvement, the SMC', closed the gap between the SMC and the 
@@ -128,14 +128,12 @@ The second key approximation is not a generative model. Rather than providing
 a mathematical description of the genealogies underlying the observed data 
 the Li and Stephens or copying model pragmatically details the relationship 
 of a single genome to a larger set of genomes as the result of an 
-incomplete copying process \citep{li_2003_modeling}. This heuristic approach 
+incomplete copying process \citep{li_modeling_2003}. This heuristic approach 
 has been successfully applied for demographic inference [and other things: ADD] 
-\citep{sheehan_2013_estimating, steinrucken_2018}.
+\citep{sheehan_estimating_2013, steinrucken_inference_2019}.
 
 Both approaches have further formed the basis (of many) of the recent advancements in 
-ARG inference methods [Rasmussen et al. 2014, Heine et al. 2018, 
-Kelleher et al. 2019, Speidel et al. 2019,
-Rasmussen et al. 2022, Zhang et al.2023]. 
+ARG inference methods \citep{rasmussen_genome-wide_2014, heine_bridging_2018, kelleher_inferring_2019, speidel_method_2019, rasmussen_espalier_2022, zhang_biobank-scale_2023}. 
 A further classification of these methods could be made based on the level of detail 
 that is provided on recombination events. The first real breakthrough in large-scale 
 ARG inference, \argweaver, heads the first group. 
@@ -145,10 +143,10 @@ that all events are explicitly inferred. Note however that the set of possible n
 has to be limited to enable the usage of an HMM. The other more recent methods, although 
 still SMC-based, have added heuristic pre- and/or post-processing steps 
 that have allowed them to extend their approach to larger sample sizes. We should also 
-mention \kwarg and \arginfer in this category of methods producing fully detailed ARGs 
+mention \kwarg and \texttt{ARGinfer} in this category of methods producing fully detailed ARGs 
 although these are not based on the SMC or the copying algorithm. In fact they represent 
 two extremes along the approximation continuum with \kwarg being entirely 
-parsimony-based while \arginfer is a CwR-based MCMC sampler.
+parsimony-based while \texttt{ARGinfer} is a CwR-based MCMC sampler.
 
 
 %% Recent progress in ARGs through approximate structures}
@@ -164,7 +162,7 @@ The computational gains from not having to pinpoint recombination events tie in
 with the inevitable uncertainty associated with ARG reconstruction [Hayman, 2022, ADD REFS]. 
 Some approaches have embraced the approximate nature of the resulting ARG by, for 
 example, highlighting the inability to resolve certain splits and instead representing 
-them as polytomies \citep{kelleher_2019_inferring}. Taken together this means that the 
+them as polytomies \citep{kelleher_inferring_2019}. Taken together this means that the 
 degree of completeness in which genetic inheritance from ancestors to descendants is documented 
 by each of these methods varies extensively.
 [TO ADD: these methods only provide point estimates]
@@ -291,7 +289,7 @@ the local trees and simultaneously touches upon the question of what is
 knowable. Many ARG reconstruction methods return a data structure that 
 is in essence a series of local tries [REFs]. 
 As highlighted, this does not need to be a contradiction. 
-All ARGs can be represented as a series of local trees \citep{wong-2023}.
+All ARGs can be represented as a series of local trees \citep{wong_general_2023}.
 The important question is therefore is however about the extent by which any 
 ARG reconstruction methods incorporates the available information 
 on how nodes persist across these local trees.\\ 
@@ -631,7 +629,7 @@ As a final remark, the described algorithm relies heavily on the presence of loc
 nodes in the tree sequence to correctly identify the full extent of all lineages going back 
 through time. Although their presence is crucial to our ability embed any local tree in the 
 ARG, the concept and their importance are still relatively new (but see 
-\citet{Wong-2023}). Although we have briefly touched upon the observation that in 
+\citet{wong_general_2023}). Although we have briefly touched upon the observation that in 
 the presence of unary nodes we seem to augment the left-to-right logic of the SMC 
 with some additional information. 
 We believe that the topic of locally unary nodes in general requires further exploration. 
