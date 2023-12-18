@@ -34,13 +34,13 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1860"
-     inkscape:window-height="1016"
+     inkscape:window-width="2500"
+     inkscape:window-height="1376"
      id="namedview2028"
      showgrid="false"
      inkscape:zoom="0.72238404"
-     inkscape:cx="641.43818"
-     inkscape:cy="438.08863"
+     inkscape:cx="556.32903"
+     inkscape:cy="379.62957"
      inkscape:window-x="60"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -48,7 +48,7 @@
      showguides="false"
      inkscape:guide-bbox="true">
     <sodipodi:guide
-       position="56.8,504.127"
+       position="65.705415,504.16976"
        orientation="0,1"
        id="guide4907"
        inkscape:locked="false" />
@@ -302,14 +302,15 @@
        style="stroke-linecap:butt;stroke-linejoin:round" />
   </defs>
   <rect
-     width="113.9584%"
+     width="114.61096%"
      height="100%"
      id="rect6"
-     x="9.6901369"
+     x="1.859324"
      y="0"
-     style="fill:#ffffff;stroke-width:1.06751311"
+     style="fill:#ffffff;stroke-width:1.07056522"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <rect
      style="opacity:1;fill:#808080;fill-opacity:0.19607843;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:1, 3;stroke-dashoffset:0;stroke-opacity:1"
      id="rect7762"
@@ -319,35 +320,40 @@
      y="249.83087"
      ry="0.98486298"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <path
      d="m 56.8,0 h 280.8 v 738.2 l 198.418,25 v 5 H 56.8 v -5 -25 z"
      id="path8"
      inkscape:connector-curvature="0"
      style="fill:#808080;fill-opacity:0"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <path
      d="m 618.4,0 h 280.8 v 738.2 l 210.315,25 v 5 h -240.8 v -5 L 618.4,738.2 Z"
      id="path12"
      inkscape:connector-curvature="0"
      style="fill:#808080;fill-opacity:0"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <path
      d="M 721.2,0 H 1002 v 738.2 25 5 h -70.4854 v -5 l -210.31,-25 V 0 Z"
      id="path14"
      inkscape:connector-curvature="0"
      style="fill:#808080;fill-opacity:0.19607843"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <g
      style="font-size:14px;text-anchor:middle"
      id="g20"
      transform="translate(618.4,800)"
      class="title"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <text
        style="dominant-baseline:central;text-anchor:middle"
        id="text18"
@@ -363,7 +369,8 @@
      x1="56.799999"
      class="ax-line"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <line
      style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:1,3;stroke-dashoffset:0"
      id="line24"
@@ -373,7 +380,8 @@
      x1="506.71503"
      class="ax-skip"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <line
      style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000"
      id="line26"
@@ -383,14 +391,16 @@
      x1="931.51001"
      class="ax-line"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <g
      style="font-size:14px;text-anchor:middle"
      class="tick"
      transform="translate(56.8,763.2)"
      id="g34"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <line
        x1="0"
        x2="0"
@@ -415,7 +425,8 @@
      x2="432.01801"
      x1="432.01801"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <line
      style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000"
      id="line44"
@@ -424,7 +435,8 @@
      x2="506.71503"
      x1="506.71503"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <line
      style="font-size:14px;text-anchor:middle;fill:none;stroke:#000000"
      id="line52"
@@ -433,14 +445,16 @@
      x2="931.51001"
      x1="931.51001"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <g
      style="font-size:14px;text-anchor:middle"
      class="tick"
      transform="translate(1002,763.2)"
      id="g66"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <line
        x1="0"
        x2="0"
@@ -463,7 +477,8 @@
      transform="translate(16,391.7)"
      class="title"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <text
        style="dominant-baseline:central;text-anchor:middle"
        id="text72"
@@ -479,13 +494,16 @@
      x1="56.799999"
      class="ax-line"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <g
      style="font-size:14px;text-anchor:middle"
      id="g102"
      class="ticks"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     transform="translate(-12)"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <g
        id="g84"
        transform="translate(56.8,721.4)"
@@ -553,7 +571,8 @@
      id="g740"
      style="font-size:14px;text-anchor:middle"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <g
        class="plotbox"
        id="g738">
@@ -2416,7 +2435,8 @@
      id="g1374"
      style="font-size:14px;text-anchor:middle"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <g
        class="plotbox"
        id="g1372">
@@ -4278,7 +4298,8 @@
      transform="translate(528.4)"
      id="g1386"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <g
        class="plotbox"
        id="g1384">
@@ -4304,7 +4325,8 @@
      id="g2020"
      style="font-size:14px;text-anchor:middle"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <g
        class="plotbox"
        id="g2018">
@@ -6161,25 +6183,12 @@
       </g>
     </g>
   </g>
-  <path
-     style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2,6;stroke-dashoffset:0;stroke-opacity:1"
-     d="m 56.8,196.793 h 970.2197"
-     id="path4911"
-     inkscape:connector-curvature="0"
-     inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
-  <path
-     style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2,6;stroke-dashoffset:0;stroke-opacity:1"
-     d="m 56.8,295.873 h 970.2197"
-     id="path4911-6"
-     inkscape:connector-curvature="0"
-     inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
   <g
      transform="matrix(1.14,0,0,1.14,1062.0895,-114.79015)"
      id="g2478"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601">
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png">
     <g
        id="axes_1"
        style="stroke-linecap:butt;stroke-linejoin:round">
@@ -8860,19 +8869,79 @@
      y="0"
      ry="0.98486298"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <path
      style="fill:#808080;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:0.19607843"
      d="m 337.6,738.2 94.41801,30.00001 h 74.69702 L 618.4,738.2 Z"
      id="path7758"
      inkscape:connector-curvature="0"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
   <path
      style="fill:#808080;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:0.19607843"
      d="m 1027.0197,295.873 24.2936,226.31883 V 249.83087 L 1027.0197,196.793 Z"
      id="path7760"
      inkscape:connector-curvature="0"
      inkscape:export-xdpi="299.94601"
-     inkscape:export-ydpi="299.94601" />
+     inkscape:export-ydpi="299.94601"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png" />
+  <g
+     id="g2360"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png"
+     inkscape:export-xdpi="299.94601"
+     inkscape:export-ydpi="299.94601">
+    <rect
+       ry="0"
+       y="193.04305"
+       x="57.272781"
+       height="8.8948736"
+       width="970"
+       id="rect2328"
+       style="opacity:1;fill:#fffffd;fill-opacity:1;stroke:none;stroke-width:1.13755476;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="299.94601"
+       inkscape:export-xdpi="299.94601"
+       inkscape:connector-curvature="0"
+       id="path4911"
+       d="M 56.75674,201.88455 H 1026.9764"
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 6;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="299.94601"
+       inkscape:export-xdpi="299.94601"
+       inkscape:connector-curvature="0"
+       id="path4911-7"
+       d="M 56.762106,193.0092 H 1026.9818"
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 6;stroke-dashoffset:0;stroke-opacity:1" />
+  </g>
+  <g
+     transform="translate(0.01333536,98.383366)"
+     id="g2360-4"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png"
+     inkscape:export-xdpi="299.94601"
+     inkscape:export-ydpi="299.94601">
+    <rect
+       ry="0"
+       y="193.04305"
+       x="57.272781"
+       height="8.8948736"
+       width="970"
+       id="rect2328-1"
+       style="opacity:1;fill:#fffffd;fill-opacity:1;stroke:none;stroke-width:1.13755476;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="299.94601"
+       inkscape:export-xdpi="299.94601"
+       inkscape:connector-curvature="0"
+       id="path4911-0"
+       d="M 56.75674,201.88455 H 1026.9764"
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 6;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="299.94601"
+       inkscape:export-xdpi="299.94601"
+       inkscape:connector-curvature="0"
+       id="path4911-7-4"
+       d="M 56.762106,193.0092 H 1026.9818"
+       style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 6;stroke-dashoffset:0;stroke-opacity:1" />
+  </g>
 </svg>
