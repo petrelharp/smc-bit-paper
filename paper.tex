@@ -213,18 +213,22 @@ completeness that characterise the current state of the field of ARG reconstruct
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods and Results}
 
-First, we describe in more detail what sort of information we have in estimated ARGs.
-Then, we define the SMC process in a ``backwards-in-time'' way,
-rather than the usual ``along-the-genome'' way.
-This makes it relatively straightforward to compute the likelihood,
-as we explain in the next section.
+First, we define the SMC process in a ``backwards-in-time'' way,
+rather than the usual ``along-the-genome'' way. 
+Note that this is a
+reiteration of the original work of \citet{mcvean_approximating_2005}.
+Then, we describe
+in more detail what sort of information we have in estimated ARGs.
+In the subsequent section we connect the two and
+show how the ``backwards-in-time'' description
+makes it relatively straightforward to compute the likelihood
+for a more general class of estimated ARGs.
 Finally, we close with a demonstration that the likelihood computation can be used
 to do Bayesian inference on ancestral population sizes.
 
 % % % % % % % % % % % % % % % % % %
 \subsection{SMC backwards-in-time}\label{par:description}
 
-[TO DO: stress fact that this description does not add anything to McVean and Cardin although the SMC is mostly reasoned about in a left to right sense. We use the notation of McVean and Cardin here.]
 In its backwards-in-time formulation, the SMC \citep{mcvean_approximating_2005} only requires a
 simple modification to the coalescent with recombination.
 Instead of allowing any pair of lineages to coalesce,
@@ -347,20 +351,6 @@ we mean that each node in the ARG represents a specific (ancestral) genome,
 and that the ARG specifies the genealogical tree describing how the samples are related
 at each point on the genome.
 
-% % I don't think we need the notation here:
-% The process described in the previous paragraph details the transitions of the
-% set of labeled lineages $L$ through time. An Ancestral Recombination Graph
-% $\mathcal{G} = (N, E)$ capturing the various inheritance paths along the genome
-% is obtained by registering an edge represented by a tuple $(c, p, X_{cp})$
-% whenever a lineage $c$, associated with a disjoint set of genomic intervals $X_c$, is
-% replaced by one or two lineage(s), $p$ (and $p^{\prime}$),
-% in case of a coalescence or recombination respectively.
-% The last element of the tuple is the extent of the edge. It is itself a
-% disjoint set of intervals such that $X_{cp} \cup X_{cp^{\prime}} = X_c$.
-% The set of edges $E$, containing all such tuples $(c, p, X_{cp})$,
-% and $N$, the set of nodes representing all genomes in the ARG, together
-% define this data structure.
-
 So, an ARG can be thought of either as a collection of inheritance relationships
 between ancestral haplotypes,
 or as a sequence of genealogical trees that have common node labels.
@@ -450,23 +440,6 @@ as most evaluation of inferred ARGs thus far has focused on marginal trees
 but see \citet{deng2021distribution})
 and thus completely ignore such unary nodes
 (and their implications for inherited haplotypes).
-% ARG simplification is thus linked to the presence of unary nodes in
-% the local trees and simultaneously touches upon the question of what is
-% knowable. Many ARG reconstruction methods return a data structure that
-% is in essence a series of local trees [REFs].
-% As highlighted, this does not need to be a contradiction.
-% All ARGs can be represented as a series of local trees \citep{wong_general_2023}.
-% The important question is therefore is however about the extent by which any
-% ARG reconstruction methods incorporates the available information
-% on how nodes persist across these local trees.
-%
-% [TO DO] give a good explanation (using the represented haplotypes
-% in fig. \ref{fig:smc-unary}) on why these methods can infer the extent
-% of coalescing lineages.
-
-\comment{[TO DO]: impact of unary nodes on reasoning about the SMC in a left-to-right sense.
-Is there more to say them the simple remark I made in \ref{fig:smc-unary}?}
-\comment{PLR: Not that I can think of?}
 
 In the next section we will derive an expression to compute the
 likelihood for an ARG under the SMC for which we have no information on the
@@ -497,10 +470,6 @@ In that case the information we have on the time to each of these events is
 limited to the windows (blue shaded array) delimited by by the age of
 the child node $c$ associated with that lineage and the minimum age of
 the parents of the edges connecting to $c$.
-    \comment{The bits of genome that leave 5 by the left-hand path are present in 7's diagram but missing from 8's and 9's.}
- [TO DO: wanted to use the
-added in haplotype information to explain why we can actually infer the
-extent of each lineage, and thus create unary nodes in the first place.]
 }
 \label{fig:smc-unary}
 \end{figure}
@@ -643,57 +612,85 @@ Note that we can accommodate for stepwise changes in the coalescence rate (or re
 through time by intersecting the internode intervals with the rate change intervals.
 Rate changes along the genome can equally be incorporated (see \ref{sec:slicing}).
 
-% ADD IN RESULTS
-Figure \ref{sup:fig:vs-argweaver} shows the expected near-perfect correlation
-between the coalescent prior as returned by \argweaver and the likelihood as computed here.
-We simulated 1Mb of data for 10 diploid individuals
-under the SMC using human-like parameters. 100 samples were taking from the posterior every for
-a total of 1000 MCMC iterations.
+% ADD IN RESULTS: 
+% Figure \ref{sup:fig:vs-argweaver} shows the expected near-perfect correlation
+% between the coalescent prior as returned by \argweaver and the likelihood as computed here.
+% We simulated 1Mb of data for 10 diploid individuals
+% under the SMC using human-like parameters. 100 samples were taking from the posterior every for
+% a total of 1000 MCMC iterations.
 
 
 \subsection{Slicing the ARG} \label{sec:slicing}
 
 % slicing of the ARG
-By explicitly associating a single likelihood with each edge, we can compute a likelihood
+By explicitly associating a single likelihood with each edge, 
+
+\comment{This makes it sound as if tskit is crucial for this observation.}
+we can compute a likelihood
 under the SMC for any valid tree sequence. The \tskit library provides a whole range
 of subsetting operations on tree sequences allowing us to slice the ARG in time and/or space,
 as well as reduce the number of tracked samples.
 Any such subset of the tree sequence is itself a valid tree sequence
-that can again be used to compute a likelihood with. Our approach therefore strengthens
+that can again be used to compute a likelihood with.
+
+Our approach therefore strengthens
 the inherent ability of ARGs to provide us with temporal
 resolution on the inferred genealogical history of a sample.
-We can further readily incorporate changes in $N_e$ and $r$,
-both in time as well as along the genome by respectively adding intervals to $I$
-or by splitting edges when/wherever the parameter set changes.
-Figure \ref{fig:3-arg-slices} demonstrates this idea on a toy example. We simulated an ARG with
-two population size changes and subsequently estimated the posterior distribution
-using a uniform prior.
 
-Although we rely heavily on unary nodes to provide us with the necessary
-information on recombination events, our algorithm only implicitly assumes their presence.
-Without unary nodes though, our algorithm will detect a recombination event along
-both coalescing lineages in case of a (sub)tree height changes along the ARG as both
-edges would switch parent nodes. This can be mitigated by limiting the number of
-'inferrable' recombination events per coalescence event to 1 (see fig \ref{sup:fig:rec-correction}).
+Do this independently for any such slice
+Although we can readily incorporate changes in $N_e$ and $r$ 
+into the likelihood computation, both in time as well as along the genome,
 
+
+slicing of the ARG can be used to optimize the parameter of interest
+for each slice independently.
+
+
+Figure \ref{fig:3-arg-slices} demonstrates this idea on a toy example.
+We simulated an ARG under human-like parameters and with
+two population size changes and subsequently estimated the posterior 
+distribution using a uniform prior for each slice indepently.
+
+
+The observation that we can associate a likelihood with any valid tree sequences
+urges the need for some caveats. By treating each edge independently we can
+naturally deal with the various degrees of completeness to which inheritance
+is documented by the different ARG inference methods: e.g.\ polytomies, absence
+of locally unary coalescence nodes, unpreserved identify of internal nodes 
+across marginal trees, \dots However, these imprecisions do violate the implicit
+assumptions of the likelihood computation.
+\comment{Do we want these remarks in here, or as part of the Discussion?}
+For example, the described algorithm relies heavily on the
+presence of locally unary nodes in the tree sequence to correctly identify the 
+full extent of all lineages going back through time and therefore recombination
+events. Without unary nodes though, our algorithm will detect a recombination
+event along both coalescing lineages in case of a (sub)tree height changes along
+the ARG as both edges would switch parent nodes. This can be mitigated by limiting
+the number of 'inferrable' recombination events per coalescence event to 1 
+(see fig \ref{sup:fig:rec-correction}).
+
+\comment{this was previously part of the discussion, have grouped it here.}
+Although their presence is crucial to our ability to embed any local tree in the
+ARG, the concept and their importance are still relatively new (but see
+\citet{wong_general_2023}).
+We have briefly touched upon the observation that in
+the presence of unary nodes we seem to augment the left-to-right logic of the SMC
+with some additional information. Yet, we believe that the topic of locally 
+unary nodes in general requires further exploration.
+And more specifically, we see it as future work to fully quantify to what 
+extent the absence of these locally unary nodes will affect the shape of the
+likelihood surface given any set of parameters.
 
 %We simulated 1000 ARGs under the Hudson coalescent retaining all recombination information and computed the corresponding likelihood using \texttt{msprime} \citep{baumdicker_efficient_2021}. After removing the recombination nodes the likelihoods as defined here were computed both with and without the unary nodes. Figure \ref{sup:fig:vs-hudson} shows that the proportion of variation explained is higher when the unary nodes are retained.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\textwidth]{figures/3-slices-whitespace.png}
-\caption{Simulated ARG under Hudson coalescent (left). $N_e$ varied was constant within each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000, (5000:\infty):10 000]$. Remaining parameters: L=10kb, 20 diploid samples, r=2.5e-8, 148 edges in ARG). A single $N_e$ value was estimated for each slice of the ARG as defined by the true population size change time points. The inferred posterior distribution (right) using the SMC-likelihood was obtained using a uniform prior. Number of edges per time slice: [68, 57, 23]. Locally unary nodes were omitted for clarity.}
+\caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant for each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000, (5000:\infty):10 000]$. Remaining parameters: L=10kb, 20 diploid samples, r=2.5e-8, 148 edges in ARG). A single $N_e$ value was estimated for each slice of the ARG as defined by the true population size change time points. The inferred posterior distribution (right) using the SMC-likelihood was obtained using a uniform prior. Number of edges per time slice (from most recent slice to oldest): [68, 57, 23]. Locally unary nodes were omitted for clarity.}
 \label{fig:3-arg-slices}
 \end{figure}
 
 \section{Discussion}
-
-% a few details to be discussed
-[TO DO: polytomies] The above algorithm treats each edge independently which implies
-we can deal with polytomies.
-[TO DO: discuss, what if the identity of internal nodes is not preserved across trees]
-[TO DO: recombination]: We do not *explicitly* assume a single recombination breakpoint to have
-occurred at each breakpoint.
 
 Here, we have introduced a scalable algorithm to compute likelihoods
 under the SMC for a general class of ARGs. By formulating the SMC backwards in time
@@ -719,7 +716,7 @@ Currently most/all ARG-based inference methods base their analysis on marginal
 trees \citep{hejase_2022} [TO DO: add more refs]. The theory and associated algorithm
 provided here can function as a building block of [...]
 $N_e$-changes as well as multiple populations and migration can be readily incorporated
-in the current algorithm.\\
+in the current algorithm.
 
 
 % 2/ hybrid ARG-inference: scalability + bringing ARG down from pedigree dominated phase
@@ -729,7 +726,7 @@ approach \citep{bhaskar_distortion_2014, nelson_accounting_2020} to enable large
 simulations while avoiding the documented biases of the coalescent relative to the
 Wright-Fisher model \citep{bhaskar_distortion_2014, wakeley_gene_2012}. The same approach
 could be used for ARG-inference where one can rely on a heuristic inference method for
-the recent past, while using a model-based approach beyond that cutoff point.\\
+the recent past, while using a model-based approach beyond that cutoff point.
 
 % 3/ great starting point for MCMC
 Any inferred ARG can be used a good starting point
@@ -750,19 +747,6 @@ with sampling from subset of all compatible genealogies. Uncertainty could also
 be quantified and passed on as metadata to the nodes in the data format storing the ARG.
 % can something similar be done for stacked recombinations?
 
-As a final remark, the described algorithm relies heavily on the presence of locally unary
-nodes in the tree sequence to correctly identify the full extent of all lineages going back
-through time. Although their presence is crucial to our ability embed any local tree in the
-ARG, the concept and their importance are still relatively new (but see
-\citet{wong_general_2023}). Although we have briefly touched upon the observation that in
-the presence of unary nodes we seem to augment the left-to-right logic of the SMC
-with some additional information.
-We believe that the topic of locally unary nodes in general requires further exploration.
-And more specifically, we see it as future work to fully quantify to what extent the
-absence of these locally unary nodes will affect the shape of the likelihood surface given
-any set of parameters.\\
-
-[ TO DO final conclusion?]
 
 
 \section{Data availability}
