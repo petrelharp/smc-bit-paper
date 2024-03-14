@@ -1,0 +1,127 @@
+
+@article{deng2021distribution,
+  abstract = {The ancestral recombination graph (ARG) contains the full genealogical information of the sample, and many population genetic inference problems can be solved using inferred or sampled ARGs. In particular, the waiting distance between tree changes along the genome can be used to make inference about the distribution and evolution of recombination rates. To this end, we here derive an analytic expression for the distribution of waiting distances between tree changes under the sequentially Markovian coalescent model and obtain an accurate approximation to the distribution of waiting distances for topology changes. We use these results to show that some of the recently proposed methods for inferring sequences of trees along the genome provide strongly biased distributions of waiting distances. In addition, we provide a correction to an undercounting problem facing all available ARG inference methods, thereby facilitating the use of ARG inference methods to estimate temporal changes in the recombination rate.},
+  author = {Deng, Yun and Song, Yun S and Nielsen, Rasmus},
+  doi = {10.1016/j.tpb.2021.06.003},
+  issn = {00405809},
+  journal = {Theoretical population biology},
+  month = oct,
+  pages = {34--43},
+  title = {The distribution of waiting distances in ancestral recombination graphs},
+  url = {https://pubmed.ncbi.nlm.nih.gov/34186053},
+  volume = 141,
+  year = 2021
+}
+
+@article{brandt2022evaluation,
+  author = {Brandt, D{\'e}bora and Wei, Xinzhu and Deng, Yun and Vaughn, Andrew H and Nielsen, Rasmus},
+  journal = {Genetics},
+  number = 1,
+  pages = {iyac044},
+  publisher = {Oxford University Press},
+  title = {Evaluation of methods for estimating coalescence times using ancestral recombination graphs},
+  volume = 221,
+  year = 2022
+}
+
+@article{kelleher2015efficient,
+  abstract = {A central challenge in the analysis of genetic variation is to provide realistic genome simulation across millions of samples. Present day coalescent simulations do not scale well, or use approximations that fail to capture important long-range linkage properties. Analysing the results of simulations also presents a substantial challenge, as current methods to store genealogies consume a great deal of space, are slow to parse and do not take advantage of shared structure in correlated trees. We solve these problems by introducing sparse trees and coalescence records as the key units of genealogical analysis. Using these tools, exact simulation of the coalescent with recombination for chromosome-sized regions over hundreds of thousands of samples is possible, and substantially faster than present-day approximate methods. We can also analyse the results orders of magnitude more quickly than with existing methods.},
+  added-at = {2016-03-14T18:17:28.000+0100},
+  author = {Kelleher, Jerome and Etheridge, Alison M and McVean, Gil},
+  biburl = {https://www.bibsonomy.org/bibtex/283b33df50a2c522d3da49502877feecf/peter.ralph},
+  doi = {10.1101/033118},
+  eprint = {http://biorxiv.org/content/early/2015/11/30/033118.1.full.pdf},
+  interhash = {2faabd646807406e58ec62a5b5c566aa},
+  intrahash = {83b33df50a2c522d3da49502877feecf},
+  journal = {bioRxiv},
+  keywords = {ARG coalescent_theory computation methods simulation},
+  publisher = {Cold Spring Harbor Labs Journals},
+  timestamp = {2016-03-14T18:17:28.000+0100},
+  title = {Efficient coalescent simulation and genealogical analysis for large sample sizes},
+  url = {http://biorxiv.org/content/early/2015/11/30/033118.1},
+  year = 2015
+}
+
+@article{stern2019approximate,
+  abstract = {Most current methods for detecting natural selection from DNA sequence data are limited in that they are either based on summary statistics or a composite likelihood, and as a consequence, do not make full use of the information available in DNA sequence data. We here present a new importance sampling approach for approximating the full likelihood function for the selection coefficient. The method treats the ancestral recombination graph (ARG) as a latent variable that is integrated out using previously published Markov Chain Monte Carlo (MCMC) methods. The method can be used for detecting selection, estimating selection coefficients, testing models of changes in the strength of selection, estimating the time of the start of a selective sweep, and for inferring the allele frequency trajectory of a selected or neutral allele. We perform extensive simulations to evaluate the method and show that it uniformly improves power to detect selection compared to current popular methods such as nSL and SDS, under various demographic models and can provide reliable inferences of allele frequency trajectories under many conditions. We also explore the potential of our method to detect extremely recent changes in the strength of selection. We use the method to infer the past allele frequency trajectory for a lactase persistence SNP (MCM6) in Europeans. We also study a set of 11 pigmentation-associated variants. Several genes show evidence of strong selection particularly within the last 5,000 years, including ASIP, KITLG, and TYR. However, selection on OCA2/HERC2 seems to be much older and, in contrast to previous claims, we find no evidence of selection on TYRP1.Author summary Current methods to study natural selection using modern population genomic data are limited in their power and flexibility. Here, we present a new method to infer natural selection that builds on recent methodological advances in estimating genome-wide genealogies. By using importance sampling we are able to efficiently estimate the likelihood function of the selection coefficient. We show our method improves power to test for selection over competing methods across a diverse range of scenarios, and also accurately infers the selection coefficient. We also demonstrate a novel capability of our model, using it to infer the allele{\textquoteright}s frequency over time. We validate these results with a study of a lactase persistence SNP in Europeans, and also study a set of 11 pigmentation-associated variants.},
+  added-at = {2019-04-05T22:19:51.000+0200},
+  author = {Stern, Aaron J. and Wilton, Peter R. and Nielsen, Rasmus},
+  biburl = {https://www.bibsonomy.org/bibtex/2f9d1817ccdcaa3202fa747b74b53ae47/peter.ralph},
+  doi = {10.1101/592675},
+  elocation-id = {592675},
+  eprint = {https://www.biorxiv.org/content/early/2019/03/31/592675.full.pdf},
+  interhash = {4a2aeaf80220296f9167aff0261df581},
+  intrahash = {f9d1817ccdcaa3202fa747b74b53ae47},
+  journal = {bioRxiv},
+  keywords = {ARG importance_sampling methods population_genetics selection_inference time_series},
+  publisher = {Cold Spring Harbor Laboratory},
+  timestamp = {2019-04-05T22:19:51.000+0200},
+  title = {An approximate full-likelihood method for inferring selection and allele frequency trajectories from {DNA} sequence data},
+  url = {https://www.biorxiv.org/content/early/2019/03/31/592675},
+  year = 2019
+}
+
+@article{zollner2005coalescent,
+  abstract = {We outline a general coalescent framework for using genotype data in linkage disequilibrium-based mapping studies. Our approach unifies two main goals of gene mapping that have generally been treated separately in the past: detecting association (i.e., significance testing) and estimating the location of the causative variation. To tackle the problem, we separate the inference into two stages. First, we use Markov chain Monte Carlo to sample from the posterior distribution of coalescent genealogies of all the sampled chromosomes without regard to phenotype. Then, averaging across genealogies, we estimate the likelihood of the phenotype data under various models for mutation and penetrance at an unobserved disease locus. The essential signal that these models look for is that in the presence of disease susceptibility variants in a region, there is nonrandom clustering of the chromosomes on the tree according to phenotype. The extent of nonrandom clustering is captured by the likelihood and can be used to construct significance tests or Bayesian posterior distributions for location. A novelty of our framework is that it can naturally accommodate quantitative data. We describe applications of the method to simulated data and to data from a Mendelian locus (CFTR, responsible for cystic fibrosis) and from a proposed complex trait locus (calpain-10, implicated in type 2 diabetes).},
+  added-at = {2019-06-28T21:34:14.000+0200},
+  author = {Z{\"o}llner, S and Pritchard, J K},
+  biburl = {https://www.bibsonomy.org/bibtex/2f64aba5cf8a6a338cad5d9a8e5885793/peter.ralph},
+  doi = {10.1534/genetics.104.031799},
+  interhash = {ecf9a1842634482fef64cbc1bf278275},
+  intrahash = {f64aba5cf8a6a338cad5d9a8e5885793},
+  journal = {Genetics},
+  keywords = {ARG GWAS methods tree_GWAS},
+  month = feb,
+  number = 2,
+  pages = {1071-1092},
+  pmid = {15489534},
+  timestamp = {2019-06-28T21:34:14.000+0200},
+  title = {Coalescent-based association mapping and fine mapping of complex trait loci},
+  url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1449137/},
+  volume = 169,
+  year = 2005
+}
+
+@article{minichiello2006mapping,
+  abstract = {Large-scale association studies are being undertaken with the hope of uncovering the genetic determinants of complex disease. We describe a computationally efficient method for inferring genealogies from population genotype data and show how these genealogies can be used to fine map disease loci and interpret association signals. These genealogies take the form of the ancestral recombination graph (ARG). The ARG defines a genealogical tree for each locus, and, as one moves along the chromosome, the topologies of consecutive trees shift according to the impact of historical recombination events. There are two stages to our analysis. First, we infer plausible ARGs, using a heuristic algorithm, which can handle unphased and missing data and is fast enough to be applied to large-scale studies. Second, we test the genealogical tree at each locus for a clustering of the disease cases beneath a branch, suggesting that a causative mutation occurred on that branch. Since the true ARG is unknown, we average this analysis over an ensemble of inferred ARGs. We have characterized the performance of our method across a wide range of simulated disease models. Compared with simpler tests, our method gives increased accuracy in positioning untyped causative loci and can also be used to estimate the frequencies of untyped causative alleles. We have applied our method to Ueda et al.’s association study of CTLA4 and Graves disease, showing how it can be used to dissect the association signal, giving potentially interesting results of allelic heterogeneity and interaction. Similar approaches analyzing an ensemble of ARGs inferred using our method may be applicable to many other problems of inference from population genotype data.},
+  added-at = {2019-06-28T21:35:53.000+0200},
+  author = {Minichiello, Mark J. and Durbin, Richard},
+  biburl = {https://www.bibsonomy.org/bibtex/2ce54912e2686a743d05bccc63a75fdb9/peter.ralph},
+  doi = {https://doi.org/10.1086/508901},
+  interhash = {b8b41f9b9fb66cf6fd461c4b74b38d14},
+  intrahash = {ce54912e2686a743d05bccc63a75fdb9},
+  issn = {0002-9297},
+  journal = {The American Journal of Human Genetics},
+  keywords = {ARG GWAS methods tree_GWAS},
+  number = 5,
+  pages = {910 - 922},
+  timestamp = {2019-06-28T21:35:53.000+0200},
+  title = {Mapping Trait Loci by Use of Inferred Ancestral Recombination Graphs},
+  url = {http://www.sciencedirect.com/science/article/pii/S0002929707608349},
+  volume = 79,
+  year = 2006
+}
+
+@article{lewanski2024introduction,
+  abstract = {In the presence of recombination, the evolutionary relationships between a set of sampled genomes cannot be described by a single genealogical tree. Instead, the genomes are related by a complex, interwoven collection of genealogies formalized in a structure called an ancestral recombination graph (ARG). An ARG extensively encodes the ancestry of the genome(s) and thus is replete with valuable information for addressing diverse questions in evolutionary biology. Despite its potential utility, technological and methodological limitations, along with a lack of approachable literature, have severely restricted awareness and application of ARGs in evolution research. Excitingly, recent progress in ARG reconstruction and simulation have made ARG-based approaches feasible for many questions and systems. In this review, we provide an accessible introduction and exploration of ARGs, survey recent methodological breakthroughs, and describe the potential for ARGs to further existing goals and open avenues of inquiry that were previously inaccessible in evolutionary genomics. Through this discussion, we aim to more widely disseminate the promise of ARGs in evolutionary genomics and encourage the broader development and adoption of ARG-based inference.},
+  added-at = {2024-01-25T20:53:56.000+0100},
+  author = {Lewanski, Alexander L. and Grundler, Michael C. and Bradburd, Gideon S.},
+  biburl = {https://www.bibsonomy.org/bibtex/26bd1d8e4f0102b3ce6d27563948de6cf/peter.ralph},
+  doi = {10.1371/journal.pgen.1011110},
+  interhash = {07747dbe029628083bf46d34198d6136},
+  intrahash = {6bd1d8e4f0102b3ce6d27563948de6cf},
+  journal = {PLOS Genetics},
+  keywords = {ARG review tree_sequence},
+  month = {01},
+  number = 1,
+  pages = {1-24},
+  publisher = {Public Library of Science},
+  timestamp = {2024-01-25T20:53:56.000+0100},
+  title = {The era of the {ARG}: {An} introduction to ancestral recombination graphs and their significance in empirical evolutionary genomics},
+  url = {https://doi.org/10.1371/journal.pgen.1011110},
+  volume = 20,
+  year = 2024
+}
+
+
+
