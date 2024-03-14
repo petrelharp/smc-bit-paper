@@ -117,9 +117,40 @@ sizes in recent years~\citep[e.g.][]{bycroft_genome_2018,halldorsson_sequences_2
 all_genomic_2024} there is a pressing need for more statistical
 rigor in large scale ARG inference.
 
+Model-based inference is a central element of population genetics.
+The coalescent~\citep{kingman_genealogy_1982,kingman_coalescent_1982,hudson_testing_1983,
+tajima_evolutionary_1983} has proved to be a useful model, and is the
+basis of a wide variety of inferences [some citations?]. The incorporation
+of recombination in to the coalescent process~\citep{hudson_properties_1983}
+has proved to be much more difficult.
+% FIXME rephrase, next two sentences, lifted from ARG paper
+Early work on inference under the coalescent with recombination
+focused on the problem of
+inferring the parameters of the
+stochastic process, where the ancestry was regarded as a
+latent parameter to be averaged out
+\citep[e.g.][]{griffiths_ancestral_1996,kuhner_maximum_2000,
+nielsen_estimation_2000,
+fearnhead_estimating_2001}.
+% TODO reuse some of the ideas from the SMC paper here, it has
+% some good explanations.
+These methods met with limited success
+because the state space of ARGs is overwhelmingly large, and
+lacks a simple geometry or neighbourhood structure for inference or
+sampling methods to  exploit.
+The introduction of the Sequentially Markovian Coalescent (SMC)
+approximation to the coalescent with recombination
+by~\cite{mcvean_approximating_2005} was a seminal contribution,
+and has made many different inferences
+% TODO add some more recent stuff
+feasible~\citep[e.g.]{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014}.
+In particular, the SMC is the basis for ARG sampling methods
+like ARGweaver~\citep{rasmussen_genome-wide_2014}, which remains the
+% TODO list other places ARGweaver has come out on top in terms of accuracy.
+gold-standard in terms of accuracy~\citep{brandt2022evaluation}
+
 
 \begin{itemize}
-    \item Models are good/essential: CwR useful but terrible for inference -> SMC
     \item Problem: we can't use models on inferred ARGs (Relate, tsinfer, ARGneedle). These methods produce point estimates. What we can't do:
         \begin{itemize}
             \item quantify uncertainty
