@@ -61,15 +61,64 @@
 \affil[2]{Department of Statistics, University of Oxford, OX1 3LB, UK}
 \affil[3]{University of Oregon, USA}
 
-\section{Abstract}
+\begin{abstract}
 There currently is no way to connect the output of the diverse
 range of ARG inference methods back
 to a model that would allow us to perform a probabilistic exploration of the
 ARG space around the point estimate, or likelihood-based inference.
+\end{abstract}
 
 \section{Introduction}
+Following recent breakthroughs in simulation and inference methods,
+there is now intense interest in applying Ancestral Recombination Graphs (ARGs)
+to a variety of questions in evolutionary
+biology~\citep{lewanski_era_2024,brandt_promise_2024}.
+ARGs describe the intricately linked paths
+of genetic inheritance resulting from
+recombination~\citep{hudson_properties_1983,griffiths_ancestral_1996,wong_general_2023},
+and contain rich detail about ancestral processes.
+% TODO rephrase this a bit, would be a lot of duplication of references
+% in the current formulation.
+Applications using inferred ARGs as input have begun to
+appear~\citep{osmond_estimating_2021,
+fan_genealogical_2022,
+hejase_deep_2022,
+guo_recombination-aware_2022,
+zhang_biobank-scale_2023,
+nowbandegani_extremely_2023,
+ignatieva_distribution_2023,
+fan_likelihood_2023,
+huang_estimating_2024}.
+Additionally, there is a rich suite of tools growing around
+the \texttt{tskit} ARG library~\citep{ralph_efficiently_2020}
+including simulation~\citep{kelleher_efficient_2016,kelleher_efficient_2018,
+adrion_community_2020,terasaki_geonomics_2021,
+baumdicker_efficient_2021,
+korfmann_weak_2022, petr_slendr_2023,tagami_tstrait_2024},
+ARG inference~\citep{kelleher_inferring_2019,speidel_method_2019,
+wohns_unified_2022,mahmoudi_bayesian_2022,
+rasmussen_espalier_2022,
+zhang_biobank-scale_2023,zhan_towards_2023} and analysis
+packages
+% etc
+\citep{nowbandegani_extremely_2023,fan_likelihood_2023}.
+Infererence methods now tend to fall into two classes: those that
+sample from a statistical
+model~\citep{rasmussen_genome-wide_2014,hubisz_mapping_2020,mahmoudi_bayesian_2022}
+or parsimony~\citep{ignatieva_kwarg_2021} and that return
+a fully precise ARG estimate~\citep{wong_general_2023},
+and those based on
+heuristics~\citep{kelleher_inferring_2019,speidel_method_2019,
+zhang_biobank-scale_2023} that return an more approximate structure.
+Typically, the more rigorous approaches can handle 10-100 samples,
+while the approximate methods can scale to 10s to hundreds of
+thousands of samples. With the explosive grown in dataset
+sizes in recent years~\citep[e.g.][]{bycroft_genome_2018,halldorsson_sequences_2022,
+all_genomic_2024} there is a pressing need for more statistical
+rigor in large scale ARG inference.
+
+
 \begin{itemize}
-    \item ARGs are cool: There are now lots of ways to infer ARGs. Large scale either using heuristics or approximations.
     \item Models are good/essential: CwR useful but terrible for inference -> SMC
     \item Problem: we can't use models on inferred ARGs (Relate, tsinfer, ARGneedle). These methods produce point estimates. What we can't do:
         \begin{itemize}
@@ -81,13 +130,6 @@ ARG space around the point estimate, or likelihood-based inference.
     \item what we do here
 \end{itemize}
 
-[inspiration] great point from Wong et al.:
-Note that it is important to distinguish here between structures and models:
-whether an inference method is based on
-heuristics or a rigorous mathematical model is orthogonal to the level
-of detail provided in its estimate. One could heuristically estimate a
-fully precise ARG, or statistically sample a partial, approximate ARG under
-a model such as the coalescent.
 
 [TL;DR]: way to think about genealogies is tied to the CwR. However,
 CwR does not enable us to simply compute a likelihood in the absence of a fully
@@ -716,7 +758,7 @@ with ARG-reconstruction.
 
 % 1/ statistical inference
 Currently most/all ARG-based inference methods base their analysis on marginal
-trees \citep{hejase_2022} [TO DO: add more refs]. The theory and associated algorithm
+trees \citep{hejase_summary_2020} [TO DO: add more refs]. The theory and associated algorithm
 provided here can function as a building block of [...]
 $N_e$-changes as well as multiple populations and migration can be readily incorporated
 in the current algorithm.\\
