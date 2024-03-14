@@ -494,7 +494,7 @@ as described in this section.
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=\textwidth]{figures/smc_custom_2rows_area.png}
+\includegraphics[width=\textwidth]{figures/smc_custom_2rows_area_full_hap.png}
 \caption{ARG (top) generated under the SMC and its representation as a
 series of local trees (bottom). To ensure the one-to-one correspondance
 between both representations a node is recorded for each local tree whenever
@@ -643,16 +643,15 @@ For each subsequently inserted edge, we first compute the likelihood by computin
 in eq \ref{eq:full-lik} using $I$ and then update the counts. We further keep track of
 the last parent a child node was connected to to detect recombination events.
 
+Note that we can accommodate for stepwise changes in the coalescence rate (or recombination rate)
+through time by intersecting the internode intervals with the rate change intervals.
+Rate changes along the genome can equally be incorporated (see \ref{sec:slicing}).
+
 % There is probably no need to potentially confuse people with this detail
 %Remark: better to describe edges here as edge-intervals, each describing a
 %single contiguous interval of genome inheritance between a pair of nodes.
 %Under the SMC and when recording unary nodes all edges can be represented
 %by a single edge-interval.
-
-\comment{we can probably move this to the next section}
-Note that we can accommodate for stepwise changes in the coalescence rate (or recombination rate)
-through time by intersecting the internode intervals with the rate change intervals.
-Rate changes along the genome can equally be incorporated (see \ref{sec:slicing}).
 
 % ADD IN RESULTS: 
 % Figure \ref{sup:fig:vs-argweaver} shows the expected near-perfect correlation
@@ -665,34 +664,26 @@ Rate changes along the genome can equally be incorporated (see \ref{sec:slicing}
 \subsection{Slicing the ARG} \label{sec:slicing}
 
 % slicing of the ARG
-By explicitly associating a single likelihood with each edge, 
-
-\comment{This makes it sound as if tskit is crucial for this observation.}
-we can compute a likelihood
-under the SMC for any valid tree sequence. The \tskit library provides a whole range
-of subsetting operations on tree sequences allowing us to slice the ARG in time and/or space,
-as well as reduce the number of tracked samples.
-Any such subset of the tree sequence is itself a valid tree sequence
-that can again be used to compute a likelihood with.
-
-Our approach therefore strengthens
+By explicitly associating a single likelihood with each edge,
+we can compute the likelihood for any slice of the ARG in both
+time as well as along the genome. Our approach therefore strengthens
 the inherent ability of ARGs to provide us with temporal
 resolution on the inferred genealogical history of a sample.
+It also opens up the opportunity for more efficient optimization 
+strategies during inference given that each slice of the ARG can be
+processed independently.
 
-Do this independently for any such slice
-Although we can readily incorporate changes in $N_e$ and $r$ 
-into the likelihood computation, both in time as well as along the genome,
-
-
-slicing of the ARG can be used to optimize the parameter of interest
-for each slice independently.
-
-
-Figure \ref{fig:3-arg-slices} demonstrates this idea on a toy example.
-We simulated an ARG under human-like parameters and with
+From a data structure perspective, we can compute a likelihood 
+under the SMC for any valid tree sequence. 
+The \tskit library provides a whole range
+of subsetting operations on tree sequences allowing us to slice
+the ARG in time and/or space, as well as reduce the number of
+tracked samples. Any such subset of the tree sequence is itself
+a valid tree sequence that can again be used to compute a
+likelihood for. Figure \ref{fig:3-arg-slices} demonstrates this idea 
+on a toy example. We simulated an ARG under human-like parameters and with
 two population size changes and subsequently estimated the posterior 
-distribution using a uniform prior for each slice indepently.
-
+distribution using a uniform prior for each slice independently.
 
 The observation that we can associate a likelihood with any valid tree sequences
 urges the need for some caveats. By treating each edge independently we can
@@ -728,7 +719,15 @@ likelihood surface given any set of parameters.
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\textwidth]{figures/3-slices-whitespace.png}
-\caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant for each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000, (5000:\infty):10 000]$. Remaining parameters: L=10kb, 20 diploid samples, r=2.5e-8, 148 edges in ARG). A single $N_e$ value was estimated for each slice of the ARG as defined by the true population size change time points. The inferred posterior distribution (right) using the SMC-likelihood was obtained using a uniform prior. Number of edges per time slice (from most recent slice to oldest): [68, 57, 23]. Locally unary nodes were omitted for clarity.}
+\caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant
+for each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000,
+(5000:\infty):10 000]$. Remaining parameters: $L=10$kb, $20$ diploid samples, 
+$r=2.5e-8$, $148$ edges in ARG). A single $N_e$ value was estimated for each
+slice of the ARG as defined by the true population size change time points.
+The inferred posterior distribution (right) using the SMC-likelihood was
+obtained using a uniform prior. Number of edges per time slice
+(from most recent slice to oldest): $[68, 57, 23]$. Locally unary nodes were
+omitted for clarity.}
 \label{fig:3-arg-slices}
 \end{figure}
 
