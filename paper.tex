@@ -21,6 +21,7 @@
 \newcommand{\espalier}[0]{\texttt{Espalier}}
 \newcommand{\arbores}[0]{\texttt{Arbores}}
 \newcommand{\tskit}[0]{\texttt{tskit}}
+\renewcommand{\deg}{\mathrm{deg}}
 \newcommand{\comment}[1]{{\it \color{orange} (#1)}}
 
 % Bold the 'Figure #' in the caption and separate it from the title/caption with a period
@@ -208,21 +209,25 @@ Instead of allowing any pair of lineages to coalesce,
 the SMC is the process in which only lineage with \emph{overlapping} genomic intervals may coalesce.
 Surprisingly, although this is defined in terms of a backwards-in-time Markov process,
 the resulting tree-valued process along the genome is also Markov.
+Although \citet{mcvean_approximating_2005} verbally described the SMC 
+using this backwards-in-time description, their analysis
+was almost entirely in left-to-right terms,
+and subsequent papers followed this trend
+(e.g., \comment{cite}).
 
 We now define the process more formally,
 and following the notation of \citet{mcvean_approximating_2005}.
 At any point in time, the state of the process is $L(t)$,
 the set of labeled lineages extant at time $t$,
-where each ``lineage'' is represented by a union of non-overlapping half-open intervals
-which represent the ancestral material carried by that lineage,
-and labels are integers.
+where each ``lineage'' is represented by a half-open interval
+which represents the ancestral material carried by that lineage,
+and labeled by an integer.
 So, we can write $L(t) = \{X_i(t)\}_{i=1}^{n(t)}$,
 where the $i^\text{th}$ lineage is $X_i(t)$
 and is of the form
-$X_i(t) = ([x_{i0}, y_{i0}), \dotsc, [x_{im_i}, y_{im_i}))$
-for some interval endpoints $x_{i0} < y_{i0} < x_{i1} < \cdot < y_{im_i}$.
-The \emph{span} of this lineage is the interval $s(X_i(t)) = [x_{i0}, y_{im_i}$,
-and its \emph{size} is $|X_i(t)| = y_{im_i} - x_{i0}$.
+$X_i(t) = [x_{i}, y_{i})$,
+for some interval endpoints $x_{i} < y_{i}$.
+The \emph{size} of the interval is $|X_i(t)| = y_{i} - x_{i}$.
 Since we look backwards in time, $t=0$ is today, and so
 $L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$,
 each represented by a single interval spanning the entire genome.
@@ -235,14 +240,14 @@ Recombination is described by a Poisson process of rate $r$ per unit of genomic 
 so, if $T(t) = \sum_i |X_i(t)|$ is the sum of the total sizes of all lineages,
 then recombination occurs at instaneous rate $rT(t)$.
 A recombination to the left of $x$
-(i.e., between $x$ and $x-1$)
-with $x>x_{i0}$ and $x<y_{im}$ splits lineage $i$ into two new lineages,
+(i.e., between base pairs $x$ and $x-1$)
+with $x>x_{i}$ and $x<y_{i}$ splits lineage $i$ into two new lineages,
 which each are given new, unique labels
 (and lineage $i$ is removed).
 This operation keeps the total amount of ancestral material unchanged.
 
 Coalescence occurs between
-two lineages with overlapping spans at rate $\lambda = 1/(2N_e)$
+two overlapping lineages at rate $\lambda = 1/(2N_e)$
 (if we assume a randomly mating, diploid population of constant size $N_e$).
 The newly formed lineage acquires the union of both ordered intervals, % L is updated accordingly
 and the original lineages are removed.
@@ -263,7 +268,8 @@ We say that lineage $j$ can coalesce \emph{into} lineaege $i$ if $I_{ij} = 1$
 
 For future use, define $C_i(t)$ to be the set of lineages that can coalesce into lineage $i$,
 i.e., $C_i(t) = \{X_j \in L(t) | I_{ij}(t) = 1\}$.
-(Therefore, $|C_i(t)| = I_{i}(t) = \sum_{j} I_{ij}(t)$.)
+(Therefore, $|C_i(t)| = I_{i}(t) = \sum_{j} I_{ij}(t)$,)
+and the total rate of coalescence at time $t$ is $\sum_{i} |C_i(t)|$.) 
 Because $I_{ij}$ is defined in terms of a total order, the sets $C_i(t)$ are disjoint,
 which will simplify the likelihood computations.
 In particular,
@@ -274,37 +280,33 @@ Another useful quantity to know is the number of lineages carrying material
 at each point on the genome:
 for a location $z$ and time $t$, this is
 \begin{equation}
-    N(t,z) = \#\{i : x \le z < y \text{ for some } [x,y) \in X_i(t) \} .
+    N(t,z) = \#\{i : z \in X_i(t) \} .
 \end{equation}
-Note that here we are not counting the ``gaps'' in a lineage,
-so that $N(t, z)$ might be less than the number of $i$ with $z \in s(X_i(t))$.
 
-The recombination and coalescence operations described above
-either split a lineage or merge two overlapping lineages,
-and so as described so far, each lineage will consist of only a single interval,
-rather than a collection of intervals.
-However, there is one more operation:
-when a sub-segment of a lineage is ancestral to all samples,
-that sub-segment is removed.
-Formally, define $Z(t)$ to be the segments on which the lineages have totally coalesced:
-i.e., $Z(t) = \{z : N(t,z) = 1$.
-Then, each coalescence event replaces the resulting lineage $X_i(t)$
-by $X_i(t) \setminus Z(t)$,
-the set of intervals that results from removing $Z(t)$ from all the intervals in $X_i(t)$.
+Finally, there is one more operation that allows the process to terminate:
+portions of the edges of lineages that have entirely coalesced
+(i.e., that are ancestral to all samples) are removed.
+Formally, after any coalescence or recombination event,
+the segment $[x,y)$ carried by the lineage
+is replaced by the largest segment whose endpoints have not coalesced,
+i.e., $x$ is replaced by $\min\{ z \ge x : N(t,z) > 1\}$,
+and $y$ is replaced by $\sup\{ z \le y : N(t,z) > 1\}$.
+\comment{explain the cases in which this happens: coalescence on one end,
+and recobmbination in the middle of a trapped ancestral segment}
 
 % note on the disjoint set of intervals for each lineage under the SMC
-Because of this last step, a single lineage can consist of more than one disjoint interval.
+\comment{I'm not sure we need this here now?}
+Note that 
+an alternative definition could instead remove any sub-segment of a lineage
+that has entirely coalesced.
+This would produce a process in which each lineage is a collection
+of disjoint intervals (instead of a single one).
 As noted by \cite{mcvean_approximating_2005},
 this implies that the backwards-in-time description of the
 SMC is slightly different from the left-to-right description,
-in which single ancestors only ever span a single segment of genome.
+which would usually not include these segments.
 This is depicted in fig.\ref{fig:smc-unary}:
 for instance, node 8 is ancestral to all samples on the middle two trees.
-However, this does not affect the distribution
-of marginal genealogies up to the roots.
-More precisely, all lineages will be associated with
-a single interval up to the point where one section of the
-genome has reached its most recent common ancestor but the neighbouring parts have not.
 
 % % % % % % % % % % % % % % % % % %
 \subsection{Estimated ARGs} \label{par:recording}
@@ -319,6 +321,8 @@ of the genomic material of a focal set of individuals (that we call \emph{sample
 Concretely, an ARG is equivalent to a collection of (non-contradictory) statements
 of the form ``$c$ inherited from $p$ on the genomic segment from $\ell$ to $r$'',
 where $c$ and $p$ are (haploid) genomes, and $\ell$ and $r$ are genetic coordinates.
+We record each such statement in an ``edge'',
+often summarized as the tuple $(p,c,\ell,r)$.
 By ``describes the history'',
 we mean that each node in the ARG represents a specific (ancestral) genome,
 and that the ARG specifies the genealogical tree describing how the samples are related
@@ -452,70 +456,171 @@ the parents of the edges connecting to $c$.
 % % % % % % % % % % % % % % % % % %
 \subsection{Calculating likelihoods} \label{par:liks}
 
-Retracing the ARG backwards in time, each coalescence event is associated with two child
-lineages, $c$ and $d$, and a single parent, $p$. By defining $C_i(t)$ asymmetrically,
-the history of each these two child lineages can be considered independently without
-risking to double count any of the coalescence events. The likelihood of
-observing the edge $(c, p, X_{cp})$ can thus be considered independently from
-the likelihood of all other edges, and in particular from the likelihood
-of $(d, p, X_{dp})$.
+The process of recombination only affects one lineage at a time
+(and does not even depend on the state of other lineages).
+On the other hand, coalescence events necessarily involve more than one lineage.
+However, the asymmetric way we define coalescence above
+allows us to uniquely associate each event with a single lineage,
+which allows us to cleanly factor the likelihood across edges and nodes.
+The data structure we will compute the likelihood of
+is a collection of \emph{edges} $E=\{e_i\}$,
+where each edge is of the form $e_i = (p_i,c_i,x_i,y_i)$.
+Recall that this means that node $c_i$ inherited genetic material from node $p_i$
+over a region with span from $x_i$ to $y_i$ along the genome
+(see Figure~\ref{fig:likelihood}).
+So, $x_i$ and $y_i$ are genomic coordinates,
+while $c_i$ and $p_i$ are in $N$, the set of \emph{nodes}
+(i.e., distinct sampled or ancestral haplotypes).
 
-% extends from here means min(X_{cp})=x, max(X_{cp})=y
-% improve this description here
-Assuming $(c, p, X_{cp})$ extends from $x$ to $y$ along the genome and $t_i$
-indicates the age of
-node $i$ in the ARG, then the probability of not observing a recombination across the
-entire area (span x depth) of this edge is
+We have defined the SMC process in terms of rates of various types of events.
+In general, the likelihood for a continuous-time Markov process specified in this way
+is $\exp(-\Lambda) \prod_i \lambda_i$,
+where $\lambda_i$ is the rate of the $i^\text{th}$ realized event,
+and $\Lambda$ is the sum of all rates of all possible events
+integrated over the entire process
+(also called the ``total hazard'').
 
-% full extent of segment
-\begin{equation}\label{eq:span}
-A_{(c, p)}(\theta) = e^{-r (y-x)(t_p - t_{c})}
+The contributions to the likelihood from coalescent and recombination events
+is straightforward, since each possible coalescence is associated with rate $\lambda$,
+and each recombination with rate $r$.
+Under the SMC, we only ever have two lineages coalescing at a time;
+however, inferred ARGs may have more-than-binary mergers.
+We treat these as if there were zero-length edges
+between a sequence of mergers;
+the order of these unresolved mergers does not affect the likelihood.
+(Under the SMC the likelihood of a zero-length edge is zero;
+but this is not special: since edge lengths are continuously distributed,
+the likelihood of any particular value is also zero.)
+Let $\deg_o(n) = \#\{e_i \in E : p_i=n\}$ be the out-degree of a node $n$,
+i.e., the number of edges having $n$ as a parent.
+Since mergers are binary in the SMC,
+this must have been the result of $\deg(n) - 1$ coalescences,
+and so this contributes a factor of $\lambda^{\deg_o(n)-1}$ to the likelihood.
+Similarly,
+let $\deg_i(n) = \#\{e_i \in E : c_i=n\}$ be the in-degree of a node $n$,
+i.e., the number of edges having $n$ as a child.
+Each additional edge that is ancestral to a given node
+implies one additional ancestral recombination event,
+and thus a factor of  $r^{\deg_i(n)-1}$ in the likelihood.
+Put together, these two contribute
+\begin{equation}\label{eq:coal}
+    \prod_{n \in N} \lambda^{\deg_o(n)-1} r^{\deg_i(n)-1}  
+    =
+    (\lambda r)^{|E|-|N|} 
 \end{equation}
-% also x and y not necessarily equal to x_{c_{1}0} and y_{c_{1}m}.
+to the likelihood.
+(The simple form follows because each edge contributes exactly one
+to some node's out-degree and some node's in-degree.)
 
-What's left to compute the likelihood of the focal edge, is to take into account
-all events associated with $x$,
-the leftmost coordinate of $(c, p, X_{cp})$.
-This is either only the
-coalescence event involving
-$c$ and $d$. In that case $x=x_{c0}$ and $c$ did not coalesce until $t_p$.
-Alternatively, $x$ can be a new recombination break point that
-occurred on the lineage represented by $c$ at some time $s$ between $t_{c}$
-and $\min(t_p, t_{p^{\prime}})$, where $p^{\prime}$ is the parent of the
-edge $(c, p^{\prime}, X_{cp^{\prime}})$ ending at $x$. The new lineage formed
-by the recombination event and starting at $x$ can be given a temporary label
-$c_s$. In both cases, the cumulative hazard of a lineage $a$ coalescing
-between time $s$ and $t$ is given by $F(c, s, t) = \int_{s}^{t} I_{c}(u)du$
-such that:
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/likelihood-sketch}
+    \caption{
+        Proposed figure to explain the likelihood computation with.
+        TODO: change numbered labels to match the order in the text,
+        add $x$ and $y$.
+        \label{fig:likelihood}
+    }
+\end{figure}
+
+Now consider the ``hazard'' associated with recombination.
+Begin with an edge $e = (p,c,x,y)$.
+This implies that there was a sequence of lineages
+from the time of the child $c$ (call this time $t_c$)
+back to the time of the parent $p$ (again, $t_p$),
+that contained the segment $[x,y)$,
+and the lineage that directly inherited from $p$
+had the segment $[x,y)$.
+Under the SMC,
+we therefore know there was no recombination between $x$ and $y$
+on any of the lineages 
+over this time span,
+the probability of which is
+$\exp(-r \times A)$, where $r$ is the recombination rate
+and $A$ is the total area (span times depth) of the edge.
+So, the first contribution to the likelihood from this edge $e$ is
+\begin{equation}\label{eq:span}
+A_e(\theta) = \exp(-r (y-x)(t_p - t_{c})) .
+\end{equation}
+
+Finally, we turn to the hazard associated with coalescence.
+To do this, we need only consider what happens along the left side
+of each edge.
+The instantaneous rate of coalescence of a lineage whose left endpoint is at $x$
+at a given time is equal to $\lambda$ multiplied
+by the number of earlier lineages that overlap $x$ at that time.
+Recall that we define a total order on edges,
+by ordering by left endpoint and breaking ties by child
+(i.e., $(p,c,x,y) < (p',c',x',y')$
+if $x<x'$, or if $x=x'$ and $c<c'$).
+Using this total order, we can define
+$I_e(t)$ to be the total number of earlier edges that overlap edge $e$
+and are present at time $t$.
+Then, the cumulative hazard for coalescence of edge $e$
+between time $s$ and $t$ is given by $F(e, s, t) = \int_{s}^{t} I_{e}(u) du$.
+If the edge $e = (p,c,x,y)$
+is the leftmost segment of material inherited by node $c$
+(e.g., the lefthand segment ancestral to node $c$
+in Figure~\ref{fig:likelihood}),
+then this edge simply contributes $\exp(-F(e,t_c,t_p))$ to the likelihood.
+However, if the edge is \emph{not} the leftmost segment,
+then it was initiated by a new recombination breakpoint,
+and we need to integrate over possible times the breakpoint occurred.
+If this is the case, there is another edge $(p',c,x',x)$ with the same child node,
+immediately adjacent to the focal edge $(p,c,x,y)$.
+The recombination event that split the two must have happened between $t_c$
+and the smaller of $t_p$ and $t_{p'}$;
+taking all this into consideration, the contribution to the likelihood here is
 \begin{equation}\label{eq:depth}
+B_e(\theta) = \begin{cases}
+    e^{-\lambda F(e, t_c, t_p)}
+        & \qquad \text{if } x=x_{c} \\
+    \int_{t_c}^{t_{p} \wedge t_{p'}} e^{-\lambda F(e, s, t_{p})} ds
+        & \qquad \text{if } x>x_{c} ,
+\end{cases}
+\end{equation}
+where $x_c$ is the leftmost position of the edges whose children are $c$.
+
+% In that case $x=x_{c0}$ and $c$ did not coalesce until $t_p$.
+% Alternatively, $x$ can be a new recombination break point that
+% occurred on the lineage represented by $c$ at some time $s$ between $t_{c}$
+% and $\min(t_p, t_{p^{\prime}})$, where $p^{\prime}$ is the parent of the
+% edge $(c, p^{\prime}, X_{cp^{\prime}})$ ending at $x$. The new lineage formed
+% by the recombination event and starting at $x$ can be given a temporary label
+% $c_s$. In both cases, the cumulative hazard of a lineage $a$ coalescing
+% between time $s$ and $t$ is given by $F(c, s, t) = \int_{s}^{t} I_{c}(u)du$
+% such that:
+
+\comment{This is the old equation; I think the $e^{-rs}$ should not be there,
+    since it's already taken into account by \eqref{eq:span}.
+    Plus, the $\lambda$ and $r$ factors are now elsewhere.}
+\begin{equation}\label{eq:depth_old}
 B_{(c, p)}(\theta) = \begin{cases}
 e^{-\lambda F(c, t_c, t_p)} \lambda^{I_{cd}(t_p)} & x=x_{c0} \\
 \int_{t_c}^{t_{p} \wedge t_{p^{\prime}}} r e^{-rs} e^{-\lambda F(c_s, s, t_{p})} ds \lambda^{I_{c_{s}d}(t_p)} & x=x_{c_{s}0}>x_{c0} \\
 \end{cases}
 \end{equation}
-
+\comment{Do we still need this bit?}
 Here, the (second) exponential term gives the probability of not observing a
 coalescence event before $t_p$. In case of a recombination, $re^{-rs}$ further
 gives the probability of observing a recombination
-at time $s$ given a Poisson process along position $x$ with rate $r$. The
-time of the recombination is integrated out.
+at time $s$ given a Poisson process along position $x$ with rate $r$.
+The time of the recombination is integrated out.
 The last term gives the point probability density of the coalescence event
 that terminates the edge. The indicator function is used to resolve
 the non-reciprocal nature of coalescence events as defined in \ref{def:coal}.
 
-The likelihood of ARG $\mathcal{G}$ defined by the set of edges $E$ and
+The likelihood of ARG defined by the set of edges $E$ and nodes $N$
 given parameters $\theta$ then is
-
 \begin{equation}\label{eq:full-lik}
-\mathcal{L}(\mathcal{G}|\theta) = \prod_{(c, p) \in E} A_{(c, p)}(\theta) * B_{(c, p)}(\theta)
+    \mathcal{L}(\mathcal{G}|\theta)
+    =
+    (r\lambda)^{|E|-|N|} \prod_{(c, p) \in E} A_e(\theta) B_e(\theta)
 \end{equation}
 
-% Does this hold for the case beyond the root of the genealogy?
 
-[TO DO: improve this remark: when recording an ARG we do record edges in this situation,
-however, msprime simulations will stop recording edges for local trees that have reached
-their local mrca.]
+\comment{TO DO: is this still true?}
 Because the likelihood is computed based on edges,
 and edges are no longer recorded once the local most recent common ancestor
 has been reached, we will underestimate the number of positions where
@@ -530,6 +635,7 @@ in the same observed local sequence of tree changes.
 Note that we are only considering the topology and branch length information of any ARG.
 Extending this expression by adding the likelihood of observing a set of mutations
 given an ARG is straightforward.
+\comment{Perhaps give the expression, for completeness?}
 
 
 \subsection{Algorithm} \label{par:algo}
@@ -809,5 +915,107 @@ An implementation of the algorithm is available on https://github.com/gertjanbis
 \caption{Single replicate from the dataset simulated above with a 100 random sprinklings of mutations. Likelihood under the SMC, mutation rate $\mu=1.25e-8$ (x-axis), and with mutation rate $4*\mu$ (y-axis). Likelihood for the full ARG under Hudson is indicated with the cross.}
  \label{sup:fig:single-tsinfer}
 \end{figure}
+
+\subsection{Multiple segments description}
+
+\comment{This is copied from above in case it's helpful in the future.}
+
+We now define the process more formally,
+and following the notation of \citet{mcvean_approximating_2005}.
+At any point in time, the state of the process is $L(t)$,
+the set of labeled lineages extant at time $t$,
+where each ``lineage'' is represented by a union of non-overlapping half-open intervals
+which represent the ancestral material carried by that lineage,
+and labels are integers.
+So, we can write $L(t) = \{X_i(t)\}_{i=1}^{n(t)}$,
+where the $i^\text{th}$ lineage is $X_i(t)$
+and is of the form
+$X_i(t) = ([x_{i0}, y_{i0}), \dotsc, [x_{im_i}, y_{im_i}))$
+for some interval endpoints $x_{i0} < y_{i0} < x_{i1} < \cdot < y_{im_i}$.
+The \emph{span} of this lineage is the interval $s(X_i(t)) = [x_{i0}, y_{im_i}$,
+and its \emph{size} is $|X_i(t)| = y_{im_i} - x_{i0}$.
+Since we look backwards in time, $t=0$ is today, and so
+$L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$,
+each represented by a single interval spanning the entire genome.
+Then, the process evolves by a succession of coalescence and recombination
+events until each segment of ancestral material is only present in one lineage.
+The waiting time to next event is determined by these two competing processes
+with exponentially distributed waiting times as outlined below.
+
+Recombination is described by a Poisson process of rate $r$ per unit of genomic length and time:
+so, if $T(t) = \sum_i |X_i(t)|$ is the sum of the total sizes of all lineages,
+then recombination occurs at instaneous rate $rT(t)$.
+A recombination to the left of $x$
+(i.e., between $x$ and $x-1$)
+with $x>x_{i0}$ and $x<y_{im}$ splits lineage $i$ into two new lineages,
+which each are given new, unique labels
+(and lineage $i$ is removed).
+This operation keeps the total amount of ancestral material unchanged.
+
+Coalescence occurs between
+two lineages with overlapping spans at rate $\lambda = 1/(2N_e)$
+(if we assume a randomly mating, diploid population of constant size $N_e$).
+The newly formed lineage acquires the union of both ordered intervals, % L is updated accordingly
+and the original lineages are removed.
+Although coalescence is reciprocal, here we'll define a strict total order on lineages
+(see \ref{par:liks}) on all lineages in $L(t)$ based on their leftmost starting points.
+For any such strict total order,
+the instantaneous rate of coalescence then equals $\lambda$ multiplied by the number of overlapping pairs,
+i.e., $\lambda \sum_{i \neq j} I_{ij}$,
+where
+\begin{equation} \label{def:coal}
+I_{ij} = \begin{cases}
+    1 & X_i > X_j \text{ and } s(X_i) \cap s(X_j) \neq \emptyset \\
+    0 & \text{otherwise.}
+\end{cases}
+\end{equation}
+We say that lineage $j$ can coalesce \emph{into} lineaege $i$ if $I_{ij} = 1$
+(and notice that if $I_{ij} = 1$ then $I_{ji} = 0$).
+
+For future use, define $C_i(t)$ to be the set of lineages that can coalesce into lineage $i$,
+i.e., $C_i(t) = \{X_j \in L(t) | I_{ij}(t) = 1\}$.
+(Therefore, $|C_i(t)| = I_{i}(t) = \sum_{j} I_{ij}(t)$.)
+Because $I_{ij}$ is defined in terms of a total order, the sets $C_i(t)$ are disjoint,
+which will simplify the likelihood computations.
+In particular,
+although recombination affects \emph{which} lineages can coalesce into $i$,
+it does not change the \emph{number} of such lineages:
+in other words, a recombination event changes $C_i(t)$ but not $I_{i}$.
+Another useful quantity to know is the number of lineages carrying material
+at each point on the genome:
+for a location $z$ and time $t$, this is
+\begin{equation}
+    N(t,z) = \#\{i : x \le z < y \text{ for some } [x,y) \in X_i(t) \} .
+\end{equation}
+Note that here we are not counting the ``gaps'' in a lineage,
+so that $N(t, z)$ might be less than the number of $i$ with $z \in s(X_i(t))$.
+
+The recombination and coalescence operations described above
+either split a lineage or merge two overlapping lineages,
+and so as described so far, each lineage will consist of only a single interval,
+rather than a collection of intervals.
+However, there is one more operation:
+when a sub-segment of a lineage is ancestral to all samples,
+that sub-segment is removed.
+Formally, define $Z(t)$ to be the segments on which the lineages have totally coalesced:
+i.e., $Z(t) = \{z : N(t,z) = 1$.
+Then, each coalescence event replaces the resulting lineage $X_i(t)$
+by $X_i(t) \setminus Z(t)$,
+the set of intervals that results from removing $Z(t)$ from all the intervals in $X_i(t)$.
+
+% note on the disjoint set of intervals for each lineage under the SMC
+Because of this last step, a single lineage can consist of more than one disjoint interval.
+As noted by \cite{mcvean_approximating_2005},
+this implies that the backwards-in-time description of the
+SMC is slightly different from the left-to-right description,
+in which single ancestors only ever span a single segment of genome.
+This is depicted in fig.\ref{fig:smc-unary}:
+for instance, node 8 is ancestral to all samples on the middle two trees.
+However, this does not affect the distribution
+of marginal genealogies up to the roots.
+More precisely, all lineages will be associated with
+a single interval up to the point where one section of the
+genome has reached its most recent common ancestor but the neighbouring parts have not.
+
 
 \end{document}
