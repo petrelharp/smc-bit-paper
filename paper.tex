@@ -495,20 +495,25 @@ Let $\deg_o(n) = \#\{e_i \in E : p_i=n\}$ be the out-degree of a node $n$,
 i.e., the number of edges having $n$ as a parent.
 Since mergers are binary in the SMC,
 this must have been the result of $\deg(n) - 1$ coalescences,
-and so this contributes a factor of $\lambda^{\deg_o(n)-1}$ to the likelihood.
+and so this contributes a factor of $\lambda^{\deg_o(n)-1}$ to the likelihood
+for nodes with any children.
 Similarly,
 let $\deg_i(n) = \#\{e_i \in E : c_i=n\}$ be the in-degree of a node $n$,
 i.e., the number of edges having $n$ as a child.
 Each additional edge that is ancestral to a given node
 implies one additional ancestral recombination event,
-and thus a factor of  $r^{\deg_i(n)-1}$ in the likelihood.
+and thus a factor of  $r^{\deg_i(n)-1}$ in the likelihood,
+if the node has any parents.
 Put together, these two contribute
 \begin{equation}\label{eq:coal}
     \prod_{n \in N} \lambda^{\deg_o(n)-1} r^{\deg_i(n)-1}  
     =
-    (\lambda r)^{|E|-|N|} 
+    r^{|E|-|N|+n_r} 
+    \lambda^{|E|-|N|+n_s} 
 \end{equation}
-to the likelihood.
+to the likelihood,
+where $n_r$ is the number of nodes with in-degree 0 (roots),
+and $n_s$ is the number of nodes with out-degree 0 (usually, samples).
 (The simple form follows because each edge contributes exactly one
 to some node's out-degree and some node's in-degree.)
 
@@ -616,9 +621,11 @@ given parameters $\theta$ then is
 \begin{equation}\label{eq:full-lik}
     \mathcal{L}(\mathcal{G}|\theta)
     =
-    (r\lambda)^{|E|-|N|} \prod_{(c, p) \in E} A_e(\theta) B_e(\theta)
+    (r)^{|E|-|N|+n_r} (\lambda)^{|E|-|N|+n_s} \prod_{(c, p) \in E} A_e(\theta) B_e(\theta) .
 \end{equation}
-
+Although the first two factors are easily expressed in terms of numbers of edges and nodes,
+we will see below
+that in practice it is convenient to absorb these terms into per-edge contributions.
 
 \comment{TO DO: is this still true?}
 Because the likelihood is computed based on edges,
@@ -655,34 +662,41 @@ coalesce with. By moving along the genome in this way, each edge gets visited ex
 \label{fig:algo}
 \end{figure}
 
-Although the argument outlined in the previous paragraph is valid for any ARG, here we
-will describe how to (efficiently) extract the information required to associate a
-tree sequence encoding of an ARG with a likelihood under the SMC (see fig. \ref{fig:smc-unary}).
-The tree sequence format allows us to sequentially recover the local trees
-along the genome very efficiently, and in a way that allows us to reason about
+Next, we describe how to efficiently compute the likelihood under the SMC
+from an ARG stored using the \emph{tree sequence} encoding. %  (see fig. \ref{fig:smc-unary}).
+The tree sequence format encodes relationships using \emph{edges}
+just as described above,
+along with additional structure that
+allows us to sequentially recover the local trees
+along the genome very efficiently, and to reason about
 the differences between those trees \citep{kelleher_efficient_2016, ralph_efficiently_2020}.
-The order of the required edge deletions and insertions to move from one local tree $T_1$ to
-the next, $T_2$ imposes the required strict total ordering
-(see definition \ref{def:coal}) on all
-lineages in the graph needed to efficiently maintain the state of $I_e(t)$ for each focal edge $e$.
+The order of the edge deletions and insertions required to move from one local tree $T_1$ to
+the next, $T_2$ imposes the required strict total ordering on edges
+(see definition \ref{def:coal})
+that is needed to efficiently maintain the state of $I_e(t)$ for each focal edge $e$.
 Indeed, following the removal of edges that do not persist in $T_2$,
-we can postulate that the lineage associated with each subsequently added edge
-can only coalesce with the lineages represented by the subset of the
-visited edges that make up the (partially) reconstructed local tree $T_2$.
+we simply declare that each subsequently added edge
+can only coalesce with the already-visited edges 
+that make up the (partially) reconstructed local tree $T_2$.
 
-This ensures we can associate a likelihood
-with all tree sequences in a single pass over all edges.
+\comment{This is \emph{very} nice!}
+This allows us to compute a likelihood in a single pass over all edges.
 More concretely, the likelihood is computed by maintaining a single vector $I$ that tracks
-the exact number of extant lineages in each internode interval (see fig \ref{fig:algo}).
+the number of extant lineages in each internode interval (see fig \ref{fig:algo}).
 When moving from $T_1$ to $T_2$, the vector $I$ is first decremented along the internode intervals
 spanned by the time of the child and the parent of all edges that do not persist in $T_2$.
-For each subsequently inserted edge, we first compute the likelihood by computing the integral
-in eq \ref{eq:full-lik} using $I$ and then update the counts. We further keep track of
+For each subsequently inserted edge, we first compute the likelihood contribution
+of that edge by computing the integral
+in equation \eqref{eq:full-lik} using $I$, and then update the counts in $I$.
+\comment{At first I thought we didn't need this next sentence now, but maybe
+assigning-$\lambda$-and-$r$ to each edge makes it easier to recompute the likelihood
+for slices?}
+We further keep track of
 the last parent a child node was connected to to detect recombination events.
 
 Note that we can accommodate for stepwise changes in the coalescence rate (or recombination rate)
 through time by intersecting the internode intervals with the rate change intervals.
-Rate changes along the genome can equally be incorporated (see \ref{sec:slicing}).
+Rate changes along the genome can be incorporated similarly (see \ref{sec:slicing}).
 
 % There is probably no need to potentially confuse people with this detail
 %Remark: better to describe edges here as edge-intervals, each describing a
@@ -702,42 +716,61 @@ Rate changes along the genome can equally be incorporated (see \ref{sec:slicing}
 
 % slicing of the ARG
 By explicitly associating a single likelihood with each edge,
-we can compute the likelihood for any slice of the ARG in both
-time as well as along the genome. Our approach therefore strengthens
+we can compute the likelihood for any slice of the ARG taken in
+time and/or along the genome. This tool therefore strengthens
 the inherent ability of ARGs to provide us with temporal
-resolution on the inferred genealogical history of a sample.
+resolution and context to a dataset of genetic variation.
 It also opens up the opportunity for more efficient optimization
 strategies during inference given that each slice of the ARG can be
 processed independently.
 
 From a data structure perspective, we can compute a likelihood
 under the SMC for any valid tree sequence.
-The \tskit library provides a whole range
+The \tskit library provides a wide range
 of subsetting operations on tree sequences allowing us to slice
-the ARG in time and/or space, as well as reduce the number of
+the ARG in time and/or space, as well as to reduce the number of
 tracked samples. Any such subset of the tree sequence is itself
-a valid tree sequence that can again be used to compute a
-likelihood for. Figure \ref{fig:3-arg-slices} demonstrates this idea
-on a toy example. We simulated an ARG under human-like parameters and with
-two population size changes and subsequently estimated the posterior
-distribution using a uniform prior for each slice independently.
+a valid tree sequence for which we can again compute a likelihood.
+\comment{This next remark is totally not obvious, and a really nice observation;
+maybe it needs a bit more explanation?}
+\comment{Oh, I think it's not \emph{quite} true: if we slide at position $x$,
+then any recombinations that happened at $x$ are now invisible, right?
+So maybe you need to slice at non-integer positions, or do some bookeeping
+about the number of edges with starts exactly at $x$?}
+Remarkably, if we slice an ARG into disjoint pieces,
+the likelihood of the full ARG
+is the product of the likelihoods of each of the pieces.
 
-The observation that we can associate a likelihood with any valid tree sequences
-urges the need for some caveats. By treating each edge independently we can
+Figure \ref{fig:3-arg-slices} demonstrates this idea
+on a toy example. We simulated an ARG under human-like parameters with
+two effective population size changes, and subsequently computed the posterior
+distribution on the three effective population sizes
+using a uniform prior on each slice independently.
+The result is reasonably accurate,
+despite only using 10kb of sequence.
+
+Although we can associate a likelihood with any valid tree sequences,
+there are some caveats. By treating each edge independently we can
 naturally deal with the various degrees of completeness to which inheritance
-is documented by the different ARG inference methods: e.g.\ polytomies, absence
+is documented by the different ARG inference methods: e.g., polytomies, absence
 of locally unary coalescence nodes, unpreserved identify of internal nodes
-across marginal trees, \dots However, these imprecisions do violate the implicit
+across marginal trees, etcetera.
+However, many of these imprecisions violate the implicit
 assumptions of the likelihood computation.
 \comment{Do we want these remarks in here, or as part of the Discussion?}
-For example, the described algorithm relies heavily on the
-presence of locally unary nodes in the tree sequence to correctly identify the
-full extent of all lineages going back through time and therefore recombination
-events. Without unary nodes though, our algorithm will detect a recombination
+For example, the described algorithm assumes the
+presence of ``locally unary'' nodes to correctly identify the
+full extent of all lineages going back through time and therefore recombination events.
+Without unary nodes though, our algorithm will detect a recombination
 event along both coalescing lineages in case of a (sub)tree height changes along
 the ARG as both edges would switch parent nodes. This can be mitigated by limiting
 the number of 'inferrable' recombination events per coalescence event to 1
 (see fig \ref{sup:fig:rec-correction}).
+\comment{I'm not editing this in since I'm not sure I've got it right:
+I think that as written, our algorithm would count an extra recombination
+and and extra coalescence for any edge that got split up by removing the unary bits.
+This could be corrected for in the algorithm, but it would require extra bookkeeping,
+and make the likelihood not so easily a product over edges. (?)}
 
 \comment{this was previously part of the discussion, have grouped it here.}
 Although their presence is crucial to our ability to embed any local tree in the
