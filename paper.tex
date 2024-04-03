@@ -212,8 +212,8 @@ the resulting tree-valued process along the genome is also Markov.
 Although \citet{mcvean_approximating_2005} verbally described the SMC 
 using this backwards-in-time description, their analysis
 was almost entirely in left-to-right terms,
-and subsequent papers followed this trend
-(e.g., \comment{cite}).
+and subsequent papers followed this trend 
+\citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,rasmussen_genome-wide_2014}.
 
 We now define the process more formally,
 and following the notation of \citet{mcvean_approximating_2005}.
@@ -251,8 +251,8 @@ two overlapping lineages at rate $\lambda = 1/(2N_e)$
 (if we assume a randomly mating, diploid population of constant size $N_e$).
 The newly formed lineage acquires the union of both ordered intervals, % L is updated accordingly
 and the original lineages are removed.
-Although coalescence is reciprocal, here we'll define a strict total order on lineages
-(see \ref{par:liks}) on all lineages in $L(t)$ based on their leftmost starting points.
+Although coalescence is reciprocal, here we'll define a strict total order
+on all lineages in $L(t)$ based on their leftmost starting points (and index to break ties).
 For any such strict total order,
 the instantaneous rate of coalescence then equals $\lambda$ multiplied by the number of overlapping pairs,
 i.e., $\lambda \sum_{i \neq j} I_{ij}$,
@@ -263,7 +263,7 @@ I_{ij} = \begin{cases}
     0 & \text{otherwise.}
 \end{cases}
 \end{equation}
-We say that lineage $j$ can coalesce \emph{into} lineaege $i$ if $I_{ij} = 1$
+We say that lineage $j$ can coalesce \emph{into} lineage $i$ if $I_{ij} = 1$
 (and notice that if $I_{ij} = 1$ then $I_{ji} = 0$).
 
 For future use, define $C_i(t)$ to be the set of lineages that can coalesce into lineage $i$,
@@ -286,32 +286,19 @@ for a location $z$ and time $t$, this is
 Finally, there is one more operation that allows the process to terminate:
 portions of the edges of lineages that have entirely coalesced
 (i.e., that are ancestral to all samples) are removed.
+
 Formally, after any coalescence or recombination event,
 the segment $[x,y)$ carried by the lineage
-is replaced by the largest segment whose endpoints have not coalesced,
-i.e., $x$ is replaced by $\min\{ z \ge x : N(t,z) > 1\}$,
+is replaced by the largest (pair of) segment(s) whose endpoints have not
+coalesced, i.e., $x$ is replaced by $\min\{ z \ge x : N(t,z) > 1\}$,
 and $y$ is replaced by $\sup\{ z \le y : N(t,z) > 1\}$.
-\comment{explain the cases in which this happens: coalescence on one end,
-and recobmbination in the middle of a trapped ancestral segment}
+By reasoning about the process in this way we can keep representing 
+all lineages by means of a single half-open interval throughout.
 
-% note on the disjoint set of intervals for each lineage under the SMC
-\comment{I'm not sure we need this here now?}
-Note that 
-an alternative definition could instead remove any sub-segment of a lineage
-that has entirely coalesced.
-This would produce a process in which each lineage is a collection
-of disjoint intervals (instead of a single one).
-As noted by \cite{mcvean_approximating_2005},
-this implies that the backwards-in-time description of the
-SMC is slightly different from the left-to-right description,
-which would usually not include these segments.
-This is depicted in fig.\ref{fig:smc-unary}:
-for instance, node 8 is ancestral to all samples on the middle two trees.
+\comment{Adapt figure to represent this}
 
 % % % % % % % % % % % % % % % % % %
 \subsection{Estimated ARGs} \label{par:recording}
-
-\comment{clarify what's different to McVean \& Cardin: unary nodes, maybe? and different to usual SMC stuff more generally}
 
 Although the term Ancestral Recombination Graph (ARG) has been used to mean several things,
 in the generic sense, it is a labeled graph structure that records
@@ -463,13 +450,13 @@ However, the asymmetric way we define coalescence above
 allows us to uniquely associate each event with a single lineage,
 which allows us to cleanly factor the likelihood across edges and nodes.
 The data structure we will compute the likelihood of
-is a collection of \emph{edges} $E=\{e_i\}$,
-where each edge is of the form $e_i = (p_i,c_i,x_i,y_i)$.
-Recall that this means that node $c_i$ inherited genetic material from node $p_i$
-over a region with span from $x_i$ to $y_i$ along the genome
+is a collection of \emph{edges} $E$,
+where each edge $e$ is of the form $e = (p,c,x,y)$.
+Recall that this means that node $c$ inherited genetic material from node $p$
+over a region with span from $x$ to $y$ along the genome
 (see Figure~\ref{fig:likelihood}).
-So, $x_i$ and $y_i$ are genomic coordinates,
-while $c_i$ and $p_i$ are in $N$, the set of \emph{nodes}
+So, $x$ and $y$ are genomic coordinates,
+while $c$ and $p$ are in $N$, the set of \emph{nodes}
 (i.e., distinct sampled or ancestral haplotypes).
 
 We have defined the SMC process in terms of rates of various types of events.
@@ -478,7 +465,9 @@ is $\exp(-\Lambda) \prod_i \lambda_i$,
 where $\lambda_i$ is the rate of the $i^\text{th}$ realized event,
 and $\Lambda$ is the sum of all rates of all possible events
 integrated over the entire process
-(also called the ``total hazard'').
+(also called the ``total hazard''). \comment{if we want to spell it out even further:
+Note that the time to the next event is distributed as $\Lambda \exp(-\Lambda)$. And
+the probablility that the next event is of type $i$ is $\lambda_i / \Lambda$.}
 
 The contributions to the likelihood from coalescent and recombination events
 is straightforward, since each possible coalescence is associated with rate $\lambda$,
@@ -491,14 +480,14 @@ the order of these unresolved mergers does not affect the likelihood.
 (Under the SMC the likelihood of a zero-length edge is zero;
 but this is not special: since edge lengths are continuously distributed,
 the likelihood of any particular value is also zero.)
-Let $\deg_o(n) = \#\{e_i \in E : p_i=n\}$ be the out-degree of a node $n$,
+Let $\deg_o(n) = \#\{e \in E : p_e=n\}$ be the out-degree of a node $n$,
 i.e., the number of edges having $n$ as a parent.
 Since mergers are binary in the SMC,
 this must have been the result of $\deg(n) - 1$ coalescences,
 and so this contributes a factor of $\lambda^{\deg_o(n)-1}$ to the likelihood
 for nodes with any children.
 Similarly,
-let $\deg_i(n) = \#\{e_i \in E : c_i=n\}$ be the in-degree of a node $n$,
+let $\deg_i(n) = \#\{e \in E : c_e=n\}$ be the in-degree of a node $n$,
 i.e., the number of edges having $n$ as a child.
 Each additional edge that is ancestral to a given node
 implies one additional ancestral recombination event,
@@ -543,11 +532,13 @@ on any of the lineages
 over this time span,
 the probability of which is
 $\exp(-r \times A)$, where $r$ is the recombination rate
-and $A$ is the total area (span times depth) of the edge.
+and $A$ is the total area (eligbile links times depth) of the edge.
 So, the first contribution to the likelihood from this edge $e$ is
 \begin{equation}\label{eq:span}
-A_e(\theta) = \exp(-r (y-x)(t_p - t_{c})) .
+A_e(r) = \exp(-r (y-x - \mathbbm{1}_{x > x_c})(t_p - t_{c})) .
 \end{equation}
+Note that if a recombination did occurr, then the number of links not
+affected by recombination is 1 less (see \ref{eq:depth}).
 
 Finally, we turn to the hazard associated with coalescence.
 To do this, we need only consider what happens along the left side
@@ -568,20 +559,22 @@ If the edge $e = (p,c,x,y)$
 is the leftmost segment of material inherited by node $c$
 (e.g., the lefthand segment ancestral to node $c$
 in Figure~\ref{fig:likelihood}),
-then this edge simply contributes $\exp(-F(e,t_c,t_p))$ to the likelihood.
+then no recombination occurred along this edge and 
+this edge simply contributes $\exp(-F(e,t_c,t_p))$ to the likelihood.
 However, if the edge is \emph{not} the leftmost segment,
 then it was initiated by a new recombination breakpoint,
 and we need to integrate over possible times the breakpoint occurred.
 If this is the case, there is another edge $(p',c,x',x)$ with the same child node,
 immediately adjacent to the focal edge $(p,c,x,y)$.
 The recombination event that split the two must have happened between $t_c$
-and the smaller of $t_p$ and $t_{p'}$;
-taking all this into consideration, the contribution to the likelihood here is
+and the smaller of $t_p$ and $t_{p'}$. Note that two events must have happened
+between $t_c$ and $\min(t_p, t_{p'})$; taking all this into consideration,
+the contribution to the likelihood here is
 \begin{equation}\label{eq:depth}
-B_e(\theta) = \begin{cases}
+B_e(r, \lambda) = \begin{cases}
     e^{-\lambda F(e, t_c, t_p)}
         & \qquad \text{if } x=x_{c} \\
-    \int_{t_c}^{t_{p} \wedge t_{p'}} e^{-\lambda F(e, s, t_{p})} ds
+    \int_{t_c}^{t_{p} \wedge t_{p'}} e^{- r s} e^{-\lambda F(e, s, t_{p})} ds
         & \qquad \text{if } x>x_{c} ,
 \end{cases}
 \end{equation}
@@ -597,54 +590,48 @@ where $x_c$ is the leftmost position of the edges whose children are $c$.
 % between time $s$ and $t$ is given by $F(c, s, t) = \int_{s}^{t} I_{c}(u)du$
 % such that:
 
-\comment{This is the old equation; I think the $e^{-rs}$ should not be there,
-    since it's already taken into account by \eqref{eq:span}.
-    Plus, the $\lambda$ and $r$ factors are now elsewhere.}
-\begin{equation}\label{eq:depth_old}
-B_{(c, p)}(\theta) = \begin{cases}
-e^{-\lambda F(c, t_c, t_p)} \lambda^{I_{cd}(t_p)} & x=x_{c0} \\
-\int_{t_c}^{t_{p} \wedge t_{p^{\prime}}} r e^{-rs} e^{-\lambda F(c_s, s, t_{p})} ds \lambda^{I_{c_{s}d}(t_p)} & x=x_{c_{s}0}>x_{c0} \\
-\end{cases}
-\end{equation}
-\comment{Do we still need this bit?}
-Here, the (second) exponential term gives the probability of not observing a
-coalescence event before $t_p$. In case of a recombination, $re^{-rs}$ further
-gives the probability of observing a recombination
-at time $s$ given a Poisson process along position $x$ with rate $r$.
-The time of the recombination is integrated out.
-The last term gives the point probability density of the coalescence event
-that terminates the edge. The indicator function is used to resolve
-the non-reciprocal nature of coalescence events as defined in \ref{def:coal}.
+%\comment{This is the old equation; I think the $e^{-rs}$ should not be there,
+%    since it's already taken into account by \eqref{eq:span}.
+%    Plus, the $\lambda$ and $r$ factors are now elsewhere.}
+%\begin{equation}\label{eq:depth_old}
+%B_{(c, p)}(\theta) = \begin{cases}
+%e^{-\lambda F(c, t_c, t_p)} \lambda^{I_{cd}(t_p)} & x=x_{c0} \\
+%\int_{t_c}^{t_{p} \wedge t_{p^{\prime}}} r e^{-rs} e^{-\lambda F(c_s, s, t_{p})} ds \lambda^{I_{c_{s}d}(t_p)} & x=x_{c_{s}0}>x_{c0} \\
+%\end{cases}
+%\end{equation}
+%\comment{Do we still need this bit?}
+%Here, the (second) exponential term gives the probability of not observing a
+%coalescence event before $t_p$. In case of a recombination, $re^{-rs}$ further
+%gives the probability of observing a recombination
+%at time $s$ given a Poisson process along position $x$ with rate $r$.
+%The time of the recombination is integrated out.
+%The last term gives the point probability density of the coalescence event
+%that terminates the edge. The indicator function is used to resolve
+%the non-reciprocal nature of coalescence events as defined in \ref{def:coal}.
 
 The likelihood of ARG defined by the set of edges $E$ and nodes $N$
 given parameters $\theta$ then is
 \begin{equation}\label{eq:full-lik}
-    \mathcal{L}(\mathcal{G}|\theta)
+    \mathcal{L}(\mathcal{G}|r, \lambda)
     =
-    (r)^{|E|-|N|+n_r} (\lambda)^{|E|-|N|+n_s} \prod_{(c, p) \in E} A_e(\theta) B_e(\theta) .
+    (r)^{|E|-|N|+n_r} (\lambda)^{|E|-|N|+n_s} \prod_{(c, p) \in E} A_e(r) B_e(r, \lambda) .
 \end{equation}
 Although the first two factors are easily expressed in terms of numbers of edges and nodes,
 we will see below
 that in practice it is convenient to absorb these terms into per-edge contributions.
 
-\comment{TO DO: is this still true?}
-Because the likelihood is computed based on edges,
-and edges are no longer recorded once the local most recent common ancestor
-has been reached, we will underestimate the number of positions where
-a recombination could have occurred in case a recombination hits a
-lineage with trapped non-ancestral material (see end \ref{par:description}).
-If we assume that only a single recombination could have
-occurred, then it suffices however to provide a correction factor $g$ in equation
-\ref{eq:depth}. Here $g$ represents the
-length of non-ancestral material along which a recombination would have resulted
-in the same observed local sequence of tree changes.
-
 Note that we are only considering the topology and branch length information of any ARG.
 Extending this expression by adding the likelihood of observing a set of mutations
-given an ARG is straightforward.
-\comment{Perhaps give the expression, for completeness?}
+given an ARG is given by
+\begin{equation}\label{eq:lik-mut}
+    \mathcal{L}(\mathcal{D}|\mathcal{G}, \mu)
+    =
+    \frac{1}{\mathcal{M}!} \prod_{(c, p) \in E} e^{-(y-x)(t_p-t_c)\mu^{|m_e|}} .
+\end{equation}
+where $\mathcal{M}$ the total number of mutations and $m_e$
+the number of mutations along edge $(c,p)$ \citep{mahmoudi_bayesian_2022}.
 
-
+% % % % % % % % % % % % % % % % % %
 \subsection{Algorithm} \label{par:algo}
 
 \begin{figure}[!ht]
@@ -679,7 +666,6 @@ we simply declare that each subsequently added edge
 can only coalesce with the already-visited edges 
 that make up the (partially) reconstructed local tree $T_2$.
 
-\comment{This is \emph{very} nice!}
 This allows us to compute a likelihood in a single pass over all edges.
 More concretely, the likelihood is computed by maintaining a single vector $I$ that tracks
 the number of extant lineages in each internode interval (see fig \ref{fig:algo}).
@@ -688,12 +674,8 @@ spanned by the time of the child and the parent of all edges that do not persist
 For each subsequently inserted edge, we first compute the likelihood contribution
 of that edge by computing the integral
 in equation \eqref{eq:full-lik} using $I$, and then update the counts in $I$.
-\comment{At first I thought we didn't need this next sentence now, but maybe
-assigning-$\lambda$-and-$r$ to each edge makes it easier to recompute the likelihood
-for slices?}
 We further keep track of
 the last parent a child node was connected to to detect recombination events.
-
 Note that we can accommodate for stepwise changes in the coalescence rate (or recombination rate)
 through time by intersecting the internode intervals with the rate change intervals.
 Rate changes along the genome can be incorporated similarly (see \ref{sec:slicing}).
@@ -711,95 +693,117 @@ Rate changes along the genome can be incorporated similarly (see \ref{sec:slicin
 % under the SMC using human-like parameters. 100 samples were taking from the posterior every for
 % a total of 1000 MCMC iterations.
 
-
+% % % % % % % % % % % % % % % % % %
 \subsection{Slicing the ARG} \label{sec:slicing}
 
 % slicing of the ARG
 By explicitly associating a single likelihood with each edge,
 we can compute the likelihood for any slice of the ARG taken in
-time and/or along the genome. This tool therefore strengthens
-the inherent ability of ARGs to provide us with temporal
-resolution and context to a dataset of genetic variation.
-It also opens up the opportunity for more efficient optimization
-strategies during inference given that each slice of the ARG can be
-processed independently.
+time and/or along the genome.
+In the case of a fully precise ARG, with a known time to recombination,
+this is true as long as the slicing operation does not erase the
+information on whether an edge is associated with the lefthand or
+righthand segment generated by a recombination event. In the absence
+of the exact time to recombination, the integral in
+eq.\ \ref{eq:depth} means that the likelihood
+for the entire ARG does not factorize into the likelihoods of these
+individual slices. More precisely, the likelihood associated with any
+edge that is initiated by a recombination breakpoint cannot be factorized
+into the product of two integrals of the same form.
 
-From a data structure perspective, we can compute a likelihood
-under the SMC for any valid tree sequence.
-The \tskit library provides a wide range
-of subsetting operations on tree sequences allowing us to slice
-the ARG in time and/or space, as well as to reduce the number of
-tracked samples. Any such subset of the tree sequence is itself
-a valid tree sequence for which we can again compute a likelihood.
-\comment{This next remark is totally not obvious, and a really nice observation;
-maybe it needs a bit more explanation?}
-\comment{Oh, I think it's not \emph{quite} true: if we slide at position $x$,
-then any recombinations that happened at $x$ are now invisible, right?
-So maybe you need to slice at non-integer positions, or do some bookeeping
-about the number of edges with starts exactly at $x$?}
-Remarkably, if we slice an ARG into disjoint pieces,
-the likelihood of the full ARG
-is the product of the likelihoods of each of the pieces.
-
-Figure \ref{fig:3-arg-slices} demonstrates this idea
+However, as long as the individual slices of the ARG contain sufficient
+information we can approximate the true integral as the product of the
+integral of the slices. Figure \ref{fig:3-arg-slices} demonstrates this idea
 on a toy example. We simulated an ARG under human-like parameters with
 two effective population size changes, and subsequently computed the posterior
 distribution on the three effective population sizes
 using a uniform prior on each slice independently.
-The result is reasonably accurate,
-despite only using 10kb of sequence.
+The result is reasonably accurate, despite only using 10kb of sequence.
+This approach therefore strengthens
+the inherent ability of ARGs to provide us with temporal
+resolution and context to a dataset of genetic variation.
+It also opens up the opportunity for more efficient optimization
+strategies during inference given that each slice of the ARG can be
+processed independently. And it further highlights the flexibility
+of the algorithm. Simply stated and from a data structure perspective,
+we can compute a likelihood under the SMC for any valid tree sequence.
+The \texttt{tskit} library provides a wide range
+of subsetting operations on tree sequences allowing us to slice
+the ARG in time and/or space, as well as to reduce the number of
+tracked samples. Any such subset of the tree sequence is itself
+a valid tree sequence for which we can again compute a likelihood.
 
-Although we can associate a likelihood with any valid tree sequences,
-there are some caveats. By treating each edge independently we can
-naturally deal with the various degrees of completeness to which inheritance
-is documented by the different ARG inference methods: e.g., polytomies, absence
-of locally unary coalescence nodes, unpreserved identify of internal nodes
-across marginal trees, etcetera.
-However, many of these imprecisions violate the implicit
-assumptions of the likelihood computation.
-\comment{Do we want these remarks in here, or as part of the Discussion?}
-For example, the described algorithm assumes the
-presence of ``locally unary'' nodes to correctly identify the
-full extent of all lineages going back through time and therefore recombination events.
-Without unary nodes though, our algorithm will detect a recombination
-event along both coalescing lineages in case of a (sub)tree height changes along
-the ARG as both edges would switch parent nodes. This can be mitigated by limiting
-the number of 'inferrable' recombination events per coalescence event to 1
-(see fig \ref{sup:fig:rec-correction}).
-\comment{I'm not editing this in since I'm not sure I've got it right:
-I think that as written, our algorithm would count an extra recombination
-and and extra coalescence for any edge that got split up by removing the unary bits.
-This could be corrected for in the algorithm, but it would require extra bookkeeping,
-and make the likelihood not so easily a product over edges. (?)}
 
-\comment{this was previously part of the discussion, have grouped it here.}
-Although their presence is crucial to our ability to embed any local tree in the
-ARG, the concept and their importance are still relatively new (but see
-\citet{wong_general_2023}).
-We have briefly touched upon the observation that in
-the presence of unary nodes we seem to augment the left-to-right logic of the SMC
-with some additional information. Yet, we believe that the topic of locally
-unary nodes in general requires further exploration.
-And more specifically, we see it as future work to fully quantify to what
-extent the absence of these locally unary nodes will affect the shape of the
-likelihood surface given any set of parameters.
+% Although we can associate a likelihood with any valid tree sequences,
+% there are some caveats. By treating each edge independently we can
+% naturally deal with the various degrees of completeness to which inheritance
+% is documented by the different ARG inference methods: e.g., polytomies, absence
+% of locally unary coalescence nodes, unpreserved identify of internal nodes
+% across marginal trees, etcetera.
+% However, many of these imprecisions violate the implicit
+% assumptions of the likelihood computation.
+% \comment{Do we want these remarks in here, or as part of the Discussion?}
+% 
+% For example, the described algorithm assumes the
+% presence of ``locally unary'' nodes to correctly identify the
+% full extent of all lineages going back through time and therefore recombination events.
+% Without unary nodes though, our algorithm will detect a recombination
+% event along both coalescing lineages in case of a (sub)tree height changes along
+% the ARG as both edges would switch parent nodes. This can be mitigated by limiting
+% the number of 'inferrable' recombination events per coalescence event to 1
+% (see fig \ref{sup:fig:rec-correction}).
+% \comment{I'm not editing this in since I'm not sure I've got it right:
+% I think that as written, our algorithm would count an extra recombination
+% and and extra coalescence for any edge that got split up by removing the unary bits.
+% This could be corrected for in the algorithm, but it would require extra bookkeeping,
+% and make the likelihood not so easily a product over edges. (?)}
+% 
+% \comment{this was previously part of the discussion, have grouped it here.}
+% Although their presence is crucial to our ability to embed any local tree in the
+% ARG, the concept and their importance are still relatively new (but see
+% \citet{wong_general_2023}).
+% We have briefly touched upon the observation that in
+% the presence of unary nodes we seem to augment the left-to-right logic of the SMC
+% with some additional information. Yet, we believe that the topic of locally
+% unary nodes in general requires further exploration.
+% And more specifically, we see it as future work to fully quantify to what
+% extent the absence of these locally unary nodes will affect the shape of the
+% likelihood surface given any set of parameters.
 
-%We simulated 1000 ARGs under the Hudson coalescent retaining all recombination information and computed the corresponding likelihood using \texttt{msprime} \citep{baumdicker_efficient_2021}. After removing the recombination nodes the likelihoods as defined here were computed both with and without the unary nodes. Figure \ref{sup:fig:vs-hudson} shows that the proportion of variation explained is higher when the unary nodes are retained.
+%%% remarks on precision of information + useage of likelihood to either
+%%% estimate parameters (not goal here) or use as instrument to improve accuracy to infer ARGs
 
 \begin{figure}[!ht]
-\centering
-\includegraphics[width=\textwidth]{figures/3-slices-whitespace.png}
-\caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant
-for each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000,
-(5000:\infty):10 000]$. Remaining parameters: $L=10$kb, $20$ diploid samples,
-$r=2.5e-8$, $148$ edges in ARG). A single $N_e$ value was estimated for each
-slice of the ARG as defined by the true population size change time points.
-The inferred posterior distribution (right) using the SMC-likelihood was
-obtained using a uniform prior. Number of edges per time slice
-(from most recent slice to oldest): $[68, 57, 23]$. Locally unary nodes were
-omitted for clarity.}
-\label{fig:3-arg-slices}
+    \centering
+    \includegraphics[width=\textwidth]{figures/3-slices-whitespace.png}
+    \caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant
+    for each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000,
+    (5000:\infty):10 000]$. Remaining parameters: $L=10$kb, $20$ diploid samples,
+    $r=2.5e-8$, $148$ edges in ARG. A single $N_e$ value was estimated for each
+    slice of the ARG as defined by the true population size change time points.
+    The inferred posterior distribution (right) using the SMC-likelihood was
+    obtained using a uniform prior. Number of edges per time slice
+    (from most recent slice to oldest): $[68, 57, 23]$. Locally unary nodes were
+    omitted for clarity.}
+    \label{fig:3-arg-slices}
 \end{figure}
+
+\section{Likelihood surface for larger class of ARGs}
+
+
+% flexibility
+% presence of polytomies
+% lack of unary nodes
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{figures/likelihood_surface.png}
+    \caption{Simulated ARG under SMC ($L=1$Mb, $100$ diploid samples,
+    $r=2.5e-8$, $N_e=1e4$). Likelihood-ratio contour plot. Currently two contours,
+    with and without locally unary nodes.}
+    \label{fig:lik-surface}
+\end{figure}
+
 
 \section{Discussion}
 
@@ -990,19 +994,19 @@ two lineages with overlapping spans at rate $\lambda = 1/(2N_e)$
 (if we assume a randomly mating, diploid population of constant size $N_e$).
 The newly formed lineage acquires the union of both ordered intervals, % L is updated accordingly
 and the original lineages are removed.
-Although coalescence is reciprocal, here we'll define a strict total order on lineages
-(see \ref{par:liks}) on all lineages in $L(t)$ based on their leftmost starting points.
+Although coalescence is reciprocal, here we'll define a strict total order
+on all lineages in $L(t)$ based on their leftmost starting points (and index to break ties).
 For any such strict total order,
 the instantaneous rate of coalescence then equals $\lambda$ multiplied by the number of overlapping pairs,
 i.e., $\lambda \sum_{i \neq j} I_{ij}$,
 where
-\begin{equation} \label{def:coal}
+\begin{equation}
 I_{ij} = \begin{cases}
     1 & X_i > X_j \text{ and } s(X_i) \cap s(X_j) \neq \emptyset \\
     0 & \text{otherwise.}
 \end{cases}
 \end{equation}
-We say that lineage $j$ can coalesce \emph{into} lineaege $i$ if $I_{ij} = 1$
+We say that lineage $j$ can coalesce \emph{into} lineage $i$ if $I_{ij} = 1$
 (and notice that if $I_{ij} = 1$ then $I_{ji} = 0$).
 
 For future use, define $C_i(t)$ to be the set of lineages that can coalesce into lineage $i$,
