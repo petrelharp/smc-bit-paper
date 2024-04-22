@@ -39,8 +39,8 @@
      id="namedview2028"
      showgrid="false"
      inkscape:zoom="0.72238404"
-     inkscape:cx="556.32903"
-     inkscape:cy="379.62957"
+     inkscape:cx="1152.6818"
+     inkscape:cy="92.880651"
      inkscape:window-x="60"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -66,6 +66,46 @@
        position="962.31903,37.257927"
        orientation="0,1"
        id="guide6804"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1113.6736,556.83678"
+       orientation="0,1"
+       id="guide2354"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1094.4173,558.12895"
+       orientation="1,0"
+       id="guide2356"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1113.0155,289.00594"
+       orientation="0,1"
+       id="guide2374"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1113.0679,21.370212"
+       orientation="0,1"
+       id="guide2386"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1070.241,148.63977"
+       orientation="1,0"
+       id="guide2398"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1269.4079,160.57941"
+       orientation="0,1"
+       id="guide2418"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1191.8868,697.68983"
+       orientation="0,1"
+       id="guide2420"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1050.7972,536.90011"
+       orientation="1,0"
+       id="guide2422"
        inkscape:locked="false" />
   </sodipodi:namedview>
   <defs
@@ -8943,5 +8983,64 @@
        id="path4911-7-4"
        d="M 56.762106,193.0092 H 1026.9818"
        style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 6;stroke-dashoffset:0;stroke-opacity:1" />
+  </g>
+  <g
+     transform="translate(1093.5807,240.03978)"
+     id="g1378-0"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png"
+     inkscape:export-xdpi="299.94601"
+     inkscape:export-ydpi="299.94601">
+    <text
+       id="text1376-9"
+       style="dominant-baseline:central;text-anchor:middle">N<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan2347">e</tspan>
+</text>
+  </g>
+  <g
+     transform="rotate(-90,843.27163,-204.21688)"
+     id="g1382-3"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png"
+     inkscape:export-xdpi="299.94601"
+     inkscape:export-ydpi="299.94601">
+    <text
+       id="text1380-6"
+       style="dominant-baseline:central;text-anchor:middle">posterior</text>
+  </g>
+  <g
+     transform="translate(1093.4853,507.87049)"
+     id="g1378-0-8"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png"
+     inkscape:export-xdpi="299.94601"
+     inkscape:export-ydpi="299.94601">
+    <text
+       id="text1376-9-9"
+       style="dominant-baseline:central;text-anchor:middle">N<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan2347-7">e</tspan>
+</text>
+  </g>
+  <g
+     transform="translate(1093.5465,775.55581)"
+     id="g1378-0-9"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png"
+     inkscape:export-xdpi="299.94601"
+     inkscape:export-ydpi="299.94601">
+    <text
+       id="text1376-9-2"
+       style="dominant-baseline:central;text-anchor:middle">N<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan2347-5">e</tspan>
+</text>
+  </g>
+  <g
+     transform="rotate(-90,574.76767,-472.55263)"
+     id="g1382-3-4"
+     inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/3-slices-whitespace.png"
+     inkscape:export-xdpi="299.94601"
+     inkscape:export-ydpi="299.94601">
+    <text
+       id="text1380-6-6"
+       style="dominant-baseline:central;text-anchor:middle">posterior</text>
   </g>
 </svg>
