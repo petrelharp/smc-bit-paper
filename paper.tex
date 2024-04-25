@@ -556,8 +556,8 @@ to some node's out-degree and some node's in-degree.)
     \centering
     \includegraphics[width=0.65\textwidth]{figures/single_event.png}
     \caption{
-        Graphical representation of the events associated with an edge $(p,c,x,y)$.
-        The lineage carried by $c$ spans $[x',y)$ until a recombination event splits it
+        Graphical representation of the events associated with the edge $(p,c,x,y)$.
+        The lineage carried by $c$ spans $[x',y)$ until a recombination event (blue dotted line) splits it
         into two segments. The right hand segment coalesces at time $t_p$. The time to
         recombination is thus bounded by $(c. \min(t_p, t_{p'})$.
         \label{fig:likelihood}
@@ -571,7 +571,7 @@ from the time of the child $c$ (call this time $t_c$)
 back to the time of the parent $p$ (again, $t_p$),
 that contained the segment $[x,y)$,
 and the lineage that directly inherited from $p$
-had the segment $[x,y)$.
+had the segment $[x,y)$ (see fig.\ \ref{fig:likelihood}).
 Under the SMC,
 we therefore know there was no recombination between $x$ and $y$
 on any of the lineages 
@@ -583,31 +583,32 @@ So, the first contribution to the likelihood from this edge $e$ is
 \begin{equation}\label{eq:span}
 A_e(r) = \exp(-r (y-x - \mathbbm{1}_{x > x_c})(t_p - t_{c})) .
 \end{equation}
-Note that if a recombination did occurr, then the number of links not
-affected by recombination is 1 less (see \ref{eq:depth}).
+Note that if a recombination did occur, then the number of links not
+affected by recombination is 1 less (see eq.\ \ref{eq:depth}).
 
-Finally, we turn to the hazard associated with coalescence.
-To do this, we need only consider what happens along the left side
-of each edge.
-The instantaneous rate of coalescence of a lineage whose left endpoint is at $x$
-at a given time is equal to $\lambda$ multiplied
-by the number of earlier lineages that overlap $x$ at that time.
+Finally, we turn to the hazard associated with common ancestry events.
+To do this,
+we need only consider what happens along the left side of each edge.
 Recall that we define a total order on edges,
 by ordering by left endpoint and breaking ties by child
 (i.e., $(p,c,x,y) < (p',c',x',y')$
 if $x<x'$, or if $x=x'$ and $c<c'$).
+The instantaneous rate of coalescence of a lineage whose left endpoint is at $x$
+at a given time is equal to $\lambda$ multiplied
+by the number of earlier lineages that overlap $x$ at that time.
 Using this total order, we can define
 $I_e(t)$ to be the total number of earlier edges that overlap edge $e$
 and are present at time $t$.
-Then, the cumulative hazard for coalescence of edge $e$
+Then, the cumulative hazard for common ancestry events of edge $e$
 between time $s$ and $t$ is given by $F(e, s, t) = \int_{s}^{t} I_{e}(u) du$.
 If the edge $e = (p,c,x,y)$
 is the leftmost segment of material inherited by node $c$
-(e.g., the lefthand segment ancestral to node $c$
-in Figure~\ref{fig:likelihood}),
+(e.g., the left hand segment ancestral to node $c$
+in fig.\ ~\ref{fig:likelihood}),
 then no recombination occurred along this edge and 
 this edge simply contributes $\exp(-F(e,t_c,t_p))$ to the likelihood.
-However, if the edge is \emph{not} the leftmost segment,
+However, if the edge is \emph{not} the leftmost segment
+(as shown in fig.\ \ref{fig:likelihood}),
 then it was initiated by a new recombination breakpoint,
 and we need to integrate over possible times the breakpoint occurred.
 If this is the case, there is another edge $(p',c,x',x)$ with the same child node,
@@ -671,7 +672,7 @@ given parameters $\theta$ then is
 This likelihood expression is not only linear in the number of edges. An algorithm
 (see supplementary information \ref{par:algo}) can be devised to efficiently keep
 track of $I_e(t)$ by means of existing \texttt{tskit} functionality.
-Note that we can accommodate for stepwise changes in the coalescence rate (or recombination rate)
+Note that we can even accommodate for stepwise changes in the coalescence rate (or recombination rate)
 through time by intersecting the internode intervals with the rate change intervals. 
 Rate changes along the genome can be incorporated similarly.
 Finally, we have only considered the topology and branch length information of any ARG.
@@ -681,7 +682,7 @@ given an ARG is given by
 \begin{equation}\label{eq:lik-mut}
     \mathcal{L}(\mathcal{D}|\mathcal{G}, \mu)
     =
-    \frac{1}{\mathcal{M}!} \prod_{(c, p) \in E} e^{-(y-x)(t_p-t_c)\mu^{|m_e|}} .
+    \frac{1}{\mathcal{M}!} \prod_{(c, p) \in E} e^{-(y-x)(t_p-t_c)\mu^{|m_e|}}
 \end{equation}
 where $\mathcal{M}$ the total number of mutations and $m_e$
 the number of mutations along edge $(c,p)$ \citep{mahmoudi_bayesian_2022}.
