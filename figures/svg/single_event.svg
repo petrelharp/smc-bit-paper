@@ -25,18 +25,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
-     inkscape:cx="318.97787"
-     inkscape:cy="702.37607"
+     inkscape:zoom="3.5256208"
+     inkscape:cx="426.83983"
+     inkscape:cy="666.52342"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1580"
-     inkscape:window-height="1376"
-     inkscape:window-x="980"
+     inkscape:window-height="1016"
+     inkscape:window-x="340"
      inkscape:window-y="27"
      inkscape:window-maximized="0"
-     showguides="false"
+     showguides="true"
      inkscape:guide-bbox="true">
     <inkscape:grid
        type="xygrid"
@@ -60,6 +60,31 @@
        position="25.135416,216.95834"
        orientation="1,0"
        id="guide1269"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="86.221092,167.05131"
+       orientation="0,1"
+       id="guide901"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="109.77427,180.91475"
+       orientation="1,0"
+       id="guide903"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="127.45415,172.07481"
+       orientation="0,1"
+       id="guide920"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="124.35417,190.50001"
+       orientation="1,0"
+       id="guide937"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="97.366665,177.02279"
+       orientation="0,1"
+       id="guide941"
        inkscape:locked="false" />
   </sodipodi:namedview>
   <metadata
@@ -127,9 +152,9 @@
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180" />
     <rect
-       style="opacity:1;fill:#004000;fill-opacity:1;stroke:none;stroke-width:0.30551434;stroke-miterlimit:4;stroke-dasharray:0.30551432, 0.30551432000000001;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#004000;fill-opacity:1;stroke:none;stroke-width:0.24313517;stroke-miterlimit:4;stroke-dasharray:0.24313515, 0.24313515;stroke-dashoffset:0;stroke-opacity:1"
        id="rect815-6-3-7"
-       width="39.687504"
+       width="25.13542"
        height="5.2916589"
        x="84.666664"
        y="121.05209"
@@ -252,34 +277,6 @@
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/single_event.png"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="125.6849"
-       y="124.86407"
-       id="text834-5"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/single_event.png"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"><tspan
-         sodipodi:role="line"
-         id="tspan832-1"
-         x="125.6849"
-         y="124.86407"
-         style="font-size:4.23333311px;stroke-width:0.26458332">c</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="75.353592"
-       y="118.08412"
-       id="text834-5-8"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/single_event.png"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"><tspan
-         sodipodi:role="line"
-         id="tspan832-1-0"
-         x="75.353592"
-         y="118.08412"
-         style="font-size:4.23333311px;stroke-width:0.26458332">c'</tspan></text>
     <path
        style="fill:#006400;fill-opacity:0.1981982;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 109.80208,106.5 11.90625,-15.875 h 14.55208 L 124.35417,106.5 Z"
@@ -329,12 +326,12 @@
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180" />
     <rect
-       style="opacity:1;fill:#006400;fill-opacity:0.1981982;stroke:none;stroke-width:0.39686266;stroke-miterlimit:4;stroke-dasharray:0.39686267, 1.19058799999999998;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#006400;fill-opacity:0.19819821;stroke:none;stroke-width:0.39686266;stroke-miterlimit:4;stroke-dasharray:0.39686267, 1.190588;stroke-dashoffset:0;stroke-opacity:1"
        id="rect913"
        width="39.687489"
        height="9.260416"
        x="84.666664"
-       y="111.79166"
+       y="111.79163"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/single_event.png"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180" />
@@ -405,23 +402,7 @@
          id="tspan832-1-09-9"
          x="84.534157"
          y="129.95328"
-         style="font-size:4.23333311px;stroke-width:0.26458332">x</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="110.03782"
-       y="114.77763"
-       id="text834-5-4-1-6"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/single_event.png"
-       inkscape:export-xdpi="180"
-       inkscape:export-ydpi="180"><tspan
-         sodipodi:role="line"
-         id="tspan832-1-09-9-2"
-         x="110.03782"
-         y="114.77763"
-         style="font-size:4.23333311px;stroke-width:0.26458332">x<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan1038">c</tspan></tspan></text>
+         style="font-size:4.23333311px;stroke-width:0.26458332">x'</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -554,5 +535,51 @@
          style="font-size:4.23333311px;stroke-width:0.26458332">t<tspan
    style="font-size:65%;baseline-shift:sub"
    id="tspan1271">c</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="109.61078"
+       y="129.91716"
+       id="text834-5-4-1-60"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/single_event.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><tspan
+         sodipodi:role="line"
+         id="tspan832-1-09-9-6"
+         x="109.61078"
+         y="129.91716"
+         style="font-size:4.23333311px;stroke-width:0.26458332">x</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.15000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.30000001, 0.15000001;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 109.80208,111.79167 v 9.26041"
+       id="path1015-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/single_event.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:1;fill:#004000;fill-opacity:1;stroke:none;stroke-width:0.18499808;stroke-miterlimit:4;stroke-dasharray:0.18499806, 0.18499806;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect815-6-3-7-5"
+       width="14.552077"
+       height="5.2916589"
+       x="109.80209"
+       y="121.05209"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/single_event.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="126.48593"
+       y="124.78397"
+       id="text834-5"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/single_event.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180"><tspan
+         sodipodi:role="line"
+         id="tspan832-1"
+         x="126.48593"
+         y="124.78397"
+         style="font-size:4.23333311px;stroke-width:0.26458332">c</tspan></text>
   </g>
 </svg>
