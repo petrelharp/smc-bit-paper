@@ -224,18 +224,18 @@ at each point on the genome.
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/smc_custom_2rows_area_full_hap.png}
-\caption{ARG (top), generated under the SMC, and its representation as a
+\caption{ARG generated under the SMC, represented as a graph (top) and as a
 series of local trees (bottom). To ensure the one-to-one correspondence
 between both representations a node is recorded for each local tree whenever
 a node is encountered along its ancestry path in the graph representation.
 This results in nodes that (locally) have only a single child, and are therefore
-(locally) unary. Blue (unary) nodes represent recombinant nodes.
-The blue arrows show the familiar left-to-right logic of the SMC whereby
-the floating lineage coalesces randomly
-with a the remaining portion of the local tree following recombination.
-By removing recombinant nodes, we limit the information on the time to each
+(locally) unary. By removing recombinant nodes, we limit the information on the time to each
 of these events to the windows (blue shaded array) delimited by by the age of
 the child node $c$ and the minimum age of the parents of the edges connecting to $c$.
+Blue (unary) nodes represent recombinant nodes. The blue arrows show the
+familiar left-to-right logic of the SMC whereby
+the floating lineage coalesces randomly
+with a the remaining portion of the local tree following recombination.
 }
 \label{fig:smc-unary}
 \end{figure}
@@ -339,30 +339,31 @@ simple modification to the coalescent with recombination.
 Instead of allowing any pair of lineages to coalesce,
 the SMC is the process in which only lineages with \emph{overlapping} genomic intervals may coalesce.
 By limiting common ancestry events to overlapping pairs of lineages, we are
-guaranteed that all nodes in the ARG only carry ancestral material, this is
+guaranteed that all nodes in the ARG only carry ancestral material, this is,
 genetic material that is inherited by either one of a set of samples \citep{wiuf_ancestry_1999}.
 As such, we only require a single half-open interval to describe the ancestral
 material associated with each common ancestor node in the ARG.
-Surprisingly, although the SMC can be defined
-in terms of a backwards-in-time Markov process,
-the resulting tree-valued process along the genome is also Markov.
-Linking this back to relationship between a graph and local trees view on
-the ARG, then the distribution of the next tree within the series
-of local trees can be generated only knowing the current tree,
-provided that we remove recombinant nodes entirely,
-and erase the unary portions of coalescent nodes.
-(To see that the locally unary nodes make the process non-Markov,
-consider that a node in a tree might be unary either because it's about to be a coalescent node
-or it already has been:
-looking at the second tree (Fig.\ref{fig:smc-unary}), we know node 5 will be coalescent further down the sequence
-because it was not present in the first tree.
-So, the first tree gives us information about subsequent trees
-that the second tree alone could not.)
 Although \citet{mcvean_approximating_2005} verbally described the SMC
 using this backwards-in-time description, their analysis
 was almost entirely in left-to-right terms,
 and subsequent papers followed this trend
 \citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,rasmussen_genome-wide_2014}.
+Indeed, the resulting tree-valued process along the genome is also Markov.
+Linking this back to the relationship between the ``graph'' and
+``local trees'' representation of
+the ARG, this can be formulated as follows: the distribution of the
+next tree within the series
+of local trees can be generated only knowing the current tree,
+provided that we remove recombinant nodes entirely,
+and erase the unary portions of coalescent nodes.
+To see that the locally unary nodes make the process non-Markov,
+consider that a node in a tree might be unary either because
+it's about to be a coalescent node or it already has been:
+looking at the second tree (Fig.\ref{fig:smc-unary}),
+we know node 5 will be coalescent further down the sequence
+because it was not present in the first tree.
+So, the first tree gives us information about subsequent trees
+that the second tree alone could not.
 
 We now define the process more formally,
 and following the notation of \citet{mcvean_approximating_2005}.
@@ -434,7 +435,7 @@ in other words, a recombination event changes $C_j(t)$ but not $I_{j}(t)$.
 
 To ensure that the ancestral material carried by a single lineage can at
 all time be represented by a single half-open interval, we only update the
-endpoints of the involved lineages following common ancestry or recombination
+endpoints of the involved lineages following common ancestry or recombination events
 such that only the minimal half-open interval whose endpoints have not fully coalesced
 is used to update $L(t)$. Note that empty intervals are not added to the state.
 %By reasoning about the process in this way we can keep representing 
@@ -555,8 +556,8 @@ to some node's out-degree and some node's in-degree.)
     \centering
     \includegraphics[width=0.65\textwidth]{figures/single_event.png}
     \caption{
-        Graphical representation of the events associated with an edge $e(p,c,x_c,y)$.
-        The lineage carried by $c$ spans $[x,y)$ until a recombination event splits it
+        Graphical representation of the events associated with an edge $(p,c,x,y)$.
+        The lineage carried by $c$ spans $[x',y)$ until a recombination event splits it
         into two segments. The right hand segment coalesces at time $t_p$. The time to
         recombination is thus bounded by $(c. \min(t_p, t_{p'})$.
         \label{fig:likelihood}
@@ -576,7 +577,7 @@ we therefore know there was no recombination between $x$ and $y$
 on any of the lineages 
 over this time span,
 the probability of which is
-$\exp(-r \times S)$, where $r$ is the recombination rate
+$\exp(-r \times \mathcal{A})$, where $r$ is the recombination rate
 and $\mathcal{A}$ is the total area (eligbile links times depth) of the edge.
 So, the first contribution to the likelihood from this edge $e$ is
 \begin{equation}\label{eq:span}
