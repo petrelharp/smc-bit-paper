@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.5256208"
-     inkscape:cx="426.83983"
-     inkscape:cy="666.52342"
+     inkscape:zoom="1.7628104"
+     inkscape:cx="350.86622"
+     inkscape:cy="698.64864"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -36,7 +36,7 @@
      inkscape:window-x="340"
      inkscape:window-y="27"
      inkscape:window-maximized="0"
-     showguides="true"
+     showguides="false"
      inkscape:guide-bbox="true">
     <inkscape:grid
        type="xygrid"
@@ -402,7 +402,9 @@
          id="tspan832-1-09-9"
          x="84.534157"
          y="129.95328"
-         style="font-size:4.23333311px;stroke-width:0.26458332">x'</tspan></text>
+         style="font-size:4.23333311px;stroke-width:0.26458332">x<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan884">c</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"

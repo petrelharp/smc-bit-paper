@@ -557,9 +557,11 @@ to some node's out-degree and some node's in-degree.)
     \includegraphics[width=0.65\textwidth]{figures/single_event.png}
     \caption{
         Graphical representation of the events associated with the edge $(p,c,x,y)$.
-        The lineage carried by $c$ spans $[x',y)$ until a recombination event (blue dotted line) splits it
-        into two segments. The right hand segment coalesces at time $t_p$. The time to
-        recombination is thus bounded by $(c. \min(t_p, t_{p'})$.
+        The lineage carried by $c$ spans $[x_c,y)$ until a recombination event (blue dotted line) splits it
+        into two segments. Left and right hand segments coalesce at times $t_p'$ and $t_p$ respectively,
+        bounding the time to recombination by $(c. \min(t_p, t_{p'})$.
+        Note that the contribution to the recombination hazard by edge $(p,c,x,y)$ only covers ``half'' of the
+        green shaded area. The other half is contributed by edge $(p', c, x_c, x)$. 
         \label{fig:likelihood}
     }
 \end{figure}
