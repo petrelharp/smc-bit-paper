@@ -334,25 +334,40 @@ and thus completely ignore such unary nodes
 % % % % % % % % % % % % % % % % % %
 \subsection{SMC backwards-in-time}\label{par:description}
 
-In its backwards-in-time formulation, the SMC \citep{mcvean_approximating_2005} only requires a
+% coalescent introduction: backwards-in-time
+% left-to-right: Wiuf-Hein (difficult)
+% SMC: although easy to reason about left-to-right sense
+% 
+The coalescent process describes the ancestry of a set of sampled genomes.
+The original algorithm 
+to simulate the coalescent with
+recombination was formulated backwards in time
+by Hudson \citep{hudson_properties_1983}. 
+Wiuf and Hein later described
+a tree-by-tree method to simulate the same stochastic process 
+\citep{wiuf_recombination_1999}.
+Such an along-the-genome approach is considerably more complex as the next 
+tree to be simulated depends on all previous trees.
+This idea however provided the basis of the 
+SMC \citep{mcvean_approximating_2005}, restricting the set of all state
+space transitions possible under the Hudson coalescent to
+obtain a process that is Markovian both backwards-in-time, 
+as well as along-the-genome.
+In its backwards-in-time formulation, the SMC only requires a
 simple modification to the coalescent with recombination.
 Instead of allowing any pair of lineages to coalesce,
-the SMC is the process in which only lineages with \emph{overlapping} genomic intervals may coalesce.
-By limiting common ancestry events to overlapping pairs of lineages, we are
-guaranteed that all nodes in the ARG only carry ancestral material, this is,
-genetic material that is inherited by either one of a set of samples \citep{wiuf_ancestry_1999}.
-As such, we only require a single half-open interval to describe the ancestral
-material associated with each common ancestor node in the ARG.
+the SMC is the process in which only lineages with \emph{overlapping} 
+genomic intervals may coalesce. 
 Although \citet{mcvean_approximating_2005} verbally described the SMC
 using this backwards-in-time description, their analysis
 was almost entirely in left-to-right terms,
 and subsequent papers followed this trend
 \citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,rasmussen_genome-wide_2014}.
-Indeed, the resulting tree-valued process along the genome is also Markov.
-Linking this back to the relationship between the ``graph'' and
+Linking the resulting tree-valued process along the genome back to
+the relationship between the ``graph'' and
 ``local trees'' representation of
-the ARG, this can be formulated as follows: the distribution of the
-next tree within the series
+the ARG, the Markovian property can be formulated as follows: 
+the distribution of the next tree within the series
 of local trees can be generated only knowing the current tree,
 provided that we remove recombinant nodes entirely,
 and erase the unary portions of coalescent nodes.
@@ -364,9 +379,22 @@ we know node 5 will be coalescent further down the sequence
 because it was not present in the first tree.
 So, the first tree gives us information about subsequent trees
 that the second tree alone could not.
+Further note that by limiting common ancestry events to overlapping 
+pairs of lineages, we are guaranteed that all nodes in the ARG 
+only carry ancestral material, this is,
+genetic material that is inherited by either one of a set of samples
+\citep{wiuf_ancestry_1999}.
+As such, we only require a single half-open interval to describe
+the ancestral
+material associated with each common ancestor node in the ARG.
 
-We now define the process more formally,
-and following the notation of \citet{mcvean_approximating_2005}.
+We now define the process more formally, by reintroducing
+the notation of \citet{mcvean_approximating_2005} required to describe
+the likelihood computation. This section
+does not deviate from the original description of the SMC apart from
+\textit{how} coalescable pairs are counted. This subtle nuance
+greatly simplifies the ability to keep track of coalescable pairs going
+backwards in time.
 At any point in time, the state of the process is $L(t)$,
 the set of labeled lineages extant at time $t$,
 where each lineage $X_j(t)$ is labeled by an integer $j$
