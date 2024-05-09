@@ -231,7 +231,7 @@ a node is encountered along its ancestry path in the graph representation.
 This results in nodes that (locally) have only a single child, and are therefore
 (locally) unary. By removing recombinant nodes, we limit the information on the time to each
 of these events to the windows (blue shaded array) delimited by by the age of
-the child node $c$ and the minimum age of the parents of the edges connecting to $c$.
+the child node and the minimum age of the parents of the edges connecting to that child node.
 Blue (unary) nodes represent recombinant nodes. The blue arrows show the
 familiar left-to-right logic of the SMC whereby
 the floating lineage coalesces randomly
@@ -247,15 +247,15 @@ Fig.\ref{fig:smc-unary} shows a small ARG
 that describes relationships between four samples on a 100bp piece of genome,
 represented as both a graph (top) and a series of local trees (bottom).
 Both structures represent the same information:
-for instance, the fact that the ancestral genome at $a$
-inherited the left half of its genome from ancestor 6
-and the right half from ancestor 5
-is seen in the fact that the first two trees have $a$ below 6,
-and the remaining have $a$ below 5.
-The blue dotted line from $a$ in the second tree to 5 in the third tree
+for instance, the fact that the ancestral genome at $A$
+inherited the left half of its genome from ancestor $g$
+and the right half from ancestor $f$
+is seen in the fact that the first two trees have $A$ below $g$,
+and the remaining have $A$ below $f$.
+The blue dotted line from $A$ in the second tree to $f$ in the third tree
 draws our attention to the fact that
-the path traced by $a$'s ancestry switches at that point.
-In fact, $a$ is in blue because it is a \emph{recombinant} node --
+the path traced by $A$'s ancestry switches at that point.
+In fact, $A$ is in blue because it is a \emph{recombinant} node --
 an ancestor that has a segment of genome inherited by a sample,
 but that segment was inherited in two pieces from their parent.
 Other nodes (labeled by black numbers) are either samples
@@ -268,12 +268,12 @@ nodes that only have a single child along one or more local trees --
 i.e., are \emph{locally unary}~\citep{wong_general_2023}.
 Recombinant nodes (in blue) have a single child in all trees.
 However, common ancestry nodes can be locally unary as well:
-for instance, sample 3 inherited a longer stretch of genome from ancestor 5
-than did sample 2.
-In the top plot, this is visible because the pink bar below node 5
+for instance, sample $d$ inherited a longer stretch of genome from ancestor $f$
+than did sample $c$.
+In the top plot, this is visible because the pink bar below node $f$
 extends further to the left than does the blue bar,
-while in the bottom plot, this is visible because node 5 is parent to 3
-in the second tree, but not to node 2, and so is unary.
+while in the bottom plot, this is visible because node $f$ is parent to $d$
+in the second tree, but not to node $c$, and so is unary.
 
 %% Noved this section to section on smc
 % A key observation of \citet{mcvean_approximating_2005}
@@ -302,12 +302,12 @@ in the second tree, but not to node 2, and so is unary.
 These locally unary nodes enable
 us to uniquely identify all lineages that were hit by a recombination event,
 even if we simplify the ARG by removing all recombinant nodes
-($a$, $b$, and $c$ in Fig.\ref{fig:smc-unary}).
+($A$, $B$, and $C$ in Fig.\ref{fig:smc-unary}).
 In the absence of these recombinant nodes, a recombination can be observed
 easily enough as a change in parent going from one genomic region to the next.
 Without the recombinant nodes we no longer know the precise time of each recombination event,
 but we do still have constraints on the time:
-for instance, we know that $c$ happened somewhere between node 5 and node 7.
+for instance, we know that $C$ happened somewhere between node $f$ and node $h$.
 More generally, a recombinant node must happen somewhere between the child node
 and the most recent of the parent nodes.
 This is again easier to visualise using the
@@ -375,7 +375,7 @@ To see that the locally unary nodes make the process non-Markov,
 consider that a node in a tree might be unary either because
 it's about to be a coalescent node or it already has been:
 looking at the second tree (Fig.\ref{fig:smc-unary}),
-we know node 5 will be coalescent further down the sequence
+we know node $f$ will be coalescent further down the sequence
 because it was not present in the first tree.
 So, the first tree gives us information about subsequent trees
 that the second tree alone could not.

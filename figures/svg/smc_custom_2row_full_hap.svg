@@ -72,11 +72,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568542"
-     inkscape:cx="546.56571"
-     inkscape:cy="811.16124"
+     inkscape:zoom="2"
+     inkscape:cx="409.90981"
+     inkscape:cy="664.89424"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer1"
      showgrid="false"
      showguides="false"
      inkscape:guide-bbox="true"
@@ -334,7 +334,7 @@
          id="tspan1228"
          x="101.44628"
          y="69.940834"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">a</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -348,11 +348,11 @@
          id="tspan1228-4"
          x="153.79214"
          y="61.226089"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">b</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="132.27687"
+       x="129.10191"
        y="49.586727"
        id="text1230-5"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
@@ -360,9 +360,9 @@
        inkscape:export-ydpi="180"><tspan
          sodipodi:role="line"
          id="tspan1228-7"
-         x="132.27687"
+         x="129.10191"
          y="49.586727"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">c</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">C</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -376,7 +376,7 @@
          id="tspan1228-1"
          x="49.982758"
          y="164.61357"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">a</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -390,7 +390,7 @@
          id="tspan1228-6"
          x="91.469582"
          y="164.61914"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">a</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -404,7 +404,7 @@
          id="tspan1228-77"
          x="132.3378"
          y="164.61418"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">a</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -418,7 +418,7 @@
          id="tspan1228-9"
          x="172.75613"
          y="164.62436"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">a</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -432,7 +432,7 @@
          id="tspan1228-4-4"
          x="182.9752"
          y="155.64896"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">b</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -446,7 +446,7 @@
          id="tspan1228-4-47"
          x="142.71136"
          y="155.64896"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">b</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -460,7 +460,7 @@
          id="tspan1228-4-1"
          x="101.6937"
          y="155.65044"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">b</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -474,7 +474,7 @@
          id="tspan1228-4-3"
          x="60.522427"
          y="155.65044"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">b</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -488,7 +488,7 @@
          id="tspan1228-4-2"
          x="178.29729"
          y="143.96021"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">c</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">C</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -502,7 +502,7 @@
          id="tspan1228-4-2-0"
          x="137.83908"
          y="143.98532"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">c</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">C</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -516,7 +516,7 @@
          id="tspan1228-4-2-5"
          x="102.21809"
          y="143.96959"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">c</tspan></text>
+         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">C</tspan></text>
     <text
        class="lab"
        id="text72-0-1-3"
@@ -1511,7 +1511,7 @@
        y="172.58044"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">3</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">d</text>
     <text
        class="lab"
        id="text80-0"
@@ -1520,7 +1520,7 @@
        y="172.66905"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">2</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text88-6"
@@ -1529,7 +1529,7 @@
        y="172.60843"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">0</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text96-7"
@@ -1538,25 +1538,25 @@
        y="172.65508"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">1</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">b</text>
     <text
        class="lab lft"
        id="text104-9"
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
        x="33.830246"
-       y="158.09973"
+       y="157.57057"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">4</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">e</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
        id="text112-9"
        class="lab lft"
        x="41.007355"
-       y="138.59236"
+       y="137.53404"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">6</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">g</text>
     <text
        class="lab lft"
        id="text120-5"
@@ -1565,7 +1565,7 @@
        y="129.02573"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">7</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">h</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text126-3"
@@ -1574,25 +1574,25 @@
        y="118.65203"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">8</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">i</text>
     <text
        class="lab lft"
        id="text220-9"
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
        x="116.13139"
-       y="158.02356"
+       y="157.4944"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">4</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">e</text>
     <text
        class="lab lft"
        id="text228-2"
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
        x="115.72021"
-       y="138.51213"
+       y="137.45381"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">6</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">g</text>
     <text
        class="lab rgt"
        id="text252-1"
@@ -1601,7 +1601,7 @@
        y="148.02036"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">5</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">f</text>
     <text
        class="lab"
        id="text258-0"
@@ -1610,25 +1610,25 @@
        y="127.83095"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">7</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">h</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
        id="text162-7"
        class="lab lft"
        x="75.160751"
-       y="157.9444"
+       y="157.41524"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">4</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">e</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
        id="text170-8"
        class="lab lft"
        x="82.048798"
-       y="138.50496"
+       y="137.44664"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">6</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">g</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.26458332"
        id="text186-4"
@@ -1637,7 +1637,7 @@
        y="148.03357"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">5</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">f</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text192-7"
@@ -1646,7 +1646,7 @@
        y="127.77816"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">7</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">h</text>
     <text
        class="lab rgt"
        id="text286-7"
@@ -1655,25 +1655,25 @@
        y="148.00169"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">5</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">f</text>
     <text
        class="lab lft"
        id="text310-6"
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
        x="155.86476"
-       y="157.95209"
+       y="157.42293"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">4</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">e</text>
     <text
        class="lab lft"
        id="text318-0"
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
        x="156.08862"
-       y="138.44313"
+       y="137.38481"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">6</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">g</text>
     <text
        class="lab lft"
        id="text326-1"
@@ -1682,7 +1682,7 @@
        y="127.70766"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">7</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">h</text>
     <text
        class="lab lft"
        id="text334-7"
@@ -1691,7 +1691,7 @@
        y="118.59106"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">8</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">i</text>
     <text
        class="lab"
        id="text340-6"
@@ -1700,7 +1700,7 @@
        y="108.39297"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">9</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">j</text>
     <text
        class="lab"
        id="text72-0-17"
@@ -1709,7 +1709,7 @@
        y="172.57974"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">3</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">d</text>
     <text
        class="lab"
        id="text80-0-0"
@@ -1718,7 +1718,7 @@
        y="172.66837"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">2</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text88-6-4"
@@ -1727,7 +1727,7 @@
        y="172.60774"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">0</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text96-7-0"
@@ -1736,7 +1736,7 @@
        y="172.65437"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">1</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">b</text>
     <text
        class="lab"
        id="text72-0-8"
@@ -1745,7 +1745,7 @@
        y="172.57695"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">3</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">d</text>
     <text
        class="lab"
        id="text80-0-5"
@@ -1754,7 +1754,7 @@
        y="172.66556"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">2</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text88-6-1"
@@ -1763,7 +1763,7 @@
        y="172.60493"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">0</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text96-7-6"
@@ -1772,7 +1772,7 @@
        y="172.65158"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">1</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">b</text>
     <text
        class="lab"
        id="text72-0-6"
@@ -1781,7 +1781,7 @@
        y="172.60767"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">3</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">d</text>
     <text
        class="lab"
        id="text80-0-2"
@@ -1790,7 +1790,7 @@
        y="172.69627"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">2</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text88-6-19"
@@ -1799,7 +1799,7 @@
        y="172.63565"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">0</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text96-7-64"
@@ -1808,7 +1808,7 @@
        y="172.6823"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">1</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">b</text>
     <text
        class="lab"
        id="text72-0-1"
@@ -1817,7 +1817,7 @@
        y="78.281548"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">3</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">d</text>
     <text
        class="lab"
        id="text80-0-02"
@@ -1826,7 +1826,7 @@
        y="78.370155"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">2</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text88-6-2"
@@ -1835,7 +1835,7 @@
        y="78.309547"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">0</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text96-7-9"
@@ -1844,52 +1844,52 @@
        y="78.356178"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">1</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">b</text>
     <text
        class="lab lft"
        id="text104-9-8"
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
-       x="56.289833"
-       y="63.760674"
+       x="58.406502"
+       y="63.231506"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">4</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">e</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
        id="text112-9-9"
        class="lab lft"
        x="68.758606"
-       y="44.253212"
+       y="43.194878"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">6</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">g</text>
     <text
        class="lab lft"
        id="text120-5-7"
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
-       x="82.362373"
-       y="34.686413"
+       x="87.654045"
+       y="34.157246"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">7</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">h</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
        id="text126-3-7"
        class="lab"
-       x="103.09161"
+       x="103.62078"
        y="24.312693"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">8</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">i</text>
     <text
        style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.26458332"
        id="text186-4-6"
        class="lab rgt"
-       x="126.83987"
+       x="128.42737"
        y="53.757118"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">5</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">f</text>
     <text
        class="lab"
        id="text340-6-4"
@@ -1898,7 +1898,7 @@
        y="14.11626"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">9</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">j</text>
     <rect
        style="display:inline;opacity:1;fill:#000000;fill-opacity:1;stroke:#330a3c;stroke-width:0.05291667;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4824"
@@ -2020,7 +2020,7 @@
        y="118.59105"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">8</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">i</text>
     <path
        class="edge"
        d="m 92.02734,130.40294 v -9.74328 0"
@@ -2048,7 +2048,7 @@
        y="118.59111"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">8</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">i</text>
     <path
        class="edge"
        d="m 126.7043,120.65966 v -9.74328 0"
@@ -2076,7 +2076,7 @@
        y="108.39799"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">9</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">j</text>
     <path
        class="edge"
        d="m 92.02734,120.65966 v -9.74328 0"
@@ -2104,7 +2104,7 @@
        y="108.39796"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">9</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">j</text>
     <path
        class="edge"
        d="m 50.752342,120.65966 v -9.74328 0"
@@ -2132,7 +2132,7 @@
        y="108.39799"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
-       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">9</text>
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">j</text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 129.03753,16.583007 V 14.108444"
