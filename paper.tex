@@ -29,16 +29,8 @@
 \usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
 \renewcommand{\figurename}{Fig}
 
-% deal with supplementary items
-\newcommand{\supplementarysection}{%
-  \setcounter{figure}{0}% Reset figure counter
-  \let\oldthefigure\thefigure% Capture figure numbering scheme
-  \renewcommand{\thefigure}{S\oldthefigure}% Prefix figure number with S
-  \section{Supplementary section}% Set supplementary section
-}
-
 % adjust inter-paragraph spacing - this one's for you, Gertjan
-\setlength{\parskip}{0.5\baselineskip}
+% \setlength{\parskip}{0.5\baselineskip}
 
 \begin{document}
 
@@ -721,8 +713,7 @@ given parameters $\theta$ then is
 \end{equation}
 One significant advantage of this formulation is that the computation time
 is linear in the number of edges, and an algorithm can be devised to 
-to efficiently keep track of $I_e(t)$ (see supplementary information 
-\ref{par:algo}).
+to efficiently keep track of $I_e(t)$ (see Appendix).
 % Although the first two factors are easily expressed in terms of numbers of edges and nodes,
 % we will see below
 % that in practice it is convenient to absorb these terms into per-edge contributions.
@@ -961,18 +952,39 @@ An implementation of the algorithm is available on https://github.com/gertjanbis
 \bibliographystyle{plainnat}
 \bibliography{refs.bib,paper.bib}
 
-\pagebreak
+\setcounter{secnumdepth}{2} % Print out appendix section numbers
 
-\supplementarysection
-\section*{Supplementary Information}
+\section*{Appendix}
+\appendix
+
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+\renewcommand{\thefigure}{A\arabic{figure}}
 
 % % % % % % % % % % % % % % % % % %
-\subsection{Algorithm} \label{par:algo}
+\subsection*{Algorithm} \label{par:algo}
+In this section we describe how to efficiently compute the likelihood under the SMC
+from an ARG stored using the \texttt{tskit} tree sequence encoding. 
+The tree sequence format encodes relationships using \emph{edges},
+along with additional information that
+allows us to sequentially recover (and reason about 
+their differences) 
+efficiently~\citep{kelleher_efficient_2016, ralph_efficiently_2020}.
+The order of the edge deletions and insertions required to move from one local tree $T_1$ to
+the next, $T_2$ imposes the strict total ordering on edges
+(see definition \eqref{def:coal})
+that is needed to efficiently maintain the state of $I_e(t)$ for each focal edge $e$.
+Indeed, following the removal of edges that do not persist in $T_2$,
+we simply declare that each subsequently added edge
+can only coalesce with the already-visited edges 
+that make up the (partially) reconstructed local tree $T_2$.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\textwidth]{figures/ts_algo_2rows.png}
-\caption{Description of algorithm: Moving along the genome we transition from
+\caption{Likelihood computation algorithm. 
+Moving along the genome we transition from
 local tree $T_1$ to the next, $T_2$ in three steps. 
 Edges that do not persist in $T_2$ are
 removed first. Edges starting at the left coordinate of $T_2$ are inserted.
@@ -984,33 +996,19 @@ coalesce with. By moving along the genome in this way, each edge gets visited ex
 \label{fig:algo}
 \end{figure}
 
-Here, we describe how to efficiently compute the likelihood under the SMC
-from an ARG stored using the \emph{tree sequence} encoding. %  (see fig. \ref{fig:smc-unary}).
-The tree sequence format encodes relationships using \emph{edges}
-just as described above,
-along with additional structure that
-allows us to sequentially recover the local trees
-along the genome very efficiently, and to reason about
-the differences between those trees \citep{kelleher_efficient_2016, ralph_efficiently_2020}.
-The order of the edge deletions and insertions required to move from one local tree $T_1$ to
-the next, $T_2$ imposes the required strict total ordering on edges
-(see definition \ref{def:coal})
-that is needed to efficiently maintain the state of $I_e(t)$ for each focal edge $e$.
-Indeed, following the removal of edges that do not persist in $T_2$,
-we simply declare that each subsequently added edge
-can only coalesce with the already-visited edges 
-that make up the (partially) reconstructed local tree $T_2$.
-
 This allows us to compute a likelihood in a single pass over all edges.
 More concretely, the likelihood is computed by maintaining a single vector $I$ that tracks
-the number of extant lineages in each internode interval (see fig \ref{fig:algo}).
-When moving from $T_1$ to $T_2$, the vector $I$ is first decremented along the internode intervals
+the number of extant lineages in each internode interval (see Fig.~\ref{fig:algo}).
+When moving from $T_1$ to $T_2$, the vector $I$ is first decremented along 
+the internode intervals
 spanned by the time of the child and the parent of all edges that do not persist in $T_2$.
 For each subsequently inserted edge, we first compute the likelihood contribution
 of that edge by computing the integral
 in equation \eqref{eq:full-lik} using $I$, and then update the counts in $I$.
 We further keep track of
 the last parent a child node was connected to to detect recombination events.
+
+[TODO another paragraph summarising what you actually do]
 
 % There is probably no need to potentially confuse people with this detail
 %Remark: better to describe edges here as edge-intervals, each describing a
