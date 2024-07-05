@@ -67,6 +67,9 @@ ARG space around the point estimate, or likelihood-based inference.
 \end{abstract}
 
 \section{Introduction}
+% TODO need to rewrite this as its too tskit-centric. We don't need to 
+% emphasise tskit/msprime so much here, it's not necessary and will 
+% annoy people. 
 Following recent breakthroughs in simulation and inference methods,
 there is now intense interest in applying Ancestral Recombination Graphs (ARGs)
 to a variety of questions in evolutionary
@@ -147,16 +150,29 @@ lacks a simple geometry or neighbourhood structure for inference or
 sampling methods to  exploit.
 The introduction of the Sequentially Markovian Coalescent (SMC)
 approximation to the coalescent with recombination
-by~\cite{mcvean_approximating_2005} was a seminal contribution,
-and has made many different inferences
+\citep{mcvean_approximating_2005} 
+and its refinement in the SMC'~\citep{marjoram_fast_2006},
+are the basis of many powerful inference 
 % TODO add some more recent stuff
-feasible~\citep[e.g.]{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014}.
+methods~\citep[e.g.]{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014}.
 In particular, the SMC is the basis for ARG sampling methods
-like ARGweaver~\citep{rasmussen_genome-wide_2014}, which remains the
-% TODO list other places ARGweaver has come out on top in terms of accuracy.
-gold-standard in terms of accuracy~\citep{brandt2022evaluation}
+like ARGweaver~\citep{rasmussen_genome-wide_2014} and 
+SINGER~\citep{deng_robust_2024}, which are the gold-standard 
+in terms of inference accuracy.
+ARGweaver has consistently out-performed other methods in terms 
+of accuracy in a variety of benchmarks~\citep{brandt2022evaluation},
+and, while SINGER has not been evaluated as thoroughly yet, it promises
+to be even more accurate as well as substantially more scalable 
+computationally~\citep{deng_robust_2024}.
 
 % THE PROBLEM!!! OMG it's terrible!!!
+Despite these recent advances in statistically rigorous ARG 
+inference, however, there is still a gap of some three orders 
+of magnitude between the sample-sizes that can be handled 
+(hundreds) compared to the large-scale hueristic methods
+like tsinfer and ARGneedle (hundreds of thousands).
+[TODO working through a more positive narrative here, based on
+the idea of combining the strengths of the approaches]
 Although major breakthroughs in scale have been achieved by hueristic
 ARG inference
 methods~\citep{kelleher_inferring_2019,speidel_method_2019,zhang_biobank-scale_2023},
