@@ -244,7 +244,7 @@ we mean that each node in the ARG represents a specific (ancestral) genome,
 and that the ARG specifies the genealogical tree describing how the samples are related
 at each point on the genome.
 
-\begin{figure}[!ht]
+\begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/smc_custom_2rows_area_full_hap.png}
 \caption{ARG generated under the SMC, represented as a graph (top) and as a
@@ -283,7 +283,8 @@ an ancestor that has a segment of genome inherited by a sample,
 but that segment was inherited in two pieces from their parent.
 Other nodes (labeled by black numbers) are either samples
 or \emph{common ancestry} nodes --
-ancestors that are the most recent common ancestor for two samples
+ancestors that are the most recent common ancestor for two 
+or more samples
 at some place along the genome.
 
 Crucial for the equivalence between both representations is the presence of
@@ -345,7 +346,7 @@ Currently,
 \argweaver{} \citep{rasmussen_genome-wide_2014},
 \tsinfer{} \citep{kelleher_inferring_2019},
 \kwarg{} \citep{ignatieva_kwarg_2021}, and
-\texttt{SINGER} \citep{deng2024robust} estimate ARGs 
+\texttt{SINGER} \citep{deng_robust_2024} estimate ARGs 
 including unary portions of coalescence nodes.
 However, it is unclear to what degree these are well-inferred,
 as most evaluation of inferred ARGs thus far has focused on marginal trees
@@ -365,7 +366,7 @@ The coalescent process describes the ancestry of a set of sampled genomes.
 The original algorithm 
 to simulate the coalescent with
 recombination was formulated backwards in time
-by Hudson \citep{hudson_properties_1983}. 
+by Hudson \citeyearpar{hudson_properties_1983}. 
 Wiuf and Hein later described
 a tree-by-tree method to simulate the same stochastic process 
 \citep{wiuf_recombination_1999}.
@@ -380,12 +381,14 @@ In its backwards-in-time formulation, the SMC only requires a
 simple modification to the coalescent with recombination.
 Instead of allowing any pair of lineages to coalesce,
 the SMC is the process in which only lineages with \emph{overlapping} 
-genomic intervals may coalesce. 
+genomic intervals may coalesce. (The SMC' additionally allows 
+lineages with abutting genomic intervals to coalesce.)
 Although \citet{mcvean_approximating_2005} verbally described the SMC
 using this backwards-in-time description, their analysis
 was almost entirely in left-to-right terms,
 and subsequent papers followed this trend
-\citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,rasmussen_genome-wide_2014}.
+\citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,
+rasmussen_genome-wide_2014}.
 Linking the resulting tree-valued process along the genome back to
 the relationship between the ``graph'' and
 ``local trees'' representation of
@@ -396,9 +399,10 @@ provided that we remove recombinant nodes entirely,
 and erase the unary portions of coalescent nodes.
 To see that the locally unary nodes make the process non-Markov,
 consider that a node in a tree might be unary either because
-it's about to be a coalescent node or it already has been:
-looking at the second tree (Fig.\ref{fig:smc-unary}),
-we know node $f$ will be coalescent further down the sequence
+it's about to be (in the left-to-right sense) a coalescent node 
+or it already has been:
+looking at the second tree in Fig.\ref{fig:smc-unary},
+we know node $f$ will be coalescent further along the sequence
 because it was not present in the first tree.
 So, the first tree gives us information about subsequent trees
 that the second tree alone could not.
@@ -415,7 +419,7 @@ We now define the process more formally, by reintroducing
 the notation of \citet{mcvean_approximating_2005} required to describe
 the likelihood computation. This section
 does not deviate from the original description of the SMC apart from
-\textit{how} coalescable pairs are counted. This subtle nuance
+how coalescable pairs are counted. This subtle nuance
 greatly simplifies the ability to keep track of coalescable pairs going
 backwards in time.
 At any point in time, the state of the process is $L(t)$,
@@ -460,20 +464,18 @@ I_{jk} = \begin{cases}
     0 & \text{otherwise.}
 \end{cases}
 \end{equation}
-We say that lineage $k$ can coalesce \emph{into} lineage $j$ if $I_{jk} = 1$. From the
-definition of the strict total order it follows that
-if $I_{jk} = 1$ then $I_{kj} = 0$.
-
-For future use, define $C_j(t)$ to be the set of lineages that can coalesce into lineage $j$,
-i.e., $C_j(t) = \{X_k \in L(t) | I_{jk}(t) = 1\}$. And therefore, 
-$|C_j(t)| = I_{j}(t) = \sum_{k} I_{jk}(t)$,
-and the total rate of coalescence at time $t$ is $\sum_{j} |C_j(t)|$.
+We say that lineage $k$ can coalesce \emph{into} lineage $j$ if $I_{jk} = 1$.
+From the definition of the strict total order it follows that if $I_{jk} = 1$
+then $I_{kj} = 0$. For later use, also define $C_j(t)$ to be the set of
+lineages that can coalesce into lineage $j$, i.e., 
+$C_j(t) = \{X_k \in L(t) | I_{jk}(t) = 1\}$; 
+thus, $|C_j(t)| = I_{j}(t) = \sum_{k} I_{jk}(t)$,
+and the total rate of coalescence at time $t$ is $\sum_{j} |C_j(t)|$. 
 Because $I_{jk}$ is defined in terms of a total order, the sets $C_j(t)$ are disjoint,
-which will simplify the likelihood computations.
-In particular,
-although recombination affects \emph{which} lineages can coalesce into $j$,
-it does not change the \emph{number} of such lineages:
-in other words, a recombination event changes $C_j(t)$ but not $I_{j}(t)$.
+which will simplify the likelihood computations. In particular, although
+recombination affects \emph{which} lineages can coalesce into $j$, it does not
+change the \emph{number} of such lineages: in other words, a recombination
+event changes $C_j(t)$ but not $I_{j}(t)$.
 
 %% I have updated the description of the process below to avoid having to
 % define yet another symbol.
@@ -484,6 +486,7 @@ in other words, a recombination event changes $C_j(t)$ but not $I_{j}(t)$.
 %    N(t,z) = \vert\{j : z \in X_j(t) \} \vert
 %\end{equation}
 
+[Do we need to get into this above-the-root subtelty here?]
 To ensure that the ancestral material carried by a single lineage can at
 all time be represented by a single half-open interval, we only update the
 endpoints of the involved lineages following common ancestry or recombination events
@@ -561,37 +564,37 @@ to cleanly factor the likelihood of the ARG across its edges and nodes.
 Not only does recombination
 naturally only affect one lineage at a time without even depending
 on the state of other lineages. Common ancestry events can be equally
-associated with a single edge given definition \ref{def:coal}.
+associated with a single edge given definition \eqref{def:coal}.
 The next paragraphs detail precisely how the number and the nature of the realized events
 can be determined based on the number of
 parents and children of each of the nodes in $N$ as well as how the total hazard can be
 factorized into the individual contributions of each of the edges.
 
 More specifically,
-let $\deg_o(n) = \vert\{e \in E : p_e=n\}\vert$ be the out-degree of a node $n$,
-i.e., the number of edges having $n$ as a parent.
+let $\deg_o(u) = \vert\{e \in E : p_e=u\}\vert$ be the out-degree of a node $u$,
+i.e., the number of edges having $u$ as a parent.
 Since mergers are binary in the SMC,
-this must have been the result of $\deg(n) - 1$ common ancestry events,
-and so this contributes a factor of $\lambda^{\deg_o(n)-1}$ to the likelihood
+this must have been the result of $\deg(u) - 1$ common ancestry events,
+and so this contributes a factor of $\lambda^{\deg_o(u)-1}$ to the likelihood
 for nodes with any children.
 Note however that this description is general and holds for the case of
 more-than-binary mergers. Indeed, inferred ARGs (e.g.\ \texttt{tsinfer}) may
 contain polytomies. By treating these as if there were zero-length edges
-between a sequence of mergers; the order of these unresolved mergers does 
+between a sequence of mergers, the order of these unresolved mergers does 
 not affect the likelihood. Under the SMC the likelihood of a zero-length edge is zero.
 This is not special: since edge lengths are continuously distributed,
 the likelihood of any particular value is also zero.
 
 Similarly,
-let $\deg_i(n) = \vert\{e \in E : c_e=n\}\vert$ be the in-degree of a node $n$,
-i.e., the number of edges having $n$ as a child.
+let $\deg_i(u) = \vert\{e \in E : c_e=u\}\vert$ be the in-degree of a node $u$,
+i.e., the number of edges having $u$ as a child.
 Each additional edge that is ancestral to a given node
 implies one additional ancestral recombination event,
-and thus a factor of  $r^{\deg_i(n)-1}$ in the likelihood,
+and thus a factor of  $r^{\deg_i(u)-1}$ in the likelihood,
 if the node has any parents.
 Put together, these two contribute
 \begin{equation}\label{eq:coal}
-    \prod_{n \in N} \lambda^{\deg_o(n)-1} r^{\deg_i(n)-1}  
+    \prod_{u \in N} \lambda^{\deg_o(u)-1} r^{\deg_i(u)-1}  
     =
     r^{|E|-|N|+n_r} 
     \lambda^{|E|-|N|+n_s} 
@@ -624,20 +627,20 @@ from the time of the child $c$ (call this time $t_c$)
 back to the time of the parent $p$ (again, $t_p$),
 that contained the segment $[x,y)$,
 and the lineage that directly inherited from $p$
-had the segment $[x,y)$ (see fig.\ \ref{fig:likelihood}).
+had the segment $[x,y)$ (see Fig.~\ref{fig:likelihood}).
 Under the SMC,
 we therefore know there was no recombination between $x$ and $y$
 on any of the lineages 
 over this time span,
 the probability of which is
 $\exp(-r \times \mathcal{A})$, where $r$ is the recombination rate
-and $\mathcal{A}$ is the total area (eligbile links times depth) of the edge.
+and $\mathcal{A}$ is the total area (eligible links times depth) of the edge.
 So, the first contribution to the likelihood from this edge $e$ is
 \begin{equation}\label{eq:span}
 A_e(r) = \exp(-r (y-x - \mathbbm{1}_{x > x_c})(t_p - t_{c})) .
 \end{equation}
 Note that if a recombination did occur, then the number of links not
-affected by recombination is 1 less (see eq.\ \ref{eq:depth}).
+affected by recombination is 1 less (see eq.~\eqref{eq:depth}).
 
 Finally, we turn to the hazard associated with common ancestry events.
 To do this,
@@ -653,7 +656,7 @@ Using this total order, we can define
 $I_e(t)$ to be the total number of earlier edges that overlap edge $e$
 and are present at time $t$.
 Then, the cumulative hazard for common ancestry events of edge $e$
-between time $s$ and $t$ is given by $F(e, s, t) = \int_{s}^{t} I_{e}(u) du$.
+between time $s$ and $t$ is given by $F(e, s, t) = \int_{s}^{t} I_{e}(z) dz$.
 If the edge $e = (p,c,x,y)$
 is the leftmost segment of material inherited by node $c$
 (e.g., the left hand segment ancestral to node $c$
@@ -661,7 +664,7 @@ in fig.\ ~\ref{fig:likelihood}),
 then no recombination occurred along this edge and 
 this edge simply contributes $\exp(-F(e,t_c,t_p))$ to the likelihood.
 However, if the edge is \emph{not} the leftmost segment
-(as shown in fig.\ \ref{fig:likelihood}),
+(as shown in Fig.~\ref{fig:likelihood}),
 then it was initiated by a new recombination breakpoint,
 and we need to integrate over possible times the breakpoint occurred.
 If this is the case, there is another edge $(p',c,x',x)$ with the same child node,
