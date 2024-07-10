@@ -68,11 +68,11 @@ estimate cannot easily be connected with population genetic theory.
 Specifically, because the estimated ARGs lack detail about recombination
 events, there is currently no way to compute their likelihood
 under a population genetics model. In this paper we provide a 
-backwards-time formulation of the SMC based on a total ordering of 
-lineages, and show how this leads to straightforward description 
-of the likelihood of a general class of ARG under the SMC. We show that this 
-formulation does not require precise details of recombination events
-to be estimated, and is robust to other topological issues such as 
+novel backwards-time formulation of the SMC 
+and derive a straightforward definition of the likelihood
+of the likelihood of a general class of ARG under the SMC. 
+We show that this formulation does not require precise details of recombination events
+to be estimated, and is robust to other topological inconveniences such as 
 polytomies. This opens up many future directions, most excitingly the possibility
 of combining the strengths of both inference approaches. Applying
 these ideas may allow us to 
@@ -81,9 +81,6 @@ more rigorous.
 \end{abstract}
 
 \section{Introduction}
-% TODO need to rewrite this as its too tskit-centric. We don't need to 
-% emphasise tskit/msprime so much here, it's not necessary and will 
-% annoy people. 
 Following recent breakthroughs in simulation and inference methods,
 there is now intense interest in applying Ancestral Recombination Graphs (ARGs)
 to a variety of questions in evolutionary
@@ -94,8 +91,8 @@ recombination~\citep{hudson_properties_1983,griffiths_ancestral_1996,wong_genera
 and contain rich detail about ancestral processes.
 % TODO rephrase this a bit, would be a lot of duplication of references
 % in the current formulation.
-Applications using inferred ARGs as input have begun to
-appear~\citep{
+Numerous applications taking advantage of this detailed history
+in inferred ARGs are now appearing~\citep{
 stern_approximate_2019,
 osmond_estimating_2021,
 fan_genealogical_2022,
@@ -110,28 +107,42 @@ fan_likelihood_2023,
 huang_estimating_2024,
 grundler_geographic_2024,
 korfmann_simultaneous_2024,
-deraje_inferring_2024}.
-Additionally, there is a rich suite of tools growing around
-the \texttt{tskit} ARG library~\citep{ralph_efficiently_2020}
-including simulation~\citep{kelleher_efficient_2016,kelleher_efficient_2018,
-adrion_community_2020,terasaki_geonomics_2021,
-baumdicker_efficient_2021,
-korfmann_weak_2022, petr_slendr_2023,tagami_tstrait_2024},
-ARG inference~\citep{kelleher_inferring_2019,speidel_method_2019,
-wohns_unified_2022,mahmoudi_bayesian_2022,
-rasmussen_espalier_2022,
-zhang_biobank-scale_2023,zhan_towards_2023} and analysis
-packages
-% etc
-\citep{nowbandegani_extremely_2023,fan_likelihood_2023}.
-Infererence methods now tend to fall into two classes: those that
-sample from a statistical
-model~\citep{rasmussen_genome-wide_2014,hubisz_mapping_2020,mahmoudi_bayesian_2022,
-deng_robust_2024}
-or parsimony~\citep{ignatieva_kwarg_2021,rasmussen_espalier_2022},
-and those based on
-heuristics~\citep{kelleher_inferring_2019,speidel_method_2019,
-zhang_biobank-scale_2023}.
+deraje_inferring_2024}
+and it seems likely that many more will
+follow~\citep{harris_database_2019,harris_using_2023}.
+Three classes of ARG inference method have emerged as the focus of recent
+work, and have all been successfully applied in different contexts. 
+Parsimony
+based methods~\citep{ignatieva_kwarg_2021,rasmussen_espalier_2022}
+seek to minimise some aspect of the inferred ARG
+(usually the number number of recombinations required), and work well for 
+answering specific detailed questions about 
+recombination~\citep[e.g.][]{ignatieva_ongoing_2022} when the expected
+number of ancestral recombinations is small (tens to hundreds).
+The second class of inference method is based on sampling ARGs statistically 
+from a population genetics model~\citep{rasmussen_genome-wide_2014,
+hubisz_mapping_2020,mahmoudi_bayesian_2022, deng_robust_2024}, and have 
+been applied in several
+contexts~\citep[e.g.][]{de_chimpanzee_2016,shriner_whole_2018,hejase_genomic_2020,
+stankowski_genetic_2024}. These methods are well-suited to applications 
+in which population genetics models are a good fit [TODO: Say this differently, 
+I just want to distinguish from e.g. SARS-CoV-2 where pop gen models are 
+basically meaningless]
+in cases in which the expected number of recombinations is in the 
+thousands to tens-of-thousands range (e.g., human datasets in which
+we have X samples and a segment of Y Mb of chromosome [TODO quantify
+from SINGER paper). 
+The third class of inference method and based on heuristics
+and approximate models and focus on large scale inference,
+where the expected number of recombinations is in the millions or
+tens of millions [TODO check numbers here]~\citep{kelleher_inferring_2019,
+speidel_method_2019,zhang_biobank-scale_2023}.
+Other methods specialised to particular applications have also 
+recently been proposed~\citep{zhan_towards_2023,schaefer_ancestral_2021}.
+See~\cite{wong_general_2023} for a detailed review of ARG inference 
+methods.
+
+
 Typically, the more rigorous approaches can handle 10-100 samples,
 while the approximate methods can scale to 10s to hundreds of
 thousands of samples. With the explosive growth in dataset
@@ -198,7 +209,8 @@ Specifically,
 we cannot evaluate a likelihood of these ARGs in coalescent 
 models under the classical 
 \cite{kuhner_maximum_2000} formulation, as these formulations assume
-that complete information about recombination events is present.
+that complete information about recombination events is present
+[Also: \cite{guo_recombination-aware_2022}]
 [NOTE the following is super weak, and needs a lot of work.]
 This inability to connect the results of large-scale inference methods
 with a generative model
@@ -927,6 +939,19 @@ from the space of all compatible genealogies. Uncertainty could also
 be quantified and passed on as metadata to the nodes in the data format storing the ARG.
 
 
+% Additionally, there is a rich suite of tools growing around
+% the \texttt{tskit} ARG library~\citep{ralph_efficiently_2020}
+% including simulation~\citep{kelleher_efficient_2016,kelleher_efficient_2018,
+% adrion_community_2020,terasaki_geonomics_2021,
+% baumdicker_efficient_2021,
+% korfmann_weak_2022, petr_slendr_2023,tagami_tstrait_2024},
+% ARG inference~\citep{kelleher_inferring_2019,speidel_method_2019,
+% wohns_unified_2022,mahmoudi_bayesian_2022,
+% rasmussen_espalier_2022,
+% zhang_biobank-scale_2023,zhan_towards_2023} and analysis
+% packages
+% % etc
+% \citep{nowbandegani_extremely_2023,fan_likelihood_2023}.
 %% NOTE: this is some orphan text from the intro that can be rejiggered for the 
 % discussion. We can talk about precision of recombination estimates a bit 
 % here I think, as it is an important topic.
