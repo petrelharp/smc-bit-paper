@@ -68,11 +68,11 @@ estimate cannot easily be connected with population genetic theory.
 Specifically, because the estimated ARGs lack detail about recombination
 events, there is currently no way to compute their likelihood
 under a population genetics model. In this paper we provide a 
-backwards-time formulation of the SMC based on a total ordering of 
-lineages, and show how this leads to straightforward description 
-of the likelihood of a general class of ARG under the SMC. We show that this 
-formulation does not require precise details of recombination events
-to be estimated, and is robust to other topological issues such as 
+novel backwards-time formulation of the SMC 
+and derive a straightforward definition of the likelihood
+of the likelihood of a general class of ARG under the SMC. 
+We show that this formulation does not require precise details of recombination events
+to be estimated, and is robust to other topological inconveniences such as 
 polytomies. This opens up many future directions, most excitingly the possibility
 of combining the strengths of both inference approaches. Applying
 these ideas may allow us to 
@@ -81,9 +81,6 @@ more rigorous.
 \end{abstract}
 
 \section{Introduction}
-% TODO need to rewrite this as its too tskit-centric. We don't need to 
-% emphasise tskit/msprime so much here, it's not necessary and will 
-% annoy people. 
 Following recent breakthroughs in simulation and inference methods,
 there is now intense interest in applying Ancestral Recombination Graphs (ARGs)
 to a variety of questions in evolutionary
@@ -94,8 +91,8 @@ recombination~\citep{hudson_properties_1983,griffiths_ancestral_1996,wong_genera
 and contain rich detail about ancestral processes.
 % TODO rephrase this a bit, would be a lot of duplication of references
 % in the current formulation.
-Applications using inferred ARGs as input have begun to
-appear~\citep{
+Numerous applications taking advantage of this detailed history
+in inferred ARGs are now appearing~\citep{
 stern_approximate_2019,
 osmond_estimating_2021,
 fan_genealogical_2022,
@@ -110,117 +107,107 @@ fan_likelihood_2023,
 huang_estimating_2024,
 grundler_geographic_2024,
 korfmann_simultaneous_2024,
-deraje_inferring_2024}.
-Additionally, there is a rich suite of tools growing around
-the \texttt{tskit} ARG library~\citep{ralph_efficiently_2020}
-including simulation~\citep{kelleher_efficient_2016,kelleher_efficient_2018,
-adrion_community_2020,terasaki_geonomics_2021,
-baumdicker_efficient_2021,
-korfmann_weak_2022, petr_slendr_2023,tagami_tstrait_2024},
-ARG inference~\citep{kelleher_inferring_2019,speidel_method_2019,
-wohns_unified_2022,mahmoudi_bayesian_2022,
-rasmussen_espalier_2022,
-zhang_biobank-scale_2023,zhan_towards_2023} and analysis
-packages
-% etc
-\citep{nowbandegani_extremely_2023,fan_likelihood_2023}.
-Infererence methods now tend to fall into two classes: those that
-sample from a statistical
-model~\citep{rasmussen_genome-wide_2014,hubisz_mapping_2020,mahmoudi_bayesian_2022,
-deng_robust_2024}
-or parsimony~\citep{ignatieva_kwarg_2021,rasmussen_espalier_2022},
-and those based on
-heuristics~\citep{kelleher_inferring_2019,speidel_method_2019,
-zhang_biobank-scale_2023}.
-Typically, the more rigorous approaches can handle 10-100 samples,
-while the approximate methods can scale to 10s to hundreds of
-thousands of samples. With the explosive growth in dataset
+deraje_inferring_2024}
+and it seems likely that many more will
+follow~\citep{harris_database_2019,harris_using_2023}.
+Although there are many different approaches to ARG
+inference~\citep{wong_general_2023}, two broad classes of method
+have been the focus of most recent interest.
+
+% TODO Maybe swap the order of these two paragraphs around, so it's 
+% more natrual to talk about the advantages of model-driven stuff next.
+The first class of inference methods are statistically rigorous approaches
+that sample ARGs under a population genetics model such as the
+coalescent with recombination~\citep{hudson_properties_1983},
+and its approximatation, the Sequentially Markovian
+Coalescent~\citep{mcvean_approximating_2005,marjoram_fast_2006}.
+ARGweaver~\citep{rasmussen_genome-wide_2014} is the most popular,
+consistently out-performed other methods in terms 
+of accuracy in a variety of benchmarks~\citep{brandt2022evaluation}[MORE
+citations,anywhere ARGweaver has been tested for accuracy]
+and has succesfully been applied in several
+contexts~\citep[e.g.][]{de_chimpanzee_2016,shriner_whole_2018,hejase_genomic_2020,
+stankowski_genetic_2024}. 
+ARGweaver works [by explanation.]
+The recently-introduced SINGER method takes a similar approach [doing something 
+slightly different]~\citep{deng_robust_2024}.
+While SINGER has not been evaluated as thoroughly as ARGweaver yet, it promises
+to be even more accurate while being substantially more
+scalable~\citep{deng_robust_2024}. 
+
+The second class of inference method that has been of recent interest 
+is based on heuristics and approximate models.
+Relate~\citep{speidel_method_2019},
+tsinfer~\citep{kelleher_inferring_2019} and 
+ARG-Needle~\citep{zhang_biobank-scale_2023} work on quite different 
+principles, but share some common properties. Firstly, they are all 
+hueristic and approximation driven, favouring computational
+scalability over statistical rigor, and lacking a direct 
+connection to population genetic theory. 
+Secondly, they all produce a single
+ARG as output, inferring a deterministic point estimate with no means 
+of quantifying uncertainty. Thirdly (and most importantly for the 
+purposes of this paper) the ARGs they produce lack substantial
+detail about ancestral recombination events: the estimates are
+rough sketches, hopefully capturing large-scale properties, but lacking
+in the finer detail of outputs of ARGweaver or SINGER. 
+
+There are substantial advantages to the statistically rigorous sampling 
+approaches of ARGweaver and SINGER. Firstly, they tend to be more 
+accurate; ARGweaver has consistently out-performed other methods in terms 
+of accuracy in a variety of benchmarks~\citep{brandt2022evaluation}[MORE
+citations,anywhere ARGweaver has been tested for accuracy]
+and, while SINGER has not been evaluated as thoroughly yet, it promises
+to be even more accurate~\citep{deng_robust_2024}. 
+Secondly, the direct connection with
+population genetic models greatly aids interpretability, and allows for
+natural extensions like the joint estimation of ARGs and
+demography~\citep{hubisz_mapping_2020}. Thirdly, sampling ARGs from a
+posterior distribution provides a means of quantifying the uncertainty 
+around estimates, which can be used in downstream applications [citation
+of this?]. 
+
+[Needs more work]
+Despite these significant advantages over hueristic methods, however,
+hueristic methods remain of interest because of the profound difference
+in computational scalability between these approaches. Even with the 
+major advances made in this direction by SINGER, ARG inference is 
+only feasible for hundreds of samples. Tsinfer and ARG-Needle have 
+been applied to datasets of hundreds of \emph{thousands} of samples.
+With the explosive growth in dataset
 sizes in recent years~\citep[e.g.][]{bycroft_genome_2018,halldorsson_sequences_2022,
 all_genomic_2024} there is a pressing need for more statistical
-rigor in large scale ARG inference.
+rigor in large scale ARG inference. 
+% This inability to connect the results of large-scale inference methods
+% with a generative model
+% is a fundamental limitation, and limits both the utility of 
+% current point estimates as well as the possibilities for further
+% inference. Specifically, we are unable to quantify uncertainty 
+% around heuristic point estimates. We cannot explore ARG space
+% around the point estimates using (e.g. MCMC), as we have no way definition
+% of improvement. We cannot compare models of demography, or evaluate the 
+% goodness of fit for model estimates.
+A key problem facing the field is that the ARGs estimated by heuristic large-scale 
+methods cannot be connected to population genetics theory because 
+we cannot compute their likelihood under the SMC. The classical 
+method~\citep{kuhner_maximum_2000} assumes complete knowledge about
+recombination events, and there is no clear way to compute a likelihood for 
+the approximate structures output by hueristic methods.
 
-Perhaps the clearest route to statistical rigor is through scalable
-model-based inference, a central element of population genetics.
-The coalescent~\citep{kingman_genealogy_1982,kingman_coalescent_1982,hudson_testing_1983,
-tajima_evolutionary_1983} has proved to be a useful model, and is the
-basis of a wide variety of inferences [some citations, e.g Hey IM model]. 
-The incorporation
-of recombination in the coalescent process~\citep{hudson_properties_1983}
-has proved to be much more difficult.
-% FIXME rephrase, next two sentences, lifted from ARG paper
-Early work on inference under the coalescent with recombination
-focused on the problem of
-inferring the parameters of the
-stochastic process, where the ancestry was regarded as a
-latent parameter to be averaged out
-\citep[e.g.][]{griffiths_ancestral_1996,kuhner_maximum_2000,
-nielsen_estimation_2000,
-fearnhead_estimating_2001}.
-% TODO reuse some of the ideas from the SMC paper here, it has
-% some good explanations.
-These methods met with limited success
-because the state space of ARGs is overwhelmingly large, and
-lacks a simple geometry or neighbourhood structure for inference or
-sampling methods to  exploit.
-The introduction of the Sequentially Markovian Coalescent (SMC)
-approximation to the coalescent with recombination
-\citep{mcvean_approximating_2005} 
-and its refinement in the SMC'~\citep{marjoram_fast_2006},
-are the basis of many powerful inference 
-% TODO add some more recent stuff
-methods~\citep[e.g.]{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014}.
-In particular, the SMC is the basis for ARG sampling methods
-like ARGweaver~\citep{rasmussen_genome-wide_2014} and 
-SINGER~\citep{deng_robust_2024}, which are the gold-standard 
-in terms of inference accuracy.
-ARGweaver has consistently out-performed other methods in terms 
-of accuracy in a variety of benchmarks~\citep{brandt2022evaluation},
-and, while SINGER has not been evaluated as thoroughly yet, it promises
-to be even more accurate as well as substantially more scalable 
-computationally~\citep{deng_robust_2024}.
+[Things to include: locally unary nodes rather than explicit events.
+edge-centric formulation vs event centric. Graceful degradation of
+performance with incomplete ARGs vs complete inability to compute.]
 
-% THE PROBLEM!!! OMG it's terrible!!!
-Despite these recent advances in statistically rigorous ARG 
-inference, however, there is still a gap of some three orders 
-of magnitude between the sample-sizes that can be handled 
-(hundreds) compared to the large-scale hueristic methods
-like tsinfer and ARGneedle (hundreds of thousands).
-[TODO working through a more positive narrative here, based on
-the idea of combining the strengths of the approaches]
-Although major breakthroughs in scale have been achieved by hueristic
-ARG inference
-methods~\citep{kelleher_inferring_2019,speidel_method_2019,zhang_biobank-scale_2023},
-these methods are currently fundamentally incompatible with rigorous
-inference under population genetic models such as the SMC. This is 
-because these methods return approximate ARG
-\emph{structures}~\citep{wong_general_2023} [WEAK, FIXME]. 
-Specifically,
-we cannot evaluate a likelihood of these ARGs in coalescent 
-models under the classical 
-\cite{kuhner_maximum_2000} formulation, as these formulations assume
-that complete information about recombination events is present.
-[NOTE the following is super weak, and needs a lot of work.]
-This inability to connect the results of large-scale inference methods
-with a generative model
-is a fundamental limitation, and limits both the utility of 
-current point estimates as well as the possibilities for further
-inference. Specifically, we are unable to quantify uncertainty 
-around heuristic point estimates. We cannot explore ARG space
-around the point estimates using (e.g. MCMC), as we have no way definition
-of improvement. We cannot compare models of demography, or evaluate the 
-goodness of fit for model estimates.
-
-%% This is how we solve it
-[TODO figure out the gARG, tree sequence etc mess]
-Here, we bridge this gap between models and the products of approximate
-inference by defining a likelihood function for any 
-``genome ARG''~\citep{wong_general_2023} under the SMC. Using a novel
-formulation of the SMC that focuses on the contributions of nodes and 
-edges [FIXME] in a backwards-in-time way, we provide an efficient 
-algorithm that can compute a likelihood for any gARG under this model.
-We demonstrate the flexibility of this approach by XXX, and show
-[SOMETHING]. 
-
+In this paper we provide a necessary first step towards this goal
+of statistically rigorous large-scale ARG inference, by defining a function
+to compute the likelihood of a general class of ARG under the SMC.
+To do this, we rederive the SMC under a backwards-time formulation,
+modelling the process in terms of lineages and [something] rather
+than events. Using this novel formulation, we then show how to 
+easily compute the likelihood of any ARG under the SMC and outline 
+an efficient algorithm to do so. We illustrate the flexibility of this
+approach via [some examples] and conclude by discussing avenues
+for future research opened up.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods and Results}
@@ -396,18 +383,20 @@ In its backwards-in-time formulation, the SMC only requires a
 simple modification to the coalescent with recombination.
 Instead of allowing any pair of lineages to coalesce,
 the SMC is the process in which only lineages with \emph{overlapping} 
-genomic intervals may coalesce. (The SMC' additionally allows 
-lineages with abutting genomic intervals to coalesce.)
+genomic intervals may coalesce. The SMC' is a refinement 
+of the SMC which also allows lineages with abutting genomic intervals to 
+coalesce~\citep{marjoram_fast_2006}.
 Although \citet{mcvean_approximating_2005} verbally described the SMC
 using this backwards-in-time description, their analysis
 was almost entirely in left-to-right terms,
 and subsequent papers followed this trend
 \citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,
 rasmussen_genome-wide_2014}.
+
 Linking the resulting tree-valued process along the genome back to
 the relationship between the ``graph'' and
-``local trees'' representation of
-the ARG, the Markovian property can be formulated as follows: 
+``local trees'' representation of ARGs, 
+the Markovian property can be formulated as follows: 
 the distribution of the next tree within the series
 of local trees can be generated only knowing the current tree,
 provided that we remove recombinant nodes entirely,
@@ -423,10 +412,10 @@ So, the first tree gives us information about subsequent trees
 that the second tree alone could not.
 Further note that by limiting common ancestry events to overlapping 
 pairs of lineages, we are guaranteed that all nodes in the ARG 
-only carry ancestral material, this is,
+only carry ancestral material, that is,
 genetic material that is inherited by either one of a set of samples
 \citep{wiuf_ancestry_1999}.
-As such, we only require a single half-open interval to describe
+We require a single half-open interval to describe
 the ancestral
 material associated with each common ancestor node in the ARG.
 
@@ -443,7 +432,7 @@ where each lineage $X_j(t)$ is labeled by an integer $j$
 and represented by a half-open interval delimiting the
 ancestral material. Any lineage can thus be summarized as $X_j(t) = [x_{j}, y_{j})$,
 for some interval endpoints $x_{j} < y_{j}$.
-Since we look backwards in time, $t=0$ is today, and so
+Because we look backwards in time, $t=0$ is today, and 
 $L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$,
 each represented by a single interval spanning the entire genome.
 Then, the process evolves by a succession of common ancestor and recombination
@@ -457,7 +446,7 @@ then recombination occurs at instantaneous rate $rT(t)$.
 A recombination to the left of $x$
 (i.e., between base pairs $x$ and $x-1$)
 with $x_{j} < x <y_{j}$ splits lineage $j$ into two new lineages,
-which each are given new, unique labels and added to $L(t)$
+given new, unique labels and added to $L(t)$
 (and lineage $j$ is removed).
 This operation keeps the total amount of ancestral material unchanged.
 
@@ -540,7 +529,29 @@ intervals however do not affect the marginal genealogies.
 %all lineages by means of a single half-open interval throughout.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calculating likelihoods} \label{par:liks}
+\subsection{Likelihoods} \label{par:liks}
+
+Computing the likelihood of a putative ARG under a model is a fundamental element of
+probabilistic inference. The classical Kuhner, Yamato \& Felsenstein
+\citeyearpar{kuhner_maximum_2000} formulation (henceforth: KYF)
+decomposes the likelihood of an ARG under the coalescent with recombination
+into a product of the probablility of 
+each common ancestor event, each recombination event and the probablility of
+the inter-event waiting times. In essence, computing the KYF likelihood requires
+``replaying'' the full state of Hudson's simulation
+algorithm~\citep{hudson_properties_1983,kelleher_efficient_2016} in order to
+compute the probability of the configuration of lineages and distribution
+of ancestral material at each time point. It therefore requires complete
+detail about each of these events to be stored. 
+Such complete detail is not present in many estimated
+ARGs~\citep{wong_general_2023} or even in most simulations.
+Indeed, supporting likelihood calculations originally motivated the addition of
+the \texttt{record\_full\_arg}
+option to the \texttt{msprime} simulator~\citep{baumdicker_efficient_2021}.
+More recent approaches to defining likelihoods on such models require
+similarly exhaustive input\citep[e.g.][]{guo_recombination-aware_2022} (MORE?
+Anything for GC in bacteria, etc?)
+
 
 Here we will compute the likelihood of an ARG in the absence of the
 exact time to recombination events. To do this, we will rely on the unary nodes
@@ -926,7 +937,25 @@ We believe that quantifying uncertainty does not have to be associated with samp
 from the space of all compatible genealogies. Uncertainty could also
 be quantified and passed on as metadata to the nodes in the data format storing the ARG.
 
+[Note: a point to make here is that the idea of combining hueristic large-scale 
+inference with model based inference is analogous to the combination of 
+coalescent simulation and forwards time simulation. We can also draw lessons
+from developers of different methods cooperating and using the tskit library
+to enable this.]
 
+% Additionally, there is a rich suite of tools growing around
+% the \texttt{tskit} ARG library~\citep{ralph_efficiently_2020}
+% including simulation~\citep{kelleher_efficient_2016,kelleher_efficient_2018,
+% adrion_community_2020,terasaki_geonomics_2021,
+% baumdicker_efficient_2021,
+% korfmann_weak_2022, petr_slendr_2023,tagami_tstrait_2024},
+% ARG inference~\citep{kelleher_inferring_2019,speidel_method_2019,
+% wohns_unified_2022,mahmoudi_bayesian_2022,
+% rasmussen_espalier_2022,
+% zhang_biobank-scale_2023,zhan_towards_2023} and analysis
+% packages
+% % etc
+% \citep{nowbandegani_extremely_2023,fan_likelihood_2023}.
 %% NOTE: this is some orphan text from the intro that can be rejiggered for the 
 % discussion. We can talk about precision of recombination estimates a bit 
 % here I think, as it is an important topic.
