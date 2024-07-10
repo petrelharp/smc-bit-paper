@@ -110,6 +110,7 @@ korfmann_simultaneous_2024,
 deraje_inferring_2024}
 and it seems likely that many more will
 follow~\citep{harris_database_2019,harris_using_2023}.
+
 Three classes of ARG inference method have emerged as the focus of recent
 work, and have all been successfully applied in different contexts. 
 Parsimony
@@ -132,16 +133,34 @@ in cases in which the expected number of recombinations is in the
 thousands to tens-of-thousands range (e.g., human datasets in which
 we have X samples and a segment of Y Mb of chromosome [TODO quantify
 from SINGER paper). 
-The third class of inference method and based on heuristics
+The third class of inference method is based on heuristics
 and approximate models and focus on large scale inference,
 where the expected number of recombinations is in the millions or
 tens of millions [TODO check numbers here]~\citep{kelleher_inferring_2019,
 speidel_method_2019,zhang_biobank-scale_2023}.
 Other methods specialised to particular applications have also 
-recently been proposed~\citep{zhan_towards_2023,schaefer_ancestral_2021}.
-See~\cite{wong_general_2023} for a detailed review of ARG inference 
+recently been proposed~\citep{zhan_towards_2023,schaefer_ancestral_2021};
+see~\cite{wong_general_2023} for a detailed review of ARG inference 
 methods.
 
+Statistically rigorous ARG sampling methods like
+ARGweaver~\citep{rasmussen_genome-wide_2014} and
+SINGER~\citep{deng_robust_2024} have many advantages. 
+Firstly, ARGweaver has consistently out-performed other methods in terms 
+of accuracy in a variety of benchmarks~\citep{brandt2022evaluation}[MORE
+citations,anywhere ARGweaver has been tested for accuracy]
+and, while SINGER has not been evaluated as thoroughly yet, it promises
+to be even more accurate~\citep{deng_robust_2024}. 
+Secondly, the direct connection with
+population genetic models greatly aids interpretability, and allows for
+natural extensions like the joint estimation of ARGs and
+demography~\citep{hubisz_mapping_2020}. Thirdly, sampling ARGs from a
+posterior distribution provides a means of quantifying the uncertainty 
+around estimates, which can be used in downstream applications [citation
+of this?]. Heuristic, approximate inference methods like
+Relate~\citep{speidel_method_2019}, tsinfer~\citep{kelleher_inferring_2019}
+and ARG-Needle~\citep{zhang_biobank-scale_2023} on the other hand 
+tend to be less accurate 
 
 Typically, the more rigorous approaches can handle 10-100 samples,
 while the approximate methods can scale to 10s to hundreds of
@@ -150,45 +169,45 @@ sizes in recent years~\citep[e.g.][]{bycroft_genome_2018,halldorsson_sequences_2
 all_genomic_2024} there is a pressing need for more statistical
 rigor in large scale ARG inference.
 
-Perhaps the clearest route to statistical rigor is through scalable
-model-based inference, a central element of population genetics.
-The coalescent~\citep{kingman_genealogy_1982,kingman_coalescent_1982,hudson_testing_1983,
-tajima_evolutionary_1983} has proved to be a useful model, and is the
-basis of a wide variety of inferences [some citations, e.g Hey IM model]. 
-The incorporation
-of recombination in the coalescent process~\citep{hudson_properties_1983}
-has proved to be much more difficult.
-% FIXME rephrase, next two sentences, lifted from ARG paper
-Early work on inference under the coalescent with recombination
-focused on the problem of
-inferring the parameters of the
-stochastic process, where the ancestry was regarded as a
-latent parameter to be averaged out
-\citep[e.g.][]{griffiths_ancestral_1996,kuhner_maximum_2000,
-nielsen_estimation_2000,
-fearnhead_estimating_2001}.
-% TODO reuse some of the ideas from the SMC paper here, it has
-% some good explanations.
-These methods met with limited success
-because the state space of ARGs is overwhelmingly large, and
-lacks a simple geometry or neighbourhood structure for inference or
-sampling methods to  exploit.
-The introduction of the Sequentially Markovian Coalescent (SMC)
-approximation to the coalescent with recombination
-\citep{mcvean_approximating_2005} 
-and its refinement in the SMC'~\citep{marjoram_fast_2006},
-are the basis of many powerful inference 
-% TODO add some more recent stuff
-methods~\citep[e.g.]{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014}.
-In particular, the SMC is the basis for ARG sampling methods
-like ARGweaver~\citep{rasmussen_genome-wide_2014} and 
-SINGER~\citep{deng_robust_2024}, which are the gold-standard 
-in terms of inference accuracy.
-ARGweaver has consistently out-performed other methods in terms 
-of accuracy in a variety of benchmarks~\citep{brandt2022evaluation},
-and, while SINGER has not been evaluated as thoroughly yet, it promises
-to be even more accurate as well as substantially more scalable 
-computationally~\citep{deng_robust_2024}.
+% Perhaps the clearest route to statistical rigor is through scalable
+% model-based inference, a central element of population genetics.
+% The coalescent~\citep{kingman_genealogy_1982,kingman_coalescent_1982,hudson_testing_1983,
+% tajima_evolutionary_1983} has proved to be a useful model, and is the
+% basis of a wide variety of inferences [some citations, e.g Hey IM model]. 
+% The incorporation
+% of recombination in the coalescent process~\citep{hudson_properties_1983}
+% has proved to be much more difficult.
+% % FIXME rephrase, next two sentences, lifted from ARG paper
+% Early work on inference under the coalescent with recombination
+% focused on the problem of
+% inferring the parameters of the
+% stochastic process, where the ancestry was regarded as a
+% latent parameter to be averaged out
+% \citep[e.g.][]{griffiths_ancestral_1996,kuhner_maximum_2000,
+% nielsen_estimation_2000,
+% fearnhead_estimating_2001}.
+% % TODO reuse some of the ideas from the SMC paper here, it has
+% % some good explanations.
+% These methods met with limited success
+% because the state space of ARGs is overwhelmingly large, and
+% lacks a simple geometry or neighbourhood structure for inference or
+% sampling methods to  exploit.
+% The introduction of the Sequentially Markovian Coalescent (SMC)
+% approximation to the coalescent with recombination
+% \citep{mcvean_approximating_2005} 
+% and its refinement in the SMC'~\citep{marjoram_fast_2006},
+% are the basis of many powerful inference 
+% % TODO add some more recent stuff
+% methods~\citep[e.g.]{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014}.
+% In particular, the SMC is the basis for ARG sampling methods
+% like ARGweaver~\citep{rasmussen_genome-wide_2014} and 
+% SINGER~\citep{deng_robust_2024}, which are the gold-standard 
+% in terms of inference accuracy.
+% ARGweaver has consistently out-performed other methods in terms 
+% of accuracy in a variety of benchmarks~\citep{brandt2022evaluation},
+% and, while SINGER has not been evaluated as thoroughly yet, it promises
+% to be even more accurate as well as substantially more scalable 
+% computationally~\citep{deng_robust_2024}.
 
 % THE PROBLEM!!! OMG it's terrible!!!
 Despite these recent advances in statistically rigorous ARG 
