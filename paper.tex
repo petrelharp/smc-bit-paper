@@ -194,6 +194,10 @@ method~\citep{kuhner_maximum_2000} assumes complete knowledge about
 recombination events, and there is no clear way to compute a likelihood for 
 the approximate structures output by hueristic methods.
 
+[Things to include: locally unary nodes rather than explicit events.
+edge-centric formulation vs event centric. Graceful degradation of
+performance with incomplete ARGs vs complete inability to compute.]
+
 In this paper we provide a necessary first step towards this goal
 of statistically rigorous large-scale ARG inference, by defining a function
 to compute the likelihood of a general class of ARG under the SMC.
@@ -379,18 +383,20 @@ In its backwards-in-time formulation, the SMC only requires a
 simple modification to the coalescent with recombination.
 Instead of allowing any pair of lineages to coalesce,
 the SMC is the process in which only lineages with \emph{overlapping} 
-genomic intervals may coalesce. (The SMC' additionally allows 
-lineages with abutting genomic intervals to coalesce.)
+genomic intervals may coalesce. The SMC' is a refinement 
+of the SMC which also allows lineages with abutting genomic intervals to 
+coalesce~\citep{marjoram_fast_2006}.
 Although \citet{mcvean_approximating_2005} verbally described the SMC
 using this backwards-in-time description, their analysis
 was almost entirely in left-to-right terms,
 and subsequent papers followed this trend
 \citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,
 rasmussen_genome-wide_2014}.
+
 Linking the resulting tree-valued process along the genome back to
 the relationship between the ``graph'' and
-``local trees'' representation of
-the ARG, the Markovian property can be formulated as follows: 
+``local trees'' representation of ARGs, 
+the Markovian property can be formulated as follows: 
 the distribution of the next tree within the series
 of local trees can be generated only knowing the current tree,
 provided that we remove recombinant nodes entirely,
@@ -406,10 +412,10 @@ So, the first tree gives us information about subsequent trees
 that the second tree alone could not.
 Further note that by limiting common ancestry events to overlapping 
 pairs of lineages, we are guaranteed that all nodes in the ARG 
-only carry ancestral material, this is,
+only carry ancestral material, that is,
 genetic material that is inherited by either one of a set of samples
 \citep{wiuf_ancestry_1999}.
-As such, we only require a single half-open interval to describe
+We require a single half-open interval to describe
 the ancestral
 material associated with each common ancestor node in the ARG.
 
@@ -426,7 +432,7 @@ where each lineage $X_j(t)$ is labeled by an integer $j$
 and represented by a half-open interval delimiting the
 ancestral material. Any lineage can thus be summarized as $X_j(t) = [x_{j}, y_{j})$,
 for some interval endpoints $x_{j} < y_{j}$.
-Since we look backwards in time, $t=0$ is today, and so
+Because we look backwards in time, $t=0$ is today, and 
 $L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$,
 each represented by a single interval spanning the entire genome.
 Then, the process evolves by a succession of common ancestor and recombination
@@ -440,7 +446,7 @@ then recombination occurs at instantaneous rate $rT(t)$.
 A recombination to the left of $x$
 (i.e., between base pairs $x$ and $x-1$)
 with $x_{j} < x <y_{j}$ splits lineage $j$ into two new lineages,
-which each are given new, unique labels and added to $L(t)$
+given new, unique labels and added to $L(t)$
 (and lineage $j$ is removed).
 This operation keeps the total amount of ancestral material unchanged.
 
@@ -523,12 +529,28 @@ intervals however do not affect the marginal genealogies.
 %all lineages by means of a single half-open interval throughout.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calculating likelihoods} \label{par:liks}
-[Paragraph setting the scene on likelihood calculations]
-\cite{kuhner_maximum_2000} formulation, as these formulations assume
-that complete information about recombination events is present
-[Also: \cite{guo_recombination-aware_2022}]
-[NOTE the following is super weak, and needs a lot of work.]
+\subsection{Likelihoods} \label{par:liks}
+
+Computing the likelihood of a putative ARG under a model is a fundamental element of
+probabilistic inference. The classical Kuhner, Yamato \& Felsenstein
+\citeyearpar{kuhner_maximum_2000} formulation (henceforth: KYF)
+decomposes the likelihood of an ARG under the coalescent with recombination
+into a product of the probablility of 
+each common ancestor event, each recombination event and the probablility of
+the inter-event waiting times. In essence, computing the KYF likelihood requires
+``replaying'' the full state of Hudson's simulation
+algorithm~\citep{hudson_properties_1983,kelleher_efficient_2016} in order to
+compute the probability of the configuration of lineages and distribution
+of ancestral material at each time point. It therefore requires complete
+detail about each of these events to be stored. 
+Such complete detail is not present in many estimated
+ARGs~\citep{wong_general_2023} or even in most simulations.
+Indeed, supporting likelihood calculations originally motivated the addition of
+the \texttt{record\_full\_arg}
+option to the \texttt{msprime} simulator~\citep{baumdicker_efficient_2021}.
+More recent approaches to defining likelihoods on such models require
+similarly exhaustive input\citep[e.g.][]{guo_recombination-aware_2022} (MORE?
+Anything for GC in bacteria, etc?)
 
 
 Here we will compute the likelihood of an ARG in the absence of the
