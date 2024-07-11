@@ -538,24 +538,47 @@ intervals however do not affect the marginal genealogies.
 Computing the likelihood of a putative ARG under a model is a fundamental element of
 probabilistic inference. The classical Kuhner, Yamato \& Felsenstein
 \citeyearpar{kuhner_maximum_2000} formulation (henceforth: KYF)
-decomposes the likelihood of an ARG under the coalescent with recombination
-into a product of the probablility of 
-each common ancestor event, each recombination event and the probablility of
-the inter-event waiting times. In essence, computing the KYF likelihood requires
-``replaying'' the full state of Hudson's simulation
+works by assigning a probablility to each recombination and common
+ancestor event, and to the inter-event  waiting times. The likelihood of an 
+ARG is then a product over all these three classes of term.
+In essence, computing the KYF likelihood requires
+``replaying'' the  state of Hudson's simulation
 algorithm~\citep{hudson_properties_1983,kelleher_efficient_2016} in order to
-compute the probability of the configuration of lineages and distribution
-of ancestral material at each time point. It therefore requires complete
+compute the exact configuration of lineages and distribution
+of ancestral material at each time point~\citep{baumdicker_efficient_2021}.
+It therefore requires complete
 detail about each of these events to be stored. 
-Such complete detail is not present in many estimated
-ARGs~\citep{wong_general_2023} or even in most simulations.
-Indeed, supporting likelihood calculations originally motivated the addition of
-the \texttt{record\_full\_arg}
-option to the \texttt{msprime} simulator~\citep{baumdicker_efficient_2021}.
-More recent approaches to defining likelihoods on such models require
-similarly exhaustive input\citep[e.g.][]{guo_recombination-aware_2022} (MORE?
-Anything for GC in bacteria, etc?)
+Other approaches to defining the likelihood of an ARG under a coalescent-like 
+model follow the same basic event-by-event 
+strategy~\citep[e.g.][]{guo_recombination-aware_2022}.
+[Are there others?  The bacterial stuff from Didelot etc seem to focus on
+a tree-by-tree likelihood, rather than global graph, so not clear it's the 
+same thing]
+Computing the likelihood under the SMC rather than the Hudson coalescent 
+simplifies bookkeeping somewhat, 
+but a complete event-by-event description of the 
+input ARG is still required.
 
+Although the KYF formulation is a natural and elegant way to describe 
+the likelihood of an ARG, such complete detail is not present 
+in many estimated ARGs~\citep{wong_general_2023} or even in most simulations.
+Simulators such as the classical \texttt{ms}
+program~\citep{hudson_generating_2002} output ARGs in a tree-by-tree format,
+which contain no information about recombination events (other than their
+breakpoints) and where internal nodes marking coalesces are unlabelled.
+The \texttt{msprime}
+simulator~\citep{kelleher_efficient_2016,baumdicker_efficient_2021} 
+by default outputs a more complete and efficient representation of 
+the simulated ancestry, but still does not provide the exhaustive
+detail required.
+Indeed, providing the information required to 
+support likelihood calculations originally motivated the addition of
+the \texttt{record\_full\_arg}
+option to \texttt{msprime}~\citep{baumdicker_efficient_2021}.
+Forwards-time simulations that output 
+ARGs~\citep{kelleher_efficient_2018,haller_tree_2018} similarly do not
+contain the level of detail required to compute a likelihood under
+the KYF approach.
 
 Here we will compute the likelihood of an ARG in the absence of the
 exact time to recombination events. To do this, we will rely on the unary nodes
