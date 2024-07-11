@@ -254,13 +254,17 @@ series of local trees (bottom). To ensure the one-to-one correspondence
 between both representations a node is recorded for each local tree whenever
 a node is encountered along its ancestry path in the graph representation.
 This results in nodes that (locally) have only a single child, and are therefore
-(locally) unary. By removing recombinant nodes, we limit the information on the time to each
-of these events to the windows (blue shaded array) delimited by by the age of
-the child node and the minimum age of the parents of the edges connecting to that child node.
-Blue (unary) nodes represent recombinant nodes. The blue arrows show the
-familiar left-to-right logic of the SMC whereby
+(locally) unary. 
+Nodes A, B and C are recombinants, i.e, have two parents in the graph
+and are unary in the local trees. The blue shaded regions indicate
+the range of possible times associated with these recombinants.
+The blue arrows show the
+standard left-to-right logic of the SMC whereby
 the floating lineage coalesces randomly
 with a the remaining portion of the local tree following recombination.
+% By removing recombinant nodes, we limit the information on the time to each
+% of these events to the windows (blue shaded array) delimited by the age of
+% the child node and the minimum age of its parents.
 }
 \label{fig:smc-unary}
 \end{figure}
