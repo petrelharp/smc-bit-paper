@@ -256,23 +256,55 @@ approach via [some examples] and conclude by discussing avenues
 for future research opened up.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Methods and Results}
+\section*{Results}
 
-First, 
-we describe
-in more detail what sort of information we have in estimated ARGs.
-Then,
-we define the SMC process in a ``backwards-in-time'' way,
-rather than the usual ``along-the-genome'' way.
-Note that this is a
-reiteration of the original work of \citet{mcvean_approximating_2005}.
+\section*{ARG likelihoods}
 
-In the subsequent section we connect the two and
-show how the ``backwards-in-time'' description
-makes it relatively straightforward to compute the likelihood
-for a more general class of estimated ARGs.
-Finally, we close with a demonstration that the likelihood computation can be used
-to do Bayesian inference on ancestral population sizes.
+In one of the first approaches to probilistic ARG inference that 
+regarded the ARG itself as an output rather than a latent variable,
+\cite{kuhner_maximum_2000} provided an explicit formula for 
+the likelihood of a realised ARG under the coalescent with
+recombination:
+\[
+\mathbb{P}[G|N, r] = \left(\frac{1}{2N}\right)^K
+r^X \exp\left(-\sum \left( \frac{1}{2N} \binom{k_i}{2} + r\ell_i\right)
+t_i\right),
+\]
+where [explain notation].
+Under this KYF formulation, the likelihood is computed by taking a 
+product of the probability of each realised event, and their 
+inter-event waiting times. While it is straightforward to write 
+this down, computation is not so easy, and in essence requires
+In essence, computing the KYF likelihood requires
+``replaying'' the  state of Hudson's simulation
+algorithm~\citep{hudson_properties_1983,kelleher_efficient_2016} in order to
+compute the exact configuration of lineages and distribution
+of ancestral material at each time point~\citep{baumdicker_efficient_2021}.
+
+Computing the likelihood of a realised ARG under the SMC simplifies the 
+bookkeeping somewhat, because we no long have the possibility of 
+``trapped'' ancestral material, and each lineage can be represented 
+by a single interval representing their ancestral material. Nonetheless,
+we still require complete knowledge of the graph to compute the 
+required probablilities.
+
+
+% \section{Methods and Results}
+% First, 
+% we describe
+% in more detail what sort of information we have in estimated ARGs.
+% Then,
+% we define the SMC process in a ``backwards-in-time'' way,
+% rather than the usual ``along-the-genome'' way.
+% Note that this is a
+% reiteration of the original work of \citet{mcvean_approximating_2005}.
+
+% In the subsequent section we connect the two and
+% show how the ``backwards-in-time'' description
+% makes it relatively straightforward to compute the likelihood
+% for a more general class of estimated ARGs.
+% Finally, we close with a demonstration that the likelihood computation can be used
+% to do Bayesian inference on ancestral population sizes.
 
 % % % % % % % % % % % % % % % % % %
 \subsection{ARGs} \label{par:recording}
@@ -681,7 +713,7 @@ to some node's out-degree and some node's in-degree.)
     \centering
     \includegraphics[width=0.65\textwidth]{figures/single_event.png}
     % FIXME commenting this caption out because it mucks up syntax highlighting for me.
-    % \caption{
+    \caption{
     % Graphical representation of the events associated with the edge $(p,c,x,y)$.
     % The lineage carried by $c$ spans $[x_c,y)$ until 
 % a recombination event (blue dotted line) splits it
@@ -689,8 +721,8 @@ to some node's out-degree and some node's in-degree.)
     %     bounding the time to recombination by $(c. \min(t_p, t_{p'})$.
     %     Note that the contribution to the recombination hazard by edge $(p,c,x,y)$ only covers ``half'' of the
     %     green shaded area. The other half is contributed by edge $(p', c, x_c, x)$. 
-    %     \label{fig:likelihood}
-    % % }
+        \label{fig:likelihood}
+    }
 \end{figure}
 
 Now consider the ``hazard'' associated with recombination.
