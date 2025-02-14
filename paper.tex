@@ -832,9 +832,9 @@ given parameters $\theta$ is then given by
     =
     (r)^{|E|-|N|+n_r} (\lambda)^{|E|-|N|+n_s} \prod_{(p, c) \in E} A_e(r) B_e(r, \lambda) .
 \end{equation}
-% One significant advantage of this formulation is that the computation time
-% is linear in the number of edges, and an algorithm can be devised to 
-% to efficiently keep track of $I_e(t)$ (see Appendix).
+One significant advantage of this formulation is that the computation time
+is linear in the number of edges, and an efficient algorithm exists
+to keep track of $I_e(t)$ (see Appendix).
 % Although the first two factors are easily expressed in terms of numbers of edges and nodes,
 % we will see below
 % that in practice it is convenient to absorb these terms into per-edge contributions.
@@ -854,14 +854,13 @@ where $\mathcal{M}$ the total number of mutations and $m_e$
 the number of mutations along edge $(c,p)$ \citep{mahmoudi_bayesian_2022}.
 
 % % % % % % % % % % % % % % % % % %
-\subsection{Flexibility}
+\subsection*{Flexibility}
 % likelihood surface
-The last paragraph aims to highlight the flexibility of this approach 
-and the impact of the various
-degrees of completeness of the ARG on the likelihood.
-Note that the figures in this paragraph only serve this exact purpose,
-we are not claiming to have designed a new parameter estimation approach.
-
+% The last paragraph aims to highlight the flexibility of this approach 
+% and the impact of the various
+% degrees of completeness of the ARG on the likelihood.
+% Note that the figures in this paragraph only serve this exact purpose,
+% we are not claiming to have designed a new parameter estimation approach.
 In line with the observation that the presence of locally unary nodes 
 (see section \ref{par:recording}) is crucial for the equivalence between
 the graph or local trees view of an ARG, one can gradually simplify down
@@ -870,7 +869,7 @@ Figure \ref{fig:lik-surface} shows the impact of these simplification steps
 on the likelihood for a single simulated ARG.
 The log likelihood ratio is shown to improve comparability.
 
-\begin{figure}[!ht]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/likratio.png}
     \caption{Log likelihood-ratio curves for ARGs simulated under the SMC with
@@ -960,7 +959,7 @@ a valid tree sequence for which we can again compute a likelihood.
 %%% remarks on precision of information + useage of likelihood to either
 %%% estimate parameters (not goal here) or use as instrument to improve accuracy to infer ARGs
 
-\begin{figure}[!ht]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/3-slices-whitespace.png}
     \caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant
@@ -976,8 +975,8 @@ a valid tree sequence for which we can again compute a likelihood.
 \end{figure}
 
 
-\section{Discussion}
-
+\section*{Discussion}
+[JK: this needs significant work]
 Here, we have introduced a scalable algorithm to compute likelihoods
 under the SMC for a general class of ARGs. By formulating the SMC backwards in time
 we were able to associate a single likelihood value with each edge in the ARG.
@@ -1147,7 +1146,7 @@ in equation \eqref{eq:full-lik} using $I$, and then update the counts in $I$.
 We further keep track of
 the last parent a child node was connected to to detect recombination events.
 
-[TODO another paragraph summarising what you actually do]
+% [TODO another paragraph summarising what you actually do]
 
 % There is probably no need to potentially confuse people with this detail
 %Remark: better to describe edges here as edge-intervals, each describing a
