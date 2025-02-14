@@ -57,28 +57,33 @@ interest. Recent progress in inference has made ARG-based approaches feasible
 across of range of applications, and many new methods using inferred ARGs as
 input have appeared. This progress on the long-standing problem of ARG
 inference has proceeded in two distinct directions. The first
-class of method in which dramatic improvements have been made is in the
+class of method in which dramatic progress has been made is in the
 statistically rigorous inference of ARGs under the Sequentially Markov
-Coalescent (SMC) model, which are now practical for tens-to-hundreds of
-samples. The second class of recently-developed inference methods are based on
-approximate models and heuristics which scale to samples sizes roughly three
+Coalescent (SMC), which are now practical for tens-to-hundreds of samples. 
+The second class of recently-developed inference methods are based on
+approximate models and heuristics which scale to sample sizes two to three
 orders of magnitude larger. Although these heuristic methods are reasonably
-accurate under many metrics, one major problem is that the ARGs they 
-estimate cannot easily be connected with population genetic theory.
-Specifically, because the estimated ARGs lack detail about recombination
-events, there is currently no way to compute their likelihood
-under a population genetics model. In this paper we provide a 
+accurate under many metrics, one significant drawback is that the ARGs they 
+estimate do not have the topological properties required to compute a 
+likelihood under models such as the SMC under present-day formulations.
+In particular, hueristic inference methods typically do not estimate
+precise details about recombination events, which are currently
+required to compute a likelihood.
+In this paper we present a 
 novel backwards-time formulation of the SMC 
-and derive a straightforward definition of the likelihood
-of the likelihood of a general class of ARG under the SMC. 
+and derive a straightforward definition 
+of the likelihood of a general class of ARG under this model. 
 We show that this formulation does not require precise details of recombination events
-to be estimated, and is robust to other topological inconveniences such as 
-polytomies. This opens up many future directions, most excitingly the possibility
-of combining the strengths of both inference approaches. Applying
-these ideas may allow us to 
-make rigorous inference more scalable, and scalable inference 
-more rigorous.
+to be estimated, and is robust to the presence of polytomies. 
+We discuss the possibilities for inference that this opens.
 \end{abstract}
+
+
+% This opens up many future directions, most excitingly the possibility
+% of combining the strengths of both inference approaches. Applying
+% these ideas may allow us to 
+% make rigorous inference more scalable, and scalable inference 
+% more rigorous.
 
 \section{Introduction}
 Following recent breakthroughs in simulation and inference methods,
