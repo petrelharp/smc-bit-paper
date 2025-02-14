@@ -210,24 +210,23 @@ probabilistic inference. The classical Kuhner, Yamato \& Felsenstein
 works by assigning a probablility to each recombination and common
 ancestor event, and to the inter-event  waiting times. The likelihood of an 
 ARG is then a product over all these three classes of term.
-In essence, computing the KYF likelihood requires
-``replaying'' the  state of Hudson's simulation
-algorithm~\citep{hudson_properties_1983,kelleher_efficient_2016} in order to
-compute the exact configuration of lineages and distribution
-of ancestral material at each time point~\citep{baumdicker_efficient_2021}.
-It therefore requires complete
-detail about each of these events to be stored. 
-Other approaches to defining the likelihood of an ARG under a coalescent-like 
-model follow the same basic event-by-event 
-strategy~\citep[e.g.][]{guo_recombination-aware_2022}.
-% [Are there others?  The bacterial stuff from Didelot etc seem to focus on
-% a tree-by-tree likelihood, rather than global graph, so not clear it's the 
-% same thing]
-Computing the likelihood under the SMC rather than the Hudson coalescent 
-simplifies bookkeeping somewhat,  % Dunno what I'm talking about here
-but a complete event-by-event description of the 
-input ARG is still required.
-
+% In essence, computing the KYF likelihood requires
+% ``replaying'' the  state of Hudson's simulation
+% algorithm~\citep{hudson_properties_1983,kelleher_efficient_2016} in order to
+% compute the exact configuration of lineages and distribution
+% of ancestral material at each time point~\citep{baumdicker_efficient_2021}.
+% It therefore requires complete
+% detail about each of these events to be stored. 
+% Other approaches to defining the likelihood of an ARG under a coalescent-like 
+% model follow the same basic event-by-event 
+% strategy~\citep[e.g.][]{guo_recombination-aware_2022}.
+% % [Are there others?  The bacterial stuff from Didelot etc seem to focus on
+% % a tree-by-tree likelihood, rather than global graph, so not clear it's the 
+% % same thing]
+% Computing the likelihood under the SMC rather than the Hudson coalescent 
+% simplifies bookkeeping somewhat,  % Dunno what I'm talking about here
+% but a complete event-by-event description of the 
+% input ARG is still required.
 Although the KYF formulation is a natural and elegant way to describe 
 the likelihood of an ARG, such complete detail is not present 
 in many estimated ARGs~\citep{wong_general_2023} or even in most simulations.
@@ -269,35 +268,34 @@ for future research opened up.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Results}
 
-\section*{ARG likelihoods}
+% \section*{ARG likelihoods}
 
-In one of the first approaches to probilistic ARG inference that 
-regarded the ARG itself as an output rather than a latent variable,
-\cite{kuhner_maximum_2000} provided an explicit formula for 
-the likelihood of a realised ARG under the coalescent with
-recombination:
-\[
-\mathbb{P}[G|N, r] = \left(\frac{1}{2N}\right)^K
-r^X \exp\left(-\sum \left( \frac{1}{2N} \binom{k_i}{2} + r\ell_i\right)
-t_i\right),
-\]
-where [explain notation].
-Under this KYF formulation, the likelihood is computed by taking a 
-product of the probability of each realised event, and their 
-inter-event waiting times. While it is straightforward to write 
-this down, computation is not so easy, and in essence requires
-In essence, computing the KYF likelihood requires
-``replaying'' the  state of Hudson's simulation
-algorithm~\citep{hudson_properties_1983,kelleher_efficient_2016} in order to
-compute the exact configuration of lineages and distribution
-of ancestral material at each time point~\citep{baumdicker_efficient_2021}.
+% In one of the first approaches to probilistic ARG inference that 
+% regarded the ARG itself as an output rather than a latent variable,
+% \cite{kuhner_maximum_2000} provided an explicit formula for 
+% the likelihood of a realised ARG under the coalescent with
+% recombination:
+% \[
+% \mathbb{P}[G|N, r] = \left(\frac{1}{2N}\right)^K
+% r^X \exp\left(-\sum \left( \frac{1}{2N} \binom{k_i}{2} + r\ell_i\right)
+% t_i\right),
+% \]
+% where [explain notation].
+% Under this KYF formulation, the likelihood is computed by taking a 
+% product of the probability of each realised event, and their 
+% inter-event waiting times. While it is straightforward to write 
+% this down, computation is not so easy, and in essence requires
+% ``replaying'' the  state of Hudson's simulation
+% algorithm~\citep{hudson_properties_1983,kelleher_efficient_2016} in order to
+% compute the exact configuration of lineages and distribution
+% of ancestral material at each time point~\citep{baumdicker_efficient_2021}.
 
-Computing the likelihood of a realised ARG under the SMC simplifies the 
-bookkeeping somewhat, because we no long have the possibility of 
-``trapped'' ancestral material, and each lineage can be represented 
-by a single interval representing their ancestral material. Nonetheless,
-we still require complete knowledge of the graph to compute the 
-required probablilities.
+% % Computing the likelihood of a realised ARG under the SMC simplifies the 
+% % bookkeeping somewhat, because we no long have the possibility of 
+% % ``trapped'' ancestral material, and each lineage can be represented 
+% % by a single interval representing their ancestral material. Nonetheless,
+% % we still require complete knowledge of the graph to compute the 
+% % required probablilities.
 
 
 % \section{Methods and Results}
@@ -318,8 +316,7 @@ required probablilities.
 % to do Bayesian inference on ancestral population sizes.
 
 % % % % % % % % % % % % % % % % % %
-\subsection{ARGs} \label{par:recording}
-
+\subsection*{ARGs} \label{par:recording}
 Although the term Ancestral Recombination Graph (ARG) has been used to mean several things,
 in the generic sense, it is a labeled graph structure that records
 the inheritance of genetic material \citep{wong_general_2023}.
@@ -382,13 +379,13 @@ ancestors that are the most recent common ancestor for two
 or more samples
 at some place along the genome.
 
-Crucial for the equivalence between both representations is the presence of
+Crucial for the equivalence between the two representations is the presence of
 nodes that only have a single child along one or more local trees --
 i.e., are \emph{locally unary}~\citep{wong_general_2023}.
 Recombinant nodes (in blue) have a single child in all trees.
 However, common ancestry nodes can be locally unary as well:
 for instance, sample $d$ inherited a longer stretch of genome from ancestor $f$
-than did sample $c$.
+than sample $c$.
 In the top plot, this is visible because the pink bar below node $f$
 extends further to the left than does the blue bar,
 while in the bottom plot, this is visible because node $f$ is parent to $d$
@@ -420,19 +417,20 @@ in the second tree, but not to node $c$, and so is unary.
 
 These locally unary nodes enable
 us to uniquely identify all lineages that were hit by a recombination event,
-even if we simplify the ARG by removing all recombinant nodes
+even if we simplify %~\citep{wong_general_2023,kelleher_efficient_2018} 
+the ARG by removing all recombinant nodes
 ($A$, $B$, and $C$ in Fig.\ref{fig:smc-unary}).
 In the absence of these recombinant nodes, a recombination can be observed
 easily enough as a change in parent going from one genomic region to the next.
 Without the recombinant nodes we no longer know the precise time of each recombination event,
-but we do still have constraints on the time:
+but we do still have constraints on it;
 for instance, we know that $C$ happened somewhere between node $f$ and node $h$.
 More generally, a recombinant node must happen somewhere between the child node
 and the most recent of the parent nodes.
 This is again easier to visualise using the
-graph representation (blue shaded area, fig.\ref{fig:smc-unary}).
+graph representation (blue shaded area, Fig.\ref{fig:smc-unary}).
 Although these unary nodes are useful and to some degree clearly inferrable,
-they are not always represented by simulators or ARG reconstruction methods.
+they are not always represented by simulators or ARG inference methods.
 However, to our understanding this is because
 the field is used to thinking in terms of the trees
 rather than in terms of relationships between haplotypes,
@@ -449,6 +447,8 @@ as most evaluation of inferred ARGs thus far has focused on marginal trees
 but see \citet{deng2021distribution})
 and thus completely ignore such unary nodes
 (and their implications for inherited haplotypes).
+See~\cite{fritze2024forest} for more discussion on unary nodes
+and haplotype aware ARG comparison metrics.
 
 % % % % % % % % % % % % % % % % % %
 \subsection{SMC backwards-in-time}\label{par:description}
