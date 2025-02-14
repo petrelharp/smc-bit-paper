@@ -85,7 +85,7 @@ We discuss the possibilities for inference that this opens.
 % make rigorous inference more scalable, and scalable inference 
 % more rigorous.
 
-\section{Introduction}
+\section*{Introduction}
 Following recent breakthroughs in simulation and inference methods,
 there is now intense interest in applying Ancestral Recombination Graphs (ARGs)
 to a variety of questions in evolutionary
@@ -452,7 +452,7 @@ See~\cite{fritze2024forest} for more discussion on unary nodes
 and haplotype aware ARG comparison metrics.
 
 % % % % % % % % % % % % % % % % % %
-\subsection{SMC backwards-in-time}\label{par:description}
+\subsection*{SMC backwards-in-time}\label{par:description}
 
 % coalescent introduction: backwards-in-time
 % left-to-right: Wiuf-Hein (difficult)
@@ -637,7 +637,7 @@ event changes $C_j(t)$ but not $I_{j}(t)$.
 %all lineages by means of a single half-open interval throughout.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Likelihoods} \label{par:liks}
+\subsection*{ARG likelihood} \label{par:liks}
 We have defined the SMC process in terms of rates of various types of events.
 In general, the likelihood for a continuous-time Markov process specified in this way
 is $\exp(-\Lambda) \prod_i \lambda_i$,
@@ -854,13 +854,17 @@ where $\mathcal{M}$ the total number of mutations and $m_e$
 the number of mutations along edge $(c,p)$ \citep{mahmoudi_bayesian_2022}.
 
 % % % % % % % % % % % % % % % % % %
-\subsection*{Flexibility}
+\subsection*{Illustrative examples}
 % likelihood surface
 % The last paragraph aims to highlight the flexibility of this approach 
 % and the impact of the various
 % degrees of completeness of the ARG on the likelihood.
 % Note that the figures in this paragraph only serve this exact purpose,
 % we are not claiming to have designed a new parameter estimation approach.
+[JK: Need a bit more narraitive here to feed back into the setup 
+in the intro. Computing a likelihood on any ARG, graceful degradation
+of performance with incomplete input..]
+
 In line with the observation that the presence of locally unary nodes 
 (see section \ref{par:recording}) is crucial for the equivalence between
 the graph or local trees view of an ARG, one can gradually simplify down
