@@ -589,7 +589,6 @@ recombination affects \emph{which} lineages can coalesce into $j$, it does not
 change the \emph{number} of such lineages: in other words, a recombination
 event changes $C_j(t)$ but not $I_{j}(t)$.
 
-
 %% I have updated the description of the process below to avoid having to
 % define yet another symbol.
 %Another useful quantity to know is the number of lineages carrying material
@@ -639,12 +638,6 @@ event changes $C_j(t)$ but not $I_{j}(t)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Likelihoods} \label{par:liks}
-
-
-Here we will compute the likelihood of an ARG in the absence of the
-exact time to recombination events. To do this, we will rely on the unary nodes
-to identify each lineage involved in a recombination event as described in \ref{par:recording}.
-
 We have defined the SMC process in terms of rates of various types of events.
 In general, the likelihood for a continuous-time Markov process specified in this way
 is $\exp(-\Lambda) \prod_i \lambda_i$,
@@ -652,6 +645,14 @@ where $\lambda_i$ is the rate of the $i^\text{th}$ realized event,
 and $\Lambda$ is the sum of all rates of all possible events
 integrated over the entire process
 (also called the ``total hazard''). 
+As discussed in the Introduction, in many cases these events are not what is 
+estimated by inference methods, which produce, more fundamentally, a collection
+of inheritance relationships (edges) between ancestral haplotypes (nodes).
+Our goal, therefore, is to decompose the overall likelihood into the
+per-node and edge contributions to enable convenient and efficient 
+calculation. 
+% , as well as graceful degradation in the presence of incomplete information.
+
 %\comment{if we want to spell it out even further:
 %Note that the time to the next event is distributed as $\Lambda \exp(-\Lambda)$. And
 %the probablility that the next event is of type $i$ is $\lambda_i / \Lambda$.}
@@ -663,7 +664,6 @@ integrated over the entire process
 %So, $x$ and $y$ are genomic coordinates,
 %while $c$ and $p$ are in $N$ (i.e., distinct sampled or ancestral haplotypes).
 
-
 %Because the process of recombination only affects one lineage at a time
 %(and does not even depend on the state of other lineages).
 %On the other hand, common  events necessarily involve more than one lineage.
@@ -672,20 +672,19 @@ integrated over the entire process
 %which allows us to cleanly factor the likelihood across edges and nodes.
 % latter realized events, factor hazard across the edges.
 
-The structure of the ARG, as a collection of \emph{edges} $E$ and \emph{nodes} $N$,
-as well as the definition of both recombination and common ancestry events, allows us
-to cleanly factor the likelihood of the ARG across its edges and nodes.
-Not only does recombination
-naturally only affect one lineage at a time without even depending
-on the state of other lineages. Common ancestry events can be equally
-associated with a single edge given definition \eqref{def:coal}.
-The next paragraphs detail precisely how the number and the nature of the realized events
-can be determined based on the number of
-parents and children of each of the nodes in $N$ as well as how the total hazard can be
-factorized into the individual contributions of each of the edges.
+% The structure of the ARG, as a collection of \emph{edges} $E$ and \emph{nodes} $N$,
+% as well as the definition of both recombination and common ancestry events, allows us
+% to cleanly factor the likelihood of the ARG across its edges and nodes.
+% Not only does recombination
+% naturally only affect one lineage at a time without even depending
+% on the state of other lineages. Common ancestry events can be equally
+% associated with a single edge given definition \eqref{def:coal}.
+% The next paragraphs detail precisely how the number and the nature of the realized events
+% can be determined based on the number of
+% parents and children of each of the nodes in $N$ as well as how the total hazard can be
+% factorized into the individual contributions of each of the edges.
 
-More specifically,
-let $\deg_o(u) = \vert\{e \in E : p_e=u\}\vert$ be the out-degree of a node $u$,
+Let $\deg_o(u) = \vert\{e \in E : p_e=u\}\vert$ be the out-degree of a node $u$,
 i.e., the number of edges having $u$ as a parent.
 Since mergers are binary in the SMC,
 this must have been the result of $\deg(u) - 1$ common ancestry events,
@@ -725,13 +724,13 @@ to some node's out-degree and some node's in-degree.)
     \includegraphics[width=0.65\textwidth]{figures/single_event.png}
     % FIXME commenting this caption out because it mucks up syntax highlighting for me.
     \caption{
-    % Graphical representation of the events associated with the edge $(p,c,x,y)$.
-    % The lineage carried by $c$ spans $[x_c,y)$ until 
-% a recombination event (blue dotted line) splits it
-    %     into two segments. Left and right hand segments coalesce at times $t_p'$ and $t_p$ respectively,
-    %     bounding the time to recombination by $(c. \min(t_p, t_{p'})$.
-    %     Note that the contribution to the recombination hazard by edge $(p,c,x,y)$ only covers ``half'' of the
-    %     green shaded area. The other half is contributed by edge $(p', c, x_c, x)$. 
+    Graphical representation of the events associated with the edge $(p,c,x,y)$.
+    The lineage carried by $c$ spans $[x_c,y)$ until 
+a recombination event (blue dotted line) splits it
+        into two segments. Left and right hand segments coalesce at times $t_p'$ and $t_p$ respectively,
+        bounding the time to recombination by $(c. \min(t_p, t_{p'})$.
+        Note that the contribution to the recombination hazard by edge $(p,c,x,y)$ only covers ``half'' of the
+        green shaded area. The other half is contributed by edge $(p', c, x_c, x)$. 
         \label{fig:likelihood}
     }
 \end{figure}
@@ -775,7 +774,7 @@ between time $s$ and $t$ is given by $F(e, s, t) = \int_{s}^{t} I_{e}(z) dz$.
 If the edge $e = (p,c,x,y)$
 is the leftmost segment of material inherited by node $c$
 (e.g., the left hand segment ancestral to node $c$
-in fig.\ ~\ref{fig:likelihood}),
+in Fig.~\ref{fig:likelihood}),
 then no recombination occurred along this edge and 
 this edge simply contributes $\exp(-F(e,t_c,t_p))$ to the likelihood.
 However, if the edge is \emph{not} the leftmost segment
@@ -826,9 +825,8 @@ where $x_c$ is the leftmost position of the edges whose children are $c$.
 %The last term gives the point probability density of the coalescence event
 %that terminates the edge. The indicator function is used to resolve
 %the non-reciprocal nature of coalescence events as defined in \ref{def:coal}.
-
-The likelihood of ARG defined by the set of edges $E$ and nodes $N$
-given parameters $\theta$ then is
+The overall likelihood of an ARG defined by the set of edges $E$ and nodes $N$
+given parameters $\theta$ is then given by
 \begin{equation}\label{eq:full-lik}
     \mathcal{L}(\mathcal{G}|r, \lambda)
     =
@@ -844,9 +842,9 @@ given parameters $\theta$ then is
 % coalescence rate (or recombination rate)
 % through time by intersecting the internode intervals with the rate change
 % intervals; rate changes along the genome can be incorporated similarly.
-Finally, we have only considered the topology and branch length information of any ARG.
-Extending this expression by adding the likelihood of observing a set of mutations
-given an ARG is given by
+Note that we have only considered the topology and branch length information here
+an not considered mutational information.
+The likelihood of a set of mutations given an ARG is
 \begin{equation}\label{eq:lik-mut}
     \mathcal{L}(\mathcal{D}|\mathcal{G}, \mu)
     =
@@ -902,7 +900,7 @@ into the product of two integrals of the same form.
 
 However, as long as the individual slices of the ARG contain sufficient
 information we can approximate the true integral as the product of the
-integral of the slices. Figure~\ref{fig:3-arg-slices} demonstrates this idea
+integral of the slices. Fig.~\ref{fig:3-arg-slices} demonstrates this idea
 on a toy example. We simulated an ARG under human-like parameters with
 two effective population size changes, and subsequently computed the posterior
 distribution on the three effective population sizes
