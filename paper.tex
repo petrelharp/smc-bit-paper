@@ -25,9 +25,9 @@
 \newcommand{\comment}[1]{{\it \color{orange} (#1)}}
 
 % Bold the 'Figure #' in the caption and separate it from the title/caption with a period
-% Captions will be left justified
-\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
-\renewcommand{\figurename}{Fig}
+% % Captions will be left justified
+% \usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+% \renewcommand{\figurename}{Fig}
 
 % adjust inter-paragraph spacing - this one's for you, Gertjan
 % \setlength{\parskip}{0.5\baselineskip}
@@ -647,10 +647,10 @@ integrated over the entire process
 (also called the ``total hazard''). 
 As discussed in the Introduction, in many cases these events are not what is 
 estimated by inference methods, which produce, more fundamentally, a collection
-of inheritance relationships (edges) between ancestral haplotypes (nodes).
+of genetic inheritance relationships (edges) between ancestral haplotypes (nodes).
 Our goal, therefore, is to decompose the overall likelihood into the
-per-node and edge contributions to enable convenient and efficient 
-calculation. 
+per-node and edge contributions, allowing us to compute likelihoods
+for the incomplete ancestries estimated by current methods.
 % , as well as graceful degradation in the presence of incomplete information.
 
 %\comment{if we want to spell it out even further:
@@ -686,13 +686,12 @@ calculation.
 
 Let $\deg_o(u) = \vert\{e \in E : p_e=u\}\vert$ be the out-degree of a node $u$,
 i.e., the number of edges having $u$ as a parent.
-Since mergers are binary in the SMC,
+Because mergers are binary in the SMC,
 this must have been the result of $\deg(u) - 1$ common ancestry events,
 and so this contributes a factor of $\lambda^{\deg_o(u)-1}$ to the likelihood
 for nodes with any children.
 Note however that this description is general and holds for the case of
-more-than-binary mergers. Indeed, inferred ARGs (e.g.\ \texttt{tsinfer}) may
-contain polytomies. By treating these as if there were zero-length edges
+more-than-binary mergers. By treating such polytomies as if there were zero-length edges
 between a sequence of mergers, the order of these unresolved mergers does 
 not affect the likelihood. Under the SMC the likelihood of a zero-length edge is zero.
 This is not special: since edge lengths are continuously distributed,
@@ -722,16 +721,20 @@ to some node's out-degree and some node's in-degree.)
 \begin{figure}
     \centering
     \includegraphics[width=0.65\textwidth]{figures/single_event.png}
-    % FIXME commenting this caption out because it mucks up syntax highlighting for me.
     \caption{
     Graphical representation of the events associated with the edge $(p,c,x,y)$.
-    The lineage carried by $c$ spans $[x_c,y)$ until 
-a recombination event (blue dotted line) splits it
-        into two segments. Left and right hand segments coalesce at times $t_p'$ and $t_p$ respectively,
-        bounding the time to recombination by $(c. \min(t_p, t_{p'})$.
-        Note that the contribution to the recombination hazard by edge $(p,c,x,y)$ only covers ``half'' of the
-        green shaded area. The other half is contributed by edge $(p', c, x_c, x)$. 
-        \label{fig:likelihood}
+    The lineage carried by $c$ (dark green bar) spans $[x_c,y)$ 
+    until a recombination event (blue
+    dotted line) splits it into two segments. Left and right hand segments coalesce
+    (with the pink and yellow lineages, respectively)
+    at times $t_{p'}$ and $t_p$ respectively, bounding the time to recombination by
+    % JK used to be: $(c. \min(t_p, t_{p'})$
+    $\min(t_p, t_{p'}$.
+    % JK: not sure this helps? 
+    % Note that the contribution to the recombination hazard
+    % by edge $(p,c,x,y)$ only covers ``half'' of the green shaded area. The other
+    % half is contributed by edge $(p', c, x_c, x)$. 
+    \label{fig:likelihood}
     }
 \end{figure}
 
@@ -796,7 +799,6 @@ B_e(r, \lambda) = \begin{cases}
 \end{cases}
 \end{equation}
 where $x_c$ is the leftmost position of the edges whose children are $c$.
-
 % In that case $x=x_{c0}$ and $c$ did not coalesce until $t_p$.
 % Alternatively, $x$ can be a new recombination break point that
 % occurred on the lineage represented by $c$ at some time $s$ between $t_{c}$
@@ -806,7 +808,6 @@ where $x_c$ is the leftmost position of the edges whose children are $c$.
 % $c_s$. In both cases, the cumulative hazard of a lineage $a$ coalescing
 % between time $s$ and $t$ is given by $F(c, s, t) = \int_{s}^{t} I_{c}(u)du$
 % such that:
-
 %\comment{This is the old equation; I think the $e^{-rs}$ should not be there,
 %    since it's already taken into account by \eqref{eq:span}.
 %    Plus, the $\lambda$ and $r$ factors are now elsewhere.}
@@ -861,17 +862,39 @@ the number of mutations along edge $(c,p)$ \citep{mahmoudi_bayesian_2022}.
 % degrees of completeness of the ARG on the likelihood.
 % Note that the figures in this paragraph only serve this exact purpose,
 % we are not claiming to have designed a new parameter estimation approach.
-[JK: Need a bit more narraitive here to feed back into the setup 
-in the intro. Computing a likelihood on any ARG, graceful degradation
-of performance with incomplete input..]
 
-In line with the observation that the presence of locally unary nodes 
-(see section \ref{par:recording}) is crucial for the equivalence between
-the graph or local trees view of an ARG, one can gradually simplify down
-a simulated ARG by gradually removing the various types of locally unary nodes.
-Figure \ref{fig:lik-surface} shows the impact of these simplification steps
-on the likelihood for a single simulated ARG.
-The log likelihood ratio is shown to improve comparability.
+Equation~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any}
+collection of nodes (ancestral haplotypes that lived at some time 
+$t$ in the past) and edges (a record that child node $c$ 
+inherited the genomic interval $[x, y)$ from parent node $p$)
+under the SMC. Other than some basic consistency constraints (e.g.\ parents
+must be older than children) there are no requirements on the topology
+described, and in particular, no requirement that the events from the 
+model (the SMC) should be explicitly identified in the graph. Our 
+formulation reasons about the events that \emph{could have resulted in}
+the observed nodes and edges, and therefore frees us from the requirement
+of having to explicitly write those down. This gives a great deal 
+of flexibility, which we illustrate in this section via some examples.
+
+The first example concerns the simplest possible polytomy (see
+the Discussion for why we consider polytomies important).
+Suppose we have a graph consisting of four nodes, $c_1,c_2,c_3,p$ and three edges
+${(p, c_j, 0, 1): 1 \leq j \leq 3}$. The child nodes are samples at time
+zero, and the parent has time $1$. The likelihood of this ARG is undefined
+under HKY because the three-way star topology described cannot be interpreted as 
+a sequence of binary coalescence events. However, it is clearly 
+\emph{consistent with} such a sequence of events, which we can reason
+about probabilistically. In our formulation we [Peter/Gertjan, help me 
+out any hold my hand a bit here. How exactly to we assign a likelihood
+to such a polytomy? Why do I get a larger likelihood for the ternary
+tree described above than an example in which I break the polytomy? 
+Naively, I would have thought that the likelihood should have been 
+lower, but I clearly don't understand likelihoods...]
+
+Our second example shows a different aspect of this robustness to missing 
+data. In Fig~\ref{fig:lik-surface} we can see the likelihood-ratio curves
+obtained when we compute the likelihood of an example simulation
+at varying degrees of completeness.[JK: WIP]
 
 \begin{figure}
     \centering
@@ -884,6 +907,14 @@ The log likelihood ratio is shown to improve comparability.
     $r=2.5e-8$, $N_e=1e4$.}
     \label{fig:lik-surface}
 \end{figure}
+
+In line with the observation that the presence of locally unary nodes 
+(see section \ref{par:recording}) is crucial for the equivalence between
+the graph or local trees view of an ARG, one can gradually simplify down
+a simulated ARG by gradually removing the various types of locally unary nodes.
+Figure \ref{fig:lik-surface} shows the impact of these simplification steps
+on the likelihood for a single simulated ARG.
+The log likelihood ratio is shown to improve comparability.
 
 
 % slicing of the ARG
@@ -980,6 +1011,16 @@ a valid tree sequence for which we can again compute a likelihood.
 
 
 \section*{Discussion}
+
+The key contribution of this paper is to rederive the classical KYF
+ARG likelihood function in a way that supports partial and imprecise
+input. 
+The underlying process that we reason about probabilistically is still
+composed of events affecting lineages, but, acknowledging that we 
+do not necessarily observe or estimate these events, we calculate 
+the possible contributions of various type of event to the inheritance
+relationships that are provided as input.
+
 [JK: this needs significant work]
 Here, we have introduced a scalable algorithm to compute likelihoods
 under the SMC for a general class of ARGs. By formulating the SMC backwards in time
