@@ -863,7 +863,7 @@ the number of mutations along edge $(c,p)$ \citep{mahmoudi_bayesian_2022}.
 % Note that the figures in this paragraph only serve this exact purpose,
 % we are not claiming to have designed a new parameter estimation approach.
 
-Equation~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any}
+Eq.~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any}
 collection of nodes (ancestral haplotypes that lived at some time 
 $t$ in the past) and edges (a record that child node $c$ 
 inherited the genomic interval $[x, y)$ from parent node $p$)
@@ -893,7 +893,7 @@ lower, but I clearly don't understand likelihoods...]
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{figures/likratio.png}
+    \includegraphics[width=0.8\textwidth]{figures/likratio.png}
     \caption{TODO add A/B and change ``unary regions''.
     Log likelihood-ratio curves for ARGs simulated under the SMC with
     various degrees of completeness. The likelihood ratio is computed with
@@ -928,7 +928,7 @@ in the left-hand tree, marking the passage of the lineage through
 this ancestral haplotype (similar to node g in Fig~\ref{fig:smc-unary}).
 Fig~\ref{fig:lik-surface}A shows that, remarkably, when we 
 remove the recombination nodes (e.g., 6/7) but keep the locally unary nodes (e.g., 8)
-and compute the likelihood using equation~\eqref{eq:full-lik},
+and compute the likelihood using eq.~\eqref{eq:full-lik},
 there is very little difference in the likelihood ratio
 curve from the exact value with complete input. 
 Most importantly, the minimum occurs at the true value of the 
@@ -942,6 +942,24 @@ information about recombination. This is demonstrated in
 Fig~\ref{fig:lik-surface}A, where the corresponding likelihood ratio curve
 is clearly biased. 
 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/3-slices-whitespace.png}
+    \caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant
+    for each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000,
+    (5000:\infty):10 000]$. Remaining parameters: $L=10$kb, $20$ diploid samples,
+    $r=2.5e-8$, $148$ edges in ARG. A single $N_e$ value was estimated for each
+    slice of the ARG as defined by the true population size change time points.
+    The inferred posterior distribution (right) using the SMC-likelihood was
+    obtained using a uniform prior. Number of edges per time slice
+    (from most recent slice to oldest): $[68, 57, 23]$. Locally unary nodes were
+    omitted for clarity.}
+    \label{fig:3-arg-slices}
+\end{figure}
+
+Our final example concerns [TODO motivate this example; why is 
+this interesting/useful?]
 % slicing of the ARG
 By explicitly associating a single likelihood with each edge,
 we can compute the likelihood for any slice of the ARG taken in
@@ -956,7 +974,6 @@ for the entire ARG does not factorize into the likelihoods of these
 individual slices. More precisely, the likelihood associated with any
 edge that is initiated by a recombination breakpoint cannot be factorized
 into the product of two integrals of the same form.
-
 However, as long as the individual slices of the ARG contain sufficient
 information we can approximate the true integral as the product of the
 integral of the slices. Fig.~\ref{fig:3-arg-slices} demonstrates this idea
@@ -970,15 +987,16 @@ the inherent ability of ARGs to provide us with temporal
 resolution and context to a dataset of genetic variation.
 It also opens up the opportunity for more efficient optimization
 strategies during inference given that each slice of the ARG can be
-processed independently. And it further highlights the flexibility
-of the algorithm. Simply stated and from a data structure perspective,
-we can compute a likelihood under the SMC for any valid tree sequence.
-The \texttt{tskit} library provides a wide range
-of subsetting operations on tree sequences allowing us to slice
-the ARG in time and/or space, as well as to reduce the number of
-tracked samples. Any such subset of the tree sequence is itself
-a valid tree sequence for which we can again compute a likelihood.
+processed independently. 
 
+% And it further highlights the flexibility
+% of the algorithm. Simply stated and from a data structure perspective,
+% we can compute a likelihood under the SMC for any valid tree sequence.
+% The \texttt{tskit} library provides a wide range
+% of subsetting operations on tree sequences allowing us to slice
+% the ARG in time and/or space, as well as to reduce the number of
+% tracked samples. Any such subset of the tree sequence is itself
+% a valid tree sequence for which we can again compute a likelihood.
 
 % Although we can associate a likelihood with any valid tree sequences,
 % there are some caveats. By treating each edge independently we can
@@ -1018,21 +1036,6 @@ a valid tree sequence for which we can again compute a likelihood.
 
 %%% remarks on precision of information + useage of likelihood to either
 %%% estimate parameters (not goal here) or use as instrument to improve accuracy to infer ARGs
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{figures/3-slices-whitespace.png}
-    \caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant
-    for each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000,
-    (5000:\infty):10 000]$. Remaining parameters: $L=10$kb, $20$ diploid samples,
-    $r=2.5e-8$, $148$ edges in ARG. A single $N_e$ value was estimated for each
-    slice of the ARG as defined by the true population size change time points.
-    The inferred posterior distribution (right) using the SMC-likelihood was
-    obtained using a uniform prior. Number of edges per time slice
-    (from most recent slice to oldest): $[68, 57, 23]$. Locally unary nodes were
-    omitted for clarity.}
-    \label{fig:3-arg-slices}
-\end{figure}
 
 
 \section*{Discussion}
