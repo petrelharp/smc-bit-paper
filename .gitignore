@@ -13,6 +13,6 @@ references
 *.synctex.gz
 paper.pdf
 *.trees
-*.ipynb
+notebooks/*.ipynb
 .*.swp
 *.out
