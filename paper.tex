@@ -10,7 +10,7 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{placeins}
-\usepackage[hidelinks]{hyperref}
+% \usepackage[hidelinks]{hyperref}
 
 \newcommand{\tsinfer}[0]{\texttt{tsinfer}}
 \newcommand{\kwarg}[0]{\texttt{KwARG}}
@@ -417,7 +417,7 @@ in the second tree, but not to node $c$, and so is unary.
 
 These locally unary nodes enable
 us to uniquely identify all lineages that were hit by a recombination event,
-even if we simplify %~\citep{wong_general_2023,kelleher_efficient_2018} 
+even if we simplify 
 the ARG by removing all recombinant nodes
 ($A$, $B$, and $C$ in Fig.\ref{fig:smc-unary}).
 In the absence of these recombinant nodes, a recombination can be observed
@@ -891,15 +891,11 @@ tree described above than an example in which I break the polytomy?
 Naively, I would have thought that the likelihood should have been 
 lower, but I clearly don't understand likelihoods...]
 
-Our second example shows a different aspect of this robustness to missing 
-data. In Fig~\ref{fig:lik-surface} we can see the likelihood-ratio curves
-obtained when we compute the likelihood of an example simulation
-at varying degrees of completeness.[JK: WIP]
-
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/likratio.png}
-    \caption{Log likelihood-ratio curves for ARGs simulated under the SMC with
+    \caption{TODO add A/B and change ``unary regions''.
+    Log likelihood-ratio curves for ARGs simulated under the SMC with
     various degrees of completeness. The likelihood ratio is computed with
     respect to the true recombination rate. In case of the full ARG the likelihood
     under the SMC has been computed using the exact time to the recombination event.
@@ -908,14 +904,43 @@ at varying degrees of completeness.[JK: WIP]
     \label{fig:lik-surface}
 \end{figure}
 
-In line with the observation that the presence of locally unary nodes 
-(see section \ref{par:recording}) is crucial for the equivalence between
-the graph or local trees view of an ARG, one can gradually simplify down
-a simulated ARG by gradually removing the various types of locally unary nodes.
-Figure \ref{fig:lik-surface} shows the impact of these simplification steps
-on the likelihood for a single simulated ARG.
-The log likelihood ratio is shown to improve comparability.
-
+Our second example shows a different aspect of this robustness to missing 
+data. In Fig~\ref{fig:lik-surface}A we can see the likelihood-ratio curves
+obtained when we compute the likelihood of an example simulation,
+in which the ARG is at three different levels of completeness
+(illustrated in Fig~\ref{fig:lik-surface}B).
+We first run a simulation under the SMC
+using the \texttt{record\_full\_arg} option in \texttt{msprime}. This 
+ARG explicitly identifies all of the recombination and common 
+ancestor events that occurred in the simulation, and 
+we can therefore compute a likelihood under the HKY formulation
+(for example, using the \texttt{msprime.log\_arg\_likelihood} 
+function). The example full ARG in 
+Fig~\ref{fig:lik-surface}B has three nodes that are ``locally
+unary''~\citep{wong_general_2023}. Nodes 6 and 7 correspond to the 
+left and right parents of the recombination event causing the 
+breakpoint at position 536~\cite[we need two nodes to uniquely identify
+ the passage of ancestral material through recombination 
+events; see][]{baumdicker_efficient_2021}, and therefore present
+in only those trees. 
+Node 8 is a coalescent node in the right-hand tree, but unary
+in the left-hand tree, marking the passage of the lineage through
+this ancestral haplotype (similar to node g in Fig~\ref{fig:smc-unary}).
+Fig~\ref{fig:lik-surface}A shows that, remarkably, when we 
+remove the recombination nodes (e.g., 6/7) but keep the locally unary nodes (e.g., 8)
+and compute the likelihood using equation~\eqref{eq:full-lik},
+there is very little difference in the likelihood ratio
+curve from the exact value with complete input. 
+Most importantly, the minimum occurs at the true value of the 
+recombination parameter.
+When we further simplify
+the ARG to remove all unary nodes~\citep{wong_general_2023,kelleher_efficient_2018} 
+we obtain an ARG in the standard format used by \texttt{msprime}.
+Although there is substantial information about the correlation
+structure of trees in this representation, we lose important
+information about recombination. This is demonstrated in 
+Fig~\ref{fig:lik-surface}A, where the corresponding likelihood ratio curve
+is clearly biased. 
 
 % slicing of the ARG
 By explicitly associating a single likelihood with each edge,
