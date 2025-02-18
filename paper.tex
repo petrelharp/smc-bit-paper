@@ -10,7 +10,7 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{placeins}
-\usepackage[hidelinks]{hyperref}
+% \usepackage[hidelinks]{hyperref}
 
 \newcommand{\tsinfer}[0]{\texttt{tsinfer}}
 \newcommand{\kwarg}[0]{\texttt{KwARG}}
@@ -417,7 +417,7 @@ in the second tree, but not to node $c$, and so is unary.
 
 These locally unary nodes enable
 us to uniquely identify all lineages that were hit by a recombination event,
-even if we simplify %~\citep{wong_general_2023,kelleher_efficient_2018} 
+even if we simplify 
 the ARG by removing all recombinant nodes
 ($A$, $B$, and $C$ in Fig.\ref{fig:smc-unary}).
 In the absence of these recombinant nodes, a recombination can be observed
@@ -863,7 +863,7 @@ the number of mutations along edge $(c,p)$ \citep{mahmoudi_bayesian_2022}.
 % Note that the figures in this paragraph only serve this exact purpose,
 % we are not claiming to have designed a new parameter estimation approach.
 
-Equation~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any}
+Eq.~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any}
 collection of nodes (ancestral haplotypes that lived at some time 
 $t$ in the past) and edges (a record that child node $c$ 
 inherited the genomic interval $[x, y)$ from parent node $p$)
@@ -891,15 +891,11 @@ tree described above than an example in which I break the polytomy?
 Naively, I would have thought that the likelihood should have been 
 lower, but I clearly don't understand likelihoods...]
 
-Our second example shows a different aspect of this robustness to missing 
-data. In Fig~\ref{fig:lik-surface} we can see the likelihood-ratio curves
-obtained when we compute the likelihood of an example simulation
-at varying degrees of completeness.[JK: WIP]
-
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{figures/likratio.png}
-    \caption{Log likelihood-ratio curves for ARGs simulated under the SMC with
+    \includegraphics[width=0.8\textwidth]{figures/likratio.png}
+    \caption{TODO add A/B and change ``unary regions''.
+    Log likelihood-ratio curves for ARGs simulated under the SMC with
     various degrees of completeness. The likelihood ratio is computed with
     respect to the true recombination rate. In case of the full ARG the likelihood
     under the SMC has been computed using the exact time to the recombination event.
@@ -908,30 +904,78 @@ at varying degrees of completeness.[JK: WIP]
     \label{fig:lik-surface}
 \end{figure}
 
-In line with the observation that the presence of locally unary nodes 
-(see section \ref{par:recording}) is crucial for the equivalence between
-the graph or local trees view of an ARG, one can gradually simplify down
-a simulated ARG by gradually removing the various types of locally unary nodes.
-Figure \ref{fig:lik-surface} shows the impact of these simplification steps
-on the likelihood for a single simulated ARG.
-The log likelihood ratio is shown to improve comparability.
+Our second example shows a different aspect of this robustness to missing 
+data. In Fig~\ref{fig:lik-surface}A we can see the likelihood-ratio curves
+obtained when we compute the likelihood of an example simulation,
+in which the ARG is at three different levels of completeness
+(illustrated in Fig~\ref{fig:lik-surface}B).
+We first run a simulation under the SMC
+using the \texttt{record\_full\_arg} option in \texttt{msprime}. This 
+ARG explicitly identifies all of the recombination and common 
+ancestor events that occurred in the simulation, and 
+we can therefore compute a likelihood under the HKY formulation
+(for example, using the \texttt{msprime.log\_arg\_likelihood} 
+function). The example full ARG in 
+Fig~\ref{fig:lik-surface}B has three nodes that are ``locally
+unary''~\citep{wong_general_2023}. Nodes 6 and 7 correspond to the 
+left and right parents of the recombination event causing the 
+breakpoint at position 536~\cite[we need two nodes to uniquely identify
+ the passage of ancestral material through recombination 
+events; see][]{baumdicker_efficient_2021}, and therefore present
+in only those trees. 
+Node 8 is a coalescent node in the right-hand tree, but unary
+in the left-hand tree, marking the passage of the lineage through
+this ancestral haplotype (similar to node g in Fig~\ref{fig:smc-unary}).
+Fig~\ref{fig:lik-surface}A shows that, remarkably, when we 
+remove the recombination nodes (e.g., 6/7) but keep the locally unary nodes (e.g., 8)
+and compute the likelihood using eq.~\eqref{eq:full-lik},
+there is very little difference in the likelihood ratio
+curve from the exact value with complete input. 
+Most importantly, the minimum occurs at the true value of the 
+recombination parameter.
+When we further simplify
+the ARG to remove all unary nodes~\citep{wong_general_2023,kelleher_efficient_2018} 
+we obtain an ARG in the standard format used by \texttt{msprime}.
+Although there is substantial information about the correlation
+structure of trees in this representation, we lose important
+information about recombination. This is demonstrated in 
+Fig~\ref{fig:lik-surface}A, where the corresponding likelihood ratio curve
+is clearly biased. 
 
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/3-slices-whitespace.png}
+    \caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant
+    for each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000,
+    (5000:\infty):10 000]$. Remaining parameters: $L=10$kb, $20$ diploid samples,
+    $r=2.5e-8$, $148$ edges in ARG. A single $N_e$ value was estimated for each
+    slice of the ARG as defined by the true population size change time points.
+    The inferred posterior distribution (right) using the SMC-likelihood was
+    obtained using a uniform prior. Number of edges per time slice
+    (from most recent slice to oldest): $[68, 57, 23]$. Locally unary nodes were
+    omitted for clarity.}
+    \label{fig:3-arg-slices}
+\end{figure}
+
+Our final example concerns [TODO motivate this example; why is 
+this interesting/useful? Presumably we don't have to jointly estimate
+ the ARG with demography, but can do so post-hoc? But, couldn't 
+you do that anyway if you had a full ARG using HKY?]
 % slicing of the ARG
 By explicitly associating a single likelihood with each edge,
 we can compute the likelihood for any slice of the ARG taken in
 time and/or along the genome.
 In the case of a fully precise ARG, with a known time to recombination,
 this is true as long as the slicing operation does not erase the
-information on whether an edge is associated with the lefthand or
-righthand segment generated by a recombination event. In the absence
+information on whether an edge is associated with the left or
+right hand segment generated by a recombination event. In the absence
 of the exact time to recombination, the integral in
 eq.~\eqref{eq:depth} means that the likelihood
 for the entire ARG does not factorize into the likelihoods of these
 individual slices. More precisely, the likelihood associated with any
 edge that is initiated by a recombination breakpoint cannot be factorized
 into the product of two integrals of the same form.
-
 However, as long as the individual slices of the ARG contain sufficient
 information we can approximate the true integral as the product of the
 integral of the slices. Fig.~\ref{fig:3-arg-slices} demonstrates this idea
@@ -945,33 +989,56 @@ the inherent ability of ARGs to provide us with temporal
 resolution and context to a dataset of genetic variation.
 It also opens up the opportunity for more efficient optimization
 strategies during inference given that each slice of the ARG can be
-processed independently. And it further highlights the flexibility
-of the algorithm. Simply stated and from a data structure perspective,
-we can compute a likelihood under the SMC for any valid tree sequence.
-The \texttt{tskit} library provides a wide range
-of subsetting operations on tree sequences allowing us to slice
-the ARG in time and/or space, as well as to reduce the number of
-tracked samples. Any such subset of the tree sequence is itself
-a valid tree sequence for which we can again compute a likelihood.
+processed independently. 
+
+% And it further highlights the flexibility
+% of the algorithm. Simply stated and from a data structure perspective,
+% we can compute a likelihood under the SMC for any valid tree sequence.
+% The \texttt{tskit} library provides a wide range
+% of subsetting operations on tree sequences allowing us to slice
+% the ARG in time and/or space, as well as to reduce the number of
+% tracked samples. Any such subset of the tree sequence is itself
+% a valid tree sequence for which we can again compute a likelihood.
 
 
-% Although we can associate a likelihood with any valid tree sequences,
-% there are some caveats. By treating each edge independently we can
-% naturally deal with the various degrees of completeness to which inheritance
-% is documented by the different ARG inference methods: e.g., polytomies, absence
-% of locally unary coalescence nodes, unpreserved identify of internal nodes
-% across marginal trees, etcetera.
-% However, many of these imprecisions violate the implicit
-% assumptions of the likelihood computation.
-% \comment{Do we want these remarks in here, or as part of the Discussion?}
-% 
-% For example, the described algorithm assumes the
-% presence of ``locally unary'' nodes to correctly identify the
-% full extent of all lineages going back through time and therefore recombination events.
-% Without unary nodes though, our algorithm will detect a recombination
-% event along both coalescing lineages in case of a (sub)tree height changes along
-% the ARG as both edges would switch parent nodes. This can be mitigated by limiting
-% the number of 'inferrable' recombination events per coalescence event to 1
+
+\section*{Discussion}
+
+The key contribution of this paper is to rederive the classical KYF
+ARG likelihood function in a way that supports partial and imprecise
+input, using a novel backwards-time derivation of the SMC.
+The underlying process that we reason about probabilistically is still
+composed of events affecting lineages, but, acknowledging that we 
+do not necessarily observe or estimate these events, we calculate 
+the possible contributions of various type of event to the inheritance
+relationships that are provided as input.
+Although we can associate a likelihood with any ARG in \texttt{tskit}
+format, there are some caveats. By treating each edge independently we can
+naturally deal with the various degrees of completeness to which inheritance
+is documented by the different ARG inference methods: e.g., polytomies, absence
+of locally unary coalescence nodes, unpreserved identify of internal nodes
+across local trees, etc.
+However, many of these imprecisions violate the implicit
+assumptions of the likelihood computation.
+For example, we assume the 
+presence of locally unary nodes to correctly identify the
+full extent of all lineages going back through time and therefore recombination events.
+Without these unary nodes, our algorithm will detect a recombination
+event along both coalescing lineages in case of a (sub)tree height changes along
+the ARG as both edges would switch parent nodes. 
+Locally unary nodes are not a common aspect of current ARG research, but 
+are estimated by \texttt{tsinfer}, and can be imputed to high
+degree of accuracy from fully simplified ARGs~\citep{fritze2024forest}.
+
+
+[A paragraph about possililties for inference]
+
+[A paragraph about why what we've presented is useful, and a good starting
+point for other research. We provide an efficient algorithm and 
+reference implementation]
+
+% This can be mitigated by limiting
+% the number of `inferrable' recombination events per coalescence event to 1
 % (see fig \ref{sup:fig:rec-correction}).
 % \comment{I'm not editing this in since I'm not sure I've got it right:
 % I think that as written, our algorithm would count an extra recombination
@@ -994,85 +1061,61 @@ a valid tree sequence for which we can again compute a likelihood.
 %%% remarks on precision of information + useage of likelihood to either
 %%% estimate parameters (not goal here) or use as instrument to improve accuracy to infer ARGs
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{figures/3-slices-whitespace.png}
-    \caption{Simulated ARG under Hudson coalescent (left). $N_e$ is constant
-    for each of the 3 time slices: $[(0:1000): 10 000, (1000:5000): 5000,
-    (5000:\infty):10 000]$. Remaining parameters: $L=10$kb, $20$ diploid samples,
-    $r=2.5e-8$, $148$ edges in ARG. A single $N_e$ value was estimated for each
-    slice of the ARG as defined by the true population size change time points.
-    The inferred posterior distribution (right) using the SMC-likelihood was
-    obtained using a uniform prior. Number of edges per time slice
-    (from most recent slice to oldest): $[68, 57, 23]$. Locally unary nodes were
-    omitted for clarity.}
-    \label{fig:3-arg-slices}
-\end{figure}
 
 
-\section*{Discussion}
+% [JK: this needs significant work]
+% Here, we have introduced a scalable algorithm to compute likelihoods
+% under the SMC for a general class of ARGs. By formulating the SMC backwards in time
+% we were able to associate a single likelihood value with each edge in the ARG.
+% The compatibility of the algorithm with the \texttt{tskit} library allows us to
+% exploit its associated efficiencies both for the current work and its future
+% applications. This work will contribute significantly
+% to ARG-based analysis becoming a standard part of the population
+% and statistical genetics toolkit.
+% In particular, we see two main applications for the work presented here.
+% Firstly, the ability to associate inferred ARGs with a likelihood given a demographic
+% model and an associated set of parameters, will help bridge the gap between the tremendous recent
+% advances in ARG inference and the current state of the art statistical inference of
+% past demography.
 
-The key contribution of this paper is to rederive the classical KYF
-ARG likelihood function in a way that supports partial and imprecise
-input. 
-The underlying process that we reason about probabilistically is still
-composed of events affecting lineages, but, acknowledging that we 
-do not necessarily observe or estimate these events, we calculate 
-the possible contributions of various type of event to the inheritance
-relationships that are provided as input.
+% The second and probably the most important application of the ability to associate a more
+% general class of ARGs to a principled model is the ability to boost the current efforts
+% in ARG inference. 
+% % great starting point for MCMC
+% Any inferred ARG can be used a good starting point
+% for a future MCMC-sampler. This potentially implies a massive runtime reduction by
+% reducing the necessary burn-in period. Furthermore, by integrating out the exact time
+% to the recombination event we further restrict the size of the ARG space that needs to
+% be explored. This MCMC-sampler would again rely on the tree sequence data structure to
+% efficiently generate and evaluate any new proposal (see \citep{mahmoudi_bayesian_2022}).
+% % hybrid ARG-inference: scalability + bringing ARG down from pedigree dominated phase
+% To further improve scalability, hybrid ARG-inference methods could be designed which
+% rely on heuristic approaches to bring the ARG down from the initial pedigree-dominated phase,
+% and subsequently use a principled approach to perform ARG inference for the second phase.
+% This idea resembles the tried and tested approach of hybrid backwards-in-time simulations 
+% that combine Wright-Fisher dynamics in the very recent past and coalescent simulations 
+% for the remaining time \citep{bhaskar_distortion_2014, nelson_accounting_2020}. This hybrid
+% approach has enabled large scale simulations while avoiding the documented biases of the
+% coalescent relative to the Wright-Fisher model \citep{bhaskar_distortion_2014, wakeley_gene_2012}. 
+% The same approach could be thus used for ARG-inference where one can rely on a heuristic 
+% inference method for the recent past, while using a model-based approach beyond that cutoff point.
 
-[JK: this needs significant work]
-Here, we have introduced a scalable algorithm to compute likelihoods
-under the SMC for a general class of ARGs. By formulating the SMC backwards in time
-we were able to associate a single likelihood value with each edge in the ARG.
-The compatibility of the algorithm with the \texttt{tskit} library allows us to
-exploit its associated efficiencies both for the current work and its future
-applications. This work will contribute significantly
-to ARG-based analysis becoming a standard part of the population
-and statistical genetics toolkit.
-In particular, we see two main applications for the work presented here.
-Firstly, the ability to associate inferred ARGs with a likelihood given a demographic
-model and an associated set of parameters, will help bridge the gap between the tremendous recent
-advances in ARG inference and the current state of the art statistical inference of
-past demography.
-The second and probably the most important application of the ability to associate a more
-general class of ARGs to a principled model is the ability to boost the current efforts
-in ARG inference. 
-% great starting point for MCMC
-Any inferred ARG can be used a good starting point
-for a future MCMC-sampler. This potentially implies a massive runtime reduction by
-reducing the necessary burn-in period. Furthermore, by integrating out the exact time
-to the recombination event we further restrict the size of the ARG space that needs to
-be explored. This MCMC-sampler would again rely on the tree sequence data structure to
-efficiently generate and evaluate any new proposal (see \citep{mahmoudi_bayesian_2022}).
-% hybrid ARG-inference: scalability + bringing ARG down from pedigree dominated phase
-To further improve scalability, hybrid ARG-inference methods could be designed which
-rely on heuristic approaches to bring the ARG down from the initial pedigree-dominated phase,
-and subsequently use a principled approach to perform ARG inference for the second phase.
-This idea resembles the tried and tested approach of hybrid backwards-in-time simulations 
-that combine Wright-Fisher dynamics in the very recent past and coalescent simulations 
-for the remaining time \citep{bhaskar_distortion_2014, nelson_accounting_2020}. This hybrid
-approach has enabled large scale simulations while avoiding the documented biases of the
-coalescent relative to the Wright-Fisher model \citep{bhaskar_distortion_2014, wakeley_gene_2012}. 
-The same approach could be thus used for ARG-inference where one can rely on a heuristic 
-inference method for the recent past, while using a model-based approach beyond that cutoff point.
+% Finally, acknowledging the uncertainty associated with ARG inference does not
+% necessarily require a full-blown MCMC sampler. Instead, recognising those parts of
+% the ARG for which we lack information for confident reconstruction and resolving
+% them stochastically by sampling from the coalescent rather than completely arbitrarily
+% would already be a major step forward. 
 
-Finally, acknowledging the uncertainty associated with ARG inference does not
-necessarily require a full-blown MCMC sampler. Instead, recognising those parts of
-the ARG for which we lack information for confident reconstruction and resolving
-them stochastically by sampling from the coalescent rather than completely arbitrarily
-would already be a major step forward. 
+% % this part is only a very rough idea, might be better to leave it out if we can't make it more concrete.
+% We believe that quantifying uncertainty does not have to be associated with sampling
+% from the space of all compatible genealogies. Uncertainty could also
+% be quantified and passed on as metadata to the nodes in the data format storing the ARG.
 
-% this part is only a very rough idea, might be better to leave it out if we can't make it more concrete.
-We believe that quantifying uncertainty does not have to be associated with sampling
-from the space of all compatible genealogies. Uncertainty could also
-be quantified and passed on as metadata to the nodes in the data format storing the ARG.
-
-[Note: a point to make here is that the idea of combining hueristic large-scale 
-inference with model based inference is analogous to the combination of 
-coalescent simulation and forwards time simulation. We can also draw lessons
-from developers of different methods cooperating and using the tskit library
-to enable this.]
+% [Note: a point to make here is that the idea of combining hueristic large-scale 
+% inference with model based inference is analogous to the combination of 
+% coalescent simulation and forwards time simulation. We can also draw lessons
+% from developers of different methods cooperating and using the tskit library
+% to enable this.]
 
 % Additionally, there is a rich suite of tools growing around
 % the \texttt{tskit} ARG library~\citep{ralph_efficiently_2020}
