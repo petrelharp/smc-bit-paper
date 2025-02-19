@@ -4,7 +4,7 @@
 
 all: paper.pdf
 
-bibs: temp.bib
+bibs: temp.bib, paper.bib, refs.bib
 
 paper.pdf : bibs
 

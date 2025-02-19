@@ -64,7 +64,7 @@ orders of magnitude larger. Although these heuristic methods are reasonably
 accurate under many metrics, one significant drawback is that the ARGs they 
 estimate do not have the topological properties required to compute a 
 likelihood under models such as the SMC under present-day formulations.
-In particular, hueristic inference methods typically do not estimate
+In particular, heuristic inference methods typically do not estimate
 precise details about recombination events, which are currently
 required to compute a likelihood.
 In this paper we present a 
@@ -145,7 +145,7 @@ and Threads~\citep{gunnarsson_scalable_2024}
 work on quite different 
 principles, but share some common properties. 
 Firstly, they are all 
-hueristic and approximation driven, favouring computational
+heuristic and approximation driven, favouring computational
 scalability over a basis in a statistical model.
 Secondly, they all produce a single
 ARG as output, inferring a deterministic point estimate with no means 
@@ -199,7 +199,7 @@ methods lack a concrete connection to population genetic theory because
 we cannot compute their likelihood under the SMC or similar models. 
 % The classical method~\citep{kuhner_maximum_2000} assumes complete knowledge about
 % recombination events, and there is no clear way to compute a likelihood for 
-% the approximate structures output by hueristic methods.
+% the approximate structures output by heuristic methods.
 
 Computing the likelihood of an ARG under a model is a fundamental element of
 probabilistic inference. The classical Kuhner, Yamato \& Felsenstein
@@ -648,6 +648,11 @@ of genetic inheritance relationships (edges) between ancestral haplotypes (nodes
 Our goal, therefore, is to decompose the overall likelihood into the
 per-node and edge contributions, allowing us to compute likelihoods
 for the incomplete ancestries estimated by current methods.
+% Feel like we need a single sentence here that ties the first and second paragraph together
+Using the out- and in-degree of the nodes we'll first reason about the number 
+of common ancestor events and recombination events that could have resulted in 
+the observed ARG. Next the information contained in the edges is leveraged to 
+compute the total hazard associated with both types of events.
 % , as well as graceful degradation in the presence of incomplete information.
 
 %\comment{if we want to spell it out even further:
@@ -1133,7 +1138,7 @@ reference implementation]
 % from the space of all compatible genealogies. Uncertainty could also
 % be quantified and passed on as metadata to the nodes in the data format storing the ARG.
 
-% [Note: a point to make here is that the idea of combining hueristic large-scale 
+% [Note: a point to make here is that the idea of combining heuristic large-scale 
 % inference with model based inference is analogous to the combination of 
 % coalescent simulation and forwards time simulation. We can also draw lessons
 % from developers of different methods cooperating and using the tskit library
