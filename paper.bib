@@ -1,16 +1,26 @@
 
 @article{kelleher_efficient_2018,
-	title = {Efficient pedigree recording for fast population genetics simulation},
-	url = {https://www.biorxiv.org/content/early/2018/06/07/248500},
-	doi = {10.1101/248500},
-	abstract = {In this paper we describe how to efficiently record the entire genetic history of a population during a forwards-time, individual-based population genetics simulation. This dramatically reduces the computational burden of tracking individual genomes by simulating only those loci that may affect reproduction (those having non-neutral variants), and recording history as a succinct tree sequence as introduced in the software package msprime, on which neutral mutations can be quickly placed afterwards. We implement the method in two popular forwards-time simulation frameworks, which speeds up large, whole-genome simulations by one to two orders of magnitude. In addition to speed, the method has several advantages: (1) All marginal genealogies of the simulated individuals are recorded, rather than just genotypes. (2) A population of N individuals with M polymorphic sites can be stored in O(N log N + M) space, making it feasible to store a simulation's entire final generation (and its' history) rather than only a subset. (3) A simulation can easily be initialized with a more efficient coalescent simulation of deep history. To make these possible, we introduce the msprime Tables API, which allows for the efficient interchange of tree sequences between modular program components, and provide an algorithm to quickly simplify a tree sequence by removing history irrelevant to a given set of genomes.},
-	urldate = {2018-10-24},
-	journal = {bioRxiv},
-	author = {Kelleher, Jerome and Thornton, Kevin R and Ashander, Jaime and Ralph, Peter L.},
-	month = jun,
-	year = {2018},
-	pages = {248500},
+  abstract = {Author summary Sexually reproducing organisms are related to the others in their species by the complex web of parent-offspring relationships that constitute the pedigree. In this paper, we describe a way to record all of these relationships, as well as how genetic material is passed down through the pedigree, during a forwards-time population genetic simulation. To make effective use of this information, we describe both efficient storage methods for this embellished pedigree as well as a way to remove all information that is irrelevant to the genetic history of a given set of individuals, which dramatically reduces the required amount of storage space. Storing this information allows us to produce whole-genome sequence from simulations of large populations in which we have not explicitly recorded new genomic mutations; we find that this results in computational run times of up to 50 times faster than simulations forced to explicitly carry along that information.},
+  added-at = {2018-12-09T17:30:18.000+0100},
+  author = {Kelleher, Jerome and Thornton, Kevin R. and Ashander, Jaime and Ralph, Peter L.},
+  biburl = {https://www.bibsonomy.org/bibtex/2a4f12f0bb2d13faee628fec0fc2679b8/peter.ralph},
+  description = {Efficient pedigree recording for fast population genetics simulation},
+  doi = {10.1371/journal.pcbi.1006581},
+  interhash = {b855fb1dfdb8542b91b86dff2be80c63},
+  intrahash = {a4f12f0bb2d13faee628fec0fc2679b8},
+  journal = {PLOS Computational Biology},
+  keywords = {ARG methods myown simulation software tree_sequence},
+  month = {11},
+  number = 11,
+  pages = {1-21},
+  publisher = {Public Library of Science},
+  timestamp = {2018-12-09T17:30:18.000+0100},
+  title = {Efficient pedigree recording for fast population genetics simulation},
+  url = {https://doi.org/10.1371/journal.pcbi.1006581},
+  volume = 14,
+  year = 2018
 }
+
 
 @article{kelleher_inferring_2019,
 	title = {Inferring whole-genome histories in large population datasets},
@@ -82,7 +92,7 @@
 }
 
 @article{rasmussen_genome-wide_2014,
-	title = {Genome-{Wide} {Inference} of {Ancestral} {Recombination} {Graphs}},
+	title = {Genome-Wide Inference of Ancestral Recombination Graphs},
 	volume = {10},
 	issn = {15537404},
 	doi = {10.1371/journal.pgen.1004342},
@@ -160,7 +170,7 @@
 }
 
 @article{griffiths_ancestral_1996,
-	title = {Ancestral {Inference} from {Samples} of {DNA} {Sequences} with {Recombination}},
+	title = {Ancestral Inference from Samples of {DNA} Sequences with Recombination},
 	volume = {3},
 	issn = {1066-5277},
 	url = {http://www.liebertpub.com/doi/10.1089/cmb.1996.3.479},
@@ -280,7 +290,7 @@
 }
 
 @article{kuhner_maximum_2000,
-	title = {Maximum {Likelihood} {Estimation} of {Recombination} {Rates} {From} {Population} {Data}},
+	title = {Maximum Likelihood Estimation of Recombination Rates From Population Data},
 	volume = {156},
 	issn = {1943-2631},
 	url = {https://academic.oup.com/genetics/article/156/3/1393/6051663},
@@ -458,7 +468,7 @@ Section: New Results},
 	abstract = {Recent breakthroughs in the reconstruction of ancestral recombination graphs (ARGs) have meant that inference of genome-wide genealogies from large sequencing datasets is now possible. This development has also opened several new directions where research is urgently needed: improving our understanding of which aspects of genealogies are (and which are not) faithfully captured by reconstruction tools, as well as the development of inference methods that directly use ARGs as inputs. By deriving the distribution of branch duration under the SMC’ model, defined as the genomic interval spanned by a branch of the ARG until it is disrupted by recombination, we benchmark the quality of ARGs produced by several reconstruction tools: ARGweaver, Relate, tsinfer and tsdate, and ARG-Needle. Further, we develop an accurate and powerful ARG-based test for the presence of chromosomal inversions, based on the idea that suppression of recombination in individuals heterozygous for an inversion has a detectable impact on branch duration.},
 	language = {en},
 	urldate = {2023-10-02},
-	institution = {Evolutionary Biology},
+	institution = {bioRxiv},
 	author = {Ignatieva, Anastasia and Favero, Martina and Koskela, Jere and Sant, Jaromir and Myers, Simon R.},
 	month = jul,
 	year = {2023},
@@ -504,7 +514,7 @@ Section: New Results},
 }
 
 @article{gill_understanding_2016,
-	title = {Understanding {Past} {Population} {Dynamics}: {Bayesian} {Coalescent}-{Based} {Modeling} with {Covariates}},
+	title = {Understanding Past Population Dynamics: {Bayesian} Coalescent-Based Modeling with Covariates},
 	volume = {65},
 	issn = {1063-5157},
 	shorttitle = {Understanding {Past} {Population} {Dynamics}},
@@ -521,7 +531,7 @@ Section: New Results},
 	file = {Full Text PDF:/home/gertjan/Zotero/storage/CR4Q4GKJ/Gill et al. - 2016 - Understanding Past Population Dynamics Bayesian C.pdf:application/pdf;Snapshot:/home/gertjan/Zotero/storage/7ATB6IEE/2281638.html:text/html},
 }
 
-@misc{wong_general_2023,
+@article{wong_general_2023,
     author = {Wong, Yan and Ignatieva, Anastasia and Koskela, Jere and 
         Gorjanc, Gregor and Wohns, Anthony W and Kelleher, Jerome},
     title = {A general and efficient representation of ancestral recombination graphs},
@@ -696,13 +706,14 @@ Supplementary information
     publisher={Elsevier}
 }
 
-@article{osmond_estimating_2021,
-    title={Estimating dispersal rates and locating genetic ancestors with
-        genome-wide genealogies},
-    author={Osmond, Matthew and Coop, Graham},
-    journal={bioRxiv},
-    year={2021},
-    publisher={Cold Spring Harbor Laboratory}
+@article{osmond estimating_2021,
+  title={Estimating dispersal rates and locating genetic ancestors with genome-wide genealogies},
+  author={Osmond, Matthew and Coop, Graham},
+  journal={eLife},
+  volume={13},
+  pages={e72177},
+  year={2024},
+  publisher={eLife Sciences Publications Limited}
 }
 
 
@@ -911,7 +922,7 @@ Supplementary information
 }
 
 @article{deng_robust_2024,
-    title={Robust and accurate bayesian inference of genome-wide genealogies
+    title={Robust and accurate {Bayesian} inference of genome-wide genealogies
         for large samples},
     author={Deng, Yun and Nielsen, Rasmus and Song, Yun S},
     journal={bioRxiv},
@@ -921,7 +932,7 @@ Supplementary information
 }
 
 @article{ignatieva_ongoing_2022,
-    title={Ongoing recombination in SARS-CoV-2 revealed through genealogical
+    title={Ongoing recombination in {SARS}-{CoV}-2 revealed through genealogical
         reconstruction},
     author={Ignatieva, Anastasia and Hein, Jotun and Jenkins, Paul A},
     journal={Molecular Biology and Evolution},
@@ -1164,7 +1175,7 @@ Supplementary information
 }
 
 @article{backman2021exome,
-    title={Exome sequencing and analysis of 454,787 UK Biobank participants},
+    title={Exome sequencing and analysis of 454,787 {UK} {Biobank} participants},
     author={Backman, Joshua D and Li, Alexander H and Marcketta, Anthony
         and Sun, Dylan and Mbatchou, Joelle and Kessler, Michael D and
             Benner, Christian and Liu, Daren and Locke, Adam E and
@@ -1178,7 +1189,7 @@ Supplementary information
 }
 
 @article{halldorsson2022sequences,
-    title={The sequences of 150,119 genomes in the UK Biobank},
+    title={The sequences of 150,119 genomes in the {UK} {Biobank}},
     author={Halldorsson, Bjarni V and Eggertsson, Hannes P and Moore,
         Kristjan HS and Hauswedell, Hannes and Eiriksson, Ogmundur and
             Ulfarsson, Magnus O and Palsson, Gunnar and Hardarson, Marteinn
@@ -1215,7 +1226,7 @@ Supplementary information
 }
 
 @article{all2024genomic,
-    title={Genomic data in the All of Us Research Program},
+    title={Genomic data in the {All} of {Us} Research Program},
     author={{All of Us Research Program Genomics Investigators et al.}},
     journal={Nature},
     volume={627},
@@ -1226,7 +1237,7 @@ Supplementary information
 }
 
 @article{uk2023whole,
-    title={Whole-genome sequencing of half-a-million UK Biobank
+    title={Whole-genome sequencing of half-a-million {UK} {Biobank}
         participants},
     author={{UK Biobank Whole-Genome Sequencing Consortium} and Li, Shuwei
         and Carss, Keren J and Halldorsson, Bjarni V and Cortes, Adrian},
@@ -1237,7 +1248,7 @@ Supplementary information
 
 
 @article{speidel2025high,
-    title={High-resolution genomic history of early medieval Europe},
+    title={High-resolution genomic history of early medieval {Europe}},
     author={Speidel, Leo and Silva, Marina and Booth, Thomas and Raffield, Ben and Anastasiadou, Kyriaki and Barrington, Christopher and G{\"o}therstr{\"o}m, Anders and Heather, Peter and Skoglund, Pontus},
     journal={Nature},
     volume={637},
