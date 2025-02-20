@@ -202,7 +202,7 @@ we cannot compute their likelihood under the SMC or similar models.
 % the approximate structures output by heuristic methods.
 
 Computing the likelihood of an ARG under a model is a fundamental element of
-probabilistic inference. The classical Kuhner, Yamato \& Felsenstein
+probabilistic inference. The classical Kuhner-Yamato-Felsenstein
 \citeyearpar{kuhner_maximum_2000} formulation (henceforth: KYF)
 works by assigning a probablility to each recombination and common
 ancestor event, and to the inter-event  waiting times. The likelihood of an 
@@ -1025,18 +1025,31 @@ composed of events affecting lineages, but, because we
 do not necessarily observe or estimate these events,
 we integrate over the possible timings implied by the information
 in the input ARG.
+Our method can compute a likelihood under the SMC for a very general class of 
+ARG~\citep{wong_general_2023}, 
+a significant increase in flexibility over the 
+strict input requirements for the classical Kuhner-Yamato-Felsenstein 
+formulation. 
+We have shown via some illustrative examples that the formulation is 
+remarkably robust to incomplete information, tolerating the loss 
+of a significant fraction of the internal nodes in the ARG to minimal effect.
+ 
 Although we can associate a likelihood with any ARG in \texttt{tskit} format,
 there are some caveats. By treating each edge independently,
 our algorithm will still produce a value for ARGs with
 the various degrees of completeness to which inheritance
-is documented by the different ARG inference methods: e.g., polytomies, absence
-of locally unary coalescence nodes, unpreserved identify of internal nodes
-across local trees, etc.
-However, many of these imprecisions violate the implicit
-assumptions of the likelihood computation.
+is documented by the different ARG inference methods.
+% : e.g., polytomies, absence
+% of locally unary coalescence nodes, unpreserved identify of internal nodes
+% across local trees, etc.
+% However, many of these imprecisions violate the implicit
+% assumptions of the likelihood computation.
 For example, we assume the 
 presence of locally unary nodes to correctly identify the
-full extent of all lineages going back through time and therefore recombination events.
+full extent of all lineages going back through time 
+and therefore recombination events, but this information
+may be incomplete (e.g., the full simplifed ARG in Fig.~\ref{fig:lik-surface})
+or even incorrect.
 % Without these unary nodes, our algorithm will detect a recombination
 % event along both coalescing lineages in case of a (sub)tree height changes along
 % the ARG as both edges would switch parent nodes. 
@@ -1044,24 +1057,42 @@ Locally unary nodes are not a common aspect of current ARG
 research~\citep{wong_general_2023}, but 
 are estimated by \texttt{tsinfer}, and can be imputed to high
 degree of accuracy from fully simplified ARGs~\citep{fritze2024forest}.
+Determining the effects of various forms of \emph{incorrect} topology on
+these likelihoods requires further research.
 
-Our results, while preliminary, suggest that ``full ARGs``, in which 
+[Something about polytomies]
+
+Our results, while preliminary, suggest that ``full ARGs'', in which 
 each recombination event is precisely pinpointed in time, 
-contain a significant degree of redundancy in terms of conveying 
+contain a significant degree of redundancy in terms of capturing 
 information about the generative process. 
-It is possible, therefore, that explicitly estimating these 
-events is not necessary for either inference under the SMC or 
-for downstream applications, and we can integrate over the 
-plausible times as we do here.
-Further research is required to fully understand the 
-
-[A paragraph about possililties for inference]
-
-[A paragraph about why what we've presented is useful, and a good starting
-point for other research. We provide an efficient algorithm and 
-reference implementation]
-
-[A paragraph about another major sort of uncertainty: polytomies]
+It is possible, therefore, that explicitly estimating recombination 
+events is not necessary to sample ARGs under the SMC (as ARGweaver
+and SINGER do), potentially
+leading to further improvements in the scalability of such methods.
+Another exciting prospect for ARG inference is the development of 
+``hybrid'' inference methods, where hueristic methods such as 
+\texttt{tsinfer} or \texttt{ARG-Needle} are used to infer
+the details of the recent past in huge datasets such as 
+UK Biobank, and passing over to a rigorous model-based
+approach for the ancient past.
+This is similar in spirit to the widely-used approach 
+of simulating complex dynamics of the recent past using 
+detailed but slow models and using faster coalescent simulations
+in the more distant past, when the assumptions required 
+are more justified~\citep{bhaskar_distortion_2014,
+kelleher_efficient_2018,haller_tree_2018,nelson_accounting_2020}.
+% Maybe we shouldn't bother saying this, but I can't resist the 
+% opportunity to say "hey, you should be using tskit!"
+% It feels like some PIs aren't getting this message, so need to have
+% it spelled out.
+Just as forward and backward simulations are useful in different contexts
+and can be combined to great effect,
+large-scale hueristic and MCMC sampling inference methods have their 
+applications, and there may be synergy in their combination. 
+Practical combination of methods will require cooperation at the 
+data structure level, and the interoperability provided by the 
+\texttt{tskit} library [something good].
 
 % This can be mitigated by limiting
 % the number of `inferrable' recombination events per coalescence event to 1
@@ -1086,7 +1117,6 @@ reference implementation]
 
 %%% remarks on precision of information + useage of likelihood to either
 %%% estimate parameters (not goal here) or use as instrument to improve accuracy to infer ARGs
-
 
 
 % [JK: this needs significant work]
