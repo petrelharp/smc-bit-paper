@@ -1,15 +1,18 @@
-.PHONY: all, clean, bibs
+.PHONY: all, clean,
 
 .SECONDARY:
 
 all: paper.pdf
 
-bibs: temp.bib, paper.bib, refs.bib
-
-paper.pdf : bibs
+# This goes against all the nice rules below, but I couldn't get them to 
+# work.
+paper.pdf: paper.tex paper.bib
+	pdflatex paper
+	bibtex paper
+	pdflatex paper
 
 clean: 
-	-rm *.aux *.log *.bbl *.blg
+	-rm -f *.aux *.log *.bbl *.blg
 
 %.pdf : %.tex %.bbl
 	while ( pdflatex -shell-escape $<;  grep -q "Rerun to get" $*.log ) do true ; done
@@ -17,7 +20,7 @@ clean:
 %.aux : %.tex
 	-pdflatex -interaction nonstopmode -shell-escape $<
 
-%.bbl : %.aux bibs
+%.bbl : %.aux paper.bib
 	bibtex $<
 
 %.png : %.pdf
