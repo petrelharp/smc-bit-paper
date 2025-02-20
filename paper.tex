@@ -1040,10 +1040,20 @@ full extent of all lineages going back through time and therefore recombination 
 % Without these unary nodes, our algorithm will detect a recombination
 % event along both coalescing lineages in case of a (sub)tree height changes along
 % the ARG as both edges would switch parent nodes. 
-Locally unary nodes are not a common aspect of current ARG research, but 
+Locally unary nodes are not a common aspect of current ARG 
+research~\citep{wong_general_2023}, but 
 are estimated by \texttt{tsinfer}, and can be imputed to high
 degree of accuracy from fully simplified ARGs~\citep{fritze2024forest}.
 
+Our results, while preliminary, suggest that ``full ARGs``, in which 
+each recombination event is precisely pinpointed in time, 
+contain a significant degree of redundancy in terms of conveying 
+information about the generative process. 
+It is possible, therefore, that explicitly estimating these 
+events is not necessary for either inference under the SMC or 
+for downstream applications, and we can integrate over the 
+plausible times as we do here.
+Further research is required to fully understand the 
 
 [A paragraph about possililties for inference]
 
