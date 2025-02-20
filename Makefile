@@ -1,12 +1,12 @@
-.PHONY: all, clean, bibs
+.PHONY: all, clean,
 
 .SECONDARY:
 
 all: paper.pdf
 
-bibs: temp.bib, paper.bib, refs.bib
 
-paper.pdf : bibs
+
+paper.pdf : paper.tex paper.bib
 
 clean: 
 	-rm *.aux *.log *.bbl *.blg

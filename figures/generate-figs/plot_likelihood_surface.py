@@ -4,64 +4,78 @@ import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import pandas as pd
 
-REC = 1.25e-8
+def plot(df_rat, path):
 
-df_rat = pd.read_csv("likelihood_surface.csv").set_index("rho")
+    REC = 1.25e-8
 
-fig, ax = plt.subplots(1, 1)
 
-colours = {
-    "full_arg_smc": "tab:red",
-    "unary_coal": "tab:blue",
-    "fully_simplified": "tab:orange",
-    "full_arg_hudson": "tab:purple",
-}
-titles = {
-    "full_arg_smc": "Full ARG (SMC)",
-    "unary_coal": "RE nodes removed",
-    "fully_simplified": "Fully simplified",
-    "full_arg_hudson": "Full ARG (HKY)",
-}
+    fig, ax = plt.subplots(1, 1)
 
-line_styles = {
-    "0": "solid",
-    "0.05": "dashed",
-    "0.25": "dotted",
-}
+    colours = {
+        "full_arg_smc": "tab:red",
+        "unary_coal": "tab:blue",
+        "fully_simplified": "tab:orange",
+        "full_arg_hudson": "tab:purple",
+    }
+    titles = {
+        "full_arg_smc": "Full ARG (SMC)",
+        "unary_coal": "RE nodes removed",
+        "fully_simplified": "Fully simplified",
+        "full_arg_hudson": "Full ARG (HKY)",
+    }
 
-ls_patches = [
-    mlines.Line2D([0], [0], color="black", lw=1, ls=ls, label=f"{float(label):.0%}")
-    for label, ls in line_styles.items()
-]
+    line_styles = {
+        "0": "solid",
+        "0.05": "dashed",
+        "0.25": "dotted",
+    }
 
-x = df_rat.index
-for col in df_rat:
-    if col.startswith("poly"):
-        splits = col.split("_")
-        arg = "_".join(splits[1:-1])
-        poly = splits[-1]
-    else:
-        arg = col
-        poly = "0"
+    ls_patches = [
+        mlines.Line2D([0], [0], color="black", lw=1, ls=ls, label=f"{float(label):.0%}")
+        for label, ls in line_styles.items()
+    ]
 
-    y = df_rat[col]  # / df_rat[arg]
-    line = ax.semilogx(
-        x,
-        y,
-        color=colours[arg],
-        ls=line_styles[poly],
-        label="_nolegend_" if poly != "0" else titles[arg],
+    x = df_rat.index
+    for col in df_rat:
+        if col.startswith("poly"):
+            splits = col.split("_")
+            arg = "_".join(splits[1:-1])
+            poly = splits[-1]
+        else:
+            arg = col
+            if arg == "full_arg_hudson":
+                continue
+            poly = "0"
+
+        y = df_rat[col]  # / df_rat[arg]
+        line = ax.semilogx(
+            x,
+            y,
+            color=colours[arg],
+            ls=line_styles[poly],
+            label="_nolegend_" if poly != "0" else titles[arg],
+        )
+
+    legend1 = ax.legend(loc="upper right")
+    ax.legend(handles=ls_patches, loc="lower left", title="Polytomies")
+    ax.annotate(
+        "True parameter", xy=(REC, 18000), xytext=(-80, 0), textcoords="offset points"
     )
+    ax.add_artist(legend1)
 
-legend1 = ax.legend()
-ax.legend(handles=ls_patches, loc="lower left", title="Polytomies")
-ax.annotate(
-    "True parameter", xy=(REC, 1.1), xytext=(-80, 0), textcoords="offset points"
-)
-ax.add_artist(legend1)
+    ax.set_ylabel("Relative log likelihood")
+    ax.axvline(REC, linestyle="dashed", color="grey")
+    ax.set_xlabel("Recombination rate")
 
-ax.set_ylabel("Relative log likelihood")
-ax.axvline(REC, linestyle="dashed", color="grey")
-ax.set_xlabel("Recombination rate")
+    plt.savefig(path)
 
-plt.savefig("../likelihood_surface.pdf")
+df = pd.read_csv("likelihood_surface.csv").set_index("rho")
+
+df_rat = df.iloc[1:].copy()
+for col in list(df_rat):
+    df_rat[col] -= df.iloc[0][col]
+    df_rat[col] *= -1
+    # df_rat[col] /= df.iloc[0][col]
+
+plot(df_rat, "../likelihood_surface.pdf")
+plot(df_rat, "../likelihood_surface.png")
