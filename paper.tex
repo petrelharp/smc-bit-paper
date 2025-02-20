@@ -35,7 +35,7 @@
 \begin{document}
 
 \linenumbers
-\title{Computing likelihoods under the SMC for a general class of ARGs.}
+\title{Likelihoods for a general class of ARGs under the SMC}
 
 % First authors
 \author[1, $\dagger$]{Gertjan Bisschop}
@@ -897,9 +897,17 @@ remove various levels of detail from a simulated ARG.
     The ``Full ARG'' here is the result of an 
     \texttt{msprime} simulation of the SMC (100 diploid samples, genome length 1Mb, 
     $r=2.5\times10^{-8}$, $N_e=1\times10^4$) which contains complete 
-    information about the simulated events.
-    with various degrees of completeness. The likelihood ratio is computed with
-    respect to the true recombination rate. 
+    information about the simulated events 
+    (9,378 nodes; 13,221 edges; 2,933 trees). 
+    The ``RE nodes removed'' ARG is the 
+    result of simplifying out all of the recombination nodes (3,332 nodes;
+    6,901 edges; note that \texttt{msprime} uses distinct nodes for the 
+    left and right parent of each recombination). The ``Fully simplified''
+    ARG has all locally unary nodes removed from trees (3,332 nodes; 10,674
+    edges). Each of these ARGs additionally has 5\% and 25\% of the 
+    internal nodes removed to create polytomies.
+    See the text for details on how the likelihood ratio values are computed.
+    The ``Full ARG'' and ``RE nodes deleted'' lines coincide.
     \label{fig:lik-surface}}
 \end{figure}
 
