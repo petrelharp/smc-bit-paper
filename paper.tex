@@ -867,14 +867,7 @@ and as before $e = (p,c,x,y)$
 \citep{mahmoudi_bayesian_2022}.
 
 % % % % % % % % % % % % % % % % % %
-\subsection*{Illustrative examples}
-% likelihood surface
-% The last paragraph aims to highlight the flexibility of this approach 
-% and the impact of the various
-% degrees of completeness of the ARG on the likelihood.
-% Note that the figures in this paragraph only serve this exact purpose,
-% we are not claiming to have designed a new parameter estimation approach.
-
+\subsection*{Robustness to partial information}
 Eq.~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any}
 collection of nodes (ancestral haplotypes that lived at some time 
 $t$ in the past) and edges (a record that child node $c$ 
@@ -885,82 +878,80 @@ described, and in particular, no requirement that the events from the
 model (the SMC) should be explicitly identified in the graph. Our 
 formulation reasons about the events that \emph{could have resulted in}
 the observed nodes and edges, and therefore frees us from the requirement
-of having to explicitly write those down. This gives a great deal 
-of flexibility, which we illustrate in this section via some examples.
-
-The first example concerns the simplest possible polytomy (see
-the Discussion for why we consider polytomies important).
-Suppose we have a graph consisting of four nodes, $c_1,c_2,c_3,p$ and three edges
-${(p, c_j, 0, 1): 1 \leq j \leq 3}$. The child nodes are samples at time
-zero, and the parent has time $1$. The likelihood of this ARG is undefined
-under HKY because the three-way star topology described cannot be interpreted as 
-a sequence of binary coalescence events. However, it is clearly 
-\emph{consistent with} such a sequence of events, which we can reason
-about probabilistically. In our formulation we [Peter/Gertjan, help me 
-out any hold my hand a bit here. How exactly to we assign a likelihood
-to such a polytomy? Why do I get a larger likelihood for the ternary
-tree described above than an example in which I break the polytomy? 
-Naively, I would have thought that the likelihood should have been 
-lower, but I clearly don't understand likelihoods...]
-\comment{The likelihood of the tree described is $e^{-3rt_p-3\lambda t_p} \lambda^2$;
-if the polytomy was broken by adding another node at $(1-u)t_p/2$ then
-the likelihood would be $e^{-(3-u)rt_p - (3-2u)\lambda t_p} \lambda^2$.
-The latter is larger because there's less total area in the tree
-for recombination to have not happened and less time over which coalescence hasn't happened.
-However, these are different trees, so I'm not sure what the point is?}
+of having to explicitly write those down. In this section we 
+illustrate the robustness
+of this approach to incomplete information about recombination and 
+coalescent events via a proof-of-concept example, in which we 
+remove various levels of detail from a simulated ARG.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/likelihood_surface}
-    \caption{TODO add A/B and change ``unary regions''.
-    Log likelihood-ratio curves for ARGs simulated under the SMC with
-    various degrees of completeness. The likelihood ratio is computed with
-    respect to the true recombination rate. In case of the full ARG the likelihood
-    under the SMC has been computed using the exact time to the recombination event.
-    Simulation performed with \texttt{msprime}, parameters:
-    genome length 1Mb, 20 diploid samples,
-    $r=2.5\times10^{-8}$, $N_e=1\times10^4$.}
-    \label{fig:lik-surface}
+    \caption{Log likelihood-ratio curves for ARGs containing
+     varying degrees of information about the realised simulation.
+    The ``Full ARG'' here is the result of an 
+    \texttt{msprime} simulation of the SMC (100 diploid samples, genome length 1Mb, 
+    $r=2.5\times10^{-8}$, $N_e=1\times10^4$) which contains complete 
+    information about the simulated events.
+    with various degrees of completeness. The likelihood ratio is computed with
+    respect to the true recombination rate. 
+    \label{fig:lik-surface}}
 \end{figure}
 
-Our second example shows a different aspect of this robustness to missing 
-data. In Fig~\ref{fig:lik-surface}A we can see the likelihood-ratio curves
-obtained when we compute the likelihood of an example simulation,
-in which the ARG is at three different levels of completeness
-(illustrated in Fig~\ref{fig:lik-surface}B).
-We first run a simulation under the SMC
-using the \texttt{record\_full\_arg} option in \texttt{msprime}. This 
-ARG explicitly identifies all of the recombination and common 
-ancestor events that occurred in the simulation, and 
-we can therefore compute a likelihood under the HKY formulation
-(for example, using the \texttt{msprime.log\_arg\_likelihood} 
-function). The example full ARG in 
-Fig~\ref{fig:lik-surface}B has three nodes that are ``locally
-unary''~\citep{wong_general_2023,fritze2024forest}. Nodes 6 and 7 correspond to the 
-left and right parents of the recombination event causing the 
-breakpoint at position 536~\cite[we need two nodes to uniquely identify
- the passage of ancestral material through recombination 
-events; see][]{baumdicker_efficient_2021}, and therefore present
-in only those trees. 
-Node 8 is a coalescent node in the right-hand tree, but unary
-in the left-hand tree, marking the passage of the lineage through
-this ancestral haplotype (similar to node g in Fig~\ref{fig:smc-unary}).
-Fig~\ref{fig:lik-surface}A shows that, remarkably, when we 
-remove the recombination nodes (e.g., 6/7) but keep the locally unary nodes (e.g., 8)
-and compute the likelihood using eq.~\eqref{eq:full-lik},
-there is very little difference in the likelihood ratio
-curve from the exact value with complete input. 
-Most importantly, the minimum occurs at the true value of the 
-recombination parameter.
-When we further simplify
-the ARG to remove all unary nodes~\citep{wong_general_2023,kelleher_efficient_2018} 
-we obtain an ARG in the standard format used by \texttt{msprime}.
-Although there is substantial information about the correlation
-structure of trees in this representation, we lose important
-information about recombination. This is demonstrated in 
-Fig~\ref{fig:lik-surface}A, where the corresponding likelihood ratio curve
-is clearly biased. 
+In Fig~\ref{fig:lik-surface} we begin with a realisation of the SMC as a ``full
+ARG'', that is, containing complete information about every simulated event.
+We then plot the likelihood computed by Eq.~\eqref{eq:full-lik} 
+as we vary the recombination rate parameter $r$ (as a ratio
+of the likelihood computed at the true value of $r$). Unsurprisingly, we can
+see that the minimum of the likelihood-ratio curve when using the 
+full simulated ARG is at the true value of the parameter.
+What is surprising is that we obtain an indistinguishable curve when 
+we remove all the recombination nodes from this ARG, and therefore 
+lose information about the precise timing of recombination events.
+In this case, the locally unary portions of coalescent nodes have given
+all the information that we need about recombination events.
+Removing all locally unary nodes in the fully simplified ARG does result
+in a loss of information, and we can see that the minimum of the 
+likelihood ratio surface is biased away from its true value.
 
+
+% Our second example shows a different aspect of this robustness to missing 
+% data. In Fig~\ref{fig:lik-surface}A we can see the likelihood-ratio curves
+% obtained when we compute the likelihood of an example simulation,
+% in which the ARG is at three different levels of completeness
+% (illustrated in Fig~\ref{fig:lik-surface}B).
+% We first run a simulation under the SMC
+% using the \texttt{record\_full\_arg} option in \texttt{msprime}. This 
+% ARG explicitly identifies all of the recombination and common 
+% ancestor events that occurred in the simulation, and 
+% we can therefore compute a likelihood under the HKY formulation
+% (for example, using the \texttt{msprime.log\_arg\_likelihood} 
+% function). The example full ARG in 
+% Fig~\ref{fig:lik-surface}B has three nodes that are ``locally
+% unary''~\citep{wong_general_2023,fritze2024forest}. Nodes 6 and 7 correspond to the 
+% left and right parents of the recombination event causing the 
+% breakpoint at position 536~\cite[we need two nodes to uniquely identify
+%  the passage of ancestral material through recombination 
+% events; see][]{baumdicker_efficient_2021}, and therefore present
+% in only those trees. 
+% Node 8 is a coalescent node in the right-hand tree, but unary
+% in the left-hand tree, marking the passage of the lineage through
+% this ancestral haplotype (similar to node g in Fig~\ref{fig:smc-unary}).
+% Fig~\ref{fig:lik-surface}A shows that, remarkably, when we 
+% remove the recombination nodes (e.g., 6/7) but keep the locally unary nodes (e.g., 8)
+% and compute the likelihood using eq.~\eqref{eq:full-lik},
+% there is very little difference in the likelihood ratio
+% curve from the exact value with complete input. 
+% Most importantly, the minimum occurs at the true value of the 
+% recombination parameter.
+% When we further simplify
+% the ARG to remove all unary nodes~\citep{wong_general_2023,kelleher_efficient_2018} 
+% we obtain an ARG in the standard format used by \texttt{msprime}.
+% Although there is substantial information about the correlation
+% structure of trees in this representation, we lose important
+% information about recombination. This is demonstrated in 
+% Fig~\ref{fig:lik-surface}A, where the corresponding likelihood ratio curve
+% is clearly biased. 
 
 \begin{figure}
     \centering
@@ -1205,7 +1196,7 @@ and an implementation of the algorithm is available at
 \url{https://github.com/gertjanbisschop/runsmc}.
 \FloatBarrier
 \bibliographystyle{plainnat}
-\bibliography{refs.bib,paper.bib}
+\bibliography{paper.bib}
 
 \setcounter{secnumdepth}{2} % Print out appendix section numbers
 

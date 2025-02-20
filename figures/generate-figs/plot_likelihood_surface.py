@@ -18,7 +18,7 @@ def plot(df_rat, path):
         "full_arg_hudson": "tab:purple",
     }
     titles = {
-        "full_arg_smc": "Full ARG (SMC)",
+        "full_arg_smc": "Full ARG",
         "unary_coal": "RE nodes removed",
         "fully_simplified": "Fully simplified",
         "full_arg_hudson": "Full ARG (HKY)",
@@ -63,7 +63,7 @@ def plot(df_rat, path):
     )
     ax.add_artist(legend1)
 
-    ax.set_ylabel("Relative log likelihood")
+    ax.set_ylabel("Log likelihood ratio")
     ax.axvline(REC, linestyle="dashed", color="grey")
     ax.set_xlabel("Recombination rate")
 
