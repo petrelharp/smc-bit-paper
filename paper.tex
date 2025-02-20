@@ -919,45 +919,39 @@ Removing all locally unary nodes in the fully simplified ARG does result
 in a loss of information, and we can see that the minimum of the 
 likelihood ratio surface is biased away from its true value.
 
+Fig~\ref{fig:lik-surface} shows that Eq.~\eqref{eq:full-lik} is also remarkably
+robust to the presents of polytomies in this example. For each of the three
+ARGs discussed in the previous paragraph, we also evaluated the likelihood
+for ARGs in which 5\% or 25\% of the internal ARG nodes are removed and 
+edges adjusted accordingly.
+This introduces polytomies at varying degrees in the different ARGs because 
+deleting a node in a tree (and connecting its children directly to its
+parent) will only create a polytomy if the parent 
+is not unary. Thus, while deleting 25\% of the internal nodes 
+in the fully simplified ARG created an average of 33 polytomies
+over the 2,933 trees along the sequence (each tree having 
+200 leaf nodes), it resulted in an average of 21 polytomies
+per tree in the ARG where recombination nodes have been removed,
+and only 10 in the full ARG (which has an average of 1026 unary 
+nodes per tree).
+%                     name    leaves  unary       binary      poly
+% 0   poly_full_arg_smc_0.05  200.0   1025.565973 192.662462  3.153086
+% 1   poly_unary_coal_0.05    200.0   429.315017  190.182253  4.372696
+% 2   poly_fully_sfiied_0.05  200.0   0.000000    185.691468  6.393174
+% 3   poly_full_arg_smc_0.25  200.0   779.846233  176.830549  10.307876
+% 4   poly_unary_coal_0.25    200.0   323.054926  154.422588  21.104016
+% 5   poly_fully_sified_0.25  200.0   0.000000    117.096174  33.241986
+Given this disparity in the number of polytomies introduced, the 
+effects on the likelihood across the three examples are not entirely
+comparable. It is remarkable, however, how little effect introducing 
+these polytomies has on the likelihood surface in this example. For 
+the ARGs containing unary nodes, removing 25\% of the internal 
+nodes has negligible effect, and even on the fully simplified 
+ARG has a very minor effect on the minimum.
 
-% Our second example shows a different aspect of this robustness to missing 
-% data. In Fig~\ref{fig:lik-surface}A we can see the likelihood-ratio curves
-% obtained when we compute the likelihood of an example simulation,
-% in which the ARG is at three different levels of completeness
-% (illustrated in Fig~\ref{fig:lik-surface}B).
-% We first run a simulation under the SMC
-% using the \texttt{record\_full\_arg} option in \texttt{msprime}. This 
-% ARG explicitly identifies all of the recombination and common 
-% ancestor events that occurred in the simulation, and 
-% we can therefore compute a likelihood under the HKY formulation
-% (for example, using the \texttt{msprime.log\_arg\_likelihood} 
-% function). The example full ARG in 
-% Fig~\ref{fig:lik-surface}B has three nodes that are ``locally
-% unary''~\citep{wong_general_2023,fritze2024forest}. Nodes 6 and 7 correspond to the 
-% left and right parents of the recombination event causing the 
-% breakpoint at position 536~\cite[we need two nodes to uniquely identify
-%  the passage of ancestral material through recombination 
-% events; see][]{baumdicker_efficient_2021}, and therefore present
-% in only those trees. 
-% Node 8 is a coalescent node in the right-hand tree, but unary
-% in the left-hand tree, marking the passage of the lineage through
-% this ancestral haplotype (similar to node g in Fig~\ref{fig:smc-unary}).
-% Fig~\ref{fig:lik-surface}A shows that, remarkably, when we 
-% remove the recombination nodes (e.g., 6/7) but keep the locally unary nodes (e.g., 8)
-% and compute the likelihood using eq.~\eqref{eq:full-lik},
-% there is very little difference in the likelihood ratio
-% curve from the exact value with complete input. 
-% Most importantly, the minimum occurs at the true value of the 
-% recombination parameter.
-% When we further simplify
-% the ARG to remove all unary nodes~\citep{wong_general_2023,kelleher_efficient_2018} 
-% we obtain an ARG in the standard format used by \texttt{msprime}.
-% Although there is substantial information about the correlation
-% structure of trees in this representation, we lose important
-% information about recombination. This is demonstrated in 
-% Fig~\ref{fig:lik-surface}A, where the corresponding likelihood ratio curve
-% is clearly biased. 
 
+
+\subsection*{Piecewise decomposition over time}
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/3-slices-whitespace.png}
@@ -979,13 +973,13 @@ likelihood ratio surface is biased away from its true value.
     \label{fig:3-arg-slices}
 \end{figure}
 
-% slicing of the ARG
 Our final example explores decomposition of the likelihood
 into separate components for different segments of time.
 By explicitly associating a single likelihood with each edge,
 we can compute the likelihood for any slice of the ARG taken in
 time and/or along the genome.
-In the case of a fully precise ARG, with a known time to recombination,
+In the case of a fully precise ARG, in which each recombination
+event has an exact time,
 this is true as long as the slicing operation does not erase the
 information on whether an edge is associated with the left or
 right hand segment generated by a recombination event. In the absence
@@ -1003,6 +997,7 @@ two effective population size changes, and subsequently computed the posterior
 distribution on the three effective population sizes
 using a uniform prior on each slice independently.
 The result is reasonably accurate, despite only using 10kb of sequence.
+
 % This approach therefore strengthens
 % the inherent ability of ARGs to provide us with temporal
 % resolution and context to a dataset of genetic variation.
@@ -1018,8 +1013,6 @@ The result is reasonably accurate, despite only using 10kb of sequence.
 % the ARG in time and/or space, as well as to reduce the number of
 % tracked samples. Any such subset of the tree sequence is itself
 % a valid tree sequence for which we can again compute a likelihood.
-
-
 
 \section*{Discussion}
 
