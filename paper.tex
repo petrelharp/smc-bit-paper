@@ -851,20 +851,25 @@ to keep track of $I_e(t)$ (see Appendix).
 % through time by intersecting the internode intervals with the rate change
 % intervals; rate changes along the genome can be incorporated similarly.
 Note that we have only considered the topology and branch length information here
-an not considered mutational information.
-The likelihood of a set of mutations given an ARG $\mathcal{G}$ given mutation rate $\mu$ is
-\begin{equation}\label{eq:lik-mut}
-    \mathcal{L}(\mathcal{D}|\mathcal{G}, \mu)
-    =
-    \prod_{e \in E} \frac{(\mu(t_p-t_c)(y-x))^{m_e}}{m_e!} e^{-\mu (t_p-t_c)(y-x)} ,
-    % I don't think the following is correct:
-    % \frac{1}{\mathcal{M}!} \prod_{(p, c, x, y) \in E} e^{-(y-x)(t_p-t_c)\mu^{|m_e|}}
-\end{equation}
-where 
-% $\mathcal{M}$ the total number of mutations and 
-$m_e$ is the number of mutations along edge $e$ 
-and as before $e = (p,c,x,y)$
-\citep{mahmoudi_bayesian_2022}.
+and not considered mutational information. 
+Assuming the infinite sites model, computing the likelihood of 
+an ARG given a mutation rate $\mu$ and set of mutations is straightforward, 
+as the overall likelihood can be directly decomposed into the per-edge
+contributions~\citep{baumdicker_efficient_2021,mahmoudi_bayesian_2022}.
+
+% The likelihood of a set of mutations given an ARG $\mathcal{G}$ given mutation rate $\mu$ is
+% \begin{equation}\label{eq:lik-mut}
+%     \mathcal{L}(\mathcal{D}|\mathcal{G}, \mu)
+%     =
+%     \prod_{e \in E} \frac{(\mu(t_p-t_c)(y-x))^{m_e}}{m_e!} e^{-\mu (t_p-t_c)(y-x)} ,
+%     % I don't think the following is correct:
+%     % \frac{1}{\mathcal{M}!} \prod_{(p, c, x, y) \in E} e^{-(y-x)(t_p-t_c)\mu^{|m_e|}}
+% \end{equation}
+% where 
+% % $\mathcal{M}$ the total number of mutations and 
+% $m_e$ is the number of mutations along edge $e$ 
+% and as before $e = (p,c,x,y)$
+% \citep{mahmoudi_bayesian_2022}.
 
 % % % % % % % % % % % % % % % % % %
 \subsection*{Robustness to partial information}
