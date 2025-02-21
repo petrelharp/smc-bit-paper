@@ -933,18 +933,20 @@ under the full coalescent with recombination model using the KYF
 formula is identical; not shown.)
 We next compute the likelihood ratio for the ARG obtained when we 
 simplify out the recombination nodes from the full ARG
-(RE nodes removed; 3,332 nodes; 6,901 edges; 2,933 trees; note that msprime 
+(``RE nodes removed''; 3,332 nodes; 6,901 edges; 2,933 trees; note that msprime 
 uses distinct nodes for the left and right parent of each recombination).
 The curve we obtain is indistinguishable from that of the full
 ARG, demonstrating that the locally unary portions of coalescent nodes 
 contain all the information that we need about recombination events
 for this application.
 When we fully simplify the simulated ARG
-to remove all locally unary nodes from trees 
-(Fully simplified; 3,332 nodes; 10,674 edges, 2,933 trees) 
+to remove all locally unary portions of nodes from trees 
+(``Fully simplified''; 3,332 nodes; 10,674 edges, 2,933 trees) 
 we can see there is a significant loss of information,
 and the minimum of the 
-likelihood ratio surface is biased away from its true value.
+likelihood ratio surface is biased away from its true value,
+as expected, because removing the unary portions of nodes has removed some of the area
+of the ARG in which recombination did not occur.
 (See~\cite{wong_general_2023} for more discussion on varying 
 degrees of ARG simplification.)
 
@@ -976,11 +978,12 @@ nodes per tree).
 % 9   py_unary_coal_0.25    200.0   323.054926  154.422588  21.104016
 % 10  py_fully_simied_0.25  200.0   0.000000    117.096174  33.241986
 Given this disparity in the number of polytomies introduced, the 
-effects on the likelihood across the three examples are not entirely
-comparable. For the ARGs containing unary nodes, 
+effects on the likelihood across the three examples are not entirely comparable.
+For the ARGs containing unary nodes, 
 removing 25\% of the internal 
-nodes has negligible effect, and even on the fully simplified 
-ARG has a very minor effect on location of the minimum.
+nodes has negligible effect on the likelihood curve in Fig~\ref{fig:lik-surface},
+and even on the fully simplified 
+ARG has only a very minor effect on location of the minimum.
 
 Fig~\ref{fig:lik-surface} also shows results for ARGs inferred from the 
 simulated data using tsinfer and tsdate~\citep{wohns_unified_2022},
@@ -988,7 +991,7 @@ using default parameters for tsinfer, and the true values of mutation
 rate and $N_e$ for tsdate.
 In the first, we use the default output of tsinfer 
 (2,148 nodes; 5,589 edges; 1,307 trees; 3,039 mutations).
-This ARG has an average of 192 unary nodes, 120 binary nodes, and 32 nodes
+This ARG has 192 unary nodes, 120 binary nodes, and 32 nodes
 with three or more children per tree. Tsinfer does not directly estimate
 recombination events; the breakpoints between trees are the consequence of
 switches between parental haplotypes in the 
@@ -996,7 +999,7 @@ switches between parental haplotypes in the
 recombination events in the returned ARG is therefore quite imprecise,
 and likely to contain incorrect and contradictory details if one were to 
 attempt to reconstruct the exact subtree-prune-and-regraft 
-moves~\citep[e.g.][]{rasmussen2023espalier}. Nonetheless, in
+moves~\citep[e.g.,][]{rasmussen2023espalier}. Nonetheless, in
 this toy example at least, our likelihood function performs well
 on the output of tsinfer, with the minimum close to the true
 parameter value. We also show the likelihood curve obtained when we 
@@ -1087,7 +1090,7 @@ strict input requirements for the classical Kuhner-Yamato-Felsenstein
 formulation. 
 Locally unary nodes play a key role, and although not
 currently a common focus of ARG research~\citep{wong_general_2023}, 
-they are estimated by tsinfer and can be imputed to high a
+they are estimated by tsinfer and may be imputed to a high
 degree of accuracy from fully simplified ARGs~\citep{fritze2024forest}.
 We have shown via some illustrative examples that the formulation is 
 robust to incomplete and imprecise information, tolerating the loss 
@@ -1096,6 +1099,9 @@ We have also shown that the likelihood function performs well
 (at least in our toy example) on ARGs inferred by tsinfer+tsdate,
 successfully capturing information about latent recombination events
 from imprecise and noisy data.
+However, there are many more aspects of the likelihood function
+that could be examined, beyond coarse parameters like recombination rate
+or effective populations size.
 % I think we have to grasp this nettle or we're inviting the reviewers to 
 % give us a bunch of "what if you tried this" bits of extra homework.
 Theoretical explanations of this apparent robustness,
