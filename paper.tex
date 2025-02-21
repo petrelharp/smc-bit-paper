@@ -123,13 +123,13 @@ have been the focus of most recent interest.
 The first class of inference methods are Bayesian approaches
 that sample ARGs under a population genetics model such as the
 coalescent with recombination~\citep{hudson_properties_1983},
-and its approximatation, the Sequentially Markovian
+and its approximation, the Sequentially Markovian
 Coalescent~\citep{mcvean_approximating_2005,marjoram_fast_2006}.
 ARGweaver~\citep{rasmussen_genome-wide_2014,hubisz_mapping_2020} 
 has been the most widely used and studied,
 and until recently consistently out-performed other methods in terms 
 of accuracy in a variety of benchmarks~\citep{brandt2022evaluation},
-and has succesfully been applied in several
+and has successfully been applied in several
 contexts~\citep[e.g.,][]{de_chimpanzee_2016,shriner_whole_2018,hejase_genomic_2020,
 stankowski_genetic_2024}. 
 The recently-introduced method SINGER takes a similar approach,
@@ -155,7 +155,7 @@ producing the initial ARG. General purpose ARG dating methods are
 appearing~\citep{wohns_unified_2022,deng2025general} and can also improve
 dating performance in ARGs sampled from the SMC~\citep{deng2025general}.
 Fourthly (and most importantly for the 
-purposes of this paper) the ARGs that hueristic methods produce 
+purposes of this paper) the ARGs that heuristic methods produce 
 lack some of the topological information present in the output of ARGweaver or SINGER. 
 This occurs, roughly speaking, because of a basic difference in their
 approach to uncertainty.
@@ -199,7 +199,7 @@ sizes in recent years~\citep{caulfield2017national,turnbull2018100,
 bycroft2018genome,backman2021exome,halldorsson2022sequences,uk2023whole,
 all2024genomic,stark2024call,cook2025our}
 there is a pressing need for more statistical
-rigor in large scale ARG inference.
+rigour in large scale ARG inference.
 % This inability to connect the results of large-scale inference methods
 % with a generative model
 % is a fundamental limitation, and limits both the utility of 
@@ -216,7 +216,7 @@ we cannot compute their likelihood under the SMC or similar models.
 Computing the likelihood of an ARG under a model is a fundamental element of
 probabilistic inference. The classical Kuhner-Yamato-Felsenstein
 \citeyearpar{kuhner_maximum_2000} formulation (henceforth: KYF)
-works by assigning a probablility to each recombination and common
+works by assigning a probability to each recombination and common
 ancestor event, and to the inter-event  waiting times. 
 Although the KYF formulation is a natural and elegant way to describe 
 the likelihood of an ARG, the high level of detail about the underlying
@@ -317,7 +317,7 @@ Finally, we discuss how these results may be applied and extended.
 % % % % % % % % % % % % % % % % % %
 \subsection*{ARGs} \label{par:recording}
 Although the term Ancestral Recombination Graph (ARG) has been used to mean several things,
-in the generic sense, it is a labeled graph structure that records
+in the generic sense, it is a labelled graph structure that records
 the inheritance of genetic material \citep{wong_general_2023}.
 An ARG of the sort we consider describes the history of inheritance
 of the genomic material of a focal set of individuals, or \emph{samples}.
@@ -325,7 +325,7 @@ Concretely, an ARG is equivalent to a collection of (non-contradictory) statemen
 of the form ``$c$ inherited from $p$ on the genomic segment from $x$ to $y$'',
 where $c$ and $p$ are (haploid) genomes, and $x$ and $y$ are genetic coordinates.
 We record each such statement in an ``edge'',
-often summarized as the tuple $(p,c,x,y)$.
+often summarised as the tuple $(p,c,x,y)$.
 By ``describes the history'',
 we mean that each node in the ARG represents a specific (ancestral) genome,
 and that the ARG specifies the genealogical tree describing how the samples are related
@@ -372,7 +372,7 @@ the path traced by $A$'s ancestry switches at that point.
 In fact, $A$ is in blue because it is a \emph{recombinant} node --
 an ancestor that has a segment of genome inherited by a sample,
 but that segment was inherited in two pieces from their parent.
-Other nodes (labeled by black numbers) are either samples
+Other nodes (labelled by black numbers) are either samples
 or \emph{common ancestry} nodes --
 ancestors that are the most recent common ancestor for two 
 or more samples
@@ -520,9 +520,9 @@ how coalescable pairs are counted. This subtle nuance
 greatly simplifies the ability to keep track of coalescable pairs going
 backwards in time.
 At any point in time, the state of the process is 
-the set of labeled lineages extant at time $t$,
+the set of labelled lineages extant at time $t$,
 $L(t) = \{X_j(t)\}$.
-A lineage $X_j(t) = [x_{j}, y_{j})$ is labeled by 
+A lineage $X_j(t) = [x_{j}, y_{j})$ is labelled by 
 an integer $j$ and defines the 
 half-open genomic interval of its ancestral material.
 % Ea
@@ -643,7 +643,7 @@ event changes $C_j(t)$ but not $I_{j}(t)$.
 We have defined the SMC process in terms of rates of various types of events.
 In general, the likelihood for a continuous-time Markov process specified in this way
 is $\exp(-\Lambda) \prod_i \lambda_i$,
-where $\lambda_i$ is the rate of the $i^\text{th}$ realized event,
+where $\lambda_i$ is the rate of the $i^\text{th}$ realised event,
 and $\Lambda$ is the sum of all rates of all possible events
 integrated over the entire process
 (also called the ``total hazard''). 
@@ -760,7 +760,7 @@ the probability of which is
 $\exp(-r \mathcal{A}_e)$, where $r$ is the recombination rate
 and $\mathcal{A}_e$ is the total area (eligible links multiplied by length in time) of the edge.
 The length in time of the edge is just $t_p - t_c$,
-while the number of ``eleigible links'' in the edge is the number of adjacent base pairs in the edge
+while the number of ``eligible links'' in the edge is the number of adjacent base pairs in the edge
 on which recombination did not occur, which is either $y-x$
 (if this edge is the leftmost of all edges above node $c$)
 or $y-x-1$ (otherwise).
@@ -1040,9 +1040,9 @@ information on whether an edge is associated with the left or
 right hand segment generated by a recombination event. In the absence
 of the exact time to recombination, the integral in
 Eq.~\eqref{eq:depth} means that the likelihood
-for the entire ARG does not factorize into the likelihoods of these
+for the entire ARG does not factorise into the likelihoods of these
 individual slices. More precisely, the likelihood associated with any
-edge that is initiated by a recombination breakpoint cannot be factorized
+edge that is initiated by a recombination breakpoint cannot be factorised
 into the product of two integrals of the same form.
 However, as long as the individual slices of the ARG contain sufficient
 information we can approximate the true integral as the product of the
@@ -1158,7 +1158,7 @@ scalability for statistically rigorous inference.
 % downstream analysis robust to such stuctural uncertainty;
 % polytomies, for example, are often not
 Another exciting prospect for ARG inference is the development of 
-``hybrid'' inference methods, where hueristic methods such as 
+``hybrid'' inference methods, where heuristic methods such as 
 tsinfer or ARG-Needle are used to infer
 the details of the recent past in huge datasets such as 
 UK Biobank, passing over to a rigorous model-based
@@ -1175,7 +1175,7 @@ kelleher_efficient_2018,haller_tree_2018,nelson_accounting_2020}.
 % it spelled out.
 Just as forward and backward simulations are useful in different contexts
 and can be combined to great effect,
-large-scale hueristic and Bayesian sampling inference methods have their 
+large-scale heuristic and Bayesian sampling inference methods have their 
 applications, and there may be synergy in their combination. 
 % This is pretty weak, tbh.
 The practical details of ``handing over'' between methods
