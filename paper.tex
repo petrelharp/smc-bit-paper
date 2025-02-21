@@ -1001,7 +1001,7 @@ on the output of tsinfer, with the minimum close to the true
 parameter value. We also show the likelihood curve obtained when we 
 fully simplify the output of tsinfer 
 (1,865 nodes; 7,511 edges; 1,252 trees; 3,039 mutations)
-before dating. We can see that, as with the case of the true data,
+before dating. We can see that, as with the true data,
 removing all the unary nodes results in a significant bias
 away from the true value of the recombination rate parameter.
 
@@ -1069,9 +1069,9 @@ The result is reasonably accurate, despite only using 10kb of sequence.
 % a valid tree sequence for which we can again compute a likelihood.
 
 \section*{Discussion}
-
 The key contribution of this paper is to rederive a classical
-ARG likelihood function in a way that supports the sort of partial information
+ARG likelihood function in a way that supports the sort of partial 
+and imprecise information
 provided by some modern ARG inference tools,
 using a novel backwards-time derivation of the SMC.
 The underlying process that we reason about probabilistically is still
@@ -1085,65 +1085,86 @@ a significant increase in flexibility over the
 strict input requirements for the classical Kuhner-Yamato-Felsenstein 
 formulation. 
 We have shown via some illustrative examples that the formulation is 
-remarkably robust to incomplete information, tolerating the loss 
+robust to incomplete and imprecise information, tolerating the loss 
 of a significant fraction of the internal nodes in the ARG to minimal effect.
+We have also shown that the likelihood function performs well 
+(at least in our toy example) on ARGs inferred by tsinfer+tsdate,
+successfully capturing information about latent recombination events
+from imprecise and noisy data.
+Locally unary nodes play a key role, and although not
+currently a common focus of ARG research~\citep{wong_general_2023}, 
+they are estimated by tsinfer and can be imputed to high a
+degree of accuracy from fully simplified ARGs~\citep{fritze2024forest}.
 % I think we have to grasp this nettle or we're inviting the reviewers to 
 % give us a bunch of "what if you tried this" bits of extra homework.
-While there are many different potential applications to concrete 
-inferential problems, the details are nontrivial and best consigned to future work.
+Fully characterising the properties of the likelihood on the output 
+of tsinfer and other methods is beyond the scope of this work.
+Similarly, while there are many different potential applications to concrete 
+inferential problems, the details are nontrivial and must be
+consigned to future work.
+
+% Structural uncertainty
  
-A major advantage of our approach is that it does not require
-us to explicitly identify common ancestor and recombination events 
-in the input. Indeed, 
-we can compute a likelihood for any ARG in \texttt{tskit} format,
-potentially bridging the gap between population genetic theory and the 
-varied structures inferred by current methods~\citep{wong_general_2023}.
+% A major advantage of our approach is that it does not require
+% us to explicitly identify common ancestor and recombination events 
+% in the input. Indeed, 
+% we can compute a likelihood for any ARG in \texttt{tskit} format,
+% potentially bridging the gap between population genetic theory and the 
+% varied structures inferred by current methods~\citep{wong_general_2023}.
 
-there are some caveats. By treating each edge independently,
-our algorithm will still produce a value for ARGs with
-the various degrees of completeness to which inheritance
-is documented by the different ARG inference methods.
-% : e.g., polytomies, absence
-% of locally unary coalescence nodes, unpreserved identify of internal nodes
-% across local trees, etc.
-% However, many of these imprecisions violate the implicit
-% assumptions of the likelihood computation.
-For example, we assume the 
-presence of locally unary nodes to correctly identify the
-full extent of all lineages going back through time 
-and therefore recombination events, but this information
-may be incomplete (e.g., the full simplifed ARG in Fig.~\ref{fig:lik-surface})
-or even incorrect.
-% Without these unary nodes, our algorithm will detect a recombination
-% event along both coalescing lineages in case of a (sub)tree height changes along
-% the ARG as both edges would switch parent nodes. 
-Locally unary nodes are not a common aspect of current ARG 
-research~\citep{wong_general_2023}, but 
-are estimated by tsinfer, and can be imputed to high
-degree of accuracy from fully simplified ARGs~\citep{fritze2024forest}.
-Determining the effects of various forms of \emph{incorrect} topology on
-these likelihoods requires further research.
+% there are some caveats. By treating each edge independently,
+% our algorithm will still produce a value for ARGs with
+% the various degrees of completeness to which inheritance
+% is documented by the different ARG inference methods.
+% % : e.g., polytomies, absence
+% % of locally unary coalescence nodes, unpreserved identify of internal nodes
+% % across local trees, etc.
+% % However, many of these imprecisions violate the implicit
+% % assumptions of the likelihood computation.
+% For example, we assume the 
+% presence of locally unary nodes to correctly identify the
+% full extent of all lineages going back through time 
+% and therefore recombination events, but this information
+% may be incomplete (e.g., the full simplifed ARG in Fig.~\ref{fig:lik-surface})
+% or even incorrect.
+% % Without these unary nodes, our algorithm will detect a recombination
+% % event along both coalescing lineages in case of a (sub)tree height changes along
+% % the ARG as both edges would switch parent nodes. 
+% Locally unary nodes are not a common aspect of current ARG 
+% research~\citep{wong_general_2023}, but 
+% are estimated by tsinfer, and can be imputed to high
+% degree of accuracy from fully simplified ARGs~\citep{fritze2024forest}.
+% Determining the effects of various forms of \emph{incorrect} topology on
+% these likelihoods requires further research.
 
-[Something about polytomies]
+% [Something about polytomies]
 
 Our results, while preliminary, suggest that ``full ARGs'', in which 
-each recombination event is precisely pinpointed in time, 
+each recombination and common ancestor event is precisely estimated,
 contain a significant degree of redundancy in terms of capturing 
 information about the generative process. 
-It is possible, therefore, that explicitly estimating recombination 
-events is not necessary to sample ARGs under the SMC (as ARGweaver
-and SINGER do), potentially
-leading to further improvements in the scalability of such methods.
+It is possible, therefore, that explicitly estimating 
+\emph{all} such events is not necessary to sample ARGs under the 
+SMC (as ARGweaver and SINGER do). 
+A combined approach, in which the uncertainty around the
+ordering of events that are 
+weakly informed by the data is encoded structurally in the 
+graph and other forms of uncertainty captured by sampling from 
+the posterior, may yield further improvements in 
+scalability for statistically rigorous inference.
+% Signicant work would be needed, however, to make 
+% downstream analysis robust to such stuctural uncertainty;
+% polytomies, for example, are often not
 Another exciting prospect for ARG inference is the development of 
 ``hybrid'' inference methods, where hueristic methods such as 
 tsinfer or ARG-Needle are used to infer
 the details of the recent past in huge datasets such as 
-UK Biobank, and passing over to a rigorous model-based
+UK Biobank, passing over to a rigorous model-based
 approach for the ancient past.
 This is similar in spirit to the widely-used approach 
 of simulating complex dynamics of the recent past using 
 detailed but slow models and using faster coalescent simulations
-in the more distant past, when the assumptions required 
+in the distant past when the assumptions required 
 are more justified~\citep{bhaskar_distortion_2014,
 kelleher_efficient_2018,haller_tree_2018,nelson_accounting_2020}.
 % Maybe we shouldn't bother saying this, but I can't resist the 
@@ -1154,9 +1175,12 @@ Just as forward and backward simulations are useful in different contexts
 and can be combined to great effect,
 large-scale hueristic and MCMC sampling inference methods have their 
 applications, and there may be synergy in their combination. 
-Practical combination of methods will require cooperation at the 
-data structure level, and the interoperability provided by the 
-\texttt{tskit} library [something good].
+% This is pretty weak, tbh.
+The practical details of ``handing over'' between methods
+will require cooperation and precise communication;
+the tskit library, with its well-defined data model and flexible
+metadata support, is the ideal basis for this.
+
 
 % This can be mitigated by limiting
 % the number of `inferrable' recombination events per coalescence event to 1
