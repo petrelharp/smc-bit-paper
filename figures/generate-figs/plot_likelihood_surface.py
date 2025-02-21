@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import pandas as pd
 
+
 def plot(df_rat, path):
 
     REC = 1.25e-8
-
 
     fig, ax = plt.subplots(1, 1)
 
@@ -15,6 +15,8 @@ def plot(df_rat, path):
         "full_arg_smc": "tab:red",
         "unary_coal": "tab:blue",
         "fully_simplified": "tab:orange",
+        "tsinfer_tsdate": "tab:olive",
+        "tsinfer_fs_tsdate": "tab:cyan",
         "full_arg_hudson": "tab:purple",
     }
     titles = {
@@ -22,6 +24,8 @@ def plot(df_rat, path):
         "unary_coal": "RE nodes removed",
         "fully_simplified": "Fully simplified",
         "full_arg_hudson": "Full ARG (HKY)",
+        "tsinfer_tsdate": "tsinfer+tsdate",
+        "tsinfer_fs_tsdate": "tsinfer+tsdate (FS)",
     }
 
     line_styles = {
@@ -68,6 +72,7 @@ def plot(df_rat, path):
     ax.set_xlabel("Recombination rate")
 
     plt.savefig(path)
+
 
 df = pd.read_csv("likelihood_surface.csv").set_index("rho")
 

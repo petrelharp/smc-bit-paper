@@ -876,7 +876,7 @@ contributions~\citep{baumdicker_efficient_2021,mahmoudi_bayesian_2022}.
 % \citep{mahmoudi_bayesian_2022}.
 
 % % % % % % % % % % % % % % % % % %
-\subsection*{Robustness to partial information}
+\subsection*{Robustness to partial and incorrect information}
 Eq.~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any}
 collection of nodes (ancestral haplotypes that lived at some time 
 $t$ in the past) and edges (a record that child node $c$ 
@@ -889,50 +889,66 @@ formulation reasons about the events that \emph{could have resulted in}
 the observed nodes and edges, and therefore frees us from the requirement
 of having to explicitly write those down. In this section we 
 illustrate the robustness
-of this approach to incomplete information about recombination and 
-coalescent events via a proof-of-concept example, in which we 
-remove various levels of detail from a simulated ARG.
+of this approach to incomplete and potentially incorrect
+information about recombination and 
+coalescent events via a proof-of-concept example. 
+% in which we 
+% remove various levels of detail from a simulated ARG.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/likelihood_surface}
-    \caption{Log likelihood-ratio curves for ARGs containing
-     varying degrees of information about the realised simulation.
+    \caption{Log likelihood-ratio curves for ARGs with various properties.
     The ``Full ARG'' here is the result of an 
-    \texttt{msprime} simulation of the SMC (100 diploid samples, genome length 1Mb, 
-    $r=2.5\times10^{-8}$, $N_e=1\times10^4$) which contains complete 
-    information about the simulated events 
-    (9,378 nodes; 13,221 edges; 2,933 trees). 
+    msprime simulation of the SMC (100 diploid samples, genome length 1Mb, 
+    $r=\mu=2.5\times10^{-8}$, $N_e=1\times10^4$).
     The ``RE nodes removed'' ARG is the 
-    result of simplifying out all of the recombination nodes (3,332 nodes;
-    6,901 edges; note that \texttt{msprime} uses distinct nodes for the 
-    left and right parent of each recombination). The ``Fully simplified''
-    ARG has all locally unary nodes removed from trees (3,332 nodes; 10,674
-    edges). Each of these ARGs additionally has 5\% and 25\% of the 
+    result of simplifying out all of the recombination nodes,
+    and the ``Fully simplified'' ARG has all locally unary nodes removed. 
+    Each of these simulated ARGs additionally has 5\% and 25\% of the 
     internal nodes removed to create polytomies.
-    See the text for details on how the likelihood ratio values are computed.
-    The ``Full ARG'' and ``RE nodes deleted'' lines coincide.
+    We also show the results for ARGs inferred from the original simulation
+    data using tsinfer and tsdate 
+    (see text for details), in which we use the default output of tsinfer
+    including unary nodes (tsinfer+tsdate), and in which we fully simplify 
+    before passing to tsdate (tsinfer+tsdate FS). 
+    See the text for details on how the likelihood ratio 
+    values are computed.
+    The ``Full ARG'' and ``RE nodes removed'' lines coincide.
     \label{fig:lik-surface}}
 \end{figure}
 
-In Fig~\ref{fig:lik-surface} we begin with a realisation of the SMC as a ``full
-ARG'', that is, containing complete information about every simulated event.
+In Fig~\ref{fig:lik-surface} we begin with a realisation of the SMC 
+containing complete information about every simulated event
+(Full ARG; 9,378 nodes; 13,221 edges; 2,933 trees). 
 We then plot the likelihood computed by Eq.~\eqref{eq:full-lik} 
-as we vary the recombination rate parameter $r$ (as a ratio
-of the likelihood computed at the true value of $r$). Unsurprisingly, we can
+as we vary the recombination rate parameter $r$, as a ratio
+of the likelihood at the true value of $r$. 
+Reassuringly, we can
 see that the minimum of the likelihood-ratio curve when using the 
-full simulated ARG is at the true value of the parameter.
-What is surprising is that we obtain an indistinguishable curve when 
-we remove all the recombination nodes from this ARG, and therefore 
-lose information about the precise timing of recombination events.
-In this case, the locally unary portions of coalescent nodes have given
-all the information that we need about recombination events.
-Removing all locally unary nodes in the fully simplified ARG does result
-in a loss of information, and we can see that the minimum of the 
+full simulated ARG is close to the true value of the parameter.
+(The likelihood ratio curve obtained when computing the likelihood
+under the full coalescent with recombination model using the KYF
+formula is identical; not shown.)
+We next compute the likelihood ratio for the ARG obtained when we 
+simplify out the recombination nodes from the full ARG
+(RE nodes removed; 3,332 nodes; 6,901 edges; 2,933 trees; note that msprime 
+uses distinct nodes for the left and right parent of each recombination).
+The curve we obtain is indistinguishable from that of the full
+ARG, demonstrating that the locally unary portions of coalescent nodes 
+contain all the information that we need about recombination events
+for this application.
+When we fully simplify the simulated ARG
+to remove all locally unary nodes from trees 
+(Fully simplified; 3,332 nodes; 10,674 edges, 2,933 trees) 
+we can see there is a significant loss of information,
+and the minimum of the 
 likelihood ratio surface is biased away from its true value.
+(See~\cite{wong_general_2023} for more discussion on varying 
+degrees of ARG simplification.)
 
 Fig~\ref{fig:lik-surface} shows that Eq.~\eqref{eq:full-lik} is also remarkably
-robust to the presents of polytomies in this example. For each of the three
+robust to the presences of polytomies in this example. For each of the three
 ARGs discussed in the previous paragraph, we also evaluated the likelihood
 for ARGs in which 5\% or 25\% of the internal ARG nodes are removed and 
 edges adjusted accordingly.
@@ -946,21 +962,48 @@ over the 2,933 trees along the sequence (each tree having
 per tree in the ARG where recombination nodes have been removed,
 and only 10 in the full ARG (which has an average of 1026 unary 
 nodes per tree).
-%                     name    leaves  unary       binary      poly
-% 0   poly_full_arg_smc_0.05  200.0   1025.565973 192.662462  3.153086
-% 1   poly_unary_coal_0.05    200.0   429.315017  190.182253  4.372696
-% 2   poly_fully_sfiied_0.05  200.0   0.000000    185.691468  6.393174
-% 3   poly_full_arg_smc_0.25  200.0   779.846233  176.830549  10.307876
-% 4   poly_unary_coal_0.25    200.0   323.054926  154.422588  21.104016
-% 5   poly_fully_sified_0.25  200.0   0.000000    117.096174  33.241986
+%     name                  leaves  unary       binary  poly
+% 0   full_arg_smc          200.0   1094.417661 199.000000  0.000000
+% 1   unary_coal            200.0   456.396522  199.000000  0.000000
+% 2   fully_simplified      200.0   0.000000    199.000000  0.000000
+% 3   tsinfer_tsdate        200.0   192.447590  119.754399  32.270849
+% 4   tsinfer_fs_tsdate     200.0   0.000000    119.563898  32.322684
+% 5   py_full_arg_smc_0.05  200.0   1025.565973 192.662462  3.153086
+% 6   py_unary_coal_0.05    200.0   429.315017  190.182253  4.372696
+% 7   py_fully_simied_0.05  200.0   0.000000    185.691468  6.393174
+% 8   py_full_arg_smc_0.25  200.0   779.846233  176.830549  10.307876
+% 9   py_unary_coal_0.25    200.0   323.054926  154.422588  21.104016
+% 10  py_fully_simied_0.25  200.0   0.000000    117.096174  33.241986
 Given this disparity in the number of polytomies introduced, the 
 effects on the likelihood across the three examples are not entirely
-comparable. It is remarkable, however, how little effect introducing 
-these polytomies has on the likelihood surface in this example. For 
-the ARGs containing unary nodes, removing 25\% of the internal 
+comparable. For the ARGs containing unary nodes, 
+removing 25\% of the internal 
 nodes has negligible effect, and even on the fully simplified 
-ARG has a very minor effect on the minimum.
+ARG has a very minor effect on location of the minimum.
 
+Fig~\ref{fig:lik-surface} also shows results for ARGs inferred from the 
+simulated data using tsinfer and tsdate~\citep{wohns_unified_2022},
+using default parameters for tsinfer, and the true values of mutation
+rate and $N_e$ for tsdate.
+In the first, we use the default output of tsinfer 
+(2,148 nodes; 5,589 edges; 1,307 trees; 3,039 mutations).
+This ARG has an average of 192 unary nodes, 120 binary nodes, and 32 nodes
+with three or more children per tree. Tsinfer does not directly estimate
+recombination events; the breakpoints between trees are the consequence of
+switches between parental haplotypes in the 
+\cite{li2003modeling} copying process. Information about 
+recombination events in the returned ARG is therefore quite imprecise,
+and likely to contain incorrect and contradictory details if one were to 
+attempt to reconstruct the exact subtree-prune-and-regraft 
+moves~\citep[e.g.][]{rasmussen2023espalier}. Nonetheless, in
+this toy example at least, our likelihood function performs well
+on the output of tsinfer, with the minimum close to the true
+parameter value. We also show the likelihood curve obtained when we 
+fully simplify the output of tsinfer 
+(1,865 nodes; 7,511 edges; 1,252 trees; 3,039 mutations)
+before dating. We can see that, as with the case of the true data,
+removing all the unary nodes results in a significant bias
+away from the true value of the recombination rate parameter.
 
 \subsection*{Piecewise decomposition over time}
 \begin{figure}
@@ -1044,8 +1087,18 @@ formulation.
 We have shown via some illustrative examples that the formulation is 
 remarkably robust to incomplete information, tolerating the loss 
 of a significant fraction of the internal nodes in the ARG to minimal effect.
+% I think we have to grasp this nettle or we're inviting the reviewers to 
+% give us a bunch of "what if you tried this" bits of extra homework.
+While there are many different potential applications to concrete 
+inferential problems, the details are nontrivial and best consigned to future work.
  
-Although we can associate a likelihood with any ARG in \texttt{tskit} format,
+A major advantage of our approach is that it does not require
+us to explicitly identify common ancestor and recombination events 
+in the input. Indeed, 
+we can compute a likelihood for any ARG in \texttt{tskit} format,
+potentially bridging the gap between population genetic theory and the 
+varied structures inferred by current methods~\citep{wong_general_2023}.
+
 there are some caveats. By treating each edge independently,
 our algorithm will still produce a value for ARGs with
 the various degrees of completeness to which inheritance
