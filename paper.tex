@@ -175,9 +175,7 @@ Similarly, there is often a fundamental lack of information about the
 details of recombination events, and heuristic methods (in different ways)
 omit these details. In many ways, the significant progress made in
 scalability by these heuristic methods is \emph{because} they don't
-attempt to precisely reconstruct recombination events
-(this should be taken into account when interpreting the resulting ARGs;
-see \citet{wong_general_2023} for more discussion).
+attempt to precisely reconstruct recombination events.
 
 There are substantial advantages to the statistically rigorous sampling 
 approaches of ARGweaver and SINGER.
@@ -221,7 +219,7 @@ probabilistic inference. The classical Kuhner-Yamato-Felsenstein
 works by assigning a probablility to each recombination and common
 ancestor event, and to the inter-event  waiting times. 
 Although the KYF formulation is a natural and elegant way to describe 
-the likelihood of an ARG, the high-level of detail about the underlying
+the likelihood of an ARG, the high level of detail about the underlying
 events that is required is not present 
 in many estimated ARGs~\citep{wong_general_2023} or even in most simulations.
 Simulators such as the classical ms
@@ -255,11 +253,14 @@ To do this, we give a backwards-in-time description of the SMC
 which naturally leads to a straightforward method for computing the likelihood
 of any ARG, and describe an efficient algorithm to do so.
 We show that explicitly identifying recombination events via nodes 
-in the graph is not necessary as long as the ``locally
-unary''~\cite{wong_general_2023,fritze2024forest} sections of common ancestor
-nodes are retained, from the perspective of computing the likelihood.
-We also show via a empirical examples that the likelihood is remarkably
-robust to the presence of polytomies, and illustrate how it can be
+in the graph is not necessary 
+(from the perspective of computing the likelihood)
+as long as the ``locally
+unary''~\citep{wong_general_2023,fritze2024forest} sections of common ancestor
+nodes are retained.
+We also show via an empirical example that the likelihood is 
+robust to the presence of polytomies and other imprecise 
+information, and illustrate how it can be
 decomposed into separately evaluated time slices.
 Finally, we discuss how these results may be applied and extended.
 
@@ -1084,6 +1085,10 @@ ARG~\citep{wong_general_2023},
 a significant increase in flexibility over the 
 strict input requirements for the classical Kuhner-Yamato-Felsenstein 
 formulation. 
+Locally unary nodes play a key role, and although not
+currently a common focus of ARG research~\citep{wong_general_2023}, 
+they are estimated by tsinfer and can be imputed to high a
+degree of accuracy from fully simplified ARGs~\citep{fritze2024forest}.
 We have shown via some illustrative examples that the formulation is 
 robust to incomplete and imprecise information, tolerating the loss 
 of a significant fraction of the internal nodes in the ARG to minimal effect.
@@ -1091,15 +1096,12 @@ We have also shown that the likelihood function performs well
 (at least in our toy example) on ARGs inferred by tsinfer+tsdate,
 successfully capturing information about latent recombination events
 from imprecise and noisy data.
-Locally unary nodes play a key role, and although not
-currently a common focus of ARG research~\citep{wong_general_2023}, 
-they are estimated by tsinfer and can be imputed to high a
-degree of accuracy from fully simplified ARGs~\citep{fritze2024forest}.
 % I think we have to grasp this nettle or we're inviting the reviewers to 
 % give us a bunch of "what if you tried this" bits of extra homework.
-Fully characterising the properties of the likelihood on the output 
-of tsinfer and other methods is beyond the scope of this work.
-Similarly, while there are many different potential applications to concrete 
+Theoretical explanations of this apparent robustness,
+and fully characterising the properties of the likelihood on the output 
+of tsinfer and other methods is an important avenue for future work.
+Similarly, while there are many potential applications to concrete 
 inferential problems, the details are nontrivial and must be
 consigned to future work.
 
@@ -1173,7 +1175,7 @@ kelleher_efficient_2018,haller_tree_2018,nelson_accounting_2020}.
 % it spelled out.
 Just as forward and backward simulations are useful in different contexts
 and can be combined to great effect,
-large-scale hueristic and MCMC sampling inference methods have their 
+large-scale hueristic and Bayesian sampling inference methods have their 
 applications, and there may be synergy in their combination. 
 % This is pretty weak, tbh.
 The practical details of ``handing over'' between methods
