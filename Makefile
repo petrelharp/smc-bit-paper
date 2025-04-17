@@ -6,7 +6,7 @@ all: paper.pdf
 
 # This goes against all the nice rules below, but I couldn't get them to 
 # work.
-paper.pdf: paper.tex paper.bib
+paper.pdf: paper.tex paper.bib review-responses.tex
 	pdflatex paper
 	bibtex paper
 	pdflatex paper
