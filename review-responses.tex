@@ -1,0 +1,427 @@
+\begin{minipage}[b]{2.5in}
+  Resubmission Cover Letter \\
+  {\it Genetics}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{2.5in}
+    Gertjan Bisschop  \\
+  \today
+\end{minipage}
+ 
+\vskip 2em
+ 
+\noindent
+{\bf To the Editor(s) -- }
+ 
+\vskip 1em
+
+We are writing to submit a revised version of our manuscript,
+XXX
+titled 
+``XXX''.
+We appreciate the thoughtful comments by the reviewers.
+We've done our best to address all the comments,
+as detailed in our Response to Reviewers,
+XXX
+
+In addition to a Response to Reviewers (in which page/line numbers refer to the revised manuscript file),
+we also provide a pdf with differences to the previously submitted version highlighted.
+
+
+\vskip 2em
+
+\noindent \hspace{4em}
+\begin{minipage}{3in}
+\noindent
+{\bf Sincerely,}
+
+\vskip 2em
+
+{\bf 
+   Gertjan Bisschop, Peter Ralph, and Jerome Kelleher
+}\\
+\end{minipage}
+
+\vskip 4em
+
+\pagebreak
+
+%%%%%%%%%%%%%%
+\reviewersection{1}
+
+\begin{quote}
+The manuscript by Bisschop et al. presents a dense yet concise derivation of a novel approach for computing the likelihood of a broad class of Ancestral Recombination Graphs (ARGs) under the Sequentially Markovian Coalescent (SMC) model. This is a significant advance that enables the use of output from heuristic ARG inference tools such as tsinfer, ARG-Needle, and Threads, for rigorous statistical inference of population genetic parameters. These recent ARG inference methods can infer local gene trees across genomes for hundreds to thousands of samples, but they do not estimate recombination events directly in their data models, which prevented the application of previous formulations of the likelihood.
+\end{quote}
+
+\begin{quote}
+The new likelihood framework has the potential to unlock parameter inference-such as recombination rates and historical population sizes-from large-scale genomic datasets using highly efficient methods. The manuscript provides a compelling proof-of-concept for such applications, while appropriately leaving more extensive exploration for future work.
+\end{quote}
+
+\begin{quote}
+The subject matter is conceptually challenging due to the inherent complexity of the topic, but the authors provide rigorous and accessible explanations. Figures 1 and 2 are especially helpful.
+\end{quote}
+
+\begin{point}{}
+A Python implementation of the method is available on GitHub. However, due to the algorithm's complexity and the very limited documentation of the available code, it would be beneficial to include pseudocode in the appendix. This pseudocode should lay out the full sequence of steps required to compute the likelihood, ideally supplemented with additional explanatory figures. Doing so would not only enhance the clarity and completeness of the manuscript, but also facilitate implementation in other programming languages.
+\end{point}
+
+\reply{
+}
+
+
+\begin{point}{\revref} %line 212
+ Since you talk about the rate of coalescence, I think a ``lambda'' is missing in front of the sum (i.e., multiplying by 1/2/N).
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % line 218
+ Could you provide more detail or intuition for this formula of the likelihood? E.g., what's the cumulative hazard in the context of the coalescent or the ARG.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % line 262
+ Again, I think there is a ``lambda'' missing in front of the integral. Alternatively, lambda is meant to be multiplied with the F function, like in equation 4, but then it also needs to be added to the formula in line 265.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % line 577
+ I don't understand ``, along with additional information that allows us to sequentially recover (...) efficiently.'' Recover what?
+\end{point}
+
+\reply{
+}
+
+
+
+%%%%%%%%%%%%%%
+\reviewersection{2}
+\begin{quote}
+This paper does a couple of interrelated things.
+\begin{enumerate}
+    \item The authors develop a new backward-in-time formulation of the Sequentially Markov Coalescent (SMC) model.
+    \item This backward-in-time formulation of the SMC model provides a way to efficiently calculate likelihood for a sample of genomes from this model, provided that we have information on how these genomes are related to each other. The latter is done by a data structure called Ancestral Recombination Graph (ARG). The authors provide an algorithm and Python code for this likelihood calculation (is this emphasised enough across the paper!?).
+    \item The authors also evaluate the likelihood under different levels of information available in the ARG. This enables them to connect challenges when comparing methods and outputs from the rigorous, yet ``scale-limited'', probabilistic ARG inference methods with scaleable, yet less-rigorous, heuristic ARG inference methods.
+\end{enumerate}
+I welcome this paper and quite like it's succinctness. I am not able to follow all the maths, but the rationale and presentation is clear to me and I only have minor comments.
+\end{quote}
+
+% ABSTRACT
+
+\begin{point}{\revref} % \&75
+ Isn't it possible to run SINGER on up to thousands of samples? I know that several hundreds is also a thousand!
+\end{point}
+
+\reply{
+}
+
+
+\begin{point}{}
+Mention that the standard SMC formulation was left-to-right
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 21:
+ for ARG inference that this new formulation opens
+\end{point}
+
+\reply{
+}
+
+% INTRO
+
+\begin{point}{\revref} % 24:
+ evol biol $\to$ genetics?
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 27:
+ ancestral processes $\to$ genetic processes?
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 35:
+ Bayesian $\to$ probabilistic (I think this is more general and would encompas any model-based approach, say max likelihood etc.; alternatively consider using model-based, but probabilistic/statistical assumes we have an underlying model)
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 47:
+ statistical $\to$ probabilistic
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 66:
+ and heuristic methods omit these details in different ways. Notablym the sig....
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 72:
+ uncertainty of (point) estimates.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 82:
+ heuristic methods
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 84:
+ likelihood of a dataset? under a model (to make it more general)
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref}
+I would appreciate if you here make it clear which information is missing in these different tools. Sorry for nitpicking.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 98:
+ a new formulation of SMC model and corresponding ARG likelihood
+\end{point}
+
+\reply{
+}
+
+% RESULTS
+
+\begin{point}{\revref} % 117:
+ specific genome (node can also be a sample so best to remove ancestral)
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 118:
+ sampled genomes are related at each base pair.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 121:
+ sampled and ancestral haplotypes (haploid genomes), or ...
+\end{point}
+
+\reply{
+}
+
+\begin{point}{Fig \ref{fig:smc-unary}:}
+ it would be cool if you shade regions (in blue) also in the local trees? That's effectively uncertain time around the A, B, and C node!
+\end{point}
+
+\reply{
+}
+
+\begin{point}{Fig \ref{fig:smc-unary} caption:}
+An ARG ``generated under the SMC'' - do you need this last part in my quotes?
+\end{point}
+
+\reply{
+}
+
+\begin{point}{Figure~\ref{fig:smc-unary} caption:}
+with a the remaining $\to$ with the remai....
+\end{point}
+
+\reply{
+    Thanks! Done.
+}
+
+\begin{point}{\revref} % 130:
+ either sample nodes or common ancestry nodes
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 138:
+ is unary in the second tree.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 140:
+ all lineages with recombination event
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 144:
+ sometime between the times of nodes f and h; similarlyt in next line % 145
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref{} and a few lines later} % 156/160:
+ consolidate how you write backwards in time
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref{} and elsewhere}
+similarly for left-to-right and along-the-genome
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 164:
+ had to Google what ``abutting'' means! Consider using bordering/adjoning
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 169:
+ I don't fully grasp the meaning of ``tree-valued process'' - tree-generating process or tree-structured process ...
+\end{point}
+
+\reply{
+}
+
+% Here starts the part that I am not sufficiently-skilled to judge the text, though I could read and follow what is says and means!
+
+\begin{point}{\revref} % 249:
+ define ``eligible links'' sooner? Not critical.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 280:
+ ARG likelihood formulation in Eq. (5) ... of nodes (haplotypes that existed at some time t)
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 289:
+ with a sample from the SMC model
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 300:
+ cite what simplification does (Wang et al., YYYY; Kelleher et al. - your PLOS Genetics paper). Do you need to cite this sooner in the manuscript?
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 300:
+ for this application, despite retaininig fewer nodes and edges.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref{} and subsequent paragraph} % 306-316:
+ Is this number of polytomies too small and is then the impact on the likelihood small? It would be good to do one more extreme example for supplement to ensure this. This is the point where you can strengthen your paper the most.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{Fig \ref{fig:lik-surface} caption:}
+ lines overlap hence we cannot see the full red line.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref{} and elsewhere} % 319:
+ Consolidate how you ref to figs (Fig 1. or Fig 3).
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 321:
+ you have not mentioned how many mutations the simulation produced. I understand that these are not important for ARG likelihood (emphasise this), but good to tie up things together.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 328:
+ It's not that likelihood function performs well, right!? It's how absence of complete information gives close to the full information likelihood value!
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 332:
+ remove significant? It does not look that bad!
+\end{point}
+
+\reply{
+}
+
+% DISCUSSION
+
+\begin{point}{\revref} % 352:
+ modern heuristic ARG ...
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 358:
+ consider Kuhner-Yamato-Felsenstein $\to$ KYF (for consistency)
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 381:
+ probabilistic approach
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 387:
+ probabilistic inference
+\end{point}
+
+\reply{
+}
+
+\begin{point}{\revref} % 392-394:
+ I checked the code and is indeed there! Thanks for sharing! The algorithm has an acronym RUNSMC standing for ``Recombination (time) UNaware SMC''. Should this be emphasised in the manuscript? Hmm, but it's not fully unaware, is it? You do consider topology, so think about a better acronym.
+\end{point}
+
+\reply{
+}
+
+

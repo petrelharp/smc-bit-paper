@@ -24,6 +24,14 @@
 \renewcommand{\deg}{\mathrm{deg}}
 \newcommand{\comment}[1]{{\it \color{orange} (#1)}}
 
+% Responses to reviews
+\input{review-response-commands}
+% set this to show line numbers and include responses to reviews or not
+\newif\ifreviewresponses
+\reviewresponsestrue  % include them
+% \reviewresponsesfalse  % don't include them
+\newcommand{\responsefile}{review-responses}  % name of the review responses file
+
 % Bold the 'Figure #' in the caption and separate it from the title/caption with a period
 % % Captions will be left justified
 % \usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
@@ -73,7 +81,7 @@ and derive a straightforward definition
 of the likelihood of a general class of ARG under this model. 
 We show that this formulation does not require precise details of recombination events
 to be estimated, and is robust to the presence of polytomies. 
-We discuss the possibilities for inference that this opens.
+We discuss the possibilities for inference that this opens. \revpoint{2}{3}
 \end{abstract}
 
 
@@ -86,12 +94,11 @@ We discuss the possibilities for inference that this opens.
 \section*{Introduction}
 Following recent breakthroughs in simulation and inference methods,
 there is now strong interest in applying Ancestral Recombination Graphs (ARGs)
-to a variety of questions in evolutionary
-biology~\citep{lewanski_era_2024,brandt_promise_2024,nielsen_inference_2025}.
+to a variety of questions in evolutionary biology~\citep{lewanski_era_2024,brandt_promise_2024,nielsen_inference_2025}. \revpoint{2}{4}
 ARGs describe the intricately linked paths
 of genetic inheritance resulting from
 recombination~\citep{hudson_properties_1983,griffiths_ancestral_1996,wong_general_2023},
-and contain rich detail about ancestral processes.
+and contain rich detail about ancestral processes. \revpoint{2}{5}
 % TODO rephrase this a bit, would be a lot of duplication of references
 % in the current formulation.
 Numerous applications taking advantage of this detailed history
@@ -120,7 +127,7 @@ have been the focus of most recent interest.
 
 % TODO Maybe swap the order of these two paragraphs around, so it's 
 % more natrual to talk about the advantages of model-driven stuff next.
-The first class of inference methods are Bayesian approaches
+The first class of inference methods are Bayesian approaches \revpoint{2}{6}
 that sample ARGs under a population genetics model such as the
 coalescent with recombination~\citep{hudson_properties_1983},
 and its approximation, the Sequentially Markovian
@@ -146,7 +153,7 @@ work on quite different
 principles, but share some common properties. 
 Firstly, they are all 
 heuristic and approximation driven, favouring computational
-scalability over a basis in a statistical model.
+scalability over a basis in a statistical model. \revpoint{2}{7}
 Secondly, they all produce a single
 ARG as output, inferring a deterministic point estimate.
 Thirdly, they regard the precise timing of nodes as a separate
@@ -173,7 +180,8 @@ the uncertainty structurally by means of a polytomy: we have no
 information about the intermediate coalescent event, and so we omit it.
 Similarly, there is often a fundamental lack of information about the 
 details of recombination events, and heuristic methods (in different ways)
-omit these details. In many ways, the significant progress made in
+omit these details. \revpoint{2}{8}
+In many ways, the significant progress made in
 scalability by these heuristic methods is \emph{because} they don't
 attempt to precisely reconstruct recombination events.
 
@@ -183,7 +191,7 @@ In particular, they tend to be more accurate (at the
 scale at which they can be compared),
 and sampling ARGs from a
 posterior distribution provides a means of quantifying the uncertainty 
-around estimates.
+around estimates. \revpoint{2}{9}
 On the other hand, heuristic methods have the potential
 to use the greater amount of information in large datasets,
 capturing fine-scale details about the recent past.
@@ -191,7 +199,7 @@ capturing fine-scale details about the recent past.
 % (although this has not, to our knowledge, been tested).
 Although SINGER is a major step forward
 in terms of scalability over ARGweaver and other methods, inference is still 
-only feasible for hundreds of samples. 
+only feasible for hundreds of samples.  \revpoint{2}{1}
 Meanwhile, tsinfer, ARG-Needle and Threads have 
 been applied to datasets of hundreds of \emph{thousands} of samples.
 With the explosive growth in dataset
@@ -210,9 +218,9 @@ rigour in large scale ARG inference.
 % of improvement. We cannot compare models of demography, or evaluate the 
 % goodness of fit for model estimates.
 
-A key problem facing the field is that the ARGs estimated by heuristic large-scale 
+A key problem facing the field is that the ARGs estimated by heuristic large-scale \revpoint{2}{10}
 methods lack a concrete connection to population genetic theory because
-we cannot compute their likelihood under the SMC or similar models. 
+we cannot compute their likelihood under the SMC or similar models. \revpoint{2}{11}
 Computing the likelihood of an ARG under a model is a fundamental element of
 probabilistic inference. The classical Kuhner-Yamato-Felsenstein
 \citeyearpar{kuhner_maximum_2000} formulation (henceforth: KYF)
@@ -224,7 +232,7 @@ events that is required is not present
 in many estimated ARGs~\citep{wong_general_2023} or even in most simulations.
 Simulators such as the classical ms
 program~\citep{hudson_generating_2002} output ARGs in a tree-by-tree format,
-which does not contain sufficient detail for likelihood computation.
+which does not contain sufficient detail for likelihood computation. \revpoint{2}{12}
 The msprime
 simulator~\citep{kelleher_efficient_2016,baumdicker_efficient_2021} 
 by default outputs a more complete and efficient representation of 
@@ -245,7 +253,7 @@ the KYF approach.
 
 In this paper we provide a new formulation of ARG likelihood which 
 has much more lenient input requirements than KYF, and gracefully handles
-incomplete and imprecise ARGs.
+incomplete and imprecise ARGs. \revpoint{2}{13}
 % In this paper we provide a necessary first step towards this goal
 % of statistically rigorous large-scale ARG inference, by defining a function
 % to compute the likelihood of a general class of ARG under the SMC.
@@ -327,9 +335,9 @@ where $c$ and $p$ are (haploid) genomes, and $x$ and $y$ are genetic coordinates
 We record each such statement in an ``edge'',
 often summarised as the tuple $(p,c,x,y)$.
 By ``describes the history'',
-we mean that each node in the ARG represents a specific (ancestral) genome,
+we mean that each node in the ARG represents a specific (ancestral) genome, \revpoint{2}{14}
 and that the ARG specifies the genealogical tree describing how the samples are related
-at each point on the genome.
+at each point on the genome. \revpoint{2}{15}
 
 \begin{figure}
 \centering
@@ -346,7 +354,7 @@ the range of possible times associated with these recombinants.
 The blue arrows show the
 standard left-to-right logic of the SMC whereby
 the floating lineage coalesces randomly
-with a the remaining portion of the local tree following recombination.
+    with the remaining portion of the local tree following recombination.
 % By removing recombinant nodes, we limit the information on the time to each
 % of these events to the windows (blue shaded array) delimited by the age of
 % the child node and the minimum age of its parents.
@@ -355,7 +363,7 @@ with a the remaining portion of the local tree following recombination.
 \end{figure}
 
 An ARG can therefore be thought of either as a collection of inheritance
-relationships between ancestral haplotypes,
+relationships between ancestral haplotypes, \revpoint{2}{16}
 or as a sequence of genealogical trees that have common node labels.
 Fig.\ref{fig:smc-unary} shows a small ARG
 that describes relationships between four samples on a 100bp piece of genome,
@@ -373,7 +381,7 @@ In fact, $A$ is in blue because it is a \emph{recombinant} node --
 an ancestor that has a segment of genome inherited by a sample,
 but that segment was inherited in two pieces from their parent.
 Other nodes (labelled by black numbers) are either samples
-or \emph{common ancestry} nodes --
+or \emph{common ancestry} nodes -- \revpoint{2}{20}
 ancestors that are the most recent common ancestor for two 
 or more samples
 at some place along the genome.
@@ -388,7 +396,7 @@ than sample $c$.
 In the top plot, this is visible because the pink bar below node $f$
 extends further to the left than does the blue bar,
 while in the bottom plot, this is visible because node $f$ is parent to $d$
-in the second tree, but not to node $c$, and so is unary.
+in the second tree, but not to node $c$, and so is unary. \revpoint{2}{21}
 
 %% Noved this section to section on smc
 % A key observation of \citet{mcvean_approximating_2005}
@@ -415,7 +423,7 @@ in the second tree, but not to node $c$, and so is unary.
 % it is in fact reasonable to leave in these unary sections.
 
 These locally unary nodes enable
-us to uniquely identify all lineages that were hit by a recombination event,
+us to uniquely identify all lineages that were hit by a recombination event, \revpoint{2}{22}
 even if we simplify 
 the ARG by removing all recombinant nodes
 ($A$, $B$, and $C$ in Fig.\ref{fig:smc-unary}).
@@ -423,7 +431,7 @@ In the absence of these recombinant nodes, a recombination can be observed
 easily enough as a change in parent going from one genomic region to the next.
 Without the recombinant nodes we no longer know the precise time of each recombination event,
 but we do still have constraints on it;
-for instance, we know that $C$ happened somewhere between node $f$ and node $h$.
+for instance, we know that $C$ happened somewhere between node $f$ and node $h$. \revpoint{2}{23}
 More generally, a recombinant node must happen somewhere between the child node
 and the most recent of the parent nodes.
 This is again easier to visualise using the
@@ -460,7 +468,7 @@ and haplotype aware ARG comparison metrics.
 The coalescent process describes the ancestry of a set of sampled genomes.
 The original algorithm 
 to simulate the coalescent with
-recombination was formulated backwards in time
+recombination was formulated backwards in time \revpoint{2}{24}
 by Hudson \citeyearpar{hudson_properties_1983}. 
 Wiuf and Hein later described
 a tree-by-tree method to simulate the same stochastic process 
@@ -471,14 +479,14 @@ This idea however provided the basis of the
 SMC \citep{mcvean_approximating_2005}, restricting the set of all state
 space transitions possible under the Hudson coalescent to
 obtain a process that is Markovian both backwards-in-time, 
-as well as along-the-genome.
+as well as along-the-genome. \revpoint{2}{25}
 In its backwards-in-time formulation, the SMC only requires a
 simple modification to the coalescent with recombination.
 Instead of allowing any pair of lineages to coalesce,
 the SMC is the process in which only lineages with \emph{overlapping} 
 genomic intervals may coalesce. The SMC' is a refinement 
-of the SMC which also allows lineages with abutting genomic intervals to 
-coalesce~\citep{marjoram_fast_2006}.
+of the SMC which also allows lineages with abutting genomic intervals \revpoint{2}{26}
+to coalesce~\citep{marjoram_fast_2006}.
 Although \citet{mcvean_approximating_2005} verbally described the SMC
 using this backwards-in-time description, their analysis
 was almost entirely in left-to-right terms,
@@ -486,8 +494,8 @@ and subsequent papers followed this trend
 \citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,
 rasmussen_genome-wide_2014}.
 
-Linking the resulting tree-valued process along the genome back to
-the relationship between the ``graph'' and
+Linking the resulting tree-valued process \revpoint{2}{27}
+along the genome back to the relationship between the ``graph'' and
 ``local trees'' representation of ARGs, 
 the Markovian property can be formulated as follows.
 The distribution of the next tree within the series
@@ -584,7 +592,7 @@ For later use, also define $C_j(t)$ to be the set of
 lineages that can coalesce into lineage $j$, i.e., 
 $C_j(t) = \{X_k \in L(t) | I_{jk}(t) = 1\}$; 
 thus, $|C_j(t)| = I_{j}(t) = \sum_{k} I_{jk}(t)$,
-and the total rate of coalescence at time $t$ is $\sum_{j} |C_j(t)|$. 
+and the total rate of coalescence at time $t$ is $\sum_{j} |C_j(t)|$.  \revpoint{1}{2}
 Because $I_{jk}$ is defined in terms of a total order, the sets $C_j(t)$ are disjoint,
 which will simplify likelihood computations later. In particular, although
 recombination affects \emph{which} lineages can coalesce into $j$, it does not
@@ -642,7 +650,7 @@ event changes $C_j(t)$ but not $I_{j}(t)$.
 \subsection*{ARG likelihood} \label{par:liks}
 We have defined the SMC process in terms of rates of various types of events.
 In general, the likelihood for a continuous-time Markov process specified in this way
-is $\exp(-\Lambda) \prod_i \lambda_i$,
+is $\exp(-\Lambda) \prod_i \lambda_i$, \revpoint{1}{3}
 where $\lambda_i$ is the rate of the $i^\text{th}$ realised event,
 and $\Lambda$ is the sum of all rates of all possible events
 integrated over the entire process
@@ -758,7 +766,8 @@ on any of those lineages
 over this time span,
 the probability of which is
 $\exp(-r \mathcal{A}_e)$, where $r$ is the recombination rate
-and $\mathcal{A}_e$ is the total area (eligible links multiplied by length in time) of the edge.
+and $\mathcal{A}_e$ is the total area (eligible links multiplied by length in time) \revpoint{2}{28}
+of the edge.
 The length in time of the edge is just $t_p - t_c$,
 while the number of ``eligible links'' in the edge is the number of adjacent base pairs in the edge
 on which recombination did not occur, which is either $y-x$
@@ -786,7 +795,7 @@ Using this total order, we can define
 $I_e(t)$ to be the total number of earlier edges that overlap edge $e$
 and are present at time $t$.
 Then, the cumulative hazard for common ancestry events of edge $e$
-between time $s$ and $t$ is given by $F(e, s, t) = \int_{s}^{t} I_{e}(z) dz$.
+between time $s$ and $t$ is given by $F(e, s, t) = \int_{s}^{t} I_{e}(z) dz$. \revpoint{1}{4}
 If the edge $e = (p,c,x,y)$
 is the leftmost segment of material inherited by node $c$
 (e.g., the left hand segment ancestral to node $c$
@@ -876,9 +885,11 @@ contributions~\citep{baumdicker_efficient_2021,mahmoudi_bayesian_2022}.
 % and as before $e = (p,c,x,y)$
 % \citep{mahmoudi_bayesian_2022}.
 
+
 % % % % % % % % % % % % % % % % % %
 \subsection*{Robustness to partial and incorrect information}
-Eq.~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any}
+
+Eq.~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any} \revpoint{2}{29}
 collection of nodes (ancestral haplotypes that lived at some time 
 $t$ in the past) and edges (a record that child node $c$ 
 inherited the genomic interval $[x, y)$ from parent node $p$)
@@ -921,7 +932,7 @@ coalescent events via a proof-of-concept example.
 
 In Fig~\ref{fig:lik-surface} we begin with a realisation of the SMC 
 containing complete information about every simulated event
-(Full ARG; 9,378 nodes; 13,221 edges; 2,933 trees). 
+(Full ARG; 9,378 nodes; 13,221 edges; 2,933 trees). \revpoint{2}{30}
 We then plot the likelihood computed by Eq.~\eqref{eq:full-lik} 
 as we vary the recombination rate parameter $r$, as a ratio
 of the likelihood at the true value of $r$. 
@@ -941,8 +952,8 @@ contain all the information that we need about recombination events
 for this application.
 When we fully simplify the simulated ARG
 to remove all locally unary portions of nodes from trees 
-(``Fully simplified''; 3,332 nodes; 10,674 edges, 2,933 trees) 
-we can see there is a significant loss of information,
+(``Fully simplified''; 3,332 nodes; 10,674 edges, 2,933 trees)  \revpoint{2}{31}
+we can see there is a significant loss of information, \revpoint{2}{32}
 and the minimum of the 
 likelihood ratio surface is biased away from its true value,
 as expected, because removing the unary portions of nodes has removed some of the area
@@ -950,7 +961,7 @@ of the ARG in which recombination did not occur.
 (See~\cite{wong_general_2023} for more discussion on varying 
 degrees of ARG simplification.)
 
-Fig~\ref{fig:lik-surface} shows that Eq.~\eqref{eq:full-lik} is also remarkably
+Fig~\ref{fig:lik-surface} shows that Eq.~\eqref{eq:full-lik} is also remarkably \revpoint{2}{33}
 robust to the presences of polytomies in this example. For each of the three
 ARGs discussed in the previous paragraph, we also evaluated the likelihood
 for ARGs in which 5\% or 25\% of the internal ARG nodes are removed and 
@@ -985,12 +996,12 @@ nodes has negligible effect on the likelihood curve in Fig~\ref{fig:lik-surface}
 and even on the fully simplified 
 ARG has only a very minor effect on location of the minimum.
 
-Fig~\ref{fig:lik-surface} also shows results for ARGs inferred from the 
+Fig~\ref{fig:lik-surface} also shows results for ARGs inferred from the  \revpoint{2}{35}
 simulated data using tsinfer and tsdate~\citep{wohns_unified_2022},
 using default parameters for tsinfer, and the true values of mutation
 rate and $N_e$ for tsdate.
 In the first, we use the default output of tsinfer 
-(2,148 nodes; 5,589 edges; 1,307 trees; 3,039 mutations).
+(2,148 nodes; 5,589 edges; 1,307 trees; 3,039 mutations). \revpoint{2}{36}
 This ARG has an average of 192 unary nodes, 120 binary nodes, and 32 nodes
 with three or more children per tree. Tsinfer does not directly estimate
 recombination events; the breakpoints between trees are the consequence of
@@ -1000,13 +1011,13 @@ recombination events in the returned ARG is therefore quite imprecise,
 and likely to contain incorrect and contradictory details if one were to 
 attempt to reconstruct the exact subtree-prune-and-regraft 
 moves~\citep[e.g.,][]{rasmussen2023espalier}. Nonetheless, in
-this toy example at least, our likelihood function performs well
+this toy example at least, our likelihood function performs well \revpoint{2}{37}
 on the output of tsinfer, with the minimum close to the true
 parameter value. We also show the likelihood curve obtained when we 
 fully simplify the output of tsinfer 
 (1,865 nodes; 7,511 edges; 1,252 trees; 3,039 mutations)
 before dating. We can see that, as with the true data,
-removing all the unary nodes results in a significant bias
+removing all the unary nodes results in a significant bias \revpoint{2}{38}
 away from the true value of the recombination rate parameter.
 
 \subsection*{Piecewise decomposition over time}
@@ -1076,7 +1087,7 @@ The result is reasonably accurate, despite only using 10kb of sequence.
 The key contribution of this paper is to rederive a classical
 ARG likelihood function in a way that supports the sort of partial 
 and imprecise information
-provided by some modern ARG inference tools,
+provided by some modern ARG inference tools, \revpoint{2}{39}
 using a novel backwards-time derivation of the SMC.
 The underlying process that we reason about probabilistically is still
 composed of events affecting lineages, but, because we
@@ -1086,7 +1097,7 @@ in the input ARG.
 Our method can compute a likelihood under the SMC for a very general class of 
 ARG~\citep{wong_general_2023}, 
 a significant increase in flexibility over the 
-strict input requirements for the classical Kuhner-Yamato-Felsenstein 
+strict input requirements for the classical Kuhner-Yamato-Felsenstein  \revpoint{2}{40}
 formulation. 
 Locally unary nodes play a key role, and although not
 currently a common focus of ARG research~\citep{wong_general_2023}, 
@@ -1167,8 +1178,8 @@ Another exciting prospect for ARG inference is the development of
 ``hybrid'' inference methods, where heuristic methods such as 
 tsinfer or ARG-Needle are used to infer
 the details of the recent past in huge datasets such as 
-UK Biobank, passing over to a rigorous model-based
-approach for the ancient past.
+UK Biobank, passing over to a rigorous model-based approach \revpoint{2}{41}
+for the ancient past.
 This is similar in spirit to the widely-used approach 
 of simulating complex dynamics of the recent past using 
 detailed but slow models and using faster coalescent simulations
@@ -1181,8 +1192,8 @@ kelleher_efficient_2018,haller_tree_2018,nelson_accounting_2020}.
 % it spelled out.
 Just as forward and backward simulations are useful in different contexts
 and can be combined to great effect,
-large-scale heuristic and Bayesian sampling inference methods have their 
-applications, and there may be synergy in their combination. 
+large-scale heuristic and Bayesian sampling inference  \revpoint{2}{42}
+methods have their applications, and there may be synergy in their combination. 
 % This is pretty weak, tbh.
 The practical details of ``handing over'' between methods
 will require cooperation and precise communication;
@@ -1328,6 +1339,7 @@ All scripts and data used for this manuscript are available at
 \url{https://github.com/gertjanbisschop/smc-bit-paper},
 and an implementation of the algorithm is available at
 \url{https://github.com/gertjanbisschop/runsmc}.
+\revpoint{2}{43}
 
 \section*{Acknowledgements}
 JK acknowledges EPSRC (research grant EP/X024881/1)
@@ -1355,8 +1367,7 @@ In this section we describe how to efficiently compute the likelihood under the 
 from an ARG stored using the \texttt{tskit} tree sequence encoding. 
 The tree sequence format encodes relationships using \emph{edges},
 along with additional information that
-allows us to sequentially recover (and reason about 
-their differences) 
+allows us to sequentially recover (and reason about their differences) \revpoint{1}{5}
 efficiently~\citep{kelleher_efficient_2016, ralph_efficiently_2020}.
 The order of the edge deletions and insertions required to move from one local tree $T_1$ to
 the next, $T_2$ imposes the strict total ordering on edges
@@ -1511,5 +1522,6 @@ the last parent a child node was connected to to detect recombination events.
 % a single interval up to the point where one section of the
 % genome has reached its most recent common ancestor but the neighbouring parts have not.
 
+\includereviews
 
 \end{document}
