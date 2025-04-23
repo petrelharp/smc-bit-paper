@@ -181,10 +181,10 @@ The other approach (used by methods such as tsinfer) is to communicate
 the uncertainty structurally by means of a polytomy: we have no
 information about the intermediate coalescent event, and so we omit it.
 Similarly, there is often a fundamental lack of information about the
-details of recombination events, and heuristic methods (in different ways)
-omit these details. \revpoint{2}{8}
-In many ways, the significant progress made in
-scalability by these heuristic methods is \emph{because} they don't
+details of recombination events, and heuristic methods
+omit these details in different ways. \revpoint{2}{8}
+The significant progress made in
+scalability by these heuristic methods is in part \emph{because} they don't
 attempt to precisely reconstruct recombination events.
 
 There are substantial advantages to the statistically rigorous sampling
@@ -193,7 +193,7 @@ In particular, they tend to be more accurate (at the
 scale at which they can be compared),
 and sampling ARGs from a
 posterior distribution provides a means of quantifying the uncertainty
-around estimates. \revpoint{2}{9}
+around point estimates. \revpoint{2}{9}
 On the other hand, heuristic methods have the potential
 to use the greater amount of information in large datasets,
 capturing fine-scale details about the recent past.
@@ -220,7 +220,7 @@ rigour in large scale ARG inference.
 % of improvement. We cannot compare models of demography, or evaluate the
 % goodness of fit for model estimates.
 
-A key problem facing the field is that the ARGs estimated by heuristic large-scale \revpoint{2}{10}
+A key problem facing the field is that the ARGs estimated by heuristic \revpoint{2}{10}
 methods lack a concrete connection to population genetic theory because
 we cannot compute their likelihood under the SMC or similar models. \revpoint{2}{11}
 Computing the likelihood of an ARG under a model is a fundamental element of
@@ -234,7 +234,9 @@ events that is required is not present
 in many estimated ARGs~\citep{wong_general_2023} or even in most simulations.
 Simulators such as the classical ms
 program~\citep{hudson_generating_2002} output ARGs in a tree-by-tree format,
-which does not contain sufficient detail for likelihood computation. \revpoint{2}{12}
+which does not contain sufficient detail to reconstruct
+the ``full ARG'' required for likelihood
+computation~\citep{wong_general_2023}. \revpoint{2}{12}
 The msprime
 simulator~\citep{kelleher_efficient_2016,baumdicker_efficient_2021}
 by default outputs a more complete and efficient representation of
