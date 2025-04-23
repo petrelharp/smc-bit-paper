@@ -1367,7 +1367,7 @@ In this section we describe how to efficiently compute the likelihood under the 
 from an ARG stored using the \texttt{tskit} tree sequence encoding.
 The tree sequence format encodes relationships using \emph{edges},
 along with additional information that
-allows us to sequentially recover (and reason about their differences) \revpoint{1}{5}
+allows us to sequentially recover local trees (and reason about their differences) \revpoint{1}{5}
 efficiently~\citep{kelleher_efficient_2016, ralph_efficiently_2020}.
 The order of the edge deletions and insertions required to move from one local tree $T_1$ to
 the next, $T_2$ imposes the strict total ordering on edges
