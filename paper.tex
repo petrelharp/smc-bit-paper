@@ -184,7 +184,7 @@ Similarly, there is often a fundamental lack of information about the
 details of recombination events, and heuristic methods
 omit these details in different ways. \revpoint{2}{8}
 The significant progress made in
-scalability by these heuristic methods is in part \emph{because} they don't
+scalability by these heuristic methods is in part because they don't
 attempt to precisely reconstruct recombination events.
 
 There are substantial advantages to the statistically rigorous sampling
@@ -383,8 +383,8 @@ and the remaining have $A$ below $f$.
 The blue dotted line from $A$ in the second tree to $f$ in the third tree
 draws our attention to the fact that
 the path traced by $A$'s ancestry switches at that point.
-In fact, $A$ is in blue because it is a \emph{recombinant} node --
-an ancestor that has a segment of genome inherited by a sample,
+In fact, $A$ is in blue because it is a \emph{recombinant}
+node -- an ancestor that has a segment of genome inherited by a sample,
 but that segment was inherited in two pieces from their parent.
 Other nodes (labelled by black numbers) are either sample nodes
 or \emph{common ancestry} nodes -- \revpoint{2}{20}
@@ -552,12 +552,12 @@ $L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$,
 each represented by a single interval spanning the entire genome.
 Then, the process evolves by a succession of common ancestor and recombination
 events until each segment of ancestral material is only present in one lineage.
-The waiting time to next event is determined by these two competing processes
+The waiting time to the next event is determined by these two competing processes
 with exponentially distributed waiting times as outlined below.
 
 Recombination is described by a Poisson process of rate $r$ per unit
 of genomic length and time:
-so, if $T(t) = \sum_j |X_j(t)|$ is total length of ancestral material
+so, if $T(t) = \sum_j |X_j(t)|$ is the total length of ancestral material
 carried by lineages at time $t$,
 then recombination occurs at instantaneous rate $rT(t)$.
 A recombination to the left of $x$
