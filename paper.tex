@@ -261,7 +261,7 @@ incomplete and imprecise ARGs. \revpoint{2}{13}
 % In this paper we provide a necessary first step towards this goal
 % of statistically rigorous large-scale ARG inference, by defining a function
 % to compute the likelihood of a general class of ARG under the SMC.
-To do this, we give a backwards-in-time description of the SMC
+To do this, we give a backwards in time description of the SMC
 which naturally leads to a straightforward method for computing the likelihood
 of any ARG, and describe an efficient algorithm to do so.
 We show that explicitly identifying recombination events via nodes
@@ -314,13 +314,13 @@ Finally, we discuss how these results may be applied and extended.
 % we describe
 % in more detail what sort of information we have in estimated ARGs.
 % Then,
-% we define the SMC process in a ``backwards-in-time'' way,
+% we define the SMC process in a ``backwards in time'' way,
 % rather than the usual ``along-the-genome'' way.
 % Note that this is a
 % reiteration of the original work of \citet{mcvean_approximating_2005}.
 
 % In the subsequent section we connect the two and
-% show how the ``backwards-in-time'' description
+% show how the ``backwards in time'' description
 % makes it relatively straightforward to compute the likelihood
 % for a more general class of estimated ARGs.
 % Finally, we close with a demonstration that the likelihood computation can be used
@@ -467,9 +467,9 @@ See~\cite{fritze2024forest} for more discussion on unary nodes
 and haplotype aware ARG comparison metrics.
 
 % % % % % % % % % % % % % % % % % %
-\subsection*{SMC backwards-in-time}\label{par:description}
+\subsection*{SMC backwards in time}\label{par:description}
 
-% coalescent introduction: backwards-in-time
+% coalescent introduction: backwards in time
 % left-to-right: Wiuf-Hein (difficult)
 % SMC: although easy to reason about left-to-right sense
 %
@@ -486,9 +486,9 @@ tree to be simulated depends on all previous trees.
 This idea however provided the basis of the
 SMC \citep{mcvean_approximating_2005}, restricting the set of all state
 space transitions possible under the Hudson coalescent to
-obtain a process that is Markovian both backwards-in-time,
+obtain a process that is Markovian both backwards in time,
 as well as along-the-genome. \revpoint{2}{25}
-In its backwards-in-time formulation, the SMC only requires a
+In its backwards in time formulation, the SMC only requires a
 simple modification to the coalescent with recombination.
 Instead of allowing any pair of lineages to coalesce,
 the SMC is the process in which only lineages with \emph{overlapping}
@@ -496,7 +496,7 @@ genomic intervals may coalesce. The SMC' is a refinement
 of the SMC which also allows lineages with abutting genomic intervals \revpoint{2}{26}
 to coalesce~\citep{marjoram_fast_2006}.
 Although \citet{mcvean_approximating_2005} verbally described the SMC
-using this backwards-in-time description, their analysis
+using this backwards in time description, their analysis
 was almost entirely in left-to-right terms,
 and subsequent papers followed this trend
 \citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,
@@ -1263,7 +1263,7 @@ metadata support, is the ideal basis for this.
 % To further improve scalability, hybrid ARG-inference methods could be designed which
 % rely on heuristic approaches to bring the ARG down from the initial pedigree-dominated phase,
 % and subsequently use a principled approach to perform ARG inference for the second phase.
-% This idea resembles the tried and tested approach of hybrid backwards-in-time simulations
+% This idea resembles the tried and tested approach of hybrid backwards in time simulations
 % that combine Wright-Fisher dynamics in the very recent past and coalescent simulations
 % for the remaining time \citep{bhaskar_distortion_2014, nelson_accounting_2020}. This hybrid
 % approach has enabled large scale simulations while avoiding the documented biases of the
@@ -1519,7 +1519,7 @@ the last parent a child node was connected to to detect recombination events.
 % % note on the disjoint set of intervals for each lineage under the SMC
 % Because of this last step, a single lineage can consist of more than one disjoint interval.
 % As noted by \cite{mcvean_approximating_2005},
-% this implies that the backwards-in-time description of the
+% this implies that the backwards in time description of the
 % SMC is slightly different from the left-to-right description,
 % in which single ancestors only ever span a single segment of genome.
 % This is depicted in fig.\ref{fig:smc-unary}:
