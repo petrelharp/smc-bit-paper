@@ -339,9 +339,10 @@ where $c$ and $p$ are (haploid) genomes, and $x$ and $y$ are genetic coordinates
 We record each such statement in an ``edge'',
 often summarised as the tuple $(p,c,x,y)$.
 By ``describes the history'',
-we mean that each node in the ARG represents a specific (ancestral) genome, \revpoint{2}{14}
-and that the ARG specifies the genealogical tree describing how the samples are related
-at each point on the genome. \revpoint{2}{15}
+we mean that each node in the ARG represents a specific genome, \revpoint{2}{14}
+and that the ARG specifies the genealogical tree describing how the
+sampled genomes are related
+at each base pair. \revpoint{2}{15}
 
 \begin{figure}
 \centering
@@ -367,7 +368,8 @@ the floating lineage coalesces randomly
 \end{figure}
 
 An ARG can therefore be thought of either as a collection of inheritance
-relationships between ancestral haplotypes, \revpoint{2}{16}
+relationships between
+sampled and ancestral haplotypes (haploid genomes), \revpoint{2}{16}
 or as a sequence of genealogical trees that have common node labels.
 Fig.\ref{fig:smc-unary} shows a small ARG
 that describes relationships between four samples on a 100bp piece of genome,
