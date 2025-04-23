@@ -261,7 +261,7 @@ incomplete and imprecise ARGs. \revpoint{2}{13}
 % In this paper we provide a necessary first step towards this goal
 % of statistically rigorous large-scale ARG inference, by defining a function
 % to compute the likelihood of a general class of ARG under the SMC.
-To do this, we give a backwards in time description of the SMC
+To do this, we give a backwards-in-time description of the SMC
 which naturally leads to a straightforward method for computing the likelihood
 of any ARG, and describe an efficient algorithm to do so.
 We show that explicitly identifying recombination events via nodes
@@ -314,13 +314,13 @@ Finally, we discuss how these results may be applied and extended.
 % we describe
 % in more detail what sort of information we have in estimated ARGs.
 % Then,
-% we define the SMC process in a ``backwards in time'' way,
+% we define the SMC process in a ``backwards-in-time'' way,
 % rather than the usual ``along-the-genome'' way.
 % Note that this is a
 % reiteration of the original work of \citet{mcvean_approximating_2005}.
 
 % In the subsequent section we connect the two and
-% show how the ``backwards in time'' description
+% show how the ``backwards-in-time'' description
 % makes it relatively straightforward to compute the likelihood
 % for a more general class of estimated ARGs.
 % Finally, we close with a demonstration that the likelihood computation can be used
@@ -467,16 +467,16 @@ See~\cite{fritze2024forest} for more discussion on unary nodes
 and haplotype aware ARG comparison metrics.
 
 % % % % % % % % % % % % % % % % % %
-\subsection*{SMC backwards in time}\label{par:description}
+\subsection*{SMC backwards-in-time}\label{par:description}
 
-% coalescent introduction: backwards in time
+% coalescent introduction: backwards-in-time
 % left-to-right: Wiuf-Hein (difficult)
 % SMC: although easy to reason about left-to-right sense
 %
 The coalescent process describes the ancestry of a set of sampled genomes.
 The original algorithm
 to simulate the coalescent with
-recombination was formulated backwards in time \revpoint{2}{24}
+recombination was formulated backwards-in-time \revpoint{2}{24}
 by Hudson \citeyearpar{hudson_properties_1983}.
 Wiuf and Hein later described
 a tree-by-tree method to simulate the same stochastic process
@@ -486,9 +486,9 @@ tree to be simulated depends on all previous trees.
 This idea however provided the basis of the
 SMC \citep{mcvean_approximating_2005}, restricting the set of all state
 space transitions possible under the Hudson coalescent to
-obtain a process that is Markovian both backwards in time,
+obtain a process that is Markovian both backwards-in-time,
 as well as along-the-genome. \revpoint{2}{25}
-In its backwards in time formulation, the SMC only requires a
+In its backwards-in-time formulation, the SMC only requires a
 simple modification to the coalescent with recombination.
 Instead of allowing any pair of lineages to coalesce,
 the SMC is the process in which only lineages with \emph{overlapping}
@@ -496,7 +496,7 @@ genomic intervals may coalesce. The SMC' is a refinement
 of the SMC which also allows lineages with abutting genomic intervals \revpoint{2}{26}
 to coalesce~\citep{marjoram_fast_2006}.
 Although \citet{mcvean_approximating_2005} verbally described the SMC
-using this backwards in time description, their analysis
+using this backwards-in-time description, their analysis
 was almost entirely in left-to-right terms,
 and subsequent papers followed this trend
 \citep{li_inference_2011,paul_accurate_2011,schiffels_inferring_2014,
@@ -534,7 +534,7 @@ the likelihood computation. This section
 does not deviate from the original description of the SMC apart from
 how coalescable pairs are counted. This subtle nuance
 greatly simplifies the ability to keep track of coalescable pairs going
-backwards in time.
+backwards-in-time.
 At any point in time, the state of the process is
 the set of labelled lineages extant at time $t$,
 $L(t) = \{X_j(t)\}$.
@@ -547,7 +547,7 @@ half-open genomic interval of its ancestral material.
 % ancestral material.
 % Any lineage can thus be summarized as
 % for some interval endpoints $x_{j} < y_{j}$.
-Because we look backwards in time, $t=0$ is today, and
+Because we look backwards-in-time, $t=0$ is today, and
 $L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$,
 each represented by a single interval spanning the entire genome.
 Then, the process evolves by a succession of common ancestor and recombination
@@ -634,7 +634,7 @@ event changes $C_j(t)$ but not $I_{j}(t)$.
 % %are not added back to $L(t)$.
 
 % Finally, by describing the SMC
-% backwards in time, some intervals contained within the half-open
+% backwards-in-time, some intervals contained within the half-open
 % interval representing a lineage might have fully coalesced before all the genetic
 % material carried by that lineage has. As noted by \citet{mcvean_approximating_2005},
 % such intervals can be observed as the stalks on the marginal genealogies (e.g., marginal trees
@@ -1236,7 +1236,7 @@ metadata support, is the ideal basis for this.
 
 % [JK: this needs significant work]
 % Here, we have introduced a scalable algorithm to compute likelihoods
-% under the SMC for a general class of ARGs. By formulating the SMC backwards in time
+% under the SMC for a general class of ARGs. By formulating the SMC backwards-in-time
 % we were able to associate a single likelihood value with each edge in the ARG.
 % The compatibility of the algorithm with the \texttt{tskit} library allows us to
 % exploit its associated efficiencies both for the current work and its future
@@ -1263,7 +1263,7 @@ metadata support, is the ideal basis for this.
 % To further improve scalability, hybrid ARG-inference methods could be designed which
 % rely on heuristic approaches to bring the ARG down from the initial pedigree-dominated phase,
 % and subsequently use a principled approach to perform ARG inference for the second phase.
-% This idea resembles the tried and tested approach of hybrid backwards in time simulations
+% This idea resembles the tried and tested approach of hybrid backwards-in-time simulations
 % that combine Wright-Fisher dynamics in the very recent past and coalescent simulations
 % for the remaining time \citep{bhaskar_distortion_2014, nelson_accounting_2020}. This hybrid
 % approach has enabled large scale simulations while avoiding the documented biases of the
@@ -1447,7 +1447,7 @@ the last parent a child node was connected to to detect recombination events.
 % for some interval endpoints $x_{i0} < y_{i0} < x_{i1} < \cdot < y_{im_i}$.
 % The \emph{span} of this lineage is the interval $s(X_i(t)) = [x_{i0}, y_{im_i}$,
 % and its \emph{size} is $|X_i(t)| = y_{im_i} - x_{i0}$.
-% Since we look backwards in time, $t=0$ is today, and so
+% Since we look backwards-in-time, $t=0$ is today, and so
 % $L(0)$ consists of $n$ sampled lineages, labelled $0$ to $n-1$,
 % each represented by a single interval spanning the entire genome.
 % Then, the process evolves by a succession of coalescence and recombination
@@ -1519,7 +1519,7 @@ the last parent a child node was connected to to detect recombination events.
 % % note on the disjoint set of intervals for each lineage under the SMC
 % Because of this last step, a single lineage can consist of more than one disjoint interval.
 % As noted by \cite{mcvean_approximating_2005},
-% this implies that the backwards in time description of the
+% this implies that the backwards-in-time description of the
 % SMC is slightly different from the left-to-right description,
 % in which single ancestors only ever span a single segment of genome.
 % This is depicted in fig.\ref{fig:smc-unary}:
