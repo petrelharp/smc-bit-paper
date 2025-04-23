@@ -347,7 +347,7 @@ at each base pair. \revpoint{2}{15}
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/smc_custom_2rows_area_full_hap.png}
-\caption{An ARG generated under the SMC, represented as a graph (top) and as a
+\caption{An ARG represented as a graph (top) and as a
 series of local trees (bottom). To ensure the one-to-one correspondence
 between both representations a node is recorded for each local tree whenever
 a node is encountered along its ancestry path in the graph representation.
@@ -386,7 +386,7 @@ the path traced by $A$'s ancestry switches at that point.
 In fact, $A$ is in blue because it is a \emph{recombinant} node --
 an ancestor that has a segment of genome inherited by a sample,
 but that segment was inherited in two pieces from their parent.
-Other nodes (labelled by black numbers) are either samples
+Other nodes (labelled by black numbers) are either sample nodes
 or \emph{common ancestry} nodes -- \revpoint{2}{20}
 ancestors that are the most recent common ancestor for two
 or more samples
@@ -402,7 +402,8 @@ than sample $c$.
 In the top plot, this is visible because the pink bar below node $f$
 extends further to the left than does the blue bar,
 while in the bottom plot, this is visible because node $f$ is parent to $d$
-in the second tree, but not to node $c$, and so is unary. \revpoint{2}{21}
+in the second tree, but not to node $c$, and so is unary
+in the second tree. \revpoint{2}{21}
 
 %% Noved this section to section on smc
 % A key observation of \citet{mcvean_approximating_2005}
@@ -437,8 +438,9 @@ In the absence of these recombinant nodes, a recombination can be observed
 easily enough as a change in parent going from one genomic region to the next.
 Without the recombinant nodes we no longer know the precise time of each recombination event,
 but we do still have constraints on it;
-for instance, we know that $C$ happened somewhere between node $f$ and node $h$. \revpoint{2}{23}
-More generally, a recombinant node must happen somewhere between the child node
+for instance, we know that $C$ happened sometime between the
+times of node $f$ and node $h$. \revpoint{2}{23}
+More generally, a recombinant node must happen in the time interval between the child node
 and the most recent of the parent nodes.
 This is again easier to visualise using the
 graph representation (blue shaded area, Fig.\ref{fig:smc-unary}).
