@@ -774,10 +774,12 @@ on any of those lineages
 over this time span,
 the probability of which is
 $\exp(-r \mathcal{A}_e)$, where $r$ is the recombination rate
-and $\mathcal{A}_e$ is the total area (eligible links multiplied by length in time) \revpoint{2}{28}
+and $\mathcal{A}_e$ is the total ``area'' \revpoint{2}{28}
 of the edge.
-The length in time of the edge is just $t_p - t_c$,
-while the number of ``eligible links'' in the edge is the number of adjacent base pairs in the edge
+The area of an edge is its  length in time, $t_p - t_c$,
+multiplied by the number of ``eligible links'' along its
+span.
+The number of eligible links is the number of adjacent base pairs in the edge
 on which recombination did not occur, which is either $y-x$
 (if this edge is the leftmost of all edges above node $c$)
 or $y-x-1$ (otherwise).
@@ -938,7 +940,7 @@ coalescent events via a proof-of-concept example.
     \label{fig:lik-surface}}
 \end{figure}
 
-In Fig~\ref{fig:lik-surface} we begin with a realisation of the SMC
+In Fig.~\ref{fig:lik-surface} we begin with a realisation of the SMC
 containing complete information about every simulated event
 (Full ARG; 9,378 nodes; 13,221 edges; 2,933 trees). \revpoint{2}{30}
 We then plot the likelihood computed by Eq.~\eqref{eq:full-lik}
@@ -969,7 +971,7 @@ of the ARG in which recombination did not occur.
 (See~\cite{wong_general_2023} for more discussion on varying
 degrees of ARG simplification.)
 
-Fig~\ref{fig:lik-surface} shows that Eq.~\eqref{eq:full-lik} is also remarkably \revpoint{2}{33}
+Fig.~\ref{fig:lik-surface} shows that Eq.~\eqref{eq:full-lik} is also remarkably \revpoint{2}{33}
 robust to the presences of polytomies in this example. For each of the three
 ARGs discussed in the previous paragraph, we also evaluated the likelihood
 for ARGs in which 5\% or 25\% of the internal ARG nodes are removed and
@@ -1000,11 +1002,11 @@ Given this disparity in the number of polytomies introduced, the
 effects on the likelihood across the three examples are not entirely comparable.
 For the ARGs containing unary nodes,
 removing 25\% of the internal
-nodes has negligible effect on the likelihood curve in Fig~\ref{fig:lik-surface},
+nodes has negligible effect on the likelihood curve in Fig.~\ref{fig:lik-surface},
 and even on the fully simplified
 ARG has only a very minor effect on location of the minimum.
 
-Fig~\ref{fig:lik-surface} also shows results for ARGs inferred from the  \revpoint{2}{35}
+Fig.~\ref{fig:lik-surface} also shows results for ARGs inferred from the  \revpoint{2}{35}
 simulated data using tsinfer and tsdate~\citep{wohns_unified_2022},
 using default parameters for tsinfer, and the true values of mutation
 rate and $N_e$ for tsdate.
@@ -1025,7 +1027,7 @@ parameter value. We also show the likelihood curve obtained when we
 fully simplify the output of tsinfer
 (1,865 nodes; 7,511 edges; 1,252 trees; 3,039 mutations)
 before dating. We can see that, as with the true data,
-removing all the unary nodes results in a significant bias \revpoint{2}{38}
+removing all the unary nodes results in a bias \revpoint{2}{38}
 away from the true value of the recombination rate parameter.
 
 \subsection*{Piecewise decomposition over time}
