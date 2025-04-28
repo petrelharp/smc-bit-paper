@@ -38,7 +38,7 @@ we also provide a pdf with differences to the previously submitted version highl
 \vskip 2em
 
 {\bf
-   Gertjan Bisschop, Peter Ralph, and Jerome Kelleher
+   Gertjan Bisschop, Jerome Kelleher, and Peter Ralph
 }\\
 \end{minipage}
 
@@ -95,6 +95,7 @@ A Python implementation of the method is available on GitHub. However, due to th
 \end{point}
 
 \reply{
+We were missing ``the local trees here'', thanks.
 }
 
 
@@ -126,6 +127,8 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+We inserted a parenthetical comment stating that the SMC
+is ``conventionally regarded as an along-the-genome process''.
 }
 
 \begin{point}{\revref} % 21:
@@ -133,6 +136,7 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+Done.
 }
 
 % INTRO
@@ -142,6 +146,7 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 27:
@@ -149,6 +154,10 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+We would prefer to keep ancestral processes here as ARGs contain
+information about, for example, population structure which is not
+a genetic process, but something that we gain insights into
+through genetics.
 }
 
 \begin{point}{\revref} % 35:
@@ -156,6 +165,7 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 47:
@@ -163,6 +173,7 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 66:
@@ -170,6 +181,7 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+Done (but slightly rephrased next sentence).
 }
 
 \begin{point}{\revref} % 72:
@@ -177,6 +189,7 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 82:
@@ -184,6 +197,7 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 84:
@@ -191,6 +205,8 @@ Mention that the standard SMC formulation was left-to-right
 \end{point}
 
 \reply{
+We would prefer to keep this as it is to make it clear that it
+is the ARGs themselves that we want to compute the likelihood of.
 }
 
 \begin{point}{\revref}
@@ -198,6 +214,13 @@ I would appreciate if you here make it clear which information is missing in the
 \end{point}
 
 \reply{
+This is quite a subtle point which we feel would distract from the main
+message here by expanding. We have attempted to clarify by stating
+that a sequence of local trees does not have enough information to
+reconstruct a full ARG (required for likelihood calculation under KYF)
+and referred to Wong et al for the details, where there is a full
+section dedicated to the correspondence between an  ARG and the
+sequence of local trees.
 }
 
 \begin{point}{\revref} % 98:
@@ -205,6 +228,12 @@ I would appreciate if you here make it clear which information is missing in the
 \end{point}
 
 \reply{
+We are hesitant to call this a ``new formulation of the SMC''
+because we are very much building on the foundations laid by
+McVean and Cardin. They developed the SMC initially in a
+backwards-time context, but the field has subsequently
+focused on the left-to-right perspective. Thus, we wish
+to keep this as-is.
 }
 
 % RESULTS
@@ -214,6 +243,7 @@ I would appreciate if you here make it clear which information is missing in the
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 118:
@@ -221,6 +251,7 @@ I would appreciate if you here make it clear which information is missing in the
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 121:
@@ -228,6 +259,7 @@ I would appreciate if you here make it clear which information is missing in the
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{Fig \ref{fig:smc-unary}:}
@@ -242,6 +274,7 @@ An ARG ``generated under the SMC'' - do you need this last part in my quotes?
 \end{point}
 
 \reply{
+Deleted, thanks!
 }
 
 \begin{point}{Figure~\ref{fig:smc-unary} caption:}
@@ -257,6 +290,7 @@ with a the remaining $\to$ with the remai....
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 138:
@@ -264,6 +298,7 @@ with a the remaining $\to$ with the remai....
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 140:
@@ -271,6 +306,8 @@ with a the remaining $\to$ with the remai....
 \end{point}
 
 \reply{
+We  prefer ``hit by a recombination event" as it's a little more concrete,
+and in keeping with standard phrasing in the field.
 }
 
 \begin{point}{\revref} % 144:
@@ -278,6 +315,7 @@ with a the remaining $\to$ with the remai....
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref{} and a few lines later} % 156/160:
@@ -285,6 +323,7 @@ with a the remaining $\to$ with the remai....
 \end{point}
 
 \reply{
+Done - using ``backwards-in-time" now.
 }
 
 \begin{point}{\revref{} and elsewhere}
@@ -292,6 +331,8 @@ similarly for left-to-right and along-the-genome
 \end{point}
 
 \reply{
+Done (although we do have ``along the genome'' in places, where
+we're not referring to the actual process).
 }
 
 \begin{point}{\revref} % 164:
@@ -299,6 +340,7 @@ similarly for left-to-right and along-the-genome
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 169:
@@ -394,6 +436,10 @@ similarly for left-to-right and along-the-genome
 \end{point}
 
 \reply{
+We prefer to keep this as ``modern ARG inference'' as we feel
+that the fact they are heuristic is not really the point---one
+could define rigorous methods that also omit full details
+about recombination.
 }
 
 \begin{point}{\revref} % 358:
@@ -401,6 +447,7 @@ similarly for left-to-right and along-the-genome
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 381:
@@ -408,6 +455,7 @@ similarly for left-to-right and along-the-genome
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 387:
@@ -415,6 +463,7 @@ similarly for left-to-right and along-the-genome
 \end{point}
 
 \reply{
+Done.
 }
 
 \begin{point}{\revref} % 392-394:
