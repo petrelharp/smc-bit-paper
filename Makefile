@@ -4,14 +4,23 @@
 
 all: paper.pdf
 
-# This goes against all the nice rules below, but I couldn't get them to 
+# This goes against all the nice rules below, but I couldn't get them to
 # work.
 paper.pdf: paper.tex paper.bib review-responses.tex
 	pdflatex paper
 	bibtex paper
 	pdflatex paper
 
-clean: 
+review-diff.tex: paper.tex
+	latexdiff submitted_version.tex paper.tex > review-diff.tex
+
+review-diff.pdf: review-diff.tex
+	pdflatex review-diff.tex
+	pdflatex review-diff.tex
+	bibtex review-diff
+	pdflatex review-diff.tex
+
+clean:
 	-rm -f *.aux *.log *.bbl *.blg
 
 %.pdf : %.tex %.bbl
