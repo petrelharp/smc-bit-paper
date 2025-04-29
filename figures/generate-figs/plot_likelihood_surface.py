@@ -50,6 +50,10 @@ def plot(df_rat, path):
             if arg == "full_arg_hudson":
                 continue
             poly = "0"
+        marker = None
+        if arg == "full_arg_smc":
+            marker="o"
+
 
         y = df_rat[col]  # / df_rat[arg]
         line = ax.semilogx(
@@ -57,6 +61,8 @@ def plot(df_rat, path):
             y,
             color=colours[arg],
             ls=line_styles[poly],
+            marker=marker,
+            markersize=2,
             label="_nolegend_" if poly != "0" else titles[arg],
         )
 
