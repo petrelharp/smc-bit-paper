@@ -1007,6 +1007,14 @@ removing 25\% of the internal
 nodes has negligible effect on the likelihood curve in Fig.~\ref{fig:lik-surface},
 and even on the fully simplified
 ARG has only a very minor effect on location of the minimum.
+Supplemental Fig.~S1 explores more extreme examples in which we remove
+25\%, 50\% and 75\% of the internal nodes in these ARGs, and demonstrates 
+a remarkable robustness to the loss of the majority of the internal
+nodes in these examples. Interestingly, the loss of 75\% of the 
+internal nodes  in the fully simplified ARG 
+(1841 of 2455, leading  to an average of 27 polytomies per tree)
+appears to improve performance, substantially 
+reducing the bias away from the true parameter value. 
 
 Fig.~\ref{fig:lik-surface} also shows results for ARGs inferred from the  \revpoint{2}{35}
 simulated data using tsinfer and tsdate~\citep{wohns_unified_2022},
@@ -1417,6 +1425,24 @@ of that edge by computing the integral
 in Eq.~\eqref{eq:full-lik} using $I$, and then update the counts in $I$.
 We further keep track of
 the last parent a child node was connected to to detect recombination events.
+
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics{figures/likelihood_surface_suppl}
+    \caption{Log likelihood-ratio curves for three different ARGs 
+    with increasing fractions of polytomies.
+    The base ARGs are as described in Fig.~3, but here we remove 
+    25\%, 50\% and 75\% of the internal nodes to create polytomies.
+    The true value of recombination parameter is indicated by the 
+    dashed line, as in Fig.~3.
+    \label{fig:likelihood_suppl}}
+\end{figure}
+
 
 % [TODO another paragraph summarising what you actually do]
 
