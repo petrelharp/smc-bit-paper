@@ -898,10 +898,10 @@ contributions~\citep{baumdicker_efficient_2021,mahmoudi_bayesian_2022}.
 
 % % % % % % % % % % % % % % % % % %
 \subsection*{Robustness to partial and incorrect information}
-
-Eq.~\eqref{eq:full-lik} allows us to compute a likelihood for \emph{any} \revpoint{2}{29}
-collection of nodes (ancestral haplotypes that lived at some time
-$t$ in the past) and edges (a record that child node $c$
+The ARG likelihood formulation in 
+Eq.~\eqref{eq:full-lik} allows us to compute a likelihood for any \revpoint{2}{29}
+collection of nodes (haplotypes that existed at some time $t$) and 
+edges (a record that child node $c$
 inherited the genomic interval $[x, y)$ from parent node $p$)
 under the SMC. Other than some basic consistency constraints (e.g., parents
 must be older than children) there are no requirements on the topology
@@ -940,7 +940,8 @@ coalescent events via a proof-of-concept example.
     \label{fig:lik-surface}}
 \end{figure}
 
-In Fig.~\ref{fig:lik-surface} we begin with a realisation of the SMC
+In Fig.~\ref{fig:lik-surface} we begin with 
+with a sample from the SMC model 
 containing complete information about every simulated event
 (Full ARG; 9,378 nodes; 13,221 edges; 2,933 trees). \revpoint{2}{30}
 We then plot the likelihood computed by Eq.~\eqref{eq:full-lik}
@@ -953,16 +954,17 @@ full simulated ARG is close to the true value of the parameter.
 under the full coalescent with recombination model using the KYF
 formula is identical; not shown.)
 We next compute the likelihood ratio for the ARG obtained when we
-simplify out the recombination nodes from the full ARG
+simplify~\citep{kelleher_efficient_2018,wong_general_2023}
+ out the recombination nodes from the full ARG
 (``RE nodes removed''; 3,332 nodes; 6,901 edges; 2,933 trees; note that msprime
 uses distinct nodes for the left and right parent of each recombination).
 The curve we obtain is indistinguishable from that of the full
 ARG, demonstrating that the locally unary portions of coalescent nodes
 contain all the information that we need about recombination events
-for this application.
+for this application. \revpoint{2}{31}
 When we fully simplify the simulated ARG
 to remove all locally unary portions of nodes from trees
-(``Fully simplified''; 3,332 nodes; 10,674 edges, 2,933 trees)  \revpoint{2}{31}
+(``Fully simplified''; 3,332 nodes; 10,674 edges, 2,933 trees)  
 we can see there is a significant loss of information, \revpoint{2}{32}
 and the minimum of the
 likelihood ratio surface is biased away from its true value,
