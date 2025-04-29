@@ -1026,7 +1026,7 @@ We then used tsinfer and tsdate~\citep{wohns_unified_2022}
 to infer a dated ARG,
 using default parameters for tsinfer and the true values of mutation
 rate and $N_e$ for tsdate.
-In the first, we use the default output of tsinfer
+In the first example, we use the default output of tsinfer
 (2,148 nodes; 5,589 edges; 1,307 trees; 3,039 mutations). \revpoint{2}{36}
 This ARG has an average of 192 unary nodes, 120 binary nodes, and 32 nodes
 with three or more children per tree. Tsinfer does not directly estimate
@@ -1036,9 +1036,10 @@ switches between parental haplotypes in the
 recombination events in the returned ARG is therefore quite imprecise,
 and likely to contain incorrect and contradictory details if one were to
 attempt to reconstruct the exact subtree-prune-and-regraft
-moves~\citep[e.g.,][]{rasmussen2023espalier}. Nonetheless, in
-this toy example at least, our likelihood function performs well \revpoint{2}{37}
-on the output of tsinfer, with the minimum close to the true
+moves~\citep[e.g.,][]{rasmussen2023espalier}. It is encouraging,
+therefore, that in this toy example our likelihood function is robust
+to these omitted and incorrect details in \revpoint{2}{37}
+the output of tsinfer, with the minimum close to the true
 parameter value. We also show the likelihood curve obtained when we
 fully simplify the output of tsinfer
 (1,865 nodes; 7,511 edges; 1,252 trees; 3,039 mutations)
