@@ -2,20 +2,20 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="210mm"
    height="297mm"
    viewBox="0 0 210 297"
    version="1.1"
    id="svg2311"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="smc_custom_2row_full_hap.svg">
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="smc_custom_2row_full_hap.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs2305">
     <marker
@@ -72,19 +72,22 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
-     inkscape:cx="409.90981"
-     inkscape:cy="664.89424"
+     inkscape:zoom="1.1203934"
+     inkscape:cx="409.67751"
+     inkscape:cy="373.97577"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      showguides="false"
      inkscape:guide-bbox="true"
-     inkscape:window-width="2500"
-     inkscape:window-height="1376"
-     inkscape:window-x="60"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1">
+     inkscape:window-width="2256"
+     inkscape:window-height="1435"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
     <sodipodi:guide
        position="105.83873,90.069831"
        orientation="1,0"
@@ -97,7 +100,12 @@
        inkscape:locked="false" />
     <inkscape:grid
        type="xygrid"
-       id="grid3294" />
+       id="grid3294"
+       originx="0"
+       originy="0"
+       spacingy="1"
+       spacingx="1"
+       units="mm" />
     <sodipodi:guide
        position="121.70833,280.45834"
        orientation="0,1"
@@ -323,7 +331,7 @@
        inkscape:export-ydpi="180" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="101.44628"
        y="69.940834"
        id="text1230"
@@ -334,10 +342,10 @@
          id="tspan1228"
          x="101.44628"
          y="69.940834"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">A</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="153.79214"
        y="61.226089"
        id="text1230-4"
@@ -348,10 +356,10 @@
          id="tspan1228-4"
          x="153.79214"
          y="61.226089"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">B</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="129.10191"
        y="49.586727"
        id="text1230-5"
@@ -362,10 +370,10 @@
          id="tspan1228-7"
          x="129.10191"
          y="49.586727"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">C</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">C</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="49.982758"
        y="164.61357"
        id="text1230-3"
@@ -376,10 +384,10 @@
          id="tspan1228-1"
          x="49.982758"
          y="164.61357"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">A</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="91.469582"
        y="164.61914"
        id="text1230-8"
@@ -390,10 +398,10 @@
          id="tspan1228-6"
          x="91.469582"
          y="164.61914"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">A</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="132.3378"
        y="164.61418"
        id="text1230-89"
@@ -404,10 +412,10 @@
          id="tspan1228-77"
          x="132.3378"
          y="164.61418"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">A</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="172.75613"
        y="164.62436"
        id="text1230-30"
@@ -418,10 +426,10 @@
          id="tspan1228-9"
          x="172.75613"
          y="164.62436"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">A</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">A</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="182.9752"
        y="155.64896"
        id="text1230-4-9"
@@ -432,10 +440,10 @@
          id="tspan1228-4-4"
          x="182.9752"
          y="155.64896"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">B</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="142.71136"
        y="155.64896"
        id="text1230-4-2"
@@ -446,10 +454,10 @@
          id="tspan1228-4-47"
          x="142.71136"
          y="155.64896"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">B</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="101.6937"
        y="155.65044"
        id="text1230-4-8"
@@ -460,10 +468,10 @@
          id="tspan1228-4-1"
          x="101.6937"
          y="155.65044"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">B</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="60.522427"
        y="155.65044"
        id="text1230-4-89"
@@ -474,10 +482,10 @@
          id="tspan1228-4-3"
          x="60.522427"
          y="155.65044"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">B</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">B</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="178.29729"
        y="143.96021"
        id="text1230-4-80"
@@ -488,10 +496,10 @@
          id="tspan1228-4-2"
          x="178.29729"
          y="143.96021"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">C</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">C</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="137.83908"
        y="143.98532"
        id="text1230-4-80-1"
@@ -502,10 +510,10 @@
          id="tspan1228-4-2-0"
          x="137.83908"
          y="143.98532"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">C</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">C</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007cff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        x="102.21809"
        y="143.96959"
        id="text1230-4-80-8"
@@ -516,11 +524,11 @@
          id="tspan1228-4-2-5"
          x="102.21809"
          y="143.96959"
-         style="font-size:3.52777767px;fill:#007cff;fill-opacity:1;stroke-width:0.26458332">C</tspan></text>
+         style="font-size:3.52778px;fill:#007cff;fill-opacity:1;stroke-width:0.264583">C</tspan></text>
     <text
        class="lab"
        id="text72-0-1-3"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="147.87067"
        y="61.334076"
        inkscape:export-xdpi="180"
@@ -529,7 +537,7 @@
     <text
        class="lab"
        id="text72-0-1-3-6"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="162.93188"
        y="61.357712"
        inkscape:export-xdpi="180"
@@ -538,7 +546,7 @@
     <text
        class="lab"
        id="text72-0-1-3-4"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="124.19215"
        y="49.720249"
        inkscape:export-xdpi="180"
@@ -547,7 +555,7 @@
     <text
        class="lab"
        id="text72-0-1-3-6-5"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="138.88533"
        y="49.720295"
        inkscape:export-xdpi="180"
@@ -556,7 +564,7 @@
     <text
        class="lab"
        id="text72-0-1-3-4-3"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="87.855133"
        y="70.010986"
        inkscape:export-xdpi="180"
@@ -565,7 +573,7 @@
     <text
        class="lab"
        id="text72-0-1-3-6-5-5"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="113.63351"
        y="70.034622"
        inkscape:export-xdpi="180"
@@ -586,7 +594,8 @@
            x="33.616638"
            y="23.927933"
            style="font-size:16px" /></flowRegion><flowPara
-         id="flowPara2096" /></flowRoot>    <flowRoot
+         id="flowPara2096" /></flowRoot>
+    <flowRoot
        xml:space="preserve"
        id="flowRoot2098"
        style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
@@ -603,7 +612,8 @@
            y="50.148911"
            style="font-size:16px" /></flowRegion><flowPara
          id="flowPara2104"
-         style="font-size:14.66666698px">A/ graph</flowPara></flowRoot>    <flowRoot
+         style="font-size:14.6667px">A/ graph</flowPara></flowRoot>
+    <flowRoot
        transform="matrix(0.26458333,0,0,0.26458333,24.295406,70.850703)"
        xml:space="preserve"
        id="flowRoot2098-4"
@@ -618,7 +628,118 @@
            x="11.429657"
            y="50.148911" /></flowRegion><flowPara
          id="flowPara2104-4"
-         style="font-size:14.66666698px">B/ local trees</flowPara></flowRoot>  </g>
+         style="font-size:14.6667px">B/ local trees</flowPara></flowRoot>
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176515;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect3"
+       width="6.8469915"
+       height="20.181087"
+       x="127.8497"
+       y="149.79028"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176515;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4"
+       width="6.8469915"
+       height="20.181087"
+       x="168.5956"
+       y="149.79028"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176515;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5"
+       width="6.8469915"
+       height="20.181087"
+       x="177.59146"
+       y="149.79028"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176515;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6"
+       width="6.8469915"
+       height="20.181087"
+       x="137.90388"
+       y="149.79028"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176515;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect7"
+       width="6.8469915"
+       height="20.181087"
+       x="97.158051"
+       y="149.79028"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176515;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8"
+       width="6.8469915"
+       height="20.181087"
+       x="55.883064"
+       y="149.79028"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176515;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect9"
+       width="6.8469915"
+       height="20.181087"
+       x="87.633049"
+       y="149.79028"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176515;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10"
+       width="6.8469915"
+       height="20.181087"
+       x="46.358059"
+       y="149.79028"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176928;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect11"
+       width="7.1431704"
+       height="19.434752"
+       x="133.65395"
+       y="130.24727"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176928;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect12"
+       width="7.1431704"
+       height="19.434752"
+       x="173.87068"
+       y="130.24727"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+    <rect
+       style="opacity:0.96;fill:#007cff;fill-opacity:0.0980392;stroke:none;stroke-width:0.176301;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect13"
+       width="7.0926208"
+       height="19.434752"
+       x="97.141487"
+       y="130.24727"
+       inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png"
+       inkscape:export-xdpi="180"
+       inkscape:export-ydpi="180" />
+  </g>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
@@ -679,7 +800,7 @@
     <text
        class="lab"
        id="text26-6"
-       style="font-weight:bold;font-size:3.70416665px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-weight:bold;font-size:3.70417px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="27.723862"
        y="177.99846"
        inkscape:export-xdpi="180"
@@ -698,7 +819,7 @@
     <text
        class="lab"
        id="text34-9"
-       style="font-weight:bold;font-size:3.70416665px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-weight:bold;font-size:3.70417px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="65.453262"
        y="178.00777"
        inkscape:export-xdpi="180"
@@ -717,7 +838,7 @@
     <text
        class="lab"
        id="text42-8"
-       style="font-weight:bold;font-size:3.70416665px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-weight:bold;font-size:3.70417px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="106.8341"
        y="178.00777"
        inkscape:export-xdpi="180"
@@ -736,7 +857,7 @@
     <text
        class="lab"
        id="text50-7"
-       style="font-weight:bold;font-size:3.70416665px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-weight:bold;font-size:3.70417px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="147.36827"
        y="178.00777"
        inkscape:export-xdpi="180"
@@ -755,7 +876,7 @@
     <text
        class="lab"
        id="text58-5"
-       style="font-weight:bold;font-size:3.70416665px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-weight:bold;font-size:3.70417px;dominant-baseline:hanging;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="183.9866"
        y="178.00777"
        inkscape:export-xdpi="180"
@@ -1506,7 +1627,7 @@
     <text
        class="lab"
        id="text72-0"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="59.528"
        y="172.58044"
        inkscape:export-xdpi="180"
@@ -1515,14 +1636,14 @@
     <text
        class="lab"
        id="text80-0"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="49.720261"
        y="172.66905"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text88-6"
        class="lab"
        x="29.70813"
@@ -1531,7 +1652,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text96-7"
        class="lab"
        x="39.762299"
@@ -1542,14 +1663,14 @@
     <text
        class="lab lft"
        id="text104-9"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="33.830246"
        y="157.57057"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">e</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        id="text112-9"
        class="lab lft"
        x="41.007355"
@@ -1560,14 +1681,14 @@
     <text
        class="lab lft"
        id="text120-5"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="40.852783"
        y="129.02573"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">h</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text126-3"
        class="lab"
        x="48.881958"
@@ -1578,7 +1699,7 @@
     <text
        class="lab lft"
        id="text220-9"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="116.13139"
        y="157.4944"
        inkscape:export-xdpi="180"
@@ -1587,7 +1708,7 @@
     <text
        class="lab lft"
        id="text228-2"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="115.72021"
        y="137.45381"
        inkscape:export-xdpi="180"
@@ -1596,7 +1717,7 @@
     <text
        class="lab rgt"
        id="text252-1"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.264583"
        x="138.22499"
        y="148.02036"
        inkscape:export-xdpi="180"
@@ -1605,14 +1726,14 @@
     <text
        class="lab"
        id="text258-0"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="124.32404"
        y="127.83095"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">h</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        id="text162-7"
        class="lab lft"
        x="75.160751"
@@ -1621,7 +1742,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">e</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        id="text170-8"
        class="lab lft"
        x="82.048798"
@@ -1630,7 +1751,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">g</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.264583"
        id="text186-4"
        class="lab rgt"
        x="102.51838"
@@ -1639,7 +1760,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">f</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text192-7"
        class="lab"
        x="90.012405"
@@ -1650,7 +1771,7 @@
     <text
        class="lab rgt"
        id="text286-7"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.264583"
        x="177.94122"
        y="148.00169"
        inkscape:export-xdpi="180"
@@ -1659,7 +1780,7 @@
     <text
        class="lab lft"
        id="text310-6"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="155.86476"
        y="157.42293"
        inkscape:export-xdpi="180"
@@ -1668,7 +1789,7 @@
     <text
        class="lab lft"
        id="text318-0"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="156.08862"
        y="137.38481"
        inkscape:export-xdpi="180"
@@ -1677,7 +1798,7 @@
     <text
        class="lab lft"
        id="text326-1"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="156.12468"
        y="127.70766"
        inkscape:export-xdpi="180"
@@ -1686,7 +1807,7 @@
     <text
        class="lab lft"
        id="text334-7"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="156.14859"
        y="118.59106"
        inkscape:export-xdpi="180"
@@ -1695,7 +1816,7 @@
     <text
        class="lab"
        id="text340-6"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="168.58923"
        y="108.39297"
        inkscape:export-xdpi="180"
@@ -1704,7 +1825,7 @@
     <text
        class="lab"
        id="text72-0-17"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="100.81883"
        y="172.57974"
        inkscape:export-xdpi="180"
@@ -1713,14 +1834,14 @@
     <text
        class="lab"
        id="text80-0-0"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="91.011116"
        y="172.66837"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text88-6-4"
        class="lab"
        x="70.998978"
@@ -1729,7 +1850,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text96-7-0"
        class="lab"
        x="81.053146"
@@ -1740,7 +1861,7 @@
     <text
        class="lab"
        id="text72-0-8"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="141.64427"
        y="172.57695"
        inkscape:export-xdpi="180"
@@ -1749,14 +1870,14 @@
     <text
        class="lab"
        id="text80-0-5"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="131.83653"
        y="172.66556"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text88-6-1"
        class="lab"
        x="111.82439"
@@ -1765,7 +1886,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text96-7-6"
        class="lab"
        x="121.87856"
@@ -1776,7 +1897,7 @@
     <text
        class="lab"
        id="text72-0-6"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="181.74628"
        y="172.60767"
        inkscape:export-xdpi="180"
@@ -1785,14 +1906,14 @@
     <text
        class="lab"
        id="text80-0-2"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="171.93852"
        y="172.69627"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text88-6-19"
        class="lab"
        x="151.92639"
@@ -1801,7 +1922,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text96-7-64"
        class="lab"
        x="161.98058"
@@ -1812,7 +1933,7 @@
     <text
        class="lab"
        id="text72-0-1"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="153.63254"
        y="78.281548"
        inkscape:export-xdpi="180"
@@ -1821,14 +1942,14 @@
     <text
        class="lab"
        id="text80-0-02"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="101.49181"
        y="78.370155"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">c</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text88-6-2"
        class="lab"
        x="48.142143"
@@ -1837,7 +1958,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">a</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text96-7-9"
        class="lab"
        x="74.07132"
@@ -1848,14 +1969,14 @@
     <text
        class="lab lft"
        id="text104-9-8"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="58.406502"
        y="63.231506"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">e</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        id="text112-9-9"
        class="lab lft"
        x="68.758606"
@@ -1866,14 +1987,14 @@
     <text
        class="lab lft"
        id="text120-5-7"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="87.654045"
        y="34.157246"
        inkscape:export-xdpi="180"
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">h</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        id="text126-3-7"
        class="lab"
        x="103.62078"
@@ -1882,7 +2003,7 @@
        inkscape:export-ydpi="180"
        inkscape:export-filename="/home/gertjan/git/smc-bit-paper/figures/smc_custom_2rows_area.png">i</text>
     <text
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:start;display:inline;stroke-width:0.264583"
        id="text186-4-6"
        class="lab rgt"
        x="128.42737"
@@ -1893,7 +2014,7 @@
     <text
        class="lab"
        id="text340-6-4"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="127.29404"
        y="14.11626"
        inkscape:export-xdpi="180"
@@ -2015,7 +2136,7 @@
     <text
        class="lab lft"
        id="text334-7-1"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="125.98668"
        y="118.59105"
        inkscape:export-xdpi="180"
@@ -2043,7 +2164,7 @@
     <text
        class="lab lft"
        id="text334-7-1-2"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:end;display:inline;stroke-width:0.264583"
        x="91.309898"
        y="118.59111"
        inkscape:export-xdpi="180"
@@ -2071,7 +2192,7 @@
     <text
        class="lab"
        id="text340-6-7"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="128.52567"
        y="108.39799"
        inkscape:export-xdpi="180"
@@ -2099,7 +2220,7 @@
     <text
        class="lab"
        id="text340-6-7-1"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="93.848885"
        y="108.39796"
        inkscape:export-xdpi="180"
@@ -2127,7 +2248,7 @@
     <text
        class="lab"
        id="text340-6-7-5"
-       style="font-size:3.70416665px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.26458332"
+       style="font-size:3.70417px;dominant-baseline:central;text-anchor:middle;display:inline;stroke-width:0.264583"
        x="52.573692"
        y="108.39799"
        inkscape:export-xdpi="180"

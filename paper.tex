@@ -353,7 +353,7 @@ between both representations a node is recorded for each local tree whenever
 a node is encountered along its ancestry path in the graph representation.
 This results in nodes that (locally) have only a single child, and are therefore
 (locally) unary.
-Nodes A, B and C are recombinants, i.e, have two parents in the graph
+Nodes A, B and C are recombinants, i.e., have two parents in the graph
 and are unary in the local trees. The blue shaded regions indicate
 the range of possible times associated with these recombinants.
 The blue arrows show the
@@ -576,7 +576,7 @@ for each lineage $X_j(t) = [x_{j}, y_{j})$ we define its
 order by the left coordinate $x_j$ and label $j$ (to break ties).
 The instantaneous rate of coalescence then equals $\lambda$
 multiplied by the number of overlapping pairs,
-i.e., $\lambda \sum_{i \neq j} I_{jk}$,
+i.e., $\lambda \sum_{j \neq k} I_{jk}$,
 where
 \begin{equation} \label{def:coal}
 I_{jk} = \begin{cases}
@@ -596,11 +596,13 @@ the original lineages are removed, and $L(t)$ is updated accordingly.
 % asymmetry doesn't affect the actual process. Also need to comment on
 % how the process terminates. Basically has the same subtleties as McVean and
 % Cardin, and not important for our purposes.]
-For later use, also define $C_j(t)$ to be the set of
-lineages that can coalesce into lineage $j$, i.e.,
-$C_j(t) = \{X_k \in L(t) | I_{jk}(t) = 1\}$;
-thus, $|C_j(t)| = I_{j}(t) = \sum_{k} I_{jk}(t)$,
-and the total rate of coalescence at time $t$ is $\sum_{j} |C_j(t)|$.  \revpoint{1}{2}
+For later use, also define $I_j(t)$ to be the total rate at which lineages
+are coalescing into lineage $j$,
+and $C_j(t)$ to be the set of lineages that can coalesce into lineage $j$.
+In other words,
+$C_j(t) = \{X_k \in L(t) | I_{jk}(t) = 1\}$
+and $|C_j(t)| = I_{j}(t) = \sum_{k} I_{jk}(t)$,
+and the total rate of coalescence at time $t$ is $\lambda \sum_{j} |C_j(t)|$.  \revpoint{1}{2}
 Because $I_{jk}$ is defined in terms of a total order, the sets $C_j(t)$ are disjoint,
 which will simplify likelihood computations later. In particular, although
 recombination affects \emph{which} lineages can coalesce into $j$, it does not
@@ -663,7 +665,14 @@ where $\lambda_i$ is the rate of the $i^\text{th}$ realised event,
 and $\Lambda$ is the sum of all rates of all possible events
 integrated over the entire process
 (also called the ``total hazard'').
-As discussed in the Introduction, in many cases these events are not what is
+Each $\lambda_i$ would be either equal to $\lambda$ (if the event is a coalescence)
+or $r|X_j(t)|$ for some $j$ and $t$ (if it is a recombination),
+and since the total rates at time $t$ of recombination events is $rT(t)$
+and of coalescent events is $\lambda \sum_j |C_j(t)|$,
+the total hazard up to time $T$ is $\Lambda = \int_0^T r T(t) + \lambda \sum_j |C_j(t)| dt$.
+
+However,
+as discussed in the Introduction, in many cases these events are not what is
 estimated by inference methods, which produce, more fundamentally, a collection
 of genetic inheritance relationships (edges) between ancestral haplotypes (nodes).
 Our goal, therefore, is to decompose the overall likelihood into the
@@ -805,13 +814,14 @@ Using this total order, we can define
 $I_e(t)$ to be the total number of earlier edges that overlap edge $e$
 and are present at time $t$.
 Then, the cumulative hazard for common ancestry events of edge $e$
-between time $s$ and $t$ is given by $F(e, s, t) = \int_{s}^{t} I_{e}(z) dz$. \revpoint{1}{4}
+between time $s$ and $t$ is given by $\lambda$ multiplied by
+$F(e, s, t) = \int_{s}^{t} I_{e}(z) dz$. \revpoint{1}{4}
 If the edge $e = (p,c,x,y)$
 is the leftmost segment of material inherited by node $c$
 (e.g., the left hand segment ancestral to node $c$
 in Fig.~\ref{fig:likelihood}),
 then no recombination occurred along this edge and
-this edge simply contributes $\exp(-F(e,t_c,t_p))$ to the likelihood.
+this edge simply contributes $\exp(-\lambda F(e,t_c,t_p))$ to the likelihood.
 However, if the edge is \emph{not} the leftmost segment
 (as shown in Fig.~\ref{fig:likelihood}),
 then it was initiated by a new recombination breakpoint,
@@ -1364,7 +1374,9 @@ metadata support, is the ideal basis for this.
 
 All scripts and data used for this manuscript are available at
 \url{https://github.com/gertjanbisschop/smc-bit-paper},
-and an implementation of the algorithm is available at
+and an implementation of the algorithm,
+named ``Recombination (time) UNaware SMC'' (runsmc),
+is available at
 \url{https://github.com/gertjanbisschop/runsmc}.
 \revpoint{2}{43}
 
