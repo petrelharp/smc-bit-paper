@@ -1511,9 +1511,10 @@ t_p & \text{otherwise}
     \Return $-c \cdot A$
 }
 
-\[
-B \leftarrow - \frac{c}{r - c C_{i-1}} \cdot \frac{r}{c} \cdot \exp(-r T_i - c A)
-\]
+% \[
+% B \leftarrow - \frac{c}{r - c C_{i-1}} \cdot \frac{r}{c} \cdot \exp(-r T_i - c A)
+% \]
+$B \leftarrow -r / (r - c C_{i-1})\cdot \exp(-r T_i - c A)$
 
 \While{$i > 0$}{
     $A \leftarrow A + (T_i - T_{i-1}) \cdot C_{i-1}$\;
