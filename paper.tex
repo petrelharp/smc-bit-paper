@@ -1492,18 +1492,26 @@ Define helper function $f(f_0, f_1)$:
     \item Else return $\displaystyle \frac{c}{r - c f_1} \cdot \frac{c}{r - c f_0} \cdot (f_1 - f_0) \cdot \frac{r}{c}$
 \end{itemize}
 
-Set stopping time:
-\[
-t_{\text{stop}} \leftarrow
-\begin{cases}
-t_c & \text{if } R = \text{False} \\
-t_p & \text{otherwise}
-\end{cases}
-\]
+% Set stopping time:
+% \[
+% t_{\text{stop}} \leftarrow
+% \begin{cases}
+% t_c & \text{if } R = \text{False} \\
+% t_p & \text{otherwise}
+% \end{cases}
+% \]
+
+$t_{\text{stop}} \leftarrow t_p$
+
+\If{$R = \text{False}$}{
+    $t_{\text{stop}} \leftarrow t_c$
+}
 
 \While{$T_i > t_{\text{stop}}$}{
-    $A \leftarrow A + (T_i - T_{i-1}) \cdot C_{i-1}$\;
-    $i \leftarrow i - 1$\;
+    $A \leftarrow A + (T_i - T_{i-1}) \cdot C_{i-1}$
+
+    $i \leftarrow i - 1$
+
     \If{$i < 1$}{break}
 }
 
@@ -1517,21 +1525,25 @@ t_p & \text{otherwise}
 $B \leftarrow -r / (r - c C_{i-1})\cdot \exp(-r T_i - c A)$
 
 \While{$i > 0$}{
-    $A \leftarrow A + (T_i - T_{i-1}) \cdot C_{i-1}$\;
-    $i \leftarrow i - 1$\;
+    $A \leftarrow A + (T_i - T_{i-1}) \cdot C_{i-1}$
+
+    $i \leftarrow i - 1$
+
     \If{$T_i = t_c$}{break}
-    \[
-    S \leftarrow S + f(C_{i-1}, C_i) \cdot \exp(-r T_i - c A)
-    \]
+
+    $S \leftarrow S + f(C_{i-1}, C_i) \cdot \exp(-r T_i - c A)$
 }
 
-\[
-S \leftarrow S + \frac{c}{r - c C_i} \cdot \frac{r}{c} \cdot \exp(-r T_i - c A)
-\]
+% \[
+% S \leftarrow S + \frac{c}{r - c C_i} \cdot \frac{r}{c} \cdot \exp(-r T_i - c A)
+% \]
+% \[
+% S \leftarrow S + B
+% \]
+$S \leftarrow B + S + r (r - c C_i) \cdot \exp(-r T_i - c A)$
 
-\[
-S \leftarrow S + B
-\]
+% S \leftarrow S + \frac{c}{r - c C_i} \cdot \frac{r}{c} \cdot \exp(-r T_i - c A)
+% $S \leftarrow S + B$
 
 \Return $\log(S)$
 
