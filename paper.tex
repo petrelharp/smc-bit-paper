@@ -12,6 +12,9 @@
 \usepackage{placeins}
 \usepackage[hidelinks]{hyperref}
 
+% For algorithms in supplementary materials
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
 \newcommand{\tsinfer}[0]{\texttt{tsinfer}}
 \newcommand{\kwarg}[0]{\texttt{KwARG}}
 \newcommand{\argneedle}[0]{\texttt{ARG-Needle}}
@@ -1444,6 +1447,8 @@ of that edge by computing the integral
 in Eq.~\eqref{eq:full-lik} using $I$, and then update the counts in $I$.
 We further keep track of
 the last parent a child node was connected to to detect recombination events.
+The pseudocode for the algorithm is included in Alg.~\ref{alg:full}. Note that Alg.~\ref{alg:depth} 
+details how to compute the integrals contained in Eq.~\eqref{eq:depth}. 
 
 \setcounter{table}{0}
 \setcounter{figure}{0}
@@ -1461,6 +1466,154 @@ the last parent a child node was connected to to detect recombination events.
     dashed line, as in Fig.~3.
     \label{fig:likelihood_suppl}}
 \end{figure}
+
+% algorithm in pseudocode
+%% Algorithm to compute contribution of time component of each edge
+
+\begin{algorithm}[H]
+\caption{\textsc{LogDepth}: pseudocode for equation Eq.~\eqref{eq:depth}}
+\label{alg:depth}
+\KwIn{
+    Count vector $C$; interval boundaries $T$;\\
+    Parent time $t_p$; child time $t_c$;\\
+    Initial index $i_0$; recombination rate $r$;\\
+    Coalescence rate $c$; recombination flag $R$
+}
+\KwOut{log likelihood contribution in time dimension}
+\BlankLine
+
+Initialize cumulative area $A \leftarrow 0$\;
+Initialize result $S \leftarrow 0$\;
+Set index $i \leftarrow i_0$\;
+
+Define helper function $f(f_0, f_1)$:
+\begin{itemize}
+    \item If $f_0 = f_1$, return $0$
+    \item Else return $\displaystyle \frac{c}{r - c f_1} \cdot \frac{c}{r - c f_0} \cdot (f_1 - f_0) \cdot \frac{r}{c}$
+\end{itemize}
+
+% Set stopping time:
+% \[
+% t_{\text{stop}} \leftarrow
+% \begin{cases}
+% t_c & \text{if } R = \text{False} \\
+% t_p & \text{otherwise}
+% \end{cases}
+% \]
+
+$t_{\text{stop}} \leftarrow t_p$
+
+\If{$R = \text{False}$}{
+    $t_{\text{stop}} \leftarrow t_c$
+}
+
+\While{$T_i > t_{\text{stop}}$}{
+    $A \leftarrow A + (T_i - T_{i-1}) \cdot C_{i-1}$
+
+    $i \leftarrow i - 1$
+
+    \If{$i < 1$}{break}
+}
+
+\If{$R = \text{False}$}{
+    \Return $-c \cdot A$
+}
+
+% \[
+% B \leftarrow - \frac{c}{r - c C_{i-1}} \cdot \frac{r}{c} \cdot \exp(-r T_i - c A)
+% \]
+$B \leftarrow -r / (r - c C_{i-1})\cdot \exp(-r T_i - c A)$
+
+\While{$i > 0$}{
+    $A \leftarrow A + (T_i - T_{i-1}) \cdot C_{i-1}$
+
+    $i \leftarrow i - 1$
+
+    \If{$T_i = t_c$}{break}
+
+    $S \leftarrow S + f(C_{i-1}, C_i) \cdot \exp(-r T_i - c A)$
+}
+
+% \[
+% S \leftarrow S + \frac{c}{r - c C_i} \cdot \frac{r}{c} \cdot \exp(-r T_i - c A)
+% \]
+% \[
+% S \leftarrow S + B
+% \]
+$S \leftarrow B + S + r (r - c C_i) \cdot \exp(-r T_i - c A)$
+
+% S \leftarrow S + \frac{c}{r - c C_i} \cdot \frac{r}{c} \cdot \exp(-r T_i - c A)
+% $S \leftarrow S + B$
+
+\Return $\log(S)$
+
+\end{algorithm}
+
+%% Main algorithm
+
+\begin{algorithm}[H]
+\caption{\textsc{LogLikelihood}: pseudocode for Eq.~\eqref{eq:full-lik}}
+\label{alg:full}
+\KwIn{
+    Time vector $I$ for all nodes;\\
+    Edge arrays containing parent, child, left and right coordinate of each edge: \texttt{edges\_parent}, \texttt{edges\_child}, \texttt{edges\_left}, \texttt{edges\_right};\\
+    Recombination rate $r$, coalescence rate $c$;\\
+    \texttt{treesequence};\\
+}
+\KwOut{Total log-likelihood value}
+\BlankLine
+
+Initialize log-likelihood: $\text{LL} \leftarrow 0$ \;
+Initialize lineage count vector $C \leftarrow 0$ \;
+Initialize arrays to track last parent and visited nodes \;
+
+\While{next tree exists in treesequence}{
+    
+    \tcp{Process edge removals}
+    \ForEach{edge $e$ being removed}{
+        Identify parent $p$ and child $c$ from $e$ \;
+        Get node times $t_p$ for $p$, and $t_c$ for $c$ \;
+        Decrease lineage count $C$ between $t_c$ and $t_p$ \;
+        Record $p$ as last parent of $c$ \;
+    }
+
+    \tcp{Process edge insertions}
+    \ForEach{edge $e$ being inserted}{
+        Identify parent $p$ and child $c$ from $e$ \;
+        Get node times $t_p$ for $p$, and $t_c$ for $c$ \;
+
+        Set \texttt{rec\_event} $\leftarrow$ False \;
+        Set \texttt{left\_parent\_time} $\leftarrow \infty$ \;
+
+        \If{child $c$ had a previous parent $p^{\prime}$}{
+            Retrieve previous parent time $t_{p^{\prime}}$\;
+            \If{$p^{\prime}$ $\neq p$ and $p$ not visited}{
+                Set \texttt{rec\_event} $\leftarrow$ True \;
+            }
+        }
+
+        Set $t_{p_{\min}} \leftarrow \min(t_p, \texttt{left\_parent\_time})$ as effective parent time \;
+
+        \tcp{Add depth contribution}
+        $\text{LL} \leftarrow \text{LL} + \textsc{LogDepth}(C, I, t_{p_{\min}}, t_c, p, r, c, \texttt{rec\_event})$
+
+        \tcp{Add span contribution}
+        $\text{LL} \leftarrow \text{LL} -r \cdot (t_p - t_c) \cdot (\texttt{edges\_right}[e] - \texttt{edges\_left}[e])$
+
+        \tcp{Update lineage count}
+        Increase $C$ between $t_c$ and $t_p$ \;
+    }
+}
+
+Number of nodes with out-degree 0: $n_o$ \;
+Contribution coalescent events: $ll_c = \text{num\_edges} -\text{num\_nodes} + n_o$ \; 
+Number of nodes with in-degree 0: $n_r$ \;
+Contribution recombination events: $ll_r = \text{num\_edges} - \text{num\_nodes} + n_r$ \;
+Update likelihood: $\text{LL} \leftarrow \text{LL} +ll_c \cdot \log(c) + ll_r \cdot \log(r)$ \;
+
+\Return $\text{LL}$
+
+\end{algorithm}
 
 
 % [TODO another paragraph summarising what you actually do]
